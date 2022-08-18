@@ -19,7 +19,7 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PackageServi
             ->name('filament-tournament-league-administration')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_filament-tournament-league-administration_table')
+            ->hasMigration('create_filament_tournament_league_administration_tables')
             ->hasCommand(FilamentTournamentLeagueAdministrationCommand::class);
     }
 }
