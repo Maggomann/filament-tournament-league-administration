@@ -28,7 +28,17 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "livewire/livewire": "^2.10",
+        "filament/filament": "^2.0",
+        "filament/forms": "^2.15",
+        "filament/notifications": "^2.15",
+        "filament/spatie-laravel-media-library-plugin": "^2.15",
+        "filament/spatie-laravel-settings-plugin": "^2.15",
+        "filament/spatie-laravel-tags-plugin": "^2.15",
+        "filament/spatie-laravel-translatable-plugin": "^2.15",
+        "filament/tables": "^2.15"
+
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
