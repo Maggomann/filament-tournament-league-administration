@@ -6,9 +6,9 @@ use Illuminate\Console\Command;
 
 class FilamentTournamentLeagueAdministrationCommand extends Command
 {
-    public $signature = 'filament-tournament-league-administration';
+    public $signature = 'filament-tournament-league-administration:install';
 
-    public $description = 'My command';
+    protected $description = 'Install all of the filament-tournament-league-administration resources';
 
     public function handle(): int
     {
