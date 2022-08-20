@@ -15,15 +15,15 @@ class FederationResource extends Resource
 {
     protected static ?string $model = Federation::class;
 
-    protected static ?string $slug = '/federations';
+    protected static ?string $slug = 'tournament-league/federations';
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static ?string $navigationGroup = 'Tournament';
+    protected static ?string $navigationGroup = 'Tournament & League';
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?int $navigationSort = 0;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {

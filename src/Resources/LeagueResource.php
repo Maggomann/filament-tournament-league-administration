@@ -2,22 +2,24 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\Pages;
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\RelationManagers;
 use App\Models\League;
-use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\Pages;
 
 class LeagueResource extends Resource
 {
     protected static ?string $model = League::class;
 
+    protected static ?string $slug = 'tournament-league/leagues';
+
+    protected static ?string $navigationGroup = 'Tournament & League';
+
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+
+    protected static ?int $navigationSort = 0;
 
     public static function form(Form $form): Form
     {
@@ -43,14 +45,14 @@ class LeagueResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -58,5 +60,5 @@ class LeagueResource extends Resource
             'create' => Pages\CreateLeague::route('/create'),
             'edit' => Pages\EditLeague::route('/{record}/edit'),
         ];
-    }    
+    }
 }

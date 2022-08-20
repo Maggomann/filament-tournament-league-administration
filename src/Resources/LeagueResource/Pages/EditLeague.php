@@ -2,9 +2,9 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\Pages;
 
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource;
 
 class EditLeague extends EditRecord
 {

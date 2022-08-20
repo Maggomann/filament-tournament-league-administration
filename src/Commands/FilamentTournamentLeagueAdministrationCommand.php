@@ -13,10 +13,10 @@ class FilamentTournamentLeagueAdministrationCommand extends Command
     public function handle(): int
     {
         $this->comment('Publishing tournament-league-administration Configuration...');
-        $this->callSilent('vendor:publish', ['--tag' => 'filament-tournament-league-config']);
+        $this->callSilent('vendor:publish', ['--tag' => 'filament-tournament-league-administration-config']);
 
         $this->comment('Publishing Filament tournament-league-administration Migrations...');
-        $this->callSilent('vendor:publish', ['--tag' => 'filament-tournament-league-migrations']);
+        $this->callSilent('vendor:publish', ['--tag' => 'filament-tournament-league-administration-migrations']);
         $this->callSilent('vendor:publish', ['--tag' => 'tags-migrations']);
 
         $this->info('Filament filament-tournament-league-administration was installed successfully.');

@@ -2,9 +2,9 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\Pages;
 
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource;
 
 class ListLeagues extends ListRecords
 {
