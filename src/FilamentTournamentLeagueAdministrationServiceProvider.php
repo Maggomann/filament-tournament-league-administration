@@ -2,13 +2,13 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration;
 
+use Filament\PluginServiceProvider;
 use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamentLeagueAdministrationCommand;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource;
 use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentTournamentLeagueAdministrationServiceProvider extends PackageServiceProvider
+class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServiceProvider
 {
     protected array $resources = [
         FederationResource::class,

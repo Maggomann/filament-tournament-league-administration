@@ -17,18 +17,13 @@ class FederationResource extends Resource
 
     protected static ?string $slug = 'tournament-league/federations';
 
-    protected static ?string $recordTitleAttribute = 'title';
-
-    protected static ?string $navigationGroup = 'Tournament and Leagues';
-
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static ?int $navigationSort = 1;
 
-
     public static function getLabel(): string
     {
-        return 'TestLabel';
+        return 'Federation';
     }
 
     protected static function getNavigationGroup(): ?string
@@ -38,7 +33,7 @@ class FederationResource extends Resource
 
     public static function getPluralLabel(): string
     {
-        return 'TestLabels';
+        return 'Federations';
     }
 
     public static function form(Form $form): Form
