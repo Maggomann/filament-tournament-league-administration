@@ -15,11 +15,28 @@ class LeagueResource extends Resource
 
     protected static ?string $slug = 'tournament-league/leagues';
 
+    protected static ?string $recordTitleAttribute = 'title';
+
     protected static ?string $navigationGroup = 'Tournament & League';
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     protected static ?int $navigationSort = 0;
+
+    public static function getLabel(): string
+    {
+        return 'TestLabel League';
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return 'Tournament and Leagues';
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return 'TestLabel Leagues';
+    }
 
     public static function form(Form $form): Form
     {

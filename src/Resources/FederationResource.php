@@ -19,11 +19,27 @@ class FederationResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static ?string $navigationGroup = 'Tournament & League';
+    protected static ?string $navigationGroup = 'Tournament and Leagues';
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static ?int $navigationSort = 1;
+
+
+    public static function getLabel(): string
+    {
+        return 'TestLabel';
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return 'Tournament and Leagues';
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return 'TestLabels';
+    }
 
     public static function form(Form $form): Form
     {
