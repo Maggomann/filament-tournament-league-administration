@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\LeagueResource\Pages;
+namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\Pages;
 
-use App\Filament\Resources\LeagueResource;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 

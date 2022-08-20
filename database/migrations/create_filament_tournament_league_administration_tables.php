@@ -12,5 +12,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
         });
+
+        Schema::create('tournament_league_leagues', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+        });
     }
 };

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
-use App\Filament\Resources\LeagueResource\Pages;
-use App\Filament\Resources\LeagueResource\RelationManagers;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\Pages;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\RelationManagers;
 use App\Models\League;
 use Filament\Forms;
 use Filament\Resources\Form;
