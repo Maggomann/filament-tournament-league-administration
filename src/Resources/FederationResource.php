@@ -4,14 +4,13 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
 use Filament\Forms;
 use Filament\Resources\Form;
-use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource\Pages;
 
-class FederationResource extends Resource
+class FederationResource extends TranslateableResource
 {
     protected static ?string $model = Federation::class;
 
@@ -19,22 +18,7 @@ class FederationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?int $navigationSort = 1;
-
-    public static function getLabel(): string
-    {
-        return 'Federation';
-    }
-
-    protected static function getNavigationGroup(): ?string
-    {
-        return 'Tournament and Leagues';
-    }
-
-    public static function getPluralLabel(): string
-    {
-        return 'Federations';
-    }
+    protected static ?int $navigationSort = 0;
 
     public static function form(Form $form): Form
     {

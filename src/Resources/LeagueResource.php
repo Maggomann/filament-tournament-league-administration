@@ -3,36 +3,20 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
 use Filament\Resources\Form;
-use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Maggomann\FilamentTournamentLeagueAdministration\Models\League as ModelsLeague;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\Pages;
 
-class LeagueResource extends Resource
+class LeagueResource extends TranslateableResource
 {
-    protected static ?string $model = ModelsLeague::class;
+    protected static ?string $model = League::class;
 
     protected static ?string $slug = 'tournament-league/leagues';
- 
+
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
-    protected static ?int $navigationSort = 0;
-
-    public static function getLabel(): string
-    {
-        return 'League';
-    }
-
-    protected static function getNavigationGroup(): ?string
-    {
-        return 'Tournament and Leagues';
-    }
-
-    public static function getPluralLabel(): string
-    {
-        return 'Leagues';
-    }
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "933f178fc102044f755b8816d386ca4a",
+    "content-hash": "36168ab42bff10032bfe0d66c4e0de8d",
     "packages": [
         {
             "name": "brick/math",
@@ -1138,6 +1138,94 @@
                 }
             ],
             "time": "2022-04-17T13:12:02+00:00"
+        },
+        {
+            "name": "maggomann/filament-model-translator",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "../filament-model-translator",
+                "reference": "fadff64ae6a35c2622deebe83f981e1cd5f277c6"
+            },
+            "require": {
+                "illuminate/contracts": "^9.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^6.0",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^7.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Maggomann\\FilamentModelTranslator\\FilamentModelTranslatorServiceProvider"
+                    ],
+                    "aliases": {
+                        "FilamentModelTranslator": "Maggomann\\FilamentModelTranslator\\Facades\\FilamentModelTranslator"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Maggomann\\FilamentModelTranslator\\": "src",
+                    "Maggomann\\FilamentModelTranslator\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Maggomann\\FilamentModelTranslator\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "lint": [
+                    "vendor/bin/pint --test"
+                ],
+                "lint:fix": [
+                    "vendor/bin/pint"
+                ],
+                "test:coverage": [
+                    "php -dpcov.enabled=1 -dpcov.directory=src/ vendor/bin/phpunit"
+                ],
+                "test:unit": [
+                    "vendor/bin/testbench package:test --no-coverage"
+                ],
+                "test:types": [
+                    "vendor/bin/phpstan analyse"
+                ],
+                "test": [
+                    "@lint:fix",
+                    "@test:types",
+                    "@test:unit"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maggomann",
+                    "email": "marco.ehrt@googlemail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is my package filament-model-translator",
+            "homepage": "https://github.com/maggomann/filament-model-translator",
+            "keywords": [
+                "filament-model-translator",
+                "laravel",
+                "maggomann"
+            ],
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "monolog/monolog",
@@ -5451,16 +5539,16 @@
         },
         {
             "name": "filament/filament",
-            "version": "v2.15.20",
+            "version": "v2.15.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/admin.git",
-                "reference": "81886c66c7933c2eee5f9b9d00e7455188ea49f5"
+                "reference": "f1cc10be05403d53f918a5a1283f7a030d628e91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/admin/zipball/81886c66c7933c2eee5f9b9d00e7455188ea49f5",
-                "reference": "81886c66c7933c2eee5f9b9d00e7455188ea49f5",
+                "url": "https://api.github.com/repos/filamentphp/admin/zipball/f1cc10be05403d53f918a5a1283f7a030d628e91",
+                "reference": "f1cc10be05403d53f918a5a1283f7a030d628e91",
                 "shasum": ""
             },
             "require": {
@@ -5509,20 +5597,20 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2022-08-19T17:21:19+00:00"
+            "time": "2022-08-20T20:10:14+00:00"
         },
         {
             "name": "filament/forms",
-            "version": "v2.15.20",
+            "version": "v2.15.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/forms.git",
-                "reference": "629874470da8526fc9495512895226f83f73555e"
+                "reference": "7abaaa5935d541513c296b0993e12dfdb32daead"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/forms/zipball/629874470da8526fc9495512895226f83f73555e",
-                "reference": "629874470da8526fc9495512895226f83f73555e",
+                "url": "https://api.github.com/repos/filamentphp/forms/zipball/7abaaa5935d541513c296b0993e12dfdb32daead",
+                "reference": "7abaaa5935d541513c296b0993e12dfdb32daead",
                 "shasum": ""
             },
             "require": {
@@ -5567,20 +5655,20 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2022-08-19T17:21:17+00:00"
+            "time": "2022-08-20T21:09:32+00:00"
         },
         {
             "name": "filament/notifications",
-            "version": "v2.15.20",
+            "version": "v2.15.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/notifications.git",
-                "reference": "9a5100b97e4b65d98c8ae610e68c0d530c9db1a8"
+                "reference": "9a42a06554199ebd0cc4605a4ab36e71d13fdab9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/notifications/zipball/9a5100b97e4b65d98c8ae610e68c0d530c9db1a8",
-                "reference": "9a5100b97e4b65d98c8ae610e68c0d530c9db1a8",
+                "url": "https://api.github.com/repos/filamentphp/notifications/zipball/9a42a06554199ebd0cc4605a4ab36e71d13fdab9",
+                "reference": "9a42a06554199ebd0cc4605a4ab36e71d13fdab9",
                 "shasum": ""
             },
             "require": {
@@ -5616,11 +5704,11 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2022-08-08T09:45:06+00:00"
+            "time": "2022-08-20T20:09:05+00:00"
         },
         {
             "name": "filament/spatie-laravel-media-library-plugin",
-            "version": "v2.15.20",
+            "version": "v2.15.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-media-library-plugin.git",
@@ -5657,7 +5745,7 @@
         },
         {
             "name": "filament/spatie-laravel-settings-plugin",
-            "version": "v2.15.20",
+            "version": "v2.15.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-settings-plugin.git",
@@ -5704,7 +5792,7 @@
         },
         {
             "name": "filament/spatie-laravel-tags-plugin",
-            "version": "v2.15.20",
+            "version": "v2.15.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-tags-plugin.git",
@@ -5741,7 +5829,7 @@
         },
         {
             "name": "filament/spatie-laravel-translatable-plugin",
-            "version": "v2.15.20",
+            "version": "v2.15.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-translatable-plugin.git",
@@ -5787,16 +5875,16 @@
         },
         {
             "name": "filament/support",
-            "version": "v2.15.20",
+            "version": "v2.15.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/support.git",
-                "reference": "052587bd0c797cf41af3a7c00da303a7ae0748d1"
+                "reference": "1fe1ae2d2d4fa15d59c4065dc7ece4136074e622"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/support/zipball/052587bd0c797cf41af3a7c00da303a7ae0748d1",
-                "reference": "052587bd0c797cf41af3a7c00da303a7ae0748d1",
+                "url": "https://api.github.com/repos/filamentphp/support/zipball/1fe1ae2d2d4fa15d59c4065dc7ece4136074e622",
+                "reference": "1fe1ae2d2d4fa15d59c4065dc7ece4136074e622",
                 "shasum": ""
             },
             "require": {
@@ -5833,20 +5921,20 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2022-08-19T17:21:16+00:00"
+            "time": "2022-08-20T20:09:11+00:00"
         },
         {
             "name": "filament/tables",
-            "version": "v2.15.20",
+            "version": "v2.15.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/tables.git",
-                "reference": "eb751e286f53875c0d2d8d7854c37c76182e51a3"
+                "reference": "8495dcd0b41e4b4143777ebfd69279ddb1773f7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/tables/zipball/eb751e286f53875c0d2d8d7854c37c76182e51a3",
-                "reference": "eb751e286f53875c0d2d8d7854c37c76182e51a3",
+                "url": "https://api.github.com/repos/filamentphp/tables/zipball/8495dcd0b41e4b4143777ebfd69279ddb1773f7f",
+                "reference": "8495dcd0b41e4b4143777ebfd69279ddb1773f7f",
                 "shasum": ""
             },
             "require": {
@@ -5888,7 +5976,7 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2022-08-19T17:21:11+00:00"
+            "time": "2022-08-20T21:09:40+00:00"
         },
         {
             "name": "filp/whoops",
@@ -6961,10 +7049,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../laravel-packages/artisan-standalone",
-                "reference": "3462d96d2edb1fd01b9f3c4dd8739ac9349a142c"
-            },
-            "require": {
-                "laravel/tinker": "^2.0"
+                "reference": "9bc0ec9da01a07e79e225553aad945e2633f2f39"
             },
             "require-dev": {
                 "laravel/laravel": "^9.3",
@@ -6994,6 +7079,24 @@
                 "psr-4": {
                     "Tests\\": "tests/"
                 }
+            },
+            "scripts": {
+                "lint": [
+                    "vendor/bin/pint --test"
+                ],
+                "lint:fix": [
+                    "vendor/bin/pint"
+                ],
+                "test:coverage": [
+                    "php -dpcov.enabled=1 -dpcov.directory=src/ vendor/bin/phpunit"
+                ],
+                "test:unit": [
+                    "vendor/bin/testbench package:test --no-coverage"
+                ],
+                "test": [
+                    "@lint:fix",
+                    "@test:unit"
+                ]
             },
             "license": [
                 "MIT"
@@ -11520,6 +11623,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "maggomann/filament-model-translator": 20,
         "maggomann/artisan-standalone": 20
     },
     "prefer-stable": true,

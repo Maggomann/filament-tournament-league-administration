@@ -20,6 +20,7 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServic
         $package
             ->name('filament-tournament-league-administration')
             ->hasConfigFile()
+            ->hasTranslations()
             ->hasMigration('create_filament_tournament_league_administration_tables')
             ->hasCommand(FilamentTournamentLeagueAdministrationCommand::class);
     }

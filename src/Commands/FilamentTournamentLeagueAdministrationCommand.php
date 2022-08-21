@@ -19,6 +19,9 @@ class FilamentTournamentLeagueAdministrationCommand extends Command
         $this->callSilent('vendor:publish', ['--tag' => 'filament-tournament-league-administration-migrations']);
         $this->callSilent('vendor:publish', ['--tag' => 'tags-migrations']);
 
+        $this->comment('Publishing Filament tournament-league-administration languages...');
+        $this->callSilent('vendor:publish', ['--tag' => 'filament-translations']);
+
         $this->info('Filament filament-tournament-league-administration was installed successfully.');
 
         return self::SUCCESS;
