@@ -3,12 +3,12 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
 use Filament\Resources\Resource;
-use Maggomann\FilamentModelTranslator\Contracts\TranslateableModels;
-use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModels;
+use Maggomann\FilamentModelTranslator\Contracts\TranslateableResources;
+use Maggomann\FilamentModelTranslator\Traits\HasTranslateableResources;
 
-class TranslateableResource extends Resource implements TranslateableModels
+class TranslateableResource extends Resource implements TranslateableResources
 {
-    use HasTranslateableModels;
+    use HasTranslateableResources;
 
-    protected static ?string $translateableKey = 'filament-tournament-league-administration::';
+    protected static ?string $translateablePackageKey = 'filament-tournament-league-administration::';
 }

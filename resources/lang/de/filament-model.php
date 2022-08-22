@@ -35,10 +35,10 @@ return [
 
     'navigation_group' => [
         'federation' => [
-            'name' => 'Liegen & Turniere',
+            'name' => 'Saisons & Turniere',
         ],
         'league' => [
-            'name' => 'Liegen & Turniere',
+            'name' => 'Saisons & Turniere',
         ],
     ],
 

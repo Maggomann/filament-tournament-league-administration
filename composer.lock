@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36168ab42bff10032bfe0d66c4e0de8d",
+    "content-hash": "4b568c9be3cf23e494d34eaba461829c",
     "packages": [
         {
             "name": "brick/math",
@@ -1141,18 +1141,20 @@
         },
         {
             "name": "maggomann/filament-model-translator",
-            "version": "dev-main",
+            "version": "dev-beta",
             "dist": {
                 "type": "path",
                 "url": "../filament-model-translator",
-                "reference": "fadff64ae6a35c2622deebe83f981e1cd5f277c6"
+                "reference": "c2458b83a062868f850d44c610036090fa5b0c3a"
             },
             "require": {
                 "illuminate/contracts": "^9.0",
                 "php": "^8.1",
-                "spatie/laravel-package-tools": "^1.9.2"
+                "spatie/laravel-package-tools": "^1.9.2",
+                "spatie/once": "^3.1"
             },
             "require-dev": {
+                "filament/filament": "^2.0",
                 "laravel/pint": "^1.0",
                 "nunomaduro/collision": "^6.0",
                 "nunomaduro/larastan": "^2.0.1",
@@ -1221,7 +1223,9 @@
             "keywords": [
                 "filament-model-translator",
                 "laravel",
-                "maggomann"
+                "maggomann",
+                "model",
+                "translator"
             ],
             "transport-options": {
                 "relative": true
@@ -2173,6 +2177,68 @@
                 }
             ],
             "time": "2022-06-28T14:29:26+00:00"
+        },
+        {
+            "name": "spatie/once",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/once.git",
+                "reference": "aab3fc8694e7caec98b2d330c4a8420391c7559d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/once/zipball/aab3fc8694e7caec98b2d330c4a8420391c7559d",
+                "reference": "aab3fc8694e7caec98b2d330c4a8420391c7559d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "pestphp/pest": "^1.21",
+                "symfony/var-dumper": "^5.1"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "Spatie\\Once\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A magic memoization function",
+            "homepage": "https://github.com/spatie/once",
+            "keywords": [
+                "cache",
+                "callable",
+                "memoization",
+                "once",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/once/tree/3.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-04-21T12:23:20+00:00"
         },
         {
             "name": "symfony/console",
