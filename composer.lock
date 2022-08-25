@@ -1145,7 +1145,7 @@
             "dist": {
                 "type": "path",
                 "url": "../filament-model-translator",
-                "reference": "c2458b83a062868f850d44c610036090fa5b0c3a"
+                "reference": "284d96606e4170ec26dc8f96d219ca23bcef48c9"
             },
             "require": {
                 "illuminate/contracts": "^9.0",
@@ -7115,10 +7115,12 @@
             "dist": {
                 "type": "path",
                 "url": "../../laravel-packages/artisan-standalone",
-                "reference": "9bc0ec9da01a07e79e225553aad945e2633f2f39"
+                "reference": "e58210e7eef735727aaa1e5639fd587a32462ac0"
+            },
+            "require": {
+                "laravel/tinker": "^2.0"
             },
             "require-dev": {
-                "laravel/laravel": "^9.3",
                 "laravel/pint": "^1.0",
                 "mockery/mockery": "^1.3",
                 "orchestra/testbench": "^7.0",
@@ -7145,24 +7147,6 @@
                 "psr-4": {
                     "Tests\\": "tests/"
                 }
-            },
-            "scripts": {
-                "lint": [
-                    "vendor/bin/pint --test"
-                ],
-                "lint:fix": [
-                    "vendor/bin/pint"
-                ],
-                "test:coverage": [
-                    "php -dpcov.enabled=1 -dpcov.directory=src/ vendor/bin/phpunit"
-                ],
-                "test:unit": [
-                    "vendor/bin/testbench package:test --no-coverage"
-                ],
-                "test": [
-                    "@lint:fix",
-                    "@test:unit"
-                ]
             },
             "license": [
                 "MIT"
