@@ -18,6 +18,10 @@ class FilamentTournamentLeagueAdministrationCommand extends Command
         $this->comment('Publishing Filament tournament-league-administration Migrations...');
         $this->callSilent('vendor:publish', ['--tag' => 'filament-tournament-league-administration-migrations']);
         $this->callSilent('vendor:publish', ['--tag' => 'tags-migrations']);
+        $this->callSilent('vendor:publish', ['--tag' => 'tags-seeders']);
+        $this->callSilent('vendor:publish', ['--tag' => 'tags-factories']);
+
+        $ php artisan vendor:publish --tag=randomable-seeds
 
         $this->comment('Publishing Filament tournament-league-administration languages...');
         $this->callSilent('vendor:publish', ['--tag' => 'filament-translations']);

@@ -1,10 +1,13 @@
 <?php
 
-namespace Maggomann\FilamentTournamentLeagueAdministration\Database\Factories;
+namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Maggomann\FilamentTournamentLeagueAdministration\Models\Federation>
+ */
 class FederationFactory extends Factory
 {
     /**
@@ -15,7 +18,8 @@ class FederationFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $title = $this->faker->unique()->sentence(4),
+            'calculation_type' => $this->faker->randomElement([1, 2]),
+            'name' => $this->faker->sentence(2),
         ];
     }
 }

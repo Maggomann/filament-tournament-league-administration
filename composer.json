@@ -17,8 +17,9 @@
     "homepage": "https://github.com/maggomann/filament-tournament-league-administration",
     "require": {
         "php": "^8.1",
+        "maggomann/filament-model-translator": "dev-beta",
         "spatie/laravel-package-tools": "^1.9.2",
-        "maggomann/filament-model-translator": "dev-beta"
+        "spatie/laravel-sluggable": "^3.4"
     },
     "require-dev": {
         "laravel/laravel": "^9.3",
@@ -51,7 +52,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Maggomann\\FilamentTournamentLeagueAdministration\\Tests\\": "tests"
+            "Maggomann\\FilamentTournamentLeagueAdministration\\Tests\\": "tests",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "config": {

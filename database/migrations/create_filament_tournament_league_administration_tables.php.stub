@@ -10,12 +10,18 @@ return new class extends Migration
     {
         Schema::create('tournament_league_federations', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name')->index();
+            $table->string('slug');
+            $table->unsignedInteger('calculation_type')->index()->default(1);
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('tournament_league_leagues', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->unsignedBigInteger('federation_id')->nullable()->index();
+            $table->string('name')->index();
+            $table->string('slug');
         });
     }
 };
