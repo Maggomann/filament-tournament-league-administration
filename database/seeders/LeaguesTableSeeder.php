@@ -3,7 +3,7 @@
 namespace Database\Seeders\FilamentTournamentLeagueAdministration;
 
 use Illuminate\Database\Seeder;
-use Maggomann\FilamentTournamentLeagueAdministration\Database\Factories\LeagueFactory;
+use Database\Factories\FilamentTournamentLeagueAdministration\LeagueFactory;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 
 class LeaguesTableSeeder extends Seeder
