@@ -24,4 +24,17 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServic
             ->hasMigration('create_filament_tournament_league_administration_tables')
             ->hasCommand(FilamentTournamentLeagueAdministrationCommand::class);
     }
+
+    public function packageBooted(): void
+    {
+        $this->publishes([
+            $this->package->basePath('/../database/seeders') => database_path('seeders/FilamentTournamentLeagueAdministration/'),
+        ], "{$this->package->shortName()}-seeders");
+
+        $this->publishes([
+            $this->package->basePath('/../database/factories') => database_path('factories/FilamentTournamentLeagueAdministration/'),
+        ], "{$this->package->shortName()}-factories");
+
+        parent::packageBooted();
+    }
 }

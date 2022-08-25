@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\FilamentTournamentLeagueAdministration;
 
 use Illuminate\Database\Seeder;
 

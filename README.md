@@ -16,6 +16,11 @@ composer require maggomann/filament-tournament-league-administration
 You can publish and run the migrations with:
 
 ```bash
+php artisan filament-tournament-league-administration:install
+php artisan migrate
+```
+or
+```bash
 php artisan vendor:publish --tag="filament-tournament-league-administration-migrations"
 php artisan migrate
 ```

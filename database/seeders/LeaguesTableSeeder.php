@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\FilamentTournamentLeagueAdministration;
 
-use Database\Factories\LeagueFactory;
 use Illuminate\Database\Seeder;
+use Maggomann\FilamentTournamentLeagueAdministration\Database\Factories\LeagueFactory;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 
 class LeaguesTableSeeder extends Seeder
