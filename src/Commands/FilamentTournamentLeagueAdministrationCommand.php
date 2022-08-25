@@ -21,8 +21,6 @@ class FilamentTournamentLeagueAdministrationCommand extends Command
         $this->callSilent('vendor:publish', ['--tag' => 'tags-seeders']);
         $this->callSilent('vendor:publish', ['--tag' => 'tags-factories']);
 
-        $ php artisan vendor:publish --tag=randomable-seeds
-
         $this->comment('Publishing Filament tournament-league-administration languages...');
         $this->callSilent('vendor:publish', ['--tag' => 'filament-translations']);
 
