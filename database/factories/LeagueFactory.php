@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories\FilamentTournamentLeagueAdministration;
+namespace Database\Factories;
 
 use App\League;
 use Illuminate\Database\Eloquent\Factories\Factory;

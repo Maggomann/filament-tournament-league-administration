@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories\FilamentTournamentLeagueAdministration;
+namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;

@@ -47,15 +47,15 @@
     "autoload": {
         "psr-4": {
             "Maggomann\\FilamentTournamentLeagueAdministration\\": "src",
-            "Database\\Factories\\FilamentTournamentLeagueAdministration\\": "database/factories",
-            "Database\\Seeders\\FilamentTournamentLeagueAdministration\\": "database/seeders/"
+            "Database\\Factories\\": "database/factories",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Maggomann\\FilamentTournamentLeagueAdministration\\Tests\\": "tests",
-            "Database\\Factories\\FilamentTournamentLeagueAdministration\\": "database/factories/",
-            "Database\\Seeders\\FilamentTournamentLeagueAdministration\\": "database/seeders/"
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "config": {
