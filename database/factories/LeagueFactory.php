@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\League;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Maggomann\FilamentTournamentLeagueAdministration\Models\League>
@@ -18,7 +18,7 @@ class LeagueFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'slug' => $this->faker->slug,
+            'slug' => null,
         ];
     }
 }

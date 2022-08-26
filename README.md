@@ -19,7 +19,9 @@ You can publish and run the migrations with:
 php artisan filament-tournament-league-administration:install
 php artisan migrate
 ```
+
 or
+
 ```bash
 php artisan vendor:publish --tag="filament-tournament-league-administration-migrations"
 php artisan migrate
@@ -42,6 +44,21 @@ Optionally, you can publish the views using
 
 ```bash
 php artisan vendor:publish --tag="filament-tournament-league-administration-views"
+```
+
+Optionally, you can publish the seeding file with:
+
+```bash
+php artisan filament-tournament-league-administration:publish-seeding
+php artisan db:seed --class=FilamentTournamentTableSeeder
+```
+or
+
+```bash
+php artisan vendor:publish --tag="filament-tournament-league-administration-seeders"
+php artisan vendor:publish --tag="filament-tournament-league-administration-factories"
+
+php artisan db:seed --class=FilamentTournamentTableSeeder
 ```
 
 ## Usage
