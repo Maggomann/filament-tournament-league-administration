@@ -28,11 +28,11 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServic
     public function packageBooted(): void
     {
         $this->publishes([
-            $this->package->basePath('/../database/seeders') => database_path('seeders/FilamentTournamentLeagueAdministration/'),
+            $this->package->basePath('/../database/seeders') => database_path('seeders/'),
         ], "{$this->package->shortName()}-seeders");
 
         $this->publishes([
-            $this->package->basePath('/../database/factories') => database_path('factories/FilamentTournamentLeagueAdministration/'),
+            $this->package->basePath('/../database/factories') => database_path('factories/'),
         ], "{$this->package->shortName()}-factories");
 
         parent::packageBooted();

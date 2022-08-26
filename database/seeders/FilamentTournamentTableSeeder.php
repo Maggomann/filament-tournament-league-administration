@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class FilamentTournamentLeagueAdministrationTableSeeder extends Seeder
+class FilamentTournamentTableSeeder extends Seeder
 {
     public function run()
     {
