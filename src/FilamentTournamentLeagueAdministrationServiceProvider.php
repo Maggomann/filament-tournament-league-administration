@@ -4,6 +4,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration;
 
 use Filament\PluginServiceProvider;
 use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamentLeagueAdministrationCommand;
+use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamentPublishSeedingCommand;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource;
 use Spatie\LaravelPackageTools\Package;
