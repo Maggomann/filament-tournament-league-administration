@@ -22,6 +22,8 @@ return new class extends Migration
             $table->unsignedBigInteger('federation_id')->nullable()->index();
             $table->string('name')->index();
             $table->string('slug')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 };
