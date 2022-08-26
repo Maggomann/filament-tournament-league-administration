@@ -46,19 +46,23 @@ Optionally, you can publish the views using
 php artisan vendor:publish --tag="filament-tournament-league-administration-views"
 ```
 
+Optionally, you can run the seeder with:
+
+```bash
+php artisan db:seed --class=FilamentTournamentTableSeeder
+```
+
+
 Optionally, you can publish the seeding file with:
 
 ```bash
 php artisan filament-tournament-league-administration:publish-seeding
-php artisan db:seed --class=FilamentTournamentTableSeeder
 ```
 or
 
 ```bash
 php artisan vendor:publish --tag="filament-tournament-league-administration-seeders"
 php artisan vendor:publish --tag="filament-tournament-league-administration-factories"
-
-php artisan db:seed --class=FilamentTournamentTableSeeder
 ```
 
 ## Usage
