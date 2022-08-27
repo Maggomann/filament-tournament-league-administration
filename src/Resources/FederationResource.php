@@ -10,7 +10,12 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource\Pages;
@@ -34,17 +39,21 @@ class FederationResource extends TranslateableResource
                 Card::make()
                     ->schema([
                         TextInput::make('name')
+                            ->label(Federation::transAttribute('name'))
                             ->required()
                             ->reactive()
                             ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::of($state)->slug())),
                         TextInput::make('slug')
+                            ->label(Federation::transAttribute('slug'))
                             ->disabled()
                             ->required()
                             ->unique(Federation::class, 'slug', fn ($record) => $record),
-                        Select::make('caluclation_type_id')
-                            ->label('Kalkulationstyp')
+                        Select::make('calculation_type_id')
+                            ->label(Federation::transAttribute('calculation_type_id'))
+                            ->validationAttribute(Federation::transAttribute('calculation_type_id'))
                             ->relationship('calculationType', 'name')
                             ->options(CalculationType::all()->pluck('name', 'id'))
+                            ->required()
                             ->searchable()
                     ])
                     ->columns([
@@ -54,12 +63,12 @@ class FederationResource extends TranslateableResource
                 Card::make()
                     ->schema([
                         Placeholder::make('created_at')
-                            ->label('Created at')
+                            ->label(Federation::transAttribute('created_at'))
                             ->content(fn (
                                 ?Federation $record
                             ): string => $record ? $record->created_at->diffForHumans() : '-'),
                         Placeholder::make('updated_at')
-                            ->label('Last modified at')
+                            ->label(Federation::transAttribute('created_at'))
                             ->content(fn (
                                 ?Federation $record
                             ): string => $record ? $record->updated_at->diffForHumans() : '-'),
@@ -75,16 +84,23 @@ class FederationResource extends TranslateableResource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(Federation::transAttribute('name'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('slug')
+                    ->label(Federation::transAttribute('slug'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('calculationType.name')
+                    ->label(Federation::transAttribute('calculation_type_id'))
                     ->searchable()
                     ->sortable()
                     ->tooltip(fn (?Federation $record): string => $record ? $record->calculationType->description : '-'),
-
+            ])
+            ->filters([
+                SelectFilter::make('calculation_type_id')
+                    ->label(Federation::transAttribute('calculation_type_id'))
+                    ->relationship('calculationType', 'name'),
             ]);
     }
 
@@ -104,9 +120,9 @@ class FederationResource extends TranslateableResource
         ];
     }
 
-    public static function getGloballySearchableAttributes(): array
+    protected static function getGlobalSearchEloquentQuery(): Builder
     {
-        return ['title'];
+        return parent::getGlobalSearchEloquentQuery()->with(['calculationType']);
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array
