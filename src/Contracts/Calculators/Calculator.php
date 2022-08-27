@@ -22,5 +22,3 @@ class Calculator
         return static::class;
     }
 }
-
-

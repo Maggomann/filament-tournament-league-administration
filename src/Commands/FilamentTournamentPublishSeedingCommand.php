@@ -22,7 +22,4 @@ class FilamentTournamentPublishSeedingCommand extends Command
 
         return self::SUCCESS;
     }
-
-
-
 }

@@ -2,25 +2,23 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
-use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
-use Filament\Tables;
-use Filament\Tables\Actions\BulkAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource\Pages;
 use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource\Pages;
 
 class FederationResource extends TranslateableResource
 {
@@ -54,7 +52,7 @@ class FederationResource extends TranslateableResource
                             ->relationship('calculationType', 'name')
                             ->options(CalculationType::all()->pluck('name', 'id'))
                             ->required()
-                            ->searchable()
+                            ->searchable(),
                     ])
                     ->columns([
                         'sm' => 2,
@@ -101,7 +99,22 @@ class FederationResource extends TranslateableResource
                 SelectFilter::make('calculation_type_id')
                     ->label(Federation::transAttribute('calculation_type_id'))
                     ->relationship('calculationType', 'name'),
+            ])
+            ->actions([
+                DeleteAction::make()
+                    ->label('')
+                    ->tooltip(__('filament-support::actions/delete.single.label')),
+                ViewAction::make()
+                    ->label('')
+                    ->tooltip(__('filament-support::actions/view.single.label')),
+                EditAction::make()
+                    ->label('')
+                    ->tooltip(__('filament-support::actions/edit.single.label')),
             ]);
+    }
+
+    protected function getTableActions(): array
+    {
     }
 
     public static function getRelations(): array

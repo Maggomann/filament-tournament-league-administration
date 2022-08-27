@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Calculators\DSABCalculator;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Calculators\HDLCalculator;
@@ -60,7 +59,7 @@ return new class extends Migration
                 'calculator' => DSABCalculator::getMorphClass(),
                 'created_at' => $now,
                 'updated_at' => $now,
-            ]
+            ],
         ];
 
         CalculationType::insert($calculators);

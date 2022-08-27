@@ -26,7 +26,4 @@ class FilamentTournamentLeagueAdministrationCommand extends Command
 
         return self::SUCCESS;
     }
-
-
-
 }

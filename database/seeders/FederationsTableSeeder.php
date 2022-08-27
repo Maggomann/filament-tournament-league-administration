@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Database\Factories\FederationFactory;
+use Illuminate\Database\Seeder;
 
 class FederationsTableSeeder extends Seeder
 {
