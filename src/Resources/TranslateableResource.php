@@ -3,10 +3,10 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
 use Filament\Resources\Resource;
-use Maggomann\FilamentModelTranslator\Contracts\TranslateableResources;
+use Maggomann\FilamentModelTranslator\Contracts\Translateable;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableResources;
 
-class TranslateableResource extends Resource implements TranslateableResources
+class TranslateableResource extends Resource implements Translateable
 {
     use HasTranslateableResources;
 
