@@ -3,12 +3,19 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
 use Filament\Forms;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource\Pages;
+use Illuminate\Support\Str;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 
 class FederationResource extends TranslateableResource
 {
@@ -24,15 +31,41 @@ class FederationResource extends TranslateableResource
     {
         return $form
             ->schema([
-                Forms\Components\Card::make()
+                Card::make()
                     ->schema([
-                        Forms\Components\TextInput::make('title')
+                        TextInput::make('name')
                             ->required()
-                            ->reactive(),
+                            ->reactive()
+                            ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::of($state)->slug())),
+                        TextInput::make('slug')
+                            ->disabled()
+                            ->required()
+                            ->unique(Federation::class, 'slug', fn ($record) => $record),
+                        Select::make('caluclation_type_id')
+                            ->label('Kalkulationstyp')
+                            ->relationship('calculationType', 'name')
+                            ->options(CalculationType::all()->pluck('name', 'id'))
+                            ->searchable()
                     ])
                     ->columns([
-                        'sm' => 5,
-                    ]),
+                        'sm' => 2,
+                    ])
+                    ->columnSpan(2),
+                Card::make()
+                    ->schema([
+                        Placeholder::make('created_at')
+                            ->label('Created at')
+                            ->content(fn (
+                                ?Federation $record
+                            ): string => $record ? $record->created_at->diffForHumans() : '-'),
+                        Placeholder::make('updated_at')
+                            ->label('Last modified at')
+                            ->content(fn (
+                                ?Federation $record
+                            ): string => $record ? $record->updated_at->diffForHumans() : '-'),
+                    ])
+                    ->columnSpan(1),
+
             ])
             ->columns(3);
     }
@@ -41,9 +74,17 @@ class FederationResource extends TranslateableResource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('slug')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('calculationType.name')
+                    ->searchable()
+                    ->sortable()
+                    ->tooltip(fn (?Federation $record): string => $record ? $record->calculationType->description : '-'),
+
             ]);
     }
 

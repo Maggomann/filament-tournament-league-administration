@@ -4,6 +4,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -29,7 +30,6 @@ class Federation extends Model
      */
     protected $fillable = [
         'name',
-        'calculation_type',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -53,5 +53,10 @@ class Federation extends Model
     public function leagues(): HasMany
     {
         return $this->hasMany(League::class);
+    }
+
+    public function calculationType(): BelongsTo
+    {
+        return $this->belongsTo(CalculationType::class);
     }
 }

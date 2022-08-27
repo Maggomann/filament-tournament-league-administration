@@ -18,7 +18,7 @@ class FederationFactory extends Factory
     public function definition(): array
     {
         return [
-            'calculation_type' => $this->faker->randomElement([1, 2]),
+            'calculation_type_id' => $this->faker->randomElement([1, 2]),
             'name' => $this->faker->sentence(2),
         ];
     }
