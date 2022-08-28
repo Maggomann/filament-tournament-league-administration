@@ -4,16 +4,24 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Trai
 
 trait HasHideableLabel
 {
-    public function hideLabel(bool $showHideLabelAsTooltip = true): static
-    {
-        if ($showHideLabelAsTooltip) {
-            $label = $this->modelLabel ?? $this->label;
+    protected ?string $originLabel = null;
 
-            $this->tooltip($label);
+    public function hideLabel(): static
+    {
+        if ($this->originLabel === null) {
+            $this->originLabel = $this->label;
         }
 
         $this->label = '';
-        $this->modelLabel = '';
+
+        return $this;
+    }
+
+    public function hideLabelAndShowAsTooltip(): static
+    {
+        $this->hideLabel();
+
+        $this->tooltip($this->originLabel);
 
         return $this;
     }

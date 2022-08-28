@@ -42,9 +42,9 @@ class LeaguesRelationManager extends TranslateableRelationManager
                 CreateAction::make(),
             ])
             ->actions([
-                EditAction::make()->hideLabel(showHideLabelAsTooltip: true),
-                ViewAction::make()->hideLabel(showHideLabelAsTooltip: true),
-                DeleteAction::make()->hideLabel(showHideLabelAsTooltip: true),
+                EditAction::make()->hideLabelAndShowAsTooltip(),
+                ViewAction::make()->hideLabelAndShowAsTooltip(),
+                DeleteAction::make()->hideLabelAndShowAsTooltip(),
             ])
             ->bulkActions([
                 DeleteBulkAction::make(),

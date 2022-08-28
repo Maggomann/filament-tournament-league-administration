@@ -8,6 +8,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
@@ -76,13 +78,20 @@ class LeagueResource extends TranslateableResource
                     ->label(League::transAttribute('slug'))
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('federation.name')
+                    ->label(League::transAttribute('federation.name'))
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
+                SelectFilter::make('federation.name')
+                    ->label(League::transAttribute('federation.name'))
+                    ->relationship('federation', 'name'),
             ])
             ->actions([
-                EditAction::make()->hideLabel(showHideLabelAsTooltip: true),
-                ViewAction::make()->hideLabel(showHideLabelAsTooltip: true),
-                DeleteAction::make()->hideLabel(showHideLabelAsTooltip: true),
+                EditAction::make()->hideLabelAndShowAsTooltip(),
+                ViewAction::make()->hideLabelAndShowAsTooltip(),
+                DeleteAction::make()->hideLabelAndShowAsTooltip(),
             ]);
     }
 
@@ -91,6 +100,11 @@ class LeagueResource extends TranslateableResource
         return [
             //
         ];
+    }
+
+    protected static function getGlobalSearchEloquentQuery(): Builder
+    {
+        return parent::getGlobalSearchEloquentQuery()->with(['federation']);
     }
 
     public static function getPages(): array
