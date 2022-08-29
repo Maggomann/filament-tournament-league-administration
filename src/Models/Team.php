@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class League extends TranslateableModel
+class Team extends TranslateableModel
 {
     use HasFactory;
     use HasSlug;
@@ -18,7 +18,7 @@ class League extends TranslateableModel
     /**
      * @var string
      */
-    protected $table = 'tournament_league_leagues';
+    protected $table = 'tournament_league_teams';
 
     protected $dates = [
         'created_at',
@@ -31,6 +31,9 @@ class League extends TranslateableModel
      */
     protected $fillable = [
         'name',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     /**
@@ -48,13 +51,8 @@ class League extends TranslateableModel
         return 'slug';
     }
 
-    public function federation(): BelongsTo
+    public function league(): BelongsTo
     {
-        return $this->belongsTo(Federation::class);
-    }
-
-    public function teams(): HasMany
-    {
-        return $this->hasMany(Team::class);
+        return $this->belongsTo(League::class);
     }
 }

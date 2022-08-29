@@ -38,6 +38,15 @@ return new class extends Migration
             $table->softDeletes();
         });
 
+        Schema::create('tournament_league_teams', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('league_id')->index();
+            $table->string('name')->index();
+            $table->string('slug')->nullable()->index();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
         $this->addCalcutaionTypes();
     }
 
