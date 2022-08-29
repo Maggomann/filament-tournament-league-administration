@@ -17,7 +17,7 @@ trait HasHideableLabel
         return $this;
     }
 
-    public function hideLabelAndShowAsTooltip(): static
+    public function hideLabellnTooltip(): static
     {
         $this->hideLabel();
 

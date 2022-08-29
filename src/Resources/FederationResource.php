@@ -102,9 +102,9 @@ class FederationResource extends TranslateableResource
                     ->relationship('calculationType', 'name'),
             ])
             ->actions([
-                EditAction::make()->hideLabelAndShowAsTooltip(),
-                ViewAction::make()->hideLabelAndShowAsTooltip(),
-                DeleteAction::make()->hideLabelAndShowAsTooltip(),
+                EditAction::make()->hideLabellnTooltip(),
+                ViewAction::make()->hideLabellnTooltip(),
+                DeleteAction::make()->hideLabellnTooltip(),
             ]);
     }
 

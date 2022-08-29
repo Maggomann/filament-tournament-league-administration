@@ -89,9 +89,9 @@ class LeagueResource extends TranslateableResource
                     ->relationship('federation', 'name'),
             ])
             ->actions([
-                EditAction::make()->hideLabelAndShowAsTooltip(),
-                ViewAction::make()->hideLabelAndShowAsTooltip(),
-                DeleteAction::make()->hideLabelAndShowAsTooltip(),
+                EditAction::make()->hideLabellnTooltip(),
+                ViewAction::make()->hideLabellnTooltip(),
+                DeleteAction::make()->hideLabellnTooltip(),
             ]);
     }
 
