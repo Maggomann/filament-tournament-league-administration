@@ -13,6 +13,7 @@ class FilamentTournamentTableSeeder extends Seeder
             FederationsTableSeeder::class,
             LeaguesTableSeeder::class,
             TeamsTableSeeder::class,
+            PlayersTableSeeder::class,
         ]);
     }
 }
