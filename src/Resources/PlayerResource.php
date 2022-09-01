@@ -26,7 +26,7 @@ class PlayerResource extends TranslateableResource
 {
     protected static ?string $model = Player::class;
 
-    protected static ?string $slug = 'tournament-Team/players';
+    protected static ?string $slug = 'tournament-league/players';
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
