@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 
 class Calculator
 {
-    public static function getMorphClass()
+    public static function getMorphClass(): string
     {
         $morphMap = Relation::morphMap();
 
@@ -16,7 +16,7 @@ class Calculator
         }
 
         if (Relation::requiresMorphMap()) {
-            throw new ClassMorphViolationException(new static());
+            throw new ClassMorphViolationException(new self());
         }
 
         return static::class;

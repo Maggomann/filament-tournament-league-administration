@@ -9,7 +9,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('tournament_league_calculation_types', function (Blueprint $table) {
             $table->id();
@@ -60,9 +60,9 @@ return new class extends Migration
         $this->addCalcutaionTypes();
     }
 
-    private function addCalcutaionTypes()
+    private function addCalcutaionTypes(): void
     {
-        // uebersetzung
+        // TODO: Übersetzung einbauen
         $now = now();
         $calculators = [
             [

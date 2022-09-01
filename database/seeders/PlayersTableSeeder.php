@@ -8,7 +8,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 
 class PlayersTableSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         Team::get()->each(fn (Team $team) => PlayerFactory::new()
             ->times(3)

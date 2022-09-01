@@ -10,10 +10,13 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
  */
 class TeamFactory extends Factory
 {
-    /** @var string */
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var class-string<\Maggomann\FilamentTournamentLeagueAdministration\Models\Team>
+     */
     protected $model = Team::class;
 
-    /** @return array<string> */
     public function definition(): array
     {
         return [

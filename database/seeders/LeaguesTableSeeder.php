@@ -8,7 +8,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 
 class LeaguesTableSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         Federation::get()->each(fn (Federation $federation) => LeagueFactory::new()
             ->times(2)

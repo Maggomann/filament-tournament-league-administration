@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 class FederationsTableSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         FederationFactory::new()
             ->times(3)

@@ -11,7 +11,9 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 class FederationFactory extends Factory
 {
     /**
-     * @var string
+     * The name of the factory's corresponding model.
+     *
+     * @var class-string<\Maggomann\FilamentTournamentLeagueAdministration\Models\Federation>
      */
     protected $model = Federation::class;
 

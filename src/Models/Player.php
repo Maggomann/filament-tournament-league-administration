@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
+/**
+ * 
+ * @package Maggomann\FilamentTournamentLeagueAdministration\Models
+ * @property int $team_id
+ */
 class Player extends TranslateableModel
 {
     use HasFactory;
