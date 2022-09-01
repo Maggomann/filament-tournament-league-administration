@@ -7,6 +7,8 @@ use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournament
 use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamentPublishSeedingCommand;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource;
 use Spatie\LaravelPackageTools\Package;
 
 class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServiceProvider
@@ -14,6 +16,8 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServic
     protected array $resources = [
         FederationResource::class,
         LeagueResource::class,
+        TeamResource::class,
+        PlayerResource::class,
     ];
 
     public function configurePackage(Package $package): void
