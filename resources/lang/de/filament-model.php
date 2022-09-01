@@ -11,6 +11,8 @@ return [
         'calculation_type' => 'Kalkulationstyp|Kalkulationstypen',
         'federation' => 'Verband|Verbände',
         'league' => 'Liga|Ligen',
+        'team' => 'Team|Teams',
+        'player' => 'Spieler|Spieler',
     ],
 
     /*
@@ -38,6 +40,23 @@ return [
                 'name' => 'Verband',
             ],
         ],
+        'team' => [
+            'name' => 'Name',
+            'slug' => 'Slug',
+            'league_id' => 'Liga',
+            'created_at' => 'Erstellt am',
+            'updated_at' => 'Aktualisiert am',
+            'deleted_at' => 'Gelöscht am',
+        ],
+        'player' => [
+            'name' => 'Name',
+            'slug' => 'Slug',
+            'email' => 'E-Mail-Adresse',
+            'team_id' => 'Team',
+            'created_at' => 'Erstellt am',
+            'updated_at' => 'Aktualisiert am',
+            'deleted_at' => 'Gelöscht am',
+        ],
         'calculation_type' => [
             'name' => 'Name',
             'description' => 'Beschreibung',
@@ -58,6 +77,12 @@ return [
             'name' => 'Saisons & Turniere',
         ],
         'league' => [
+            'name' => 'Saisons & Turniere',
+        ],
+        'team' => [
+            'name' => 'Saisons & Turniere',
+        ],
+        'player' => [
             'name' => 'Saisons & Turniere',
         ],
         'calculation_type' => [

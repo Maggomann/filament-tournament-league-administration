@@ -10,8 +10,6 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 /**
- * 
- * @package Maggomann\FilamentTournamentLeagueAdministration\Models
  * @property int|null $federation_id
  */
 class League extends TranslateableModel
