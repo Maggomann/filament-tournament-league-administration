@@ -27,7 +27,7 @@ class TeamResource extends TranslateableResource
 
     protected static ?string $slug = 'tournament-league/teams';
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-document-user-group';
 
     protected static ?int $navigationSort = 2;
 
