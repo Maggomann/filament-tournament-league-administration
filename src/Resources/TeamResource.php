@@ -110,7 +110,7 @@ class TeamResource extends TranslateableResource
     public static function getRelations(): array
     {
         return [
-            LeagueRelationManager::class,
+            // LeagueRelationManager::class,
         ];
     }
 

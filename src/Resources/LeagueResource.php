@@ -15,6 +15,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\Ed
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\Pages;
+use Illuminate\Support\Str;
 
 class LeagueResource extends TranslateableResource
 {
