@@ -4,6 +4,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -56,13 +57,6 @@ class TeamResource extends TranslateableResource
                             ->options(League::all()->pluck('name', 'id'))
                             ->required()
                             ->searchable(),
-
-                        // Placeholder::make('federation_id')
-                        //     ->label(League::transAttribute('federation_id'))
-                        //     ->content(fn (
-                        //         ?Team $record
-                        //     ): string => $record ? $record->league->federation->name : '-'),
-
                     ])
                     ->columns([
                         'sm' => 2,
@@ -70,16 +64,28 @@ class TeamResource extends TranslateableResource
                     ->columnSpan(2),
                 Card::make()
                     ->schema([
-                        Placeholder::make('created_at')
-                            ->label(Team::transAttribute('created_at'))
-                            ->content(fn (
-                                ?Team $record
-                            ): string => $record ? $record->created_at->diffForHumans() : '-'),
-                        Placeholder::make('updated_at')
-                            ->label(Team::transAttribute('created_at'))
-                            ->content(fn (
-                                ?Team $record
-                            ): string => $record ? $record->updated_at->diffForHumans() : '-'),
+                        Section::make('Verbandsdaten')
+                            ->schema([
+                                Placeholder::make('federation_id')
+                                    ->label(League::transAttribute('federation_id'))
+                                    ->content(fn (
+                                        ?Team $record
+                                    ): string => $record ? $record->league->federation->name : '-'),
+                            ]),
+                        Section::make('Datumsangaben')
+                            ->schema([
+                                Placeholder::make('created_at')
+                                    ->label(Team::transAttribute('created_at'))
+                                    ->content(fn (
+                                        ?Team $record
+                                    ): string => $record ? $record->created_at->diffForHumans() : '-'),
+                                Placeholder::make('updated_at')
+                                    ->label(Team::transAttribute('created_at'))
+                                    ->content(fn (
+                                        ?Team $record
+                                    ): string => $record ? $record->updated_at->diffForHumans() : '-'),
+                            ]),
+                        
                     ])
                     ->columnSpan(1),
 
