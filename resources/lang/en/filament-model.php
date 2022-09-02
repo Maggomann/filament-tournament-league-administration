@@ -11,6 +11,9 @@ return [
         'calculation_type' => 'Calculation type|Calculation types',
         'federation' => 'Association|Associations',
         'league' => 'League|Leagues',
+        'team' => 'Team|Teams',
+        'player' => 'Player|Players',
+    ],
     ],
 
     /*
@@ -38,6 +41,23 @@ return [
                 'name' => 'Association',
             ],
         ],
+        'team' => [
+            'name' => 'Name',
+            'slug' => 'Slug',
+            'league_id' => 'Liga',
+            'created_at' => 'Created at',
+            'updated_at' => 'Updated at',
+            'deleted_at' => 'Deleted at',
+        ],
+        'player' => [
+            'name' => 'Name',
+            'slug' => 'Slug',
+            'email' => 'E-Mail',
+            'team_id' => 'Team',
+            'created_at' => 'Created at',
+            'updated_at' => 'Updated at',
+            'deleted_at' => 'Deleted at',
+        ],
         'calculation_type' => [
             'name' => 'Name',
             'description' => 'Description',
@@ -58,6 +78,12 @@ return [
             'name' => 'Seasons & Tournaments',
         ],
         'league' => [
+            'name' => 'Seasons & Tournaments',
+        ],
+        'team' => [
+            'name' => 'Seasons & Tournaments',
+        ],
+        'player' => [
             'name' => 'Seasons & Tournaments',
         ],
         'calculation_type' => [
