@@ -13,9 +13,9 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\Ed
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 
-class LeagueRelationManager extends TranslateableRelationManager
+class PlayersRelationManager extends TranslateableRelationManager
 {
-    protected static string $relationship = 'league';
+    protected static string $relationship = 'players';
 
     protected static ?string $recordTitleAttribute = 'name';
 

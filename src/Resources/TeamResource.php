@@ -19,7 +19,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\Vi
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\Pages;
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\RelationManagers\LeagueRelationManager;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\RelationManagers\PlayersRelationManager;
 
 class TeamResource extends TranslateableResource
 {
@@ -42,11 +42,13 @@ class TeamResource extends TranslateableResource
                             ->required()
                             ->reactive()
                             ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::of($state)->slug())),
+
                         TextInput::make('slug')
                             ->label(Team::transAttribute('slug'))
                             ->disabled()
                             ->required()
                             ->unique(Team::class, 'slug', fn ($record) => $record),
+
                         Select::make('league_id')
                             ->label(Team::transAttribute('league_id'))
                             ->validationAttribute(Team::transAttribute('league_id'))
@@ -54,6 +56,13 @@ class TeamResource extends TranslateableResource
                             ->options(League::all()->pluck('name', 'id'))
                             ->required()
                             ->searchable(),
+
+                        // Placeholder::make('federation_id')
+                        //     ->label(League::transAttribute('federation_id'))
+                        //     ->content(fn (
+                        //         ?Team $record
+                        //     ): string => $record ? $record->league->federation->name : '-'),
+
                     ])
                     ->columns([
                         'sm' => 2,
@@ -110,7 +119,7 @@ class TeamResource extends TranslateableResource
     public static function getRelations(): array
     {
         return [
-            LeagueRelationManager::class,
+            PlayersRelationManager::class,
         ];
     }
 
@@ -125,7 +134,7 @@ class TeamResource extends TranslateableResource
 
     protected static function getGlobalSearchEloquentQuery(): Builder
     {
-        return parent::getGlobalSearchEloquentQuery()->with(['league']);
+        return parent::getGlobalSearchEloquentQuery()->with(['league.federation', 'players']);
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array

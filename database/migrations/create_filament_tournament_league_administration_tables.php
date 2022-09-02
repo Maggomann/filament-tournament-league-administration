@@ -40,7 +40,7 @@ return new class extends Migration
 
         Schema::create('tournament_league_teams', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('league_id')->index();
+            $table->unsignedBigInteger('league_id')->nullable()->index();
             $table->string('name')->index();
             $table->string('slug')->nullable()->index();
             $table->timestamps();
@@ -49,7 +49,7 @@ return new class extends Migration
 
         Schema::create('tournament_league_players', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('team_id')->index();
+            $table->unsignedBigInteger('team_id')->nullable()->index();
             $table->string('name')->index();
             $table->string('email')->nullable()->unique()->index();
             $table->string('slug')->nullable()->index();

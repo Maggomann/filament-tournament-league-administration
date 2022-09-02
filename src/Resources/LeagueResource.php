@@ -50,8 +50,8 @@ class LeagueResource extends TranslateableResource
                             ->unique(League::class, 'slug', fn ($record) => $record),
 
                         Select::make('federation_id')
-                            ->label(Federation::transAttribute('federation_id'))
-                            ->validationAttribute(Federation::transAttribute('federation_id'))
+                            ->label(League::transAttribute('federation_id'))
+                            ->validationAttribute(League::transAttribute('federation_id'))
                             ->relationship('federation', 'name')
                             ->options(Federation::all()->pluck('name', 'id'))
                             ->required()
