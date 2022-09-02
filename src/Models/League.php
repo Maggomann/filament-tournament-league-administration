@@ -5,6 +5,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -59,5 +60,13 @@ class League extends TranslateableModel
     public function teams(): HasMany
     {
         return $this->hasMany(Team::class);
+    }
+
+    public function players(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            Player::class,
+            Team::class,
+        );
     }
 }

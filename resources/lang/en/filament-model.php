@@ -36,6 +36,7 @@ return [
             'created_at' => 'Created at',
             'updated_at' => 'Updated at',
             'deleted_at' => 'Deleted at',
+            'federation_id' => 'Association',
             'federation' => [
                 'name' => 'Association',
             ],

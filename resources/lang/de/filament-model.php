@@ -36,6 +36,7 @@ return [
             'created_at' => 'Erstellt am',
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',
+            'federation_id' => 'Verband',
             'federation' => [
                 'name' => 'Verband',
             ],
