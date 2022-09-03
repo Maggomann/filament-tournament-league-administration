@@ -52,6 +52,7 @@ class FederationResource extends TranslateableResource
                             ->validationAttribute(Federation::transAttribute('calculation_type_id'))
                             ->relationship('calculationType', 'name')
                             ->options(CalculationType::all()->pluck('name', 'id'))
+                            ->exists(table: CalculationType::class, column: 'id')
                             ->required()
                             ->searchable(),
                     ])
@@ -94,7 +95,7 @@ class FederationResource extends TranslateableResource
                     ->label(Federation::transAttribute('calculation_type_id'))
                     ->searchable()
                     ->sortable()
-                    ->tooltip(fn (?Federation $record): string => $record ? $record->calculationType->description : '-'),
+                    ->tooltip(fn (?Federation $record): string => $record ? (string) $record->calculationType?->description : '-'),
             ])
             ->filters([
                 SelectFilter::make('calculation_type_id')

@@ -6,24 +6,27 @@ use Closure;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Placeholder;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\RelationManagers\PlayersRelationManager;
+use Throwable;
 
 class TeamResource extends TranslateableResource
 {
@@ -61,37 +64,71 @@ class TeamResource extends TranslateableResource
                             ->reactive()
                             ->createOptionForm([
                                 TextInput::make('name')
+                                    ->required(),
+                                Select::make('calculation_type_id')
+                                    ->label(Federation::transAttribute('calculation_type_id'))
+                                    ->validationAttribute(Federation::transAttribute('calculation_type_id'))
+                                    ->options(CalculationType::all()->pluck('name', 'id'))
+                                    ->exists(table: CalculationType::class, column: 'id')
                                     ->required()
+                                    ->searchable(),
                             ])
                             ->createOptionAction(function (Action $action) {
+                                $createTitle = __('filament::resources/pages/create-record.title', [
+                                    'label' => FederationResource::getModelLabel(),
+                                ]);
+
                                 return $action
-                                    ->modalHeading('Create Federation')
-                                    ->modalButton('Create Federation')
+                                    ->modalHeading($createTitle)
+                                    ->modalButton($createTitle)
                                     ->modalWidth('lg');
                             })
                             ->createOptionUsing(static function (Select $component, array $data) {
-                                // TODO: In einer Action Auslagern
-                                $record = new Federation();
-                                $record->fill($data);
-                                $record->save();
+                                try {
+                                    // TODO: In Action auslagern:
+                                    $federation = new Federation();
+                                    $federation->fill($data);
+                                    $federation->calculation_type_id = Arr::get($data, 'calculation_type_id');
+                                    $federation->save();
 
-                                $component->options(Federation::all()->pluck('name', 'id'));
-                    
-                                return $record->getKey();
+                                    $component->options(Federation::all()->pluck('name', 'id'));
+
+                                    // TODO: Notifaction bei Error
+                                    Notification::make()
+                                        ->title(__('filament::resources/pages/create-record.messages.created'))
+                                        ->success()
+                                        ->send();
+
+                                    return $federation->getKey();
+                                } catch (Throwable $th) {
+                                    Notification::make()
+                                        ->title('Es ist ein Fehler beim Erstellen des Datensetzes aufgetrteten')
+                                        ->danger()
+                                        ->send();
+                                }
                             })
                             ->afterStateUpdated(fn ($state, Closure $set) => $set('league_id', null)),
 
                         Select::make('league_id')
                             ->label(Team::transAttribute('league_id'))
                             ->validationAttribute(Team::transAttribute('league_id'))
-                            ->options(function(Closure $get) {
-                                $federation = Federation::find($get('federation_id'));
+                            ->options(function (Closure $get, Closure $set, ?Team $record) {
+                                $federationId = $get('federation_id');
 
-                                if (! $federation ) {
+                                if ($record && $federationId === null) {
+                                    $federationId = $record->league?->federation?->id;
+
+                                    $set('federation_id', $federationId );
+                                }
+
+                                if ($federationId === null) {
                                     return League::all()->pluck('name', 'id');
                                 }
 
-                                return $federation->leagues->pluck('name', 'id');
+                                return Federation::with('leagues')
+                                    ->find($federationId)
+                                    ?->leagues
+                                    ?->pluck('name', 'id');
                             })
                             ->required()
                             ->searchable(),
@@ -127,10 +164,12 @@ class TeamResource extends TranslateableResource
                     ->label(Team::transAttribute('name'))
                     ->searchable()
                     ->sortable(),
+
                 TextColumn::make('slug')
                     ->label(Team::transAttribute('slug'))
                     ->searchable()
                     ->sortable(),
+
                 TextColumn::make('league.name')
                     ->label(Team::transAttribute('league_id'))
                     ->searchable()

@@ -37,7 +37,7 @@ class PlayersRelationManager extends TranslateableRelationManager
                     ->relationship('team', 'name')
                     ->options(Team::all()->pluck('name', 'id'))
                     ->required()
-                    ->searchable(),    
+                    ->searchable(),
             ]);
     }
 
