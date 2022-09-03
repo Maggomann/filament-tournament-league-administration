@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource\Pages;
@@ -27,7 +28,7 @@ class FederationResource extends TranslateableResource
 
     protected static ?string $slug = 'tournament-league/federations';
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-list';
 
     protected static ?int $navigationSort = 0;
 
@@ -42,11 +43,13 @@ class FederationResource extends TranslateableResource
                             ->required()
                             ->reactive()
                             ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::of($state)->slug())),
+
                         TextInput::make('slug')
                             ->label(Federation::transAttribute('slug'))
                             ->disabled()
                             ->required()
                             ->unique(Federation::class, 'slug', fn ($record) => $record),
+
                         Select::make('calculation_type_id')
                             ->label(Federation::transAttribute('calculation_type_id'))
                             ->validationAttribute(Federation::transAttribute('calculation_type_id'))
@@ -60,20 +63,8 @@ class FederationResource extends TranslateableResource
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                Card::make()
-                    ->schema([
-                        Placeholder::make('created_at')
-                            ->label(Federation::transAttribute('created_at'))
-                            ->content(fn (
-                                ?Federation $record
-                            ): string => $record ? $record->created_at->diffForHumans() : '-'),
-                        Placeholder::make('updated_at')
-                            ->label(Federation::transAttribute('created_at'))
-                            ->content(fn (
-                                ?Federation $record
-                            ): string => $record ? $record->updated_at->diffForHumans() : '-'),
-                    ])
-                    ->columnSpan(1),
+                    
+                    CardTimestamps::make((new Federation)),
 
             ])
             ->columns(3);
@@ -87,10 +78,12 @@ class FederationResource extends TranslateableResource
                     ->label(Federation::transAttribute('name'))
                     ->searchable()
                     ->sortable(),
+
                 TextColumn::make('slug')
                     ->label(Federation::transAttribute('slug'))
                     ->searchable()
                     ->sortable(),
+                    
                 TextColumn::make('calculationType.name')
                     ->label(Federation::transAttribute('calculation_type_id'))
                     ->searchable()

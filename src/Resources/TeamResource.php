@@ -5,6 +5,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 use Closure;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Card;
+use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -44,18 +45,6 @@ class TeamResource extends TranslateableResource
             ->schema([
                 Card::make()
                     ->schema([
-                        TextInput::make('name')
-                            ->label(Team::transAttribute('name'))
-                            ->required()
-                            ->reactive()
-                            ->afterStateUpdated(fn ($state, Closure $set) => $set('slug', Str::of($state)->slug())),
-
-                        TextInput::make('slug')
-                            ->label(Team::transAttribute('slug'))
-                            ->disabled()
-                            ->required()
-                            ->unique(Team::class, 'slug', fn ($record) => $record),
-
                         Select::make('federation_id')
                             ->label(League::transAttribute('federation_id'))
                             ->validationAttribute(League::transAttribute('federation_id'))
@@ -132,26 +121,24 @@ class TeamResource extends TranslateableResource
                             })
                             ->required()
                             ->searchable(),
+
+                        TextInput::make('name')
+                            ->label(Team::transAttribute('name'))
+                            ->required()
+                            ->reactive()
+                            ->afterStateUpdated(fn ($state, Closure $set) => $set('slug', Str::of($state)->slug())),
+
+                        TextInput::make('slug')
+                            ->label(Team::transAttribute('slug'))
+                            ->disabled()
+                            ->required()
+                            ->unique(Team::class, 'slug', fn ($record) => $record),
                     ])
                     ->columns([
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                Card::make()
-                    ->schema([
-                        Placeholder::make('created_at')
-                            ->label(Team::transAttribute('created_at'))
-                            ->content(fn (
-                                ?Team $record
-                            ): string => $record ? $record->created_at->diffForHumans() : '-'),
-                        Placeholder::make('updated_at')
-                            ->label(Team::transAttribute('created_at'))
-                            ->content(fn (
-                                ?Team $record
-                            ): string => $record ? $record->updated_at->diffForHumans() : '-'),
-                    ])
-                    ->columnSpan(1),
-
+                    CardTimestamps::make((new Team)),
             ])
             ->columns(3);
     }

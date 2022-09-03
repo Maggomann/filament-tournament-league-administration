@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\Pages;
@@ -27,7 +28,7 @@ class LeagueResource extends TranslateableResource
 
     protected static ?string $slug = 'tournament-league/leagues';
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-list';
 
     protected static ?int $navigationSort = 1;
 
@@ -35,8 +36,18 @@ class LeagueResource extends TranslateableResource
     {
         return $form
             ->schema([
+
                 Card::make()
                     ->schema([
+                        Select::make('federation_id')
+                            ->label(League::transAttribute('federation_id'))
+                            ->validationAttribute(League::transAttribute('federation_id'))
+                            ->relationship('federation', 'name')
+                            ->options(Federation::all()->pluck('name', 'id'))
+                            ->required()
+                            ->searchable()
+                            ->columnSpan(2),
+
                         TextInput::make('name')
                             ->label(League::transAttribute('name'))
                             ->required()
@@ -48,34 +59,12 @@ class LeagueResource extends TranslateableResource
                             ->disabled()
                             ->required()
                             ->unique(League::class, 'slug', fn ($record) => $record),
-
-                        Select::make('federation_id')
-                            ->label(League::transAttribute('federation_id'))
-                            ->validationAttribute(League::transAttribute('federation_id'))
-                            ->relationship('federation', 'name')
-                            ->options(Federation::all()->pluck('name', 'id'))
-                            ->required()
-                            ->searchable(),
                     ])
                     ->columns([
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                Card::make()
-                    ->schema([
-                        Placeholder::make('created_at')
-                            ->label(League::transAttribute('created_at'))
-                            ->content(fn (
-                                ?League $record
-                            ): string => $record ? $record->created_at->diffForHumans() : '-'),
-
-                        Placeholder::make('updated_at')
-                            ->label(League::transAttribute('created_at'))
-                            ->content(fn (
-                                ?League $record
-                            ): string => $record ? $record->updated_at->diffForHumans() : '-'),
-                    ])
-                    ->columnSpan(1),
+                    CardTimestamps::make((new League)),
             ])
             ->columns(3);
     }

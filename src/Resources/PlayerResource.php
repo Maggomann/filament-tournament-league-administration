@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\Pages;
@@ -59,20 +60,7 @@ class PlayerResource extends TranslateableResource
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                Card::make()
-                    ->schema([
-                        Placeholder::make('created_at')
-                            ->label(Player::transAttribute('created_at'))
-                            ->content(fn (
-                                ?Player $record
-                            ): string => $record ? $record->created_at->diffForHumans() : '-'),
-                        Placeholder::make('updated_at')
-                            ->label(Player::transAttribute('created_at'))
-                            ->content(fn (
-                                ?Player $record
-                            ): string => $record ? $record->updated_at->diffForHumans() : '-'),
-                    ])
-                    ->columnSpan(1),
+                    CardTimestamps::make((new Player)),
 
             ])
             ->columns(3);
