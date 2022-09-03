@@ -18,6 +18,7 @@
     "require": {
         "php": "^8.1",
         "maggomann/filament-model-translator": "dev-beta",
+        "spatie/data-transfer-object": "^3.8",
         "spatie/laravel-package-tools": "^1.9.2",
         "spatie/laravel-sluggable": "^3.4"
     },
