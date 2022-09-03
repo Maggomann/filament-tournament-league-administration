@@ -2,6 +2,8 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
+use Closure;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
@@ -17,6 +19,7 @@ use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\Pages;
@@ -42,7 +45,7 @@ class TeamResource extends TranslateableResource
                             ->label(Team::transAttribute('name'))
                             ->required()
                             ->reactive()
-                            ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::of($state)->slug())),
+                            ->afterStateUpdated(fn ($state, Closure $set) => $set('slug', Str::of($state)->slug())),
 
                         TextInput::make('slug')
                             ->label(Team::transAttribute('slug'))
@@ -50,11 +53,46 @@ class TeamResource extends TranslateableResource
                             ->required()
                             ->unique(Team::class, 'slug', fn ($record) => $record),
 
+                        Select::make('federation_id')
+                            ->label(League::transAttribute('federation_id'))
+                            ->validationAttribute(League::transAttribute('federation_id'))
+                            ->options(Federation::all()->pluck('name', 'id'))
+                            ->required()
+                            ->reactive()
+                            ->createOptionForm([
+                                TextInput::make('name')
+                                    ->required()
+                            ])
+                            ->createOptionAction(function (Action $action) {
+                                return $action
+                                    ->modalHeading('Create Federation')
+                                    ->modalButton('Create Federation')
+                                    ->modalWidth('lg');
+                            })
+                            ->createOptionUsing(static function (Select $component, array $data) {
+                                // TODO: In einer Action Auslagern
+                                $record = new Federation();
+                                $record->fill($data);
+                                $record->save();
+
+                                $component->options(Federation::all()->pluck('name', 'id'));
+                    
+                                return $record->getKey();
+                            })
+                            ->afterStateUpdated(fn ($state, Closure $set) => $set('league_id', null)),
+
                         Select::make('league_id')
                             ->label(Team::transAttribute('league_id'))
                             ->validationAttribute(Team::transAttribute('league_id'))
-                            ->relationship('league', 'name')
-                            ->options(League::all()->pluck('name', 'id'))
+                            ->options(function(Closure $get) {
+                                $federation = Federation::find($get('federation_id'));
+
+                                if (! $federation ) {
+                                    return League::all()->pluck('name', 'id');
+                                }
+
+                                return $federation->leagues->pluck('name', 'id');
+                            })
                             ->required()
                             ->searchable(),
                     ])
@@ -64,28 +102,16 @@ class TeamResource extends TranslateableResource
                     ->columnSpan(2),
                 Card::make()
                     ->schema([
-                        Section::make('Verbandsdaten')
-                            ->schema([
-                                Placeholder::make('federation_id')
-                                    ->label(League::transAttribute('federation_id'))
-                                    ->content(fn (
-                                        ?Team $record
-                                    ): string => $record ? $record->league->federation->name : '-'),
-                            ]),
-                        Section::make('Datumsangaben')
-                            ->schema([
-                                Placeholder::make('created_at')
-                                    ->label(Team::transAttribute('created_at'))
-                                    ->content(fn (
-                                        ?Team $record
-                                    ): string => $record ? $record->created_at->diffForHumans() : '-'),
-                                Placeholder::make('updated_at')
-                                    ->label(Team::transAttribute('created_at'))
-                                    ->content(fn (
-                                        ?Team $record
-                                    ): string => $record ? $record->updated_at->diffForHumans() : '-'),
-                            ]),
-                        
+                        Placeholder::make('created_at')
+                            ->label(Team::transAttribute('created_at'))
+                            ->content(fn (
+                                ?Team $record
+                            ): string => $record ? $record->created_at->diffForHumans() : '-'),
+                        Placeholder::make('updated_at')
+                            ->label(Team::transAttribute('created_at'))
+                            ->content(fn (
+                                ?Team $record
+                            ): string => $record ? $record->updated_at->diffForHumans() : '-'),
                     ])
                     ->columnSpan(1),
 
