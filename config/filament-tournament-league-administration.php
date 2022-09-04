@@ -1,6 +1,7 @@
 <?php
 
 // config for Maggomann/FilamentTournamentLeagueAdministration
+
 return [
     /**
      * Supported content editors: richtext & markdown:
@@ -27,4 +28,9 @@ return [
         'strike',
         'undo',
     ],
+
+    /**
+     *  Resources
+     */
+    "resources" => []
 ];

@@ -20,6 +20,11 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServic
         PlayerResource::class,
     ];
 
+    protected function getResources(): array
+    {
+        return array_merge($this->resources, (array) config('filament-tournament-league-administration.resources', []));
+    }
+
     public function configurePackage(Package $package): void
     {
         $package
