@@ -5,10 +5,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResou
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
-use Filament\Tables\Actions\CreateAction;
-use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
@@ -39,15 +36,14 @@ class TeamRelationManager extends TranslateableRelationManager
                 //
             ])
             ->headerActions([
-                CreateAction::make(),
+                //
             ])
             ->actions([
                 EditAction::make()->hideLabellnTooltip(),
                 ViewAction::make()->hideLabellnTooltip(),
-                DeleteAction::make()->hideLabellnTooltip(),
             ])
             ->bulkActions([
-                DeleteBulkAction::make(),
+                //
             ]);
     }
 }

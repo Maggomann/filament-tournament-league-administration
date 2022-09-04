@@ -3,7 +3,6 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
 use Filament\Forms\Components\Card;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -64,7 +63,7 @@ class LeagueResource extends TranslateableResource
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                    CardTimestamps::make((new League)),
+                CardTimestamps::make((new League)),
             ])
             ->columns(3);
     }

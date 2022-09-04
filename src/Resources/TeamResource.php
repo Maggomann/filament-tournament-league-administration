@@ -5,8 +5,6 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 use Closure;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Card;
-use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
@@ -21,6 +19,7 @@ use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
@@ -107,7 +106,7 @@ class TeamResource extends TranslateableResource
                                 if ($record && $federationId === null) {
                                     $federationId = $record->league?->federation?->id;
 
-                                    $set('federation_id', $federationId );
+                                    $set('federation_id', $federationId);
                                 }
 
                                 if ($federationId === null) {
@@ -138,7 +137,7 @@ class TeamResource extends TranslateableResource
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                    CardTimestamps::make((new Team)),
+                CardTimestamps::make((new Team)),
             ])
             ->columns(3);
     }

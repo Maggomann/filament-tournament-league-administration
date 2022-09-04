@@ -4,6 +4,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -57,5 +58,17 @@ class Player extends TranslateableModel
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
+    }
+
+    public function league(): HasOneThrough
+    {
+        return $this->hasOneThrough(
+            League::class,
+            Team::class,
+            'tournament_league_teams.id',
+            'tournament_league_leagues.id',
+            'team_id',
+            'league_id'
+        );
     }
 }

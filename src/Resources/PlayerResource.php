@@ -2,8 +2,8 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
+use Closure;
 use Filament\Forms\Components\Card;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -17,6 +17,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\De
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\Pages;
@@ -38,6 +39,61 @@ class PlayerResource extends TranslateableResource
             ->schema([
                 Card::make()
                     ->schema([
+                        Select::make('league_id')
+                            ->label(Team::transAttribute('league_id'))
+                            ->validationAttribute(Team::transAttribute('league_id'))
+                            ->options(function (?Player $record) {
+                                if (! $record) {
+                                    return League::all()->pluck('name', 'id');
+                                }
+
+                                $options = $record
+                                    ->league
+                                    ?->federation
+                                    ?->leagues
+                                    ?->pluck('name', 'id');
+
+                                if (! $options) {
+                                    return League::all()->pluck('name', 'id');
+                                }
+
+                                return $options;
+                            })
+                            ->required()
+                            ->reactive()
+                            ->afterStateUpdated(fn ($state, Closure $set) => $set('team_id', null)),
+
+                        Select::make('team_id')
+                            ->label(Player::transAttribute('team_id'))
+                            ->validationAttribute(Player::transAttribute('team_id'))
+                            ->options(Team::all()->pluck('name', 'id'))
+                            ->options(function (Closure $get, Closure $set, ?Player $record) {
+                                $leagueId = $get('league_id');
+
+                                if ($record && $leagueId === null) {
+                                    $leagueId = $record->league?->id;
+
+                                    $set('league_id', $leagueId);
+                                }
+
+                                if ($leagueId === null) {
+                                    return Team::all()->pluck('name', 'id');
+                                }
+
+                                $options = League::with('teams')
+                                    ->find($leagueId)
+                                    ?->teams
+                                    ?->pluck('name', 'id');
+
+                                if (! $options) {
+                                    return Team::all()->pluck('name', 'id');
+                                }
+
+                                return $options;
+                            })
+                            ->required()
+                            ->searchable(),
+
                         TextInput::make('name')
                             ->label(Player::transAttribute('name'))
                             ->required()
@@ -48,19 +104,12 @@ class PlayerResource extends TranslateableResource
                             ->disabled()
                             ->required()
                             ->unique(Player::class, 'slug', fn ($record) => $record),
-                        Select::make('team_id')
-                            ->label(Player::transAttribute('team_id'))
-                            ->validationAttribute(Player::transAttribute('team_id'))
-                            ->relationship('team', 'name')
-                            ->options(Team::all()->pluck('name', 'id'))
-                            ->required()
-                            ->searchable(),
                     ])
                     ->columns([
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                    CardTimestamps::make((new Player)),
+                CardTimestamps::make((new Player)),
 
             ])
             ->columns(3);

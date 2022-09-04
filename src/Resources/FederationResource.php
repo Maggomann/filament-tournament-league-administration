@@ -3,7 +3,6 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
 use Filament\Forms\Components\Card;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -63,8 +62,8 @@ class FederationResource extends TranslateableResource
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                    
-                    CardTimestamps::make((new Federation)),
+
+                CardTimestamps::make((new Federation)),
 
             ])
             ->columns(3);
@@ -83,7 +82,7 @@ class FederationResource extends TranslateableResource
                     ->label(Federation::transAttribute('slug'))
                     ->searchable()
                     ->sortable(),
-                    
+
                 TextColumn::make('calculationType.name')
                     ->label(Federation::transAttribute('calculation_type_id'))
                     ->searchable()

@@ -25,5 +25,4 @@ class CardTimestamps
             ])
             ->columnSpan(1);
     }
-
 }
