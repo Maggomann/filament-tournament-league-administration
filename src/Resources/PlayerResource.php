@@ -59,7 +59,7 @@ class PlayerResource extends TranslateableResource
                             ->validationAttribute(Team::transAttribute('league_id'))
                             ->options(function (Closure $get, Closure $set, ?Player $record) {
                                 $federationId = $get('federation_id');
-                                
+
                                 if (! $record) {
                                     if (! $federationId) {
                                         return collect([]);
@@ -84,7 +84,7 @@ class PlayerResource extends TranslateableResource
                                     return $record->league
                                         ?->federation
                                         ?->leagues
-                                        ?->pluck('name', 'id') 
+                                        ?->pluck('name', 'id')
                                         ?? collect([]);
                                 }
 
@@ -110,7 +110,7 @@ class PlayerResource extends TranslateableResource
                                 }
 
                                 if (! $record) {
-                                    if (! $leagueId ) {
+                                    if (! $leagueId) {
                                         return collect([]);
                                     }
 
@@ -130,14 +130,14 @@ class PlayerResource extends TranslateableResource
                                 if ($recordLeagueId === $leagueId) {
                                     return $record->league
                                         ?->teams
-                                        ?->pluck('name', 'id') 
+                                        ?->pluck('name', 'id')
                                         ?? collect([]);
                                 }
 
                                 return League::with('teams')
                                     ->find($leagueId)
                                     ?->teams
-                                    ?->pluck('name', 'id') 
+                                    ?->pluck('name', 'id')
                                     ?? collect([]);
                             })
                             ->required()
@@ -153,6 +153,13 @@ class PlayerResource extends TranslateableResource
                             ->disabled()
                             ->required()
                             ->unique(Player::class, 'slug', fn ($record) => $record),
+
+                        TextInput::make('email')
+                            ->label(Player::transAttribute('email'))
+                            ->validationAttribute(Player::transAttribute('email'))
+                            ->required()
+                            ->email()
+                            ->unique(ignoreRecord: true),
                     ])
                     ->columns([
                         'sm' => 2,
@@ -174,6 +181,10 @@ class PlayerResource extends TranslateableResource
                     ->sortable(),
                 TextColumn::make('slug')
                     ->label(Player::transAttribute('slug'))
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('email')
+                    ->label(Player::transAttribute('email'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('Team.name')
