@@ -57,6 +57,38 @@ return new class extends Migration
             $table->softDeletes();
         });
 
+        Schema::create('tournament_league_game_days', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('day')->unique()->index();
+        });
+
+        Schema::create('tournament_league_game_schedule_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->index();
+            $table->string('language_key')->index();
+        });
+
+        Schema::create('tournament_league_game_schedules', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('schedule_category_id')->nullable()->index();
+            $table->string('name')->index();
+            $table->timestamp('period_start')->nullable()->index();
+            $table->timestamp('period_end')->nullable()->index();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        // Ein Spielplan kann einem Verband zugewiesen sein // Ein Verband kann mehrere Spielpläne haben
+        // Ein Spielplan kann einer Liga zugewiesen haben // Eine Liga kann mehrere Spielpläne haben
+        // Ein Soielplan muss Spieler zugewiesen haben (das ist sogar ein muss) // Ein Spieler kann mehrere Spielpläne zugewiesen sein
+        // Ein Spielplan kann mehrere Preise haben
+        // Ein Spielplan hat mehrere Spieltage
+        // Ein Spieltag hat mehrere Spiele
+        // Ein Spiel hat Spielregeln (501 (301, 701, 1001 usw.)
+        // Ein Spiel kann eine Spielrundenart haben (Hin/ Rückrunde / oder leer bleiben)
+        // EIn Spiel hat einen Heim- und Gastspieler
+        // usw
+
         $this->addCalcutaionTypes();
     }
 
