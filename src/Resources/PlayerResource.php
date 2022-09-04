@@ -17,6 +17,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\De
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
@@ -39,57 +40,102 @@ class PlayerResource extends TranslateableResource
             ->schema([
                 Card::make()
                     ->schema([
+                        Select::make('federation_id')
+                            ->label(League::transAttribute('federation_id'))
+                            ->validationAttribute(League::transAttribute('federation_id'))
+                            ->options(Federation::all()->pluck('name', 'id'))
+                            ->required()
+                            ->searchable()
+                            ->columnSpan(2)
+                            ->reactive()
+                            ->afterStateUpdated(
+                                function (Closure $set) {
+                                    $set('league_id', null);
+                                    $set('team_id', null);
+                                }),
+
                         Select::make('league_id')
                             ->label(Team::transAttribute('league_id'))
                             ->validationAttribute(Team::transAttribute('league_id'))
-                            ->options(function (?Player $record) {
+                            ->options(function (Closure $get, Closure $set, ?Player $record) {
                                 if (! $record) {
-                                    return League::all()->pluck('name', 'id');
+                                    return League::all()->pluck('name', 'id') ?? collect([]);
                                 }
 
-                                $options = $record
-                                    ->league
-                                    ?->federation
+                                $federationId = $get('federation_id');
+
+                                if ($federationId === null) {
+                                    $federationId = $record->league?->federation?->id;
+
+                                    $set('federation_id', $federationId);
+
+                                    $options = $record
+                                        ->league
+                                        ?->federation
+                                        ?->leagues
+                                        ?->pluck('name', 'id');
+
+                                    if ($options) {
+                                        $set('league_id', $record->league->id);
+
+                                        return $options;
+                                    }
+                                }
+
+                                if ($federationId === null) {
+                                    return League::all()->pluck('name', 'id') ?? collect([]);
+                                }
+
+                                return Federation::with('leagues')
+                                    ->find($federationId)
                                     ?->leagues
-                                    ?->pluck('name', 'id');
-
-                                if (! $options) {
-                                    return League::all()->pluck('name', 'id');
-                                }
-
-                                return $options;
+                                    ?->pluck('name', 'id') ?? collect([]);
                             })
                             ->required()
                             ->reactive()
-                            ->afterStateUpdated(fn ($state, Closure $set) => $set('team_id', null)),
+                            ->afterStateUpdated(fn (Closure $set) => $set('team_id', null)),
 
                         Select::make('team_id')
                             ->label(Player::transAttribute('team_id'))
                             ->validationAttribute(Player::transAttribute('team_id'))
                             ->options(Team::all()->pluck('name', 'id'))
                             ->options(function (Closure $get, Closure $set, ?Player $record) {
+                                if (! $record) {
+                                    return Team::all()->pluck('name', 'id') ?? collect([]);
+                                }
+
                                 $leagueId = $get('league_id');
+                                $federationId = $get('federation_id');
 
-                                if ($record && $leagueId === null) {
-                                    $leagueId = $record->league?->id;
-
-                                    $set('league_id', $leagueId);
+                                if ($leagueId === null && $federationId) {
+                                    return collect([]);
                                 }
 
                                 if ($leagueId === null) {
-                                    return Team::all()->pluck('name', 'id');
+                                    $leagueId = $record->league?->id;
+
+                                    $set('league_id', $leagueId);
+
+                                    $options = League::with('teams')
+                                        ->find($leagueId)
+                                        ?->teams
+                                        ?->pluck('name', 'id');
+
+                                    if ($options) {
+                                        $set('team_id', $record->team->id);
+
+                                        return $options;
+                                    }
                                 }
 
-                                $options = League::with('teams')
+                                if ($leagueId === null) {
+                                    return Team::all()->pluck('name', 'id') ?? collect([]);
+                                }
+
+                                return League::with('teams')
                                     ->find($leagueId)
                                     ?->teams
-                                    ?->pluck('name', 'id');
-
-                                if (! $options) {
-                                    return Team::all()->pluck('name', 'id');
-                                }
-
-                                return $options;
+                                    ?->pluck('name', 'id') ?? collect([]);
                             })
                             ->required()
                             ->searchable(),
@@ -162,7 +208,7 @@ class PlayerResource extends TranslateableResource
 
     protected static function getGlobalSearchEloquentQuery(): Builder
     {
-        return parent::getGlobalSearchEloquentQuery()->with(['team']);
+        return parent::getGlobalSearchEloquentQuery()->with(['team', 'league.federation.leagues']);
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array

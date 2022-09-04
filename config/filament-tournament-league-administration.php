@@ -32,5 +32,5 @@ return [
     /**
      *  Resources
      */
-    "resources" => []
+    'resources' => [],
 ];
