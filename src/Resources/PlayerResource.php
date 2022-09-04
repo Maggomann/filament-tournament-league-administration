@@ -58,32 +58,34 @@ class PlayerResource extends TranslateableResource
                             ->label(Team::transAttribute('league_id'))
                             ->validationAttribute(Team::transAttribute('league_id'))
                             ->options(function (Closure $get, Closure $set, ?Player $record) {
+                                $federationId = $get('federation_id');
+                                
                                 if (! $record) {
-                                    return League::all()->pluck('name', 'id') ?? collect([]);
+                                    if (! $federationId) {
+                                        return collect([]);
+                                    }
+
+                                    return Federation::with('leagues')
+                                        ->find($federationId)
+                                        ?->leagues
+                                        ?->pluck('name', 'id') ?? collect([]);
                                 }
 
-                                $federationId = $get('federation_id');
+                                $recordFederationId = $record?->league
+                                    ?->federation
+                                    ?->id;
 
                                 if ($federationId === null) {
-                                    $federationId = $record->league?->federation?->id;
+                                    $set('federation_id', $recordFederationId);
+                                    $federationId = $recordFederationId;
+                                }
 
-                                    $set('federation_id', $federationId);
-
-                                    $options = $record
-                                        ->league
+                                if ($recordFederationId === $federationId) {
+                                    return $record->league
                                         ?->federation
                                         ?->leagues
-                                        ?->pluck('name', 'id');
-
-                                    if ($options) {
-                                        $set('league_id', $record->league->id);
-
-                                        return $options;
-                                    }
-                                }
-
-                                if ($federationId === null) {
-                                    return League::all()->pluck('name', 'id') ?? collect([]);
+                                        ?->pluck('name', 'id') 
+                                        ?? collect([]);
                                 }
 
                                 return Federation::with('leagues')
@@ -100,42 +102,43 @@ class PlayerResource extends TranslateableResource
                             ->validationAttribute(Player::transAttribute('team_id'))
                             ->options(Team::all()->pluck('name', 'id'))
                             ->options(function (Closure $get, Closure $set, ?Player $record) {
-                                if (! $record) {
-                                    return Team::all()->pluck('name', 'id') ?? collect([]);
-                                }
-
                                 $leagueId = $get('league_id');
                                 $federationId = $get('federation_id');
 
-                                if ($leagueId === null && $federationId) {
+                                if (! $federationId) {
                                     return collect([]);
                                 }
 
-                                if ($leagueId === null) {
-                                    $leagueId = $record->league?->id;
+                                if (! $record) {
+                                    if (! $leagueId ) {
+                                        return collect([]);
+                                    }
 
-                                    $set('league_id', $leagueId);
-
-                                    $options = League::with('teams')
+                                    return League::with('teams')
                                         ->find($leagueId)
                                         ?->teams
-                                        ?->pluck('name', 'id');
-
-                                    if ($options) {
-                                        $set('team_id', $record->team->id);
-
-                                        return $options;
-                                    }
+                                        ?->pluck('name', 'id') ?? collect([]);
                                 }
 
+                                $recordLeagueId = $record->league?->id;
+
                                 if ($leagueId === null) {
-                                    return Team::all()->pluck('name', 'id') ?? collect([]);
+                                    $set('league_id', $recordLeagueId);
+                                    $leagueId = $recordLeagueId;
+                                }
+
+                                if ($recordLeagueId === $leagueId) {
+                                    return $record->league
+                                        ?->teams
+                                        ?->pluck('name', 'id') 
+                                        ?? collect([]);
                                 }
 
                                 return League::with('teams')
                                     ->find($leagueId)
                                     ?->teams
-                                    ?->pluck('name', 'id') ?? collect([]);
+                                    ?->pluck('name', 'id') 
+                                    ?? collect([]);
                             })
                             ->required()
                             ->searchable(),
