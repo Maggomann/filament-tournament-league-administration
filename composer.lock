@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c10b4d23baa232388d60b872e641b26",
+    "content-hash": "1530a2666c60a77e567c628fb164790b",
     "packages": [
         {
             "name": "brick/math",
@@ -61,6 +61,65 @@
                 }
             ],
             "time": "2022-08-10T22:54:19+00:00"
+        },
+        {
+            "name": "dcblogdev/laravel-countries",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dcblogdev/laravel-countries.git",
+                "reference": "622a28bd705c56cc0863067ee1a8c81e5266182d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dcblogdev/laravel-countries/zipball/622a28bd705c56cc0863067ee1a8c81e5266182d",
+                "reference": "622a28bd705c56cc0863067ee1a8c81e5266182d",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dcblogdev\\Countries\\CountriesServiceProvider"
+                    ],
+                    "aliases": {
+                        "Countries": "Dcblogdev\\Countries\\Facades\\Countries"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dcblogdev\\Countries\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Carr",
+                    "email": "dave@dcblog.dev",
+                    "homepage": "https://dcblog.dev"
+                }
+            ],
+            "description": "A Laravel countries list package",
+            "homepage": "https://github.com/dcblogdev/laravel-countries",
+            "keywords": [
+                "countries",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/dcblogdev/laravel-countries/issues",
+                "source": "https://github.com/dcblogdev/laravel-countries/tree/v2.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/dcblogdev",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-12-28T12:26:29+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -1238,9 +1297,10 @@
             "dist": {
                 "type": "path",
                 "url": "../../laravel-packages/laravel-addressable",
-                "reference": "b17493bebe961643c91b832ccf56d9eea20dcf5b"
+                "reference": "cde48a2221ade22084b43db2740820652a29bffe"
             },
             "require": {
+                "dcblogdev/laravel-countries": "^2.0",
                 "illuminate/contracts": "^9.0",
                 "php": "^8.1",
                 "spatie/laravel-package-tools": "^1.9.2"
@@ -7282,63 +7342,6 @@
             "time": "2022-05-18T15:52:06+00:00"
         },
         {
-            "name": "maggomann/artisan-standalone",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../../laravel-packages/artisan-standalone",
-                "reference": "e58210e7eef735727aaa1e5639fd587a32462ac0"
-            },
-            "require": {
-                "laravel/tinker": "^2.0"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.0",
-                "mockery/mockery": "^1.3",
-                "orchestra/testbench": "^7.0",
-                "phpunit/phpunit": "^9.5",
-                "psy/psysh": "^0.11"
-            },
-            "bin": [
-                "artisan"
-            ],
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Maggomann\\ArtisanStandalone\\Providers\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Maggomann\\ArtisanStandalone\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\": "tests/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marco Ehrt",
-                    "email": "marco.ehrt@googlemail.com"
-                }
-            ],
-            "description": "Allows you to use Artisan outside of a Laravel install",
-            "keywords": [
-                "laravel",
-                "lumen"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
             "name": "masterminds/html5",
             "version": "2.7.6",
             "source": {
@@ -11799,8 +11802,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "maggomann/filament-model-translator": 20,
-        "maggomann/laravel-addressable": 20,
-        "maggomann/artisan-standalone": 20
+        "maggomann/laravel-addressable": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

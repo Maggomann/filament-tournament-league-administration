@@ -26,7 +26,6 @@
     "require-dev": {
         "laravel/laravel": "^9.3",
         "laravel/pint": "^1.0",
-        "maggomann/artisan-standalone": "dev-master",
         "nunomaduro/collision": "^6.0",
         "nunomaduro/larastan": "^2.0.1",
         "orchestra/testbench": "^7.0",
@@ -89,17 +88,13 @@
         ]
     },
     "repositories": {
-        "maggomann/artisan-standalone": {
+        "maggomann/laravel-addressable": {
             "type": "path",
-            "url": "../../laravel-packages/artisan-standalone"
+            "url": "../../laravel-packages/laravel-addressable"
         },
         "maggomann/filament-model-translator": {
             "type": "path",
             "url": "../filament-model-translator"
-        },
-        "maggomann/laravel-addressable": {
-            "type": "path",
-            "url": "../../laravel-packages/laravel-addressable"
         }
     }
 }
