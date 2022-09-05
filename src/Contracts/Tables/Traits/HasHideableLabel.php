@@ -43,7 +43,7 @@ trait HasHideableLabel
 
     private function markTooltipWithHiddenLabel(): static
     {
-        $this->tooltip = $this->originLabel;
+        $this->tooltip = $this->hiddenLabel;
 
         return $this;
     }
