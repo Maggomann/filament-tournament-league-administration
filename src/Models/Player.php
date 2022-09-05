@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Maggomann\LaravelAddressable\Traits\Addressable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -14,6 +15,7 @@ use Spatie\Sluggable\SlugOptions;
  */
 class Player extends TranslateableModel
 {
+    use Addressable;
     use HasFactory;
     use HasSlug;
     use SoftDeletes;

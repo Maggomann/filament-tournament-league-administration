@@ -21,9 +21,9 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\AdressesResource\RelationManagers\AdressesRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\RelationManagers\TeamRelationManager;
-use Maggomann\LaravelAddressable\Models\Gender;
 
 class PlayerResource extends TranslateableResource
 {
@@ -36,7 +36,7 @@ class PlayerResource extends TranslateableResource
     protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
-    {     
+    {
         return $form
             ->schema([
                 Card::make()
@@ -161,19 +161,6 @@ class PlayerResource extends TranslateableResource
                             ->required()
                             ->email()
                             ->unique(ignoreRecord: true),
-
-                        // Nur zum Testen für das Addressable-Paket, kommt später wieder weg
-                        Select::make('gender')
-                            ->label(League::transAttribute('gender'))
-                            ->validationAttribute(League::transAttribute('gender'))
-                            ->options(
-                                Gender::all()->pluck('title_translation_key', 'id')
-                                    ->mapWithKeys(fn ($value, $key) => [$key => trans("laravel-addressable.{$value}")])
-                            )
-                            ->required()
-                            ->searchable()
-                            ->columnSpan(2),
-
                     ])
                     ->columns([
                         'sm' => 2,
@@ -222,6 +209,7 @@ class PlayerResource extends TranslateableResource
     {
         return [
             TeamRelationManager::class,
+            AdressesRelationManager::class,
         ];
     }
 
@@ -236,7 +224,7 @@ class PlayerResource extends TranslateableResource
 
     protected static function getGlobalSearchEloquentQuery(): Builder
     {
-        return parent::getGlobalSearchEloquentQuery()->with(['team', 'league.federation.leagues']);
+        return parent::getGlobalSearchEloquentQuery()->with(['team', 'league.federation.leagues', 'addresses']);
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array
