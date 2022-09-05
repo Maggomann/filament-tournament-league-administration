@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0fee854f5948070bad09e54d63a6247e",
+    "content-hash": "3c10b4d23baa232388d60b872e641b26",
     "packages": [
         {
             "name": "brick/math",
@@ -1227,6 +1227,94 @@
                 "maggomann",
                 "model",
                 "translator"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "maggomann/laravel-addressable",
+            "version": "dev-beta",
+            "dist": {
+                "type": "path",
+                "url": "../../laravel-packages/laravel-addressable",
+                "reference": "b17493bebe961643c91b832ccf56d9eea20dcf5b"
+            },
+            "require": {
+                "illuminate/contracts": "^9.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^6.0",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^7.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Maggomann\\LaravelAddressable\\LaravelAddressableServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelAddressable": "Maggomann\\LaravelAddressable\\Facades\\LaravelAddressable"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Maggomann\\LaravelAddressable\\": "src",
+                    "Maggomann\\LaravelAddressable\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Maggomann\\LaravelAddressable\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "lint": [
+                    "vendor/bin/pint --test"
+                ],
+                "lint:fix": [
+                    "vendor/bin/pint"
+                ],
+                "test:coverage": [
+                    "php -dpcov.enabled=1 -dpcov.directory=src/ vendor/bin/phpunit"
+                ],
+                "test:unit": [
+                    "vendor/bin/testbench package:test --no-coverage"
+                ],
+                "test:types": [
+                    "vendor/bin/phpstan analyse"
+                ],
+                "test": [
+                    "@lint:fix",
+                    "@test:types",
+                    "@test:unit"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maggomann",
+                    "email": "marco.ehrt@googlemail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is my package laravel-addressable",
+            "homepage": "https://github.com/maggomann/laravel-addressable",
+            "keywords": [
+                "laravel",
+                "laravel-addressable",
+                "maggomann"
             ],
             "transport-options": {
                 "relative": true
@@ -11711,6 +11799,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "maggomann/filament-model-translator": 20,
+        "maggomann/laravel-addressable": 20,
         "maggomann/artisan-standalone": 20
     },
     "prefer-stable": true,

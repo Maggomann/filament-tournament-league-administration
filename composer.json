@@ -18,6 +18,7 @@
     "require": {
         "php": "^8.1",
         "maggomann/filament-model-translator": "dev-beta",
+        "maggomann/laravel-addressable": "dev-beta",
         "spatie/data-transfer-object": "^3.8",
         "spatie/laravel-package-tools": "^1.9.2",
         "spatie/laravel-sluggable": "^3.4"
@@ -95,6 +96,10 @@
         "maggomann/filament-model-translator": {
             "type": "path",
             "url": "../filament-model-translator"
+        },
+        "maggomann/laravel-addressable": {
+            "type": "path",
+            "url": "../../laravel-packages/laravel-addressable"
         }
     }
 }
