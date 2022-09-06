@@ -90,7 +90,7 @@ class TeamResource extends TranslateableResource
                                     return $federation->getKey();
                                 } catch (Throwable $th) {
                                     Notification::make()
-                                        ->title('Es ist ein Fehler beim Erstellen des Datensetzes aufgetrteten')
+                                        ->title('Es ist ein Fehler beim Erstellen des Datensetzes aufgetreten')
                                         ->danger()
                                         ->send();
                                 }
