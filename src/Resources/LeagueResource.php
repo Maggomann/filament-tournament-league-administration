@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatedSelectOption;
 use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
@@ -43,6 +44,9 @@ class LeagueResource extends TranslateableResource
                             ->validationAttribute(League::transAttribute('federation_id'))
                             ->relationship('federation', 'name')
                             ->options(Federation::all()->pluck('name', 'id'))
+                            ->placeholder(
+                                TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.federation_id')
+                            )
                             ->required()
                             ->searchable()
                             ->columnSpan(2),

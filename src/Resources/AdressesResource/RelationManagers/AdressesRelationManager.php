@@ -19,6 +19,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Application\Address\DTO\Upd
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\CreateAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatedSelectOption;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Maggomann\LaravelAddressable\Models\AddressCategory;
 use Maggomann\LaravelAddressable\Models\AddressGender;
@@ -29,6 +30,11 @@ class AdressesRelationManager extends TranslateableRelationManager
     protected static string $relationship = 'addresses';
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getTitle(): string
+    {
+        return static::$title ?? trans_choice(static::$translateablePackageKey.'filament-model.models.address', number: 2);
+    }
 
     public static function form(Form $form): Form
     {
@@ -42,6 +48,10 @@ class AdressesRelationManager extends TranslateableRelationManager
                         AddressCategory::all()->pluck('title_translation_key', 'id')
                             ->mapWithKeys(fn ($value, $key) => [$key => __("laravel-addressable.{$value}")])
                     )
+                    ->placeholder(
+                        TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.address_category_id')
+                    )
+                    ->default(1)
                     ->required()
                     ->searchable(),
 
@@ -52,6 +62,10 @@ class AdressesRelationManager extends TranslateableRelationManager
                         AddressGender::all()->pluck('title_translation_key', 'id')
                             ->mapWithKeys(fn ($value, $key) => [$key => __("laravel-addressable.{$value}")])
                     )
+                    ->placeholder(
+                        TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.address_gender_id')
+                    )
+                    ->default(1)
                     ->required()
                     ->searchable(),
 
@@ -126,6 +140,10 @@ class AdressesRelationManager extends TranslateableRelationManager
                                 return [Arr::get($country, 'iso_3166_1_alpha2') => $native];
                             })
                     )
+                    ->placeholder(
+                        TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.address_country_id')
+                    )
+                    ->default('DE')
                     ->required()
                     ->searchable(),
 

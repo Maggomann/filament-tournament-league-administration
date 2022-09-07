@@ -6,6 +6,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
@@ -15,6 +16,11 @@ class TeamRelationManager extends TranslateableRelationManager
     protected static string $relationship = 'team';
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getTitle(): string
+    {
+        return static::$title ?? Str::headline(static::getModelLabel());
+    }
 
     public static function form(Form $form): Form
     {

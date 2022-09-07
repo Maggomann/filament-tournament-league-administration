@@ -13,6 +13,7 @@ return [
         'league' => 'Liga|Ligen',
         'team' => 'Team|Teams',
         'player' => 'Spieler|Spieler',
+        'address' => 'Adresse|Adressen',
     ],
 
     /*
