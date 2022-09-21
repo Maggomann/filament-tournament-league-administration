@@ -14,6 +14,7 @@ return [
         'team' => 'Team|Teams',
         'player' => 'Spieler|Spieler',
         'address' => 'Adresse|Adressen',
+        'game_schedule' => 'Spielplan|Spielpläne',
     ],
 
     /*
@@ -66,6 +67,14 @@ return [
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',
         ],
+        'game_schedule' => [
+            'name' => 'Name',
+            'period_start' => 'Beginn',
+            'period_end' => 'Ende',
+            'created_at' => 'Erstellt am',
+            'updated_at' => 'Aktualisiert am',
+            'deleted_at' => 'Gelöscht am',
+        ],
     ],
 
     /*
@@ -88,6 +97,9 @@ return [
             'name' => 'Saisons & Turniere',
         ],
         'calculation_type' => [
+            'name' => 'Saisons & Turniere',
+        ],
+        'game_schedule' => [
             'name' => 'Saisons & Turniere',
         ],
     ],

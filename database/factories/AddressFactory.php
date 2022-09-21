@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\LaravelAddressable\Models\Address;
 
 /**

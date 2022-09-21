@@ -6,6 +6,7 @@ use Filament\PluginServiceProvider;
 use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamentLeagueAdministrationCommand;
 use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamentPublishSeedingCommand;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource;
@@ -18,6 +19,7 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServic
         LeagueResource::class,
         TeamResource::class,
         PlayerResource::class,
+        GameScheduleResource::class,
     ];
 
     protected function getResources(): array
