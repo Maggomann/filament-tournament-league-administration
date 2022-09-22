@@ -62,15 +62,10 @@ return new class extends Migration
             $table->unsignedBigInteger('day')->unique()->index();
         });
 
-        Schema::create('tournament_league_game_schedule_categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->index();
-            $table->string('language_key')->index();
-        });
-
         Schema::create('tournament_league_game_schedules', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('schedule_category_id')->nullable()->index();
+            $table->unsignedBigInteger('federation_id')->nullable()->index();
+            $table->morphs('leagueable', 'leagueable_index');
             $table->string('name')->index();
             $table->timestamp('period_start')->nullable()->index();
             $table->timestamp('period_end')->nullable()->index();

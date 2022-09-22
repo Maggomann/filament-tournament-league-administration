@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -68,5 +69,10 @@ class League extends TranslateableModel
             Player::class,
             Team::class,
         );
+    }
+
+    public function gameSchedules(): MorphMany
+    {
+        return $this->morphMany(GameSchedule::class, 'leagueable', 'leagueable_type', 'leagueable_id');
     }
 }

@@ -3,6 +3,8 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GameSchedule extends TranslateableModel
@@ -34,4 +36,14 @@ class GameSchedule extends TranslateableModel
         'updated_at',
         'deleted_at',
     ];
+
+    public function federation(): BelongsTo
+    {
+        return $this->belongsTo(Federation::class);
+    }
+
+    public function league(): MorphOne
+    {
+        return $this->morphOne(League::class, 'leagueable');
+    }
 }
