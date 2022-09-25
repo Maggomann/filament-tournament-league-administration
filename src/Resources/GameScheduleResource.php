@@ -56,10 +56,10 @@ class GameScheduleResource extends TranslateableResource
                             ->reactive()
                             ->afterStateUpdated(
                                 function (Closure $set) {
-                                    $set('league_id', null);
+                                    $set('leagueable_id', null);
                                 }),
 
-                        Select::make('league_id')
+                        Select::make('leagueable_id')
                             ->label(Team::transAttribute('league_id'))
                             ->validationAttribute(Team::transAttribute('league_id'))
                             ->options(function (Closure $get, Closure $set, ?GameSchedule $record) {
@@ -128,6 +128,21 @@ class GameScheduleResource extends TranslateableResource
                     ->label(GameSchedule::transAttribute('name'))
                     ->searchable()
                     ->sortable(),
+
+                TextColumn::make('federation.name')
+                    ->label(League::transAttribute('federation_id'))
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('period_start')
+                    ->label(GameSchedule::transAttribute('period_start'))
+                    ->date()
+                    ->toggleable(),
+
+                TextColumn::make('period_end')
+                    ->label(GameSchedule::transAttribute('period_end'))
+                    ->date()
+                    ->toggleable(),
             ])
             ->filters([
             ])
@@ -154,7 +169,7 @@ class GameScheduleResource extends TranslateableResource
 
     protected static function getGlobalSearchEloquentQuery(): Builder
     {
-        return parent::getGlobalSearchEloquentQuery()->with([]);
+        return parent::getGlobalSearchEloquentQuery()->with(['federation', 'league']);
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array

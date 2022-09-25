@@ -73,6 +73,12 @@ return new class extends Migration
             $table->softDeletes();
         });
 
+        Schema::create('tournament_league_game_schedule_tournament_league_leagues', function (Blueprint $table) {
+            $table->unsignedBigInteger('tournament_league_game_schedule_id')->nullable()->index('game_schedule_id_index');
+            $table->unsignedBigInteger('tournament_league_league_id')->nullable()->index('league_league_id_index');
+            $table->string('name')->index('name_index');
+        });
+
         // Ein Spielplan kann einem Verband zugewiesen sein // Ein Verband kann mehrere Spielpläne haben
         // Ein Spielplan kann einer Liga zugewiesen haben // Eine Liga kann mehrere Spielpläne haben
         // Ein Soielplan muss Spieler zugewiesen haben (das ist sogar ein muss) // Ein Spieler kann mehrere Spielpläne zugewiesen sein

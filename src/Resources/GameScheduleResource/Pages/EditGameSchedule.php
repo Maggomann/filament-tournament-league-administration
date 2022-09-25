@@ -14,7 +14,6 @@ class EditGameSchedule extends EditRecord
 
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
-        return $record;
-        // return app(UpdateGameScheduleAction::class)->execute($record, GameScheduleData::create($data));
+        return app(UpdateGameScheduleAction::class)->execute($record, GameScheduleData::create($data));
     }
 }

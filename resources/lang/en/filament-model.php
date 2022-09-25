@@ -13,6 +13,7 @@ return [
         'league' => 'League|Leagues',
         'team' => 'Team|Teams',
         'player' => 'Player|Players',
+        'game_schedule' => 'Game schedole|Game schedoles',
     ],
 
     /*
@@ -61,6 +62,14 @@ return [
         'calculation_type' => [
             'name' => 'Name',
             'description' => 'Description',
+            'created_at' => 'Created at',
+            'updated_at' => 'Updated at',
+            'deleted_at' => 'Deleted at',
+        ],
+        'game_schedule' => [
+            'name' => 'Name',
+            'period_start' => 'Begin',
+            'period_end' => 'Ende',
             'created_at' => 'Created at',
             'updated_at' => 'Updated at',
             'deleted_at' => 'Deleted at',

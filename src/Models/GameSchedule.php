@@ -44,6 +44,6 @@ class GameSchedule extends TranslateableModel
 
     public function league(): MorphOne
     {
-        return $this->morphOne(League::class, 'leagueable');
+        return $this->morphOne(League::class, 'leagueable', 'test', 'id', 'leagueable_id');
     }
 }
