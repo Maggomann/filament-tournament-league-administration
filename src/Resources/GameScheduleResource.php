@@ -7,7 +7,9 @@ use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Pages\Page;
 use Filament\Resources\Form;
+use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -110,6 +112,15 @@ class GameScheduleResource extends TranslateableResource
                             ->label(GameSchedule::transAttribute('period_end'))
                             ->firstDayOfWeek(1)
                             ->required(),
+
+                        Select::make('game_days')
+                            ->label(GameSchedule::transAttribute('game_days'))
+                            ->options(collect()->times(50)->mapWithKeys(fn ($value, $key) => [$value => $value]))
+                            ->visible(fn (Page $livewire) => $livewire instanceof CreateRecord)
+                            ->placeholder(
+                                TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.game_days')
+                            )
+                           ->searchable(),
                     ])
                     ->columns([
                         'sm' => 2,
@@ -134,6 +145,11 @@ class GameScheduleResource extends TranslateableResource
                     ->searchable()
                     ->sortable(),
 
+                TextColumn::make('leagueBT.name')
+                    ->label(Team::transAttribute('league_id'))
+                    ->searchable()
+                    ->sortable(),
+                    
                 TextColumn::make('period_start')
                     ->label(GameSchedule::transAttribute('period_start'))
                     ->date()

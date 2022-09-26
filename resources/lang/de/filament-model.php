@@ -69,6 +69,7 @@ return [
         ],
         'game_schedule' => [
             'name' => 'Name',
+            'game_days' => 'Spieltage',
             'period_start' => 'Beginn',
             'period_end' => 'Ende',
             'created_at' => 'Erstellt am',

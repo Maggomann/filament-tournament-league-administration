@@ -4,6 +4,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Application\GameSched
 
 use Illuminate\Support\Facades\DB;
 use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\DTO\GameScheduleData;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Throwable;
 
@@ -16,17 +17,40 @@ class CreateGameScheduleAction
     {
         try {
             return DB::transaction(function () use ($gameSchedule, $gameScheduleData) {
-                $gameSchedule->fill($gameScheduleData->toArray());
-                $gameSchedule->federation_id = $gameScheduleData->federation_id;
-                $gameSchedule->leagueable_type = $gameScheduleData->leagueable_type;
-                $gameSchedule->leagueable_id = $gameScheduleData->leagueable_id;
-
-                $gameSchedule->save();
+                $gameSchedule = $this->createGameSchedule($gameSchedule, $gameScheduleData);
+                $gameSchedule = $this->createGameDays($gameSchedule, $gameScheduleData);
 
                 return $gameSchedule;
             });
         } catch (Throwable $e) {
             throw $e;
         }
+    }
+
+    private function createGameSchedule(GameSchedule $gameSchedule, GameScheduleData $gameScheduleData): GameSchedule
+    {
+        $gameSchedule->fill($gameScheduleData->toArray());
+        $gameSchedule->federation_id = $gameScheduleData->federation_id;
+        $gameSchedule->leagueable_type = $gameScheduleData->leagueable_type;
+        $gameSchedule->leagueable_id = $gameScheduleData->leagueable_id;
+
+        $gameSchedule->save();
+
+        return $gameSchedule;
+    }
+
+    private function createGameDays(GameSchedule $gameSchedule, GameScheduleData $gameScheduleData): GameSchedule
+    {
+        $gameDays = collect()->times($gameScheduleData->game_days, function ($day) use ($gameSchedule) {
+            $gameDay = new GameDay();
+            $gameDay->game_schedule_id = $gameSchedule->id;
+            $gameDay->game_day = $day;
+
+            return $gameDay;
+        }); 
+
+        $gameSchedule->days()->saveMany($gameDays);
+
+        return $gameSchedule;
     }
 }

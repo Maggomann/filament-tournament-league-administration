@@ -59,7 +59,14 @@ return new class extends Migration
 
         Schema::create('tournament_league_game_days', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('day')->unique()->index();
+            $table->unsignedBigInteger('game_schedule_id')->index();
+            $table->unsignedInteger('game_day')->index();
+            $table->timestamp('start')->nullable()->index();
+            $table->timestamp('end')->nullable()->index();
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->unique(['game_schedule_id', 'game_day'], 'game_day_index');
         });
 
         Schema::create('tournament_league_game_schedules', function (Blueprint $table) {
@@ -76,7 +83,7 @@ return new class extends Migration
         Schema::create('tournament_league_game_schedule_tournament_league_leagues', function (Blueprint $table) {
             $table->unsignedBigInteger('tournament_league_game_schedule_id')->nullable()->index('game_schedule_id_index');
             $table->unsignedBigInteger('tournament_league_league_id')->nullable()->index('league_league_id_index');
-            $table->string('name')->index('name_index');
+            $table->string('league_name')->index('name_index');
         });
 
         // Ein Spielplan kann einem Verband zugewiesen sein // Ein Verband kann mehrere Spielpläne haben
