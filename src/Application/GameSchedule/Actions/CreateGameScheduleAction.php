@@ -47,7 +47,7 @@ class CreateGameScheduleAction
             $gameDay->game_day = $day;
 
             return $gameDay;
-        }); 
+        });
 
         $gameSchedule->days()->saveMany($gameDays);
 

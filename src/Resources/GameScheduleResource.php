@@ -24,6 +24,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\GameDaysRelationManager;
 
 class GameScheduleResource extends TranslateableResource
 {
@@ -149,7 +150,7 @@ class GameScheduleResource extends TranslateableResource
                     ->label(Team::transAttribute('league_id'))
                     ->searchable()
                     ->sortable(),
-                    
+
                 TextColumn::make('period_start')
                     ->label(GameSchedule::transAttribute('period_start'))
                     ->date()
@@ -171,7 +172,9 @@ class GameScheduleResource extends TranslateableResource
 
     public static function getRelations(): array
     {
-        return [];
+        return [
+            GameDaysRelationManager::class,
+        ];
     }
 
     public static function getPages(): array

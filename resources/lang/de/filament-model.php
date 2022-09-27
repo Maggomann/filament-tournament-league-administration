@@ -15,6 +15,7 @@ return [
         'player' => 'Spieler|Spieler',
         'address' => 'Adresse|Adressen',
         'game_schedule' => 'Spielplan|Spielpläne',
+        'game_day' => 'Spieltag|Spieltage',
     ],
 
     /*
@@ -72,6 +73,15 @@ return [
             'game_days' => 'Spieltage',
             'period_start' => 'Beginn',
             'period_end' => 'Ende',
+            'created_at' => 'Erstellt am',
+            'updated_at' => 'Aktualisiert am',
+            'deleted_at' => 'Gelöscht am',
+        ],
+        'game_day' => [
+            'game_schedule_id' => 'Spielplan',
+            'game_day' => 'Spieltag',
+            'start' => 'Beginn',
+            'end' => 'Ende',
             'created_at' => 'Erstellt am',
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',
