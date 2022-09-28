@@ -41,7 +41,7 @@ class CreateGameScheduleAction
 
     private function createGameDays(GameSchedule $gameSchedule, GameScheduleData $gameScheduleData): GameSchedule
     {
-        $gameDays = collect()->times($gameScheduleData->days, function ($day) use ($gameSchedule) {
+        $gameDays = collect()->times($gameScheduleData->game_days, function ($day) use ($gameSchedule) {
             $gameDay = new GameDay();
             $gameDay->game_schedule_id = $gameSchedule->id;
             $gameDay->day = $day;

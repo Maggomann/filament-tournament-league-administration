@@ -77,7 +77,7 @@ return [
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',
         ],
-        'day' => [
+        'game_day' => [
             'game_schedule_id' => 'Spielplan',
             'day' => 'Spieltag',
             'start' => 'Beginn',
