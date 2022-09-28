@@ -31,8 +31,8 @@ class CreateGameScheduleAction
     {
         $gameSchedule->fill($gameScheduleData->toArray());
         $gameSchedule->federation_id = $gameScheduleData->federation_id;
-        $gameSchedule->leagueable_type = $gameScheduleData->leagueable_type;
-        $gameSchedule->leagueable_id = $gameScheduleData->leagueable_id;
+        $gameSchedule->gameschedulable_type = $gameScheduleData->gameschedulable_type;
+        $gameSchedule->gameschedulable_id = $gameScheduleData->gameschedulable_id;
 
         $gameSchedule->save();
 
@@ -41,10 +41,10 @@ class CreateGameScheduleAction
 
     private function createGameDays(GameSchedule $gameSchedule, GameScheduleData $gameScheduleData): GameSchedule
     {
-        $gameDays = collect()->times($gameScheduleData->game_days, function ($day) use ($gameSchedule) {
+        $gameDays = collect()->times($gameScheduleData->days, function ($day) use ($gameSchedule) {
             $gameDay = new GameDay();
             $gameDay->game_schedule_id = $gameSchedule->id;
-            $gameDay->game_day = $day;
+            $gameDay->day = $day;
 
             return $gameDay;
         });

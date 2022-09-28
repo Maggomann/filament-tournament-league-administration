@@ -18,8 +18,8 @@ class UpdateGameScheduleAction
             return DB::transaction(function () use ($gameSchedule, $gameScheduleData) {
                 $gameSchedule->fill($gameScheduleData->toArray());
                 $gameSchedule->federation_id = $gameScheduleData->federation_id;
-                $gameSchedule->leagueable_type = $gameScheduleData->leagueable_type;
-                $gameSchedule->leagueable_id = $gameScheduleData->leagueable_id;
+                $gameSchedule->gameschedulable_type = $gameScheduleData->gameschedulable_type;
+                $gameSchedule->gameschedulable_id = $gameScheduleData->gameschedulable_id;
 
                 $gameSchedule->save();
 

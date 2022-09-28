@@ -73,6 +73,6 @@ class League extends TranslateableModel
 
     public function gameSchedules(): MorphMany
     {
-        return $this->morphMany(GameSchedule::class, 'leagueable', 'leagueable_type', 'leagueable_id');
+        return $this->morphMany(GameSchedule::class, 'gameschedulable', 'gameschedulable_type', 'gameschedulable_id');
     }
 }

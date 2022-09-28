@@ -10,7 +10,7 @@ class GameDayData extends DataTransferObject
 
     public int $game_schedule_id;
 
-    public int $game_day;
+    public int $day;
 
     public string $start;
 

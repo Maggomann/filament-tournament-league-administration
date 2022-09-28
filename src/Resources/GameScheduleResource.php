@@ -59,10 +59,10 @@ class GameScheduleResource extends TranslateableResource
                             ->reactive()
                             ->afterStateUpdated(
                                 function (Closure $set) {
-                                    $set('leagueable_id', null);
+                                    $set('gameschedulable_id', null);
                                 }),
 
-                        Select::make('leagueable_id')
+                        Select::make('gameschedulable_id')
                             ->label(Team::transAttribute('league_id'))
                             ->validationAttribute(Team::transAttribute('league_id'))
                             ->options(function (Closure $get, Closure $set, ?GameSchedule $record) {

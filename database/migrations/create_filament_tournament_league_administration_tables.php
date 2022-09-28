@@ -60,19 +60,19 @@ return new class extends Migration
         Schema::create('tournament_league_game_days', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('game_schedule_id')->index();
-            $table->unsignedInteger('game_day')->index();
+            $table->unsignedInteger('day')->index();
             $table->timestamp('start')->nullable()->index();
             $table->timestamp('end')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['game_schedule_id', 'game_day'], 'game_day_index');
+            $table->unique(['game_schedule_id', 'day'], 'day_index');
         });
 
         Schema::create('tournament_league_game_schedules', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('federation_id')->nullable()->index();
-            $table->morphs('leagueable', 'leagueable_index');
+            $table->morphs('gameschedulable', 'gameschedulable_index');
             $table->string('name')->index();
             $table->timestamp('period_start')->nullable()->index();
             $table->timestamp('period_end')->nullable()->index();

@@ -23,16 +23,16 @@ class GameDaysRelationManager extends TranslateableRelationManager
 {
     protected static string $relationship = 'days';
 
-    protected static ?string $recordTitleAttribute = 'game_day';
+    protected static ?string $recordTitleAttribute = 'day';
 
     public static function getTitle(): string
     {
-        return static::$title ?? trans_choice(static::$translateablePackageKey.'filament-model.models.game_day', number: 2);
+        return static::$title ?? trans_choice(static::$translateablePackageKey.'filament-model.models.day', number: 2);
     }
 
     public static function getRecordTitle(?Model $record): ?string
     {
-        $recordTitleSingular = trans_choice(static::$translateablePackageKey.'filament-model.models.game_day', number: 1);
+        $recordTitleSingular = trans_choice(static::$translateablePackageKey.'filament-model.models.day', number: 1);
 
         if (! $record) {
             return $recordTitleSingular;
@@ -55,8 +55,8 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->label(GameDay::transAttribute('game_schedule_id'))
                     ->disabled(),
 
-                TextInput::make('game_day')
-                    ->label(GameDay::transAttribute('game_day'))
+                TextInput::make('day')
+                    ->label(GameDay::transAttribute('day'))
                     ->disabled()
                     ->required(),
 
@@ -76,8 +76,8 @@ class GameDaysRelationManager extends TranslateableRelationManager
     {
         return $table
             ->columns([
-                TextColumn::make('game_day')
-                    ->label(GameDay::transAttribute('game_day'))
+                TextColumn::make('day')
+                    ->label(GameDay::transAttribute('day'))
                     ->searchable()
                     ->sortable(),
 
