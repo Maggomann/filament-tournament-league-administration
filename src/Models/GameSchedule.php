@@ -55,6 +55,6 @@ class GameSchedule extends TranslateableModel
 
     public function days(): HasMany
     {
-        return $this->hasMany(GameDay::class);
+        return $this->hasMany(GameDay::class, 'game_schedule_id', 'id');
     }
 }

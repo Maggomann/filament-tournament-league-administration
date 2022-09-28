@@ -7,6 +7,7 @@ use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Resources\Form;
 use Filament\Resources\Pages\CreateRecord;
@@ -14,6 +15,7 @@ use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\Actions\DeleteGameScheduleAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
@@ -25,6 +27,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\GameDaysRelationManager;
+use Throwable;
 
 class GameScheduleResource extends TranslateableResource
 {
@@ -166,7 +169,19 @@ class GameScheduleResource extends TranslateableResource
             ->actions([
                 EditAction::make()->hideLabellnTooltip(),
                 ViewAction::make()->hideLabellnTooltip(),
-                DeleteAction::make()->hideLabellnTooltip(),
+                DeleteAction::make()->hideLabellnTooltip()
+                    ->using(function (GameSchedule $record): void {
+                        try {
+                            app(DeleteGameScheduleAction::class)->execute($record);
+                        } catch (Throwable $th) {
+                            Notification::make()
+                                ->title('Es ist ein Fehler beim Löschen des Datensetzes aufgetreten')
+                                ->danger()
+                                ->send();
+
+                            throw $th;
+                        }
+                    }),
             ]);
     }
 
@@ -188,7 +203,7 @@ class GameScheduleResource extends TranslateableResource
 
     protected static function getGlobalSearchEloquentQuery(): Builder
     {
-        return parent::getGlobalSearchEloquentQuery()->with(['federation', 'league']);
+        return parent::getGlobalSearchEloquentQuery()->with(['federation', 'league', 'days']);
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array
