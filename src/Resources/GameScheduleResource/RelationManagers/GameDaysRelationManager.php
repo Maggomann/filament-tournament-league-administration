@@ -6,15 +6,20 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Pages\Page;
 use Filament\Resources\Form;
+use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Application\GameDay\Actions\UpdateGameDayAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Application\GameDay\DTO\GameDayData;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\CreateAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;
@@ -95,7 +100,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
                 //
             ])
             ->headerActions([
-                //
+                CreateAction::make(),
             ])
             ->actions([
                 EditAction::make()
@@ -116,6 +121,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
                         }
                     }),
                 ViewAction::make()->hideLabellnTooltip(),
+                DeleteAction::make()->hideLabellnTooltip(),
             ])
             ->bulkActions([
                 //
