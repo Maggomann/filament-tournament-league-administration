@@ -2,13 +2,13 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers;
 
+use Closure;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Resources\Form;
-use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
@@ -58,12 +58,32 @@ class GameDaysRelationManager extends TranslateableRelationManager
                 Select::make('game_schedule_id')
                     ->relationship('gameSchedule', 'name')
                     ->label(GameDay::transAttribute('game_schedule_id'))
-                    ->disabled(),
+                    ->default(fn (GameDaysRelationManager $livewire) => $livewire->getOwnerRecord()->id)
+                    ->disabled(fn (?Model $record) => $record instanceof GameDay),
 
                 TextInput::make('day')
                     ->label(GameDay::transAttribute('day'))
-                    ->disabled()
-                    ->required(),
+                    ->disabled(fn (?Model $record) => $record instanceof GameDay)
+                    ->minValue(1)
+                    ->integer(true)
+                    ->required()
+                    ->rules([
+                        // TODO: In Validatioklasse auslagern
+                        function ($livewire) {
+                            return function (string $attribute, $value, Closure $fail) use ($livewire) {
+                                $gameSchedule = $livewire->getOwnerRecord();
+
+                                if (! $gameSchedule instanceof GameSchedule) {
+                                    return;
+                                }
+
+                                if ($gameSchedule->days()->where('day', $value)->exists()) {
+                                    // TODO: translation
+                                    $fail("Der Wert {$value} ist bereits vorhanden.");
+                                }
+                            };
+                        },
+                    ]),
 
                 DateTimePicker::make('start')
                     ->label(GameDay::transAttribute('start'))
