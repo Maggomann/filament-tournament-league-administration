@@ -7,7 +7,6 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
-use Filament\Pages\Page;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
@@ -19,7 +18,6 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\De
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
-use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;
@@ -71,13 +69,11 @@ class GameDaysRelationManager extends TranslateableRelationManager
                         // TODO: In Validatioklasse auslagern
                         function ($livewire) {
                             return function (string $attribute, $value, Closure $fail) use ($livewire) {
-                                $gameSchedule = $livewire->getOwnerRecord();
-
-                                if (! $gameSchedule instanceof GameSchedule) {
-                                    return;
-                                }
-
-                                if ($gameSchedule->days()->where('day', $value)->exists()) {
+                                if ($livewire->getOwnerRecord()
+                                    ?->days()
+                                    ?->where('day', $value)
+                                    ?->exists()
+                                ) {
                                     // TODO: translation
                                     $fail("Der Wert {$value} ist bereits vorhanden.");
                                 }

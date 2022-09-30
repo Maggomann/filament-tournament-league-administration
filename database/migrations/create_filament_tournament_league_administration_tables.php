@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Calculators\DSABCalculator;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Calculators\HDLCalculator;
@@ -67,6 +68,23 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->unique(['game_schedule_id', 'day'], 'day_index');
+        });
+
+        DB::update("
+            ALTER TABLE tournament_league_game_days
+            ADD COLUMN game_schedule_day_unique varchar (512) 
+            GENERATED ALWAYS AS
+            (
+                CONCAT(
+                    CONCAT(day, '#', game_schedule_id),
+                    '#',
+                    IF(deleted_at IS NULL, '-',  deleted_at)
+                )
+            ) VIRTUAL;
+        ");
+
+        Schema::table('tournament_league_game_days', function (Blueprint $table) {
+            $table->unique(['game_schedule_day_unique'], 'game_schedule_day_unique_index');
         });
 
         Schema::create('tournament_league_game_schedules', function (Blueprint $table) {
