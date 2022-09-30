@@ -9,6 +9,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Application\GameDay\Actions\UpdateGameDayAction;
@@ -140,7 +141,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
                 DeleteAction::make()->hideLabellnTooltip(),
             ])
             ->bulkActions([
-                //
+                DeleteBulkAction::make(),
             ]);
     }
 
@@ -149,5 +150,10 @@ class GameDaysRelationManager extends TranslateableRelationManager
         return [
             'edit' => Pages\EditGameDay::route('/{record}/test-edit'),
         ];
+    }
+
+    protected function getDefaultTableSortColumn(): ?string
+    {
+        return 'day';
     }
 }

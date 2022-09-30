@@ -66,8 +66,6 @@ return new class extends Migration
             $table->timestamp('end')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->unique(['game_schedule_id', 'day'], 'day_index');
         });
 
         DB::update("
