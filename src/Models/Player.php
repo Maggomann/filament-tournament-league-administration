@@ -4,6 +4,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Maggomann\LaravelAddressable\Traits\Addressable;
@@ -72,5 +73,10 @@ class Player extends TranslateableModel
             'team_id',
             'league_id'
         );
+    }
+
+    public function gameSchedules(): BelongsToMany
+    {
+        return $this->belongsToMany(GameSchedule::class);
     }
 }

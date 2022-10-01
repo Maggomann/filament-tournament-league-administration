@@ -58,7 +58,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->relationship('gameSchedule', 'name')
                     ->label(GameDay::transAttribute('game_schedule_id'))
                     ->default(fn (GameDaysRelationManager $livewire) => $livewire->getOwnerRecord()->id)
-                    ->disabled(fn (?Model $record) => $record instanceof GameDay),
+                    ->disabled(),
 
                 TextInput::make('day')
                     ->label(GameDay::transAttribute('day'))

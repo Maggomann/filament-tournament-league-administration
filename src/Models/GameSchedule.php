@@ -4,6 +4,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -56,5 +57,15 @@ class GameSchedule extends TranslateableModel
     public function days(): HasMany
     {
         return $this->hasMany(GameDay::class, 'game_schedule_id', 'id');
+    }
+
+    public function teams(): BelongsToMany
+    {
+        return $this->belongsToMany(Team::class);
+    }
+
+    public function players(): BelongsToMany
+    {
+        return $this->belongsToMany(Player::class);
     }
 }
