@@ -19,7 +19,7 @@ class SyncAllGameSchedulePlayersAction
                 $gameSchedule->players()->sync(
                     Player::whereIn(
                         'tournament_league_players.team_id',
-                        $gameSchedule->teams()->pluck('tournament_league_players.id')
+                        $gameSchedule->teams()->pluck('team_id')
                     )->pluck('id')
                 );
 
