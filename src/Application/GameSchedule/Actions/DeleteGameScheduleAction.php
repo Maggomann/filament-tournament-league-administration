@@ -16,6 +16,8 @@ class DeleteGameScheduleAction
         try {
             DB::transaction(function () use ($gameSchedule): void {
                 $gameSchedule->days()->delete();
+                $gameSchedule->teams()->delete();
+                $gameSchedule->players()->delete();
 
                 $gameSchedule->delete();
             });

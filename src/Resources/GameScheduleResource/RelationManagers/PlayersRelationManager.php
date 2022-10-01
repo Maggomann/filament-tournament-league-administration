@@ -2,13 +2,17 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers;
 
+use Filament\Notifications\Notification;
 use Filament\Resources\Table;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\AttachAction;
 use Filament\Tables\Actions\DetachAction;
 use Filament\Tables\Actions\DetachBulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\Actions\SyncAllGameSchedulePlayersAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
+use Throwable;
 
 class PlayersRelationManager extends TranslateableRelationManager
 {
@@ -34,6 +38,29 @@ class PlayersRelationManager extends TranslateableRelationManager
                 //
             ])
             ->headerActions([
+                Action::make('syncAllTeams')
+                    ->label('Alle Spieler aus den verknüpfen Teams verknüpfen')
+                    ->button()
+                    ->action(function (PlayersRelationManager $livewire): void {
+                        try {
+                            app(SyncAllGameSchedulePlayersAction::class)->execute(
+                                $livewire->getRelationship()->getParent()
+                            );
+
+                            Notification::make()
+                                ->title(__('filament-support::actions/attach.single.messages.attached'))
+                                ->success()
+                                ->send();
+                        } catch (Throwable $th) {
+                            Notification::make()
+                                ->title('Es ist ein Fehler beim Zuweisen der Datensätze aufgetreten')
+                                ->danger()
+                                ->send();
+
+                            throw $th;
+                        }
+                    }),
+
                 AttachAction::make()
                     ->preloadRecordSelect()
                     ->recordSelectOptionsQuery(function (PlayersRelationManager $livewire) {
