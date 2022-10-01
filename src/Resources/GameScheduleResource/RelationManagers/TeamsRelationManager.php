@@ -9,8 +9,9 @@ use Filament\Tables\Actions\AttachAction;
 use Filament\Tables\Actions\DetachAction;
 use Filament\Tables\Actions\DetachBulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Collection;
+use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\Actions\DetachGameScheduleTeamsAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\Actions\SyncAllGameScheduleTeamsAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\CreateAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;
@@ -80,7 +81,24 @@ class TeamsRelationManager extends TranslateableRelationManager
                 DetachAction::make(),
             ])
             ->bulkActions([
-                DetachBulkAction::make(),
+                DetachBulkAction::make()
+                    ->action(function (TeamsRelationManager $livewire, Collection $records): void {
+                        try {
+                            app(DetachGameScheduleTeamsAction::class)->execute($livewire, $records);
+
+                            Notification::make()
+                                ->title(__('filament-support::actions/detach.multiple.messages.detached'))
+                                ->success()
+                                ->send();
+                        } catch (Throwable $th) {
+                            Notification::make()
+                                ->title('Es ist ein Fehler beim Zuweisen der Datensätze aufgetreten')
+                                ->danger()
+                                ->send();
+
+                            throw $th;
+                        }
+                    }),
             ]);
     }
 }

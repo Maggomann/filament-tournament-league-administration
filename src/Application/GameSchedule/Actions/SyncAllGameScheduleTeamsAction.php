@@ -3,7 +3,6 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\Actions;
 
 use Illuminate\Support\Facades\DB;
-use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\DTO\GameScheduleData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Throwable;
 
