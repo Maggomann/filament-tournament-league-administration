@@ -6,7 +6,6 @@ use Closure;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Notifications\Notification;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables\Actions\DeleteBulkAction;
@@ -14,6 +13,7 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Application\GameDay\Actions\UpdateGameDayAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Application\GameDay\DTO\GameDayData;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\EditEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\CreateAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
@@ -128,13 +128,8 @@ class GameDaysRelationManager extends TranslateableRelationManager
                                 $record,
                                 GameDayData::create($data)
                             );
-                        } catch (Throwable $th) {
-                            Notification::make()
-                                ->title('Es ist ein Fehler beim Bearbeiten des Datensetzes aufgetreten')
-                                ->danger()
-                                ->send();
-
-                            throw $th;
+                        } catch (Throwable) {
+                            EditEntryFailedNotification::make()->send();
                         }
                     }),
                 ViewAction::make()->hideLabellnTooltip(),

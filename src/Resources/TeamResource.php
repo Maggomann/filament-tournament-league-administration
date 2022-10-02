@@ -7,7 +7,6 @@ use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Notifications\Notification;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
@@ -16,10 +15,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\CreateEntrySuccessNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\DeleteEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatedSelectOption;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatePlaceholderSelectOption;
 use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
@@ -50,7 +51,7 @@ class TeamResource extends TranslateableResource
                             ->validationAttribute(League::transAttribute('federation_id'))
                             ->options(Federation::all()->pluck('name', 'id'))
                             ->placeholder(
-                                TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.federation_id')
+                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'federation_id')
                             )
                             ->required()
                             ->reactive()
@@ -62,7 +63,7 @@ class TeamResource extends TranslateableResource
                                     ->validationAttribute(Federation::transAttribute('calculation_type_id'))
                                     ->options(CalculationType::all()->pluck('name', 'id'))
                                     ->placeholder(
-                                        TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.calculation_type_id')
+                                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'calculation_type_id')
                                     )
                                     ->exists(table: CalculationType::class, column: 'id')
                                     ->required()
@@ -88,18 +89,11 @@ class TeamResource extends TranslateableResource
 
                                     $component->options(Federation::all()->pluck('name', 'id'));
 
-                                    // TODO: Notifaction bei Error
-                                    Notification::make()
-                                        ->title(__('filament::resources/pages/create-record.messages.created'))
-                                        ->success()
-                                        ->send();
+                                    CreateEntrySuccessNotification::make()->send();
 
                                     return $federation->getKey();
-                                } catch (Throwable $th) {
-                                    Notification::make()
-                                        ->title('Es ist ein Fehler beim Erstellen des Datensetzes aufgetreten')
-                                        ->danger()
-                                        ->send();
+                                } catch (Throwable) {
+                                    DeleteEntryFailedNotification::make()->send();
                                 }
                             })
                             ->afterStateUpdated(fn ($state, Closure $set) => $set('league_id', null)),
@@ -126,7 +120,7 @@ class TeamResource extends TranslateableResource
                                     ?->pluck('name', 'id');
                             })
                             ->placeholder(
-                                TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.league_id')
+                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'league_id')
                             )
                             ->required()
                             ->searchable(),

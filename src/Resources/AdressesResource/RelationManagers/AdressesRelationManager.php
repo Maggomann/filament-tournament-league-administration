@@ -5,7 +5,6 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\AdressesRes
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Notifications\Notification;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
@@ -16,10 +15,12 @@ use Maggomann\FilamentTournamentLeagueAdministration\Application\Address\Actions
 use Maggomann\FilamentTournamentLeagueAdministration\Application\Address\Actions\UpdateAddressAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Application\Address\DTO\CreateAddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Application\Address\DTO\UpdateAddressData;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\DeleteEntryFailedNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\EditEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\CreateAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatedSelectOption;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatePlaceholderSelectOption;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Maggomann\LaravelAddressable\Models\AddressCategory;
 use Maggomann\LaravelAddressable\Models\AddressGender;
@@ -49,7 +50,7 @@ class AdressesRelationManager extends TranslateableRelationManager
                             ->mapWithKeys(fn ($value, $key) => [$key => __("laravel-addressable.{$value}")])
                     )
                     ->placeholder(
-                        TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.address_category_id')
+                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'address_category_id')
                     )
                     ->default(1)
                     ->required()
@@ -63,7 +64,7 @@ class AdressesRelationManager extends TranslateableRelationManager
                             ->mapWithKeys(fn ($value, $key) => [$key => __("laravel-addressable.{$value}")])
                     )
                     ->placeholder(
-                        TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.address_gender_id')
+                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'address_gender_id')
                     )
                     ->default(1)
                     ->required()
@@ -141,7 +142,7 @@ class AdressesRelationManager extends TranslateableRelationManager
                             })
                     )
                     ->placeholder(
-                        TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.address_country_id')
+                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'address_country_id')
                     )
                     ->default('DE')
                     ->required()
@@ -179,13 +180,8 @@ class AdressesRelationManager extends TranslateableRelationManager
                                 $livewire->getRelationship(),
                                 CreateAddressData::create($data)
                             );
-                        } catch (Throwable $th) {
-                            Notification::make()
-                                ->title('Es ist ein Fehler beim Erstellen des Datensetzes aufgetreten')
-                                ->danger()
-                                ->send();
-
-                            throw $th;
+                        } catch (Throwable) {
+                            DeleteEntryFailedNotification::make()->send();
                         }
                     }),
             ])
@@ -198,13 +194,8 @@ class AdressesRelationManager extends TranslateableRelationManager
                                 $record,
                                 UpdateAddressData::create($data)
                             );
-                        } catch (Throwable $th) {
-                            Notification::make()
-                                ->title('Es ist ein Fehler beim Bearbeiten des Datensetzes aufgetreten')
-                                ->danger()
-                                ->send();
-
-                            throw $th;
+                        } catch (Throwable) {
+                            EditEntryFailedNotification::make()->send();
                         }
                     }),
                 ViewAction::make()->hideLabellnTooltip(),

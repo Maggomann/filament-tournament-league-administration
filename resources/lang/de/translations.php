@@ -7,6 +7,7 @@ return [
     | Attribute
     |--------------------------------------------------------------------------
     */
+
     'forms' => [
         'components' => [
             'select' => [
@@ -23,5 +24,12 @@ return [
                 ],
             ],
         ],
+    ],
+    'notifications' => [
+        'attach_entry_failed' => 'Es ist ein Fehler beim Zuweisen der Datensätze aufgetreten',
+        'delete_entry_failed' => 'Es ist ein Fehler beim Löschen des Datensetzes aufgetreten',
+        'detach_entry_failed' => 'Es ist ein Fehler beim Trennen der Datensätze aufgetreten',
+        'edit_entry_failed' => 'Es ist ein Fehler beim Bearbeiten des Datensetzes aufgetreten',
+
     ],
 ];

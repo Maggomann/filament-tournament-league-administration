@@ -2,7 +2,6 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers;
 
-use Filament\Notifications\Notification;
 use Filament\Resources\Table;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\AttachAction;
@@ -12,6 +11,10 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Collection;
 use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\Actions\DetachGameScheduleTeamsAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\Actions\SyncAllGameScheduleTeamsAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\AttachEntryFailedNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\AttachEntrySucceededNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\DetachBuldEntriesFailedNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\DetachBuldEntriesSucceededNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;
@@ -49,17 +52,9 @@ class TeamsRelationManager extends TranslateableRelationManager
                                 $livewire->getRelationship()->getParent()
                             );
 
-                            Notification::make()
-                                ->title(__('filament-support::actions/attach.single.messages.attached'))
-                                ->success()
-                                ->send();
-                        } catch (Throwable $th) {
-                            Notification::make()
-                                ->title('Es ist ein Fehler beim Zuweisen der Datensätze aufgetreten')
-                                ->danger()
-                                ->send();
-
-                            throw $th;
+                            AttachEntrySucceededNotification::make()->send();
+                        } catch (Throwable) {
+                            AttachEntryFailedNotification::make()->send();
                         }
                     }),
 
@@ -86,17 +81,9 @@ class TeamsRelationManager extends TranslateableRelationManager
                         try {
                             app(DetachGameScheduleTeamsAction::class)->execute($livewire, $records);
 
-                            Notification::make()
-                                ->title(__('filament-support::actions/detach.multiple.messages.detached'))
-                                ->success()
-                                ->send();
-                        } catch (Throwable $th) {
-                            Notification::make()
-                                ->title('Es ist ein Fehler beim Zuweisen der Datensätze aufgetreten')
-                                ->danger()
-                                ->send();
-
-                            throw $th;
+                            DetachBuldEntriesSucceededNotification::make()->send();
+                        } catch (Throwable) {
+                            DetachBuldEntriesFailedNotification::make()->send();
                         }
                     }),
             ]);

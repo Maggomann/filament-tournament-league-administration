@@ -7,7 +7,6 @@ use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Resources\Form;
 use Filament\Resources\Pages\CreateRecord;
@@ -16,10 +15,11 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\Actions\DeleteGameScheduleAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\DeleteEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatedSelectOption;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatePlaceholderSelectOption;
 use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
@@ -57,7 +57,7 @@ class GameScheduleResource extends TranslateableResource
                             ->validationAttribute(League::transAttribute('federation_id'))
                             ->options(Federation::all()->pluck('name', 'id'))
                             ->placeholder(
-                                TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.federation_id')
+                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'federation_id')
                             )
                             ->required()
                             ->searchable()
@@ -104,7 +104,7 @@ class GameScheduleResource extends TranslateableResource
                                     ?->pluck('name', 'id') ?? collect([]);
                             })
                             ->placeholder(
-                                TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.league_id')
+                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'league_id')
                             )
                             ->required()
                             ->reactive(),
@@ -124,7 +124,7 @@ class GameScheduleResource extends TranslateableResource
                             ->options(collect()->times(50)->mapWithKeys(fn ($value, $key) => [$value => $value]))
                             ->visible(fn (Page $livewire) => $livewire instanceof CreateRecord)
                             ->placeholder(
-                                TranslatedSelectOption::placeholder(static::$translateablePackageKey.'translations.forms.components.select.placeholder.game_days')
+                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'game_days')
                             )
                            ->searchable(),
                     ])
@@ -175,13 +175,8 @@ class GameScheduleResource extends TranslateableResource
                     ->using(function (GameSchedule $record): void {
                         try {
                             app(DeleteGameScheduleAction::class)->execute($record);
-                        } catch (Throwable $th) {
-                            Notification::make()
-                                ->title('Es ist ein Fehler beim Löschen des Datensetzes aufgetreten')
-                                ->danger()
-                                ->send();
-
-                            throw $th;
+                        } catch (Throwable) {
+                            DeleteEntryFailedNotification::make()->send();
                         }
                     }),
             ]);
