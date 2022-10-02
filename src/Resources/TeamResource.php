@@ -13,8 +13,9 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Maggomann\FilamentTournamentLeagueAdministration\Application\Federation\Actions\CreateFedrationSmallAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Application\Federation\DTO\FederationData;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\CreateEntrySuccessNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\DeleteEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
@@ -81,11 +82,9 @@ class TeamResource extends TranslateableResource
                             })
                             ->createOptionUsing(static function (Select $component, array $data) {
                                 try {
-                                    // TODO: In Action auslagern:
-                                    $federation = new Federation();
-                                    $federation->fill($data);
-                                    $federation->calculation_type_id = Arr::get($data, 'calculation_type_id');
-                                    $federation->save();
+                                    $federation = app(CreateFedrationSmallAction::class)->execute(
+                                        FederationData::create($data)
+                                    );
 
                                     $component->options(Federation::all()->pluck('name', 'id'));
 
