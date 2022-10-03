@@ -15,6 +15,7 @@ class FilamentTournamentTableSeeder extends Seeder
             TeamsTableSeeder::class,
             PlayersTableSeeder::class,
             PlayerAddressTableSeeder::class,
+            GameSchedulesTableSeeder::class,
         ]);
     }
 }
