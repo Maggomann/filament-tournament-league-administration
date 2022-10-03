@@ -22,6 +22,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\Ed
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatePlaceholderSelectOption;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
+use Maggomann\LaravelAddressable\Models\Address;
 use Maggomann\LaravelAddressable\Models\AddressCategory;
 use Maggomann\LaravelAddressable\Models\AddressGender;
 use Throwable;
@@ -174,7 +175,7 @@ class AdressesRelationManager extends TranslateableRelationManager
             ])
             ->headerActions([
                 CreateAction::make()
-                    ->using(function (HasRelationshipTable $livewire, array $data): Model {
+                    ->using(function (HasRelationshipTable $livewire, array $data): Address {
                         try {
                             return app(CreateAddressAction::class)->execute(
                                 $livewire->getRelationship(),
@@ -188,7 +189,7 @@ class AdressesRelationManager extends TranslateableRelationManager
             ->actions([
                 EditAction::make()
                     ->hideLabellnTooltip()
-                    ->using(function (Model $record, array $data): Model {
+                    ->using(function (Model $record, array $data): Address {
                         try {
                             return app(UpdateAddressAction::class)->execute(
                                 $record,

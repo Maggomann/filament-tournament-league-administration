@@ -1,2 +1,261 @@
 parameters:
 	ignoreErrors:
+		-
+			message: "#^Property 'federation_id' does not exist in Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule model\\.$#"
+			count: 1
+			path: database/seeders/GameSchedulesTableSeeder.php
+
+		-
+			message: "#^Property 'game_schedule_id' does not exist in Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameDay model\\.$#"
+			count: 1
+			path: database/seeders/GameSchedulesTableSeeder.php
+
+		-
+			message: "#^Property 'gameschedulable_id' does not exist in Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule model\\.$#"
+			count: 1
+			path: database/seeders/GameSchedulesTableSeeder.php
+
+		-
+			message: "#^Property 'gameschedulable_type' does not exist in Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule model\\.$#"
+			count: 1
+			path: database/seeders/GameSchedulesTableSeeder.php
+
+		-
+			message: "#^Property 'addressable_id' does not exist in Maggomann\\\\LaravelAddressable\\\\Models\\\\Address model\\.$#"
+			count: 1
+			path: database/seeders/PlayerAddressTableSeeder.php
+
+		-
+			message: "#^Property 'addressable_type' does not exist in Maggomann\\\\LaravelAddressable\\\\Models\\\\Address model\\.$#"
+			count: 1
+			path: database/seeders/PlayerAddressTableSeeder.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\User\\:\\:\\$password\\.$#"
+			count: 1
+			path: database/seeders/UsersTableSeeder.php
+
+		-
+			message: "#^Call to an undefined static method App\\\\Models\\\\User\\:\\:whereEmail\\(\\)\\.$#"
+			count: 1
+			path: database/seeders/UsersTableSeeder.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$category_id\\.$#"
+			count: 1
+			path: src/Application/Address/Actions/CreateAddressAction.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$gender_id\\.$#"
+			count: 1
+			path: src/Application/Address/Actions/CreateAddressAction.php
+
+		-
+			message: "#^Access to an undefined property Maggomann\\\\LaravelAddressable\\\\Models\\\\Address\\:\\:\\$category_id\\.$#"
+			count: 1
+			path: src/Application/Address/Actions/UpdateAddressAction.php
+
+		-
+			message: "#^Access to an undefined property Maggomann\\\\LaravelAddressable\\\\Models\\\\Address\\:\\:\\$gender_id\\.$#"
+			count: 1
+			path: src/Application/Address/Actions/UpdateAddressAction.php
+
+		-
+			message: "#^Access to an undefined property Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Federation\\:\\:\\$calculation_type_id\\.$#"
+			count: 1
+			path: src/Application/Federation/Actions/CreateFedrationSmallAction.php
+
+		-
+			message: "#^Access to an undefined property Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameDay\\:\\:\\$game_schedule_id\\.$#"
+			count: 1
+			path: src/Application/GameDay/Actions/CreateGameDayAction.php
+
+		-
+			message: "#^Access to an undefined property Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameDay\\:\\:\\$game_schedule_id\\.$#"
+			count: 1
+			path: src/Application/GameDay/Actions/UpdateGameDayAction.php
+
+		-
+			message: "#^Class Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\GameDay\\\\DTO\\\\GameDayData referenced with incorrect case\\: Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\GameDay\\\\DTO\\\\gameDayData\\.$#"
+			count: 2
+			path: src/Application/GameDay/Actions/UpdateGameDayAction.php
+
+		-
+			message: "#^Access to an undefined property Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameDay\\:\\:\\$game_schedule_id\\.$#"
+			count: 1
+			path: src/Application/GameSchedule/Actions/CreateGameScheduleAction.php
+
+		-
+			message: "#^Access to an undefined property Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule\\:\\:\\$federation_id\\.$#"
+			count: 1
+			path: src/Application/GameSchedule/Actions/CreateGameScheduleAction.php
+
+		-
+			message: "#^Access to an undefined property Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule\\:\\:\\$gameschedulable_id\\.$#"
+			count: 1
+			path: src/Application/GameSchedule/Actions/CreateGameScheduleAction.php
+
+		-
+			message: "#^Access to an undefined property Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule\\:\\:\\$gameschedulable_type\\.$#"
+			count: 1
+			path: src/Application/GameSchedule/Actions/CreateGameScheduleAction.php
+
+		-
+			message: "#^Unable to resolve the template type TKey in call to function collect$#"
+			count: 1
+			path: src/Application/GameSchedule/Actions/CreateGameScheduleAction.php
+
+		-
+			message: "#^Unable to resolve the template type TValue in call to function collect$#"
+			count: 1
+			path: src/Application/GameSchedule/Actions/CreateGameScheduleAction.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\Relation\\:\\:detach\\(\\)\\.$#"
+			count: 1
+			path: src/Application/GameSchedule/Actions/DetachGameScheduleTeamsAction.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:players\\(\\)\\.$#"
+			count: 2
+			path: src/Application/GameSchedule/Actions/DetachGameScheduleTeamsAction.php
+
+		-
+			message: "#^Access to an undefined property Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule\\:\\:\\$federation_id\\.$#"
+			count: 1
+			path: src/Application/GameSchedule/Actions/UpdateGameScheduleAction.php
+
+		-
+			message: "#^Access to an undefined property Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule\\:\\:\\$gameschedulable_id\\.$#"
+			count: 1
+			path: src/Application/GameSchedule/Actions/UpdateGameScheduleAction.php
+
+		-
+			message: "#^Access to an undefined property Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule\\:\\:\\$gameschedulable_type\\.$#"
+			count: 1
+			path: src/Application/GameSchedule/Actions/UpdateGameScheduleAction.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$created_at\\.$#"
+			count: 1
+			path: src/Forms/Components/CardTimestamps.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$updated_at\\.$#"
+			count: 1
+			path: src/Forms/Components/CardTimestamps.php
+
+		-
+			message: "#^Call to an undefined static method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:transAttribute\\(\\)\\.$#"
+			count: 2
+			path: src/Forms/Components/CardTimestamps.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 2
+			path: src/Resources/AdressesResource/RelationManagers/AdressesRelationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$address of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\Address\\\\Actions\\\\UpdateAddressAction\\:\\:execute\\(\\) expects Maggomann\\\\LaravelAddressable\\\\Models\\\\Address, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/AdressesResource/RelationManagers/AdressesRelationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$morphMany of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\Address\\\\Actions\\\\CreateAddressAction\\:\\:execute\\(\\) expects Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\MorphMany, Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\Relation given\\.$#"
+			count: 1
+			path: src/Resources/AdressesResource/RelationManagers/AdressesRelationManager.php
+
+		-
+			message: "#^Unable to resolve the template type TKey in call to function collect$#"
+			count: 3
+			path: src/Resources/AdressesResource/RelationManagers/AdressesRelationManager.php
+
+		-
+			message: "#^Unable to resolve the template type TValue in call to function collect$#"
+			count: 3
+			path: src/Resources/AdressesResource/RelationManagers/AdressesRelationManager.php
+
+		-
+			message: "#^Unable to resolve the template type TKey in call to function collect$#"
+			count: 1
+			path: src/Resources/GameScheduleResource.php
+
+		-
+			message: "#^Unable to resolve the template type TTimesValue in call to method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:times\\(\\)$#"
+			count: 1
+			path: src/Resources/GameScheduleResource.php
+
+		-
+			message: "#^Unable to resolve the template type TValue in call to function collect$#"
+			count: 1
+			path: src/Resources/GameScheduleResource.php
+
+		-
+			message: "#^Parameter \\#1 \\$gameSchedule of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\GameSchedule\\\\Actions\\\\UpdateGameScheduleAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/GameScheduleResource/Pages/EditGameDay.php
+
+		-
+			message: "#^Parameter \\#1 \\$gameSchedule of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\GameSchedule\\\\Actions\\\\UpdateGameScheduleAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/GameScheduleResource/Pages/EditGameSchedule.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$id\\.$#"
+			count: 1
+			path: src/Resources/GameScheduleResource/RelationManagers/GameDaysRelationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$gameDay of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\GameDay\\\\Actions\\\\UpdateGameDayAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameDay, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/GameScheduleResource/RelationManagers/GameDaysRelationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$gameSchedule of class Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Rules\\\\EndGameDayRule constructor expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/GameScheduleResource/RelationManagers/GameDaysRelationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$gameSchedule of class Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Rules\\\\StartGameDayRule constructor expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/GameScheduleResource/RelationManagers/GameDaysRelationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$gameSchedule of class Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Rules\\\\UniqueGameDayRule constructor expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/GameScheduleResource/RelationManagers/GameDaysRelationManager.php
+
+		-
+			message: "#^Parameter \\#2 \\$gameDay of class Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Rules\\\\UniqueGameDayRule constructor expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameDay\\|null, Illuminate\\\\Database\\\\Eloquent\\\\Model\\|null given\\.$#"
+			count: 1
+			path: src/Resources/GameScheduleResource/RelationManagers/GameDaysRelationManager.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:teams\\(\\)\\.$#"
+			count: 1
+			path: src/Resources/GameScheduleResource/RelationManagers/PlayersRelationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$gameSchedule of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\GameSchedule\\\\Actions\\\\SyncAllGameSchedulePlayersAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/GameScheduleResource/RelationManagers/PlayersRelationManager.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$leagueBT\\.$#"
+			count: 1
+			path: src/Resources/GameScheduleResource/RelationManagers/TeamsRelationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$gameSchedule of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\GameSchedule\\\\Actions\\\\SyncAllGameScheduleTeamsAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/GameScheduleResource/RelationManagers/TeamsRelationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$player of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\Player\\\\Actions\\\\UpdatePlayerAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Player, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/PlayerResource/Pages/EditPlayer.php
+
+		-
+			message: "#^Parameter \\#1 \\$team of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\Team\\\\Actions\\\\UpdateTeamAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Team, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/TeamResource/Pages/EditTeam.php
