@@ -29,6 +29,8 @@ use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResou
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\GameDaysRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\PlayersRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\TeamsRelationManager;
+use Maggomann\FilamentTournamentLeagueAdministration\Rules\PeriodEndGameScheduleRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Rules\PeriodStartGameScheduleRule;
 use Throwable;
 
 class GameScheduleResource extends TranslateableResource
@@ -112,12 +114,18 @@ class GameScheduleResource extends TranslateableResource
                         DateTimePicker::make('period_start')
                             ->label(GameSchedule::transAttribute('period_start'))
                             ->firstDayOfWeek(1)
-                            ->required(),
+                            ->required()
+                            ->rules([
+                                fn (Closure $get) => new PeriodStartGameScheduleRule($get('period_end')),
+                            ]),
 
                         DateTimePicker::make('period_end')
                             ->label(GameSchedule::transAttribute('period_end'))
                             ->firstDayOfWeek(1)
-                            ->required(),
+                            ->required()
+                            ->rules([
+                                fn (Closure $get) => new PeriodEndGameScheduleRule($get('period_start')),
+                            ]),
 
                         Select::make('game_days')
                             ->label(GameSchedule::transAttribute('game_days'))

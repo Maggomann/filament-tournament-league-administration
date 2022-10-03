@@ -39,5 +39,7 @@ return [
         'game_day_start_must_be_between_game_schedule_dates' => 'Das Startdatum :value muss zwischen dem Start- und Enddatum des Spielplans liegen.',
         'game_day_end_must_be_greater_than_start_date' => 'Das Enddatum :value muss nach dem Startdatum liegen.',
         'game_day_end_pre_days' => 'Das Enddatum :value muss kleiner als das Startdatum der nachfolgenden Tage sein.',
+        'period_start_game_schedule_must_be_smaller_than_period_end' => 'Das Startdatum :value muss vor dem Enddatum liegen.',
+        'period_end_game_schedule_must_be_greather_than_period_start' => 'Das Enddatum :value muss nach dem Startdatum liegen.',
     ],
 ];
