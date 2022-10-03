@@ -34,5 +34,10 @@ return [
     ],
     'rules' => [
         'unique_game_day' => 'Der :value. Tag ist bereits vorhanden.',
+        'game_day_start_must_be_smaller_than_end_date' => 'Das Startdatum :value muss vor dem Enddatum liegen.',
+        'game_day_start_pre_days' => 'Das Startdatum :value muss größer als das Enddatum der Vortage sein.',
+        'game_day_start_must_be_between_game_schedule_dates' => 'Das Startdatum :value muss zwischen dem Start- und Enddatum des Spielplans liegen.',
+        'game_day_end_must_be_greater_than_start_date' => 'Das Enddatum :value muss nach dem Startdatum liegen.',
+        'game_day_end_pre_days' => 'Das Enddatum :value muss kleiner als das Startdatum der nachfolgenden Tage sein.',
     ],
 ];

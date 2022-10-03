@@ -2,6 +2,7 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers;
 
+use Closure;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -20,6 +21,8 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\Vi
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
+use Maggomann\FilamentTournamentLeagueAdministration\Rules\EndGameDayRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Rules\StartGameDayRule;
 use Maggomann\FilamentTournamentLeagueAdministration\Rules\UniqueGameDayRule;
 use Throwable;
 
@@ -73,12 +76,18 @@ class GameDaysRelationManager extends TranslateableRelationManager
                 DateTimePicker::make('start')
                     ->label(GameDay::transAttribute('start'))
                     ->firstDayOfWeek(1)
-                    ->required(),
+                    ->required()
+                    ->rules([
+                        fn (GameDaysRelationManager $livewire, Closure $get) => new StartGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('end')),
+                    ]),
 
                 DateTimePicker::make('end')
                     ->label(GameDay::transAttribute('end'))
                     ->firstDayOfWeek(1)
-                    ->required(),
+                    ->required()
+                    ->rules([
+                        fn (GameDaysRelationManager $livewire, Closure $get) => new EndGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('start')),
+                    ]),
             ]);
     }
 
