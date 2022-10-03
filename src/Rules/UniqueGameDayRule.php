@@ -3,13 +3,14 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 
 class UniqueGameDayRule extends ValidationRule implements Rule
 {
     protected int $value;
 
-    public function __construct(public GameSchedule $gameSchedule)
+    public function __construct(public GameSchedule $gameSchedule, public ?GameDay $gameDay = null)
     {
     }
 
@@ -25,8 +26,9 @@ class UniqueGameDayRule extends ValidationRule implements Rule
     {
         $this->value = $value;
 
-        return (bool) ($this->gameSchedule?->days()
-            ?->where('day', $value)
-            ?->doesntExist());
+        return (bool) ($this->gameSchedule->days()
+            ->where('day', $value)
+            ->whereNot('id', $this->gameDay?->id)
+            ->doesntExist());
     }
 }

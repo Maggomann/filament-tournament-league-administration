@@ -12,7 +12,12 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 /**
- * @property int $team_id
+ * @property int|null $team_id
+ * @property string $name
+ * @property string $emai
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  */
 class Player extends TranslateableModel
 {

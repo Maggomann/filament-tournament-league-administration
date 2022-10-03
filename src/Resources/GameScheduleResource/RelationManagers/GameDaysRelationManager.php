@@ -19,6 +19,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\De
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Rules\EndGameDayRule;
@@ -70,7 +71,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->integer(true)
                     ->required()
                     ->rules([
-                        fn (GameDaysRelationManager $livewire) => new UniqueGameDayRule($livewire->getOwnerRecord()),
+                        fn (GameDaysRelationManager $livewire, ?Model $record) => new UniqueGameDayRule($livewire->getOwnerRecord(), $record),
                     ]),
 
                 DateTimePicker::make('start')
@@ -119,7 +120,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
             ->actions([
                 EditAction::make()
                     ->hideLabellnTooltip()
-                    ->using(function (Model $record, array $data): Model {
+                    ->using(function (Model $record, array $data): GameDay {
                         try {
                             return app(UpdateGameDayAction::class)->execute(
                                 $record,

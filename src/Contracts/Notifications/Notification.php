@@ -6,5 +6,5 @@ use Filament\Notifications\Notification as FilamentNotification;
 
 class Notification extends FilamentNotification
 {
-    protected static ?string $translateablePackageKey = 'filament-tournament-league-administration::translations';
+    protected static ?string $translateablePackageKey = 'filament-tournament-league-administration::translations.';
 }

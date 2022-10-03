@@ -76,7 +76,7 @@ class PlayerResource extends TranslateableResource
                                         ?->pluck('name', 'id') ?? collect([]);
                                 }
 
-                                $recordFederationId = $record?->league
+                                $recordFederationId = $record->league
                                     ?->federation
                                     ?->id;
 
