@@ -12,6 +12,9 @@ class FederationData extends DataTransferObject
 
     public string $name;
 
+    /**
+     * @param array<mixed> $args
+     */
     public static function create(...$args): self
     {
         if (is_array($args[0] ?? null)) {

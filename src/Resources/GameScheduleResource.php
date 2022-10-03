@@ -86,7 +86,7 @@ class GameScheduleResource extends TranslateableResource
                                         ?->pluck('name', 'id') ?? collect([]);
                                 }
 
-                                $recordFederationId = $record?->federation?->id;
+                                $recordFederationId = $record->federation?->id;
 
                                 if ($federationId === null) {
                                     $set('federation_id', $recordFederationId);
@@ -94,7 +94,7 @@ class GameScheduleResource extends TranslateableResource
                                 }
 
                                 if ($recordFederationId === $federationId) {
-                                    return $record?->federation
+                                    return $record->federation
                                         ?->leagues
                                         ?->pluck('name', 'id')
                                         ?? collect([]);
@@ -129,7 +129,7 @@ class GameScheduleResource extends TranslateableResource
 
                         Select::make('game_days')
                             ->label(GameSchedule::transAttribute('game_days'))
-                            ->options(collect()->times(50)->mapWithKeys(fn ($value, $key) => [$value => $value]))
+                            ->options(collect()->times(50)->mapWithKeys(fn ($value) => [$value => $value]))
                             ->visible(fn (Page $livewire) => $livewire instanceof CreateRecord)
                             ->placeholder(
                                 TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'game_days')

@@ -16,6 +16,9 @@ class PlayerData extends DataTransferObject
 
     public ?string $email;
 
+    /**
+     * @param array<mixed> $args
+     */
     public static function create(...$args): self
     {
         if (is_array($args[0] ?? null)) {

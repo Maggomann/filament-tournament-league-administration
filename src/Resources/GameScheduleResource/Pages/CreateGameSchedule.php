@@ -18,7 +18,5 @@ class CreateGameSchedule extends CreateRecord
             app($this->getModel()),
             GameScheduleData::create($data)
         );
-
-        return app($this->getModel());
     }
 }

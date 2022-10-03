@@ -24,6 +24,9 @@ class GameScheduleData extends DataTransferObject
 
     public int $game_days = 0;
 
+    /**
+     * @param array<mixed> $args
+     */
     public static function create(...$args): self
     {
         if (is_array($args[0] ?? null)) {
