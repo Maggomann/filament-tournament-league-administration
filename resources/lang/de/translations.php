@@ -32,4 +32,7 @@ return [
         'edit_entry_failed' => 'Es ist ein Fehler beim Bearbeiten des Datensetzes aufgetreten',
 
     ],
+    'rules' => [
+        'unique_game_day' => 'Der :value. Tag ist bereits vorhanden.',
+    ],
 ];

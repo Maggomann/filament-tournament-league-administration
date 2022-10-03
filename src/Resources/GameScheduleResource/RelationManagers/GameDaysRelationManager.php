@@ -2,7 +2,6 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers;
 
-use Closure;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -21,6 +20,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\Vi
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
+use Maggomann\FilamentTournamentLeagueAdministration\Rules\UniqueGameDayRule;
 use Throwable;
 
 class GameDaysRelationManager extends TranslateableRelationManager
@@ -67,19 +67,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->integer(true)
                     ->required()
                     ->rules([
-                        // TODO: In Validatioklasse auslagern
-                        function ($livewire) {
-                            return function (string $attribute, $value, Closure $fail) use ($livewire) {
-                                if ($livewire->getOwnerRecord()
-                                    ?->days()
-                                    ?->where('day', $value)
-                                    ?->exists()
-                                ) {
-                                    // TODO: translation
-                                    $fail("Der Wert {$value} ist bereits vorhanden.");
-                                }
-                            };
-                        },
+                        fn (GameDaysRelationManager $livewire) => new UniqueGameDayRule($livewire->getOwnerRecord()),
                     ]),
 
                 DateTimePicker::make('start')
