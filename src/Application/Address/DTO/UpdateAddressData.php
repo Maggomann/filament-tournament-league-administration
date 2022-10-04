@@ -41,7 +41,7 @@ class UpdateAddressData extends DataTransferObject
     public bool $is_main;
 
     /**
-     * @param array<mixed> $args
+     * @param  array<mixed>  $args
      */
     public static function create(...$args): self
     {

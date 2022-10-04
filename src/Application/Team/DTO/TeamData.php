@@ -15,7 +15,7 @@ class TeamData extends DataTransferObject
     public string $slug;
 
     /**
-     * @param array<mixed> $args
+     * @param  array<mixed>  $args
      */
     public static function create(...$args): self
     {

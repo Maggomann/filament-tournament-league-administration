@@ -17,7 +17,7 @@ class GameDayData extends DataTransferObject
     public string $end;
 
     /**
-     * @param array<mixed> $args
+     * @param  array<mixed>  $args
      */
     public static function create(...$args): self
     {

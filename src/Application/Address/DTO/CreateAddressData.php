@@ -41,12 +41,12 @@ class CreateAddressData extends DataTransferObject
     public bool $is_main;
 
     /**
-     * @param array<mixed> $args
+     * @param  array<mixed>  $args
      */
     public static function create(...$args): self
     {
         if (is_array($args[0] ?? null)) {
-            $args = $args[0]; 
+            $args = $args[0];
         }
 
         return new self($args);
