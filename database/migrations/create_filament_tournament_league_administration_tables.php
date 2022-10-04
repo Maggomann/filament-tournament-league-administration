@@ -106,6 +106,42 @@ return new class extends Migration
             $table->unsignedBigInteger('player_id')->nullable()->index('player_id_index');
         });
 
+        Schema::create('tournament_league_games', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('game_schedule_id')->nullable()->index();
+            $table->unsignedBigInteger('game_day_id')->nullable()->index();
+            $table->unsignedBigInteger('home_team_id')->nullable()->index();
+            $table->unsignedBigInteger('guest_team_id')->nullable()->index();
+            $table->integer('home_points_legs')->nullable();
+            $table->integer('guest_points_legs')->nullable();
+            $table->integer('home_points_games')->nullable();
+            $table->integer('guest_points_games')->nullable();
+            $table->boolean('has_an_overtime')->default(false)->index();
+            $table->integer('home_points_after_draw')->nullable();
+            $table->integer('guest_points_after_draw')->nullable();
+            $table->timestamp('start')->nullable()->index();
+            $table->timestamp('end')->nullable()->index();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('tournament_league_total_team_points', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('game_schedule_id')->nullable()->index();
+            $table->unsignedBigInteger('team_id')->nullable()->index();
+            $table->integer('total_number_of_encounters')->nullable(); // Anzahl Begegnungen
+            $table->integer('total_wins')->nullable();
+            $table->integer('total_defeats')->nullable();
+            $table->integer('total_draws')->nullable();
+            $table->integer('total_victory_after_defeats')->nullable();
+            $table->integer('total_home_points_games')->nullable();
+            $table->integer('total_guest_points_games')->nullable();
+            $table->integer('total_home_points_after_draw')->nullable();
+            $table->integer('total_guest_points_after_draw')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
         // Ein Spielplan kann einem Verband zugewiesen sein // Ein Verband kann mehrere Spielpläne haben
         // Ein Spielplan kann einer Liga zugewiesen haben // Eine Liga kann mehrere Spielpläne haben
         // Ein Soielplan muss Spieler zugewiesen haben (das ist sogar ein muss) // Ein Spieler kann mehrere Spielpläne zugewiesen sein
