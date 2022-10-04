@@ -35,7 +35,7 @@
         "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.5",
         "livewire/livewire": "^2.10",
-        "filament/filament": "^2.0",
+        "filament/filament": "^2.1",
         "filament/forms": "^2.15",
         "filament/notifications": "^2.15",
         "filament/spatie-laravel-media-library-plugin": "^2.15",
