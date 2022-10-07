@@ -72,7 +72,7 @@ return [
             'name' => 'Name',
             'game_days' => 'Spieltage',
             'started_at' => 'Beginn',
-            'period_end' => 'Ende',
+            'ended_at' => 'Ende',
             'created_at' => 'Erstellt am',
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',

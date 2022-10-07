@@ -8,14 +8,14 @@ class PeriodStartGameScheduleRule extends ValidationRule implements Rule
 {
     protected string $value;
 
-    public function __construct(public ?string $period_end)
+    public function __construct(public ?string $ended_at)
     {
     }
 
     public function message(): string
     {
         $translationKey = static::$translateablePackageKey;
-        $translationKey .= 'rules.started_at_game_schedule_must_be_smaller_than_period_end';
+        $translationKey .= 'rules.started_at_game_schedule_must_be_smaller_than_ended_at';
 
         return trans($translationKey, ['value' => $this->value]);
     }
@@ -24,6 +24,6 @@ class PeriodStartGameScheduleRule extends ValidationRule implements Rule
     {
         $this->value = $value;
 
-        return $this->value < $this->period_end;
+        return $this->value < $this->ended_at;
     }
 }

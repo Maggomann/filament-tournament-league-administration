@@ -15,7 +15,7 @@ class PeriodEndGameScheduleRule extends ValidationRule implements Rule
     public function message(): string
     {
         $translationKey = static::$translateablePackageKey;
-        $translationKey .= 'rules.period_end_game_schedule_must_be_greather_than_started_at';
+        $translationKey .= 'rules.ended_at_game_schedule_must_be_greather_than_started_at';
 
         return trans($translationKey, ['value' => $this->value]);
     }

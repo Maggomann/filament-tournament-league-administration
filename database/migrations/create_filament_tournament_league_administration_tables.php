@@ -91,7 +91,7 @@ return new class extends Migration
             $table->morphs('gameschedulable', 'gameschedulable_index');
             $table->string('name')->index();
             $table->timestamp('started_at')->nullable()->index();
-            $table->timestamp('period_end')->nullable()->index();
+            $table->timestamp('ended_at')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();
         });

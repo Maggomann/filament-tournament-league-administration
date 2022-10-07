@@ -52,7 +52,7 @@ class EndedAtGameDayRule extends ValidationRule implements Rule
             return false;
         }
 
-        if ($this->value >= $this->gameSchedule->period_end) {
+        if ($this->value >= $this->gameSchedule->ended_at) {
             $this->translationRuleKey = 'rules.game_day_started_at_must_be_between_game_schedule_dates';
 
             return false;
