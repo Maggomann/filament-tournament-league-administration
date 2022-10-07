@@ -21,7 +21,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\Vi
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
-use Maggomann\FilamentTournamentLeagueAdministration\Rules\EndGameDayRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Rules\EndedAtGameDayRule;
 use Maggomann\FilamentTournamentLeagueAdministration\Rules\SartedAtGameDayRule;
 use Maggomann\FilamentTournamentLeagueAdministration\Rules\UniqueGameDayRule;
 use Throwable;
@@ -86,7 +86,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->firstDayOfWeek(1)
                     ->required()
                     ->rules([
-                        fn (GameDaysRelationManager $livewire, Closure $get) => new EndGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('started_at')),
+                        fn (GameDaysRelationManager $livewire, Closure $get) => new EndedAtGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('started_at')),
                     ]),
             ]);
     }

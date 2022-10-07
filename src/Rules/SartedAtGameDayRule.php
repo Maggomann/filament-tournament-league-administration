@@ -14,7 +14,7 @@ class SartedAtGameDayRule extends ValidationRule implements Rule
     public function __construct(
         public GameSchedule $gameSchedule,
         public ?int $day,
-        public ?string $endDate
+        public ?string $endedAt
     ) {
     }
 
@@ -30,7 +30,7 @@ class SartedAtGameDayRule extends ValidationRule implements Rule
     {
         $this->value = $value;
 
-        if ($this->value >= $this->endDate) {
+        if ($this->value >= $this->endedAt) {
             $this->translationRuleKey = 'rules.game_day_started_at_must_be_smaller_than_end_date';
 
             return false;
