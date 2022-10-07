@@ -5,7 +5,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Rules;
 use Illuminate\Contracts\Validation\Rule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 
-class started_atGameDayRule extends ValidationRule implements Rule
+class SartedAtGameDayRule extends ValidationRule implements Rule
 {
     protected string $value;
 
