@@ -78,11 +78,11 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->firstDayOfWeek(1)
                     ->required()
                     ->rules([
-                        fn (GameDaysRelationManager $livewire, Closure $get) => new SartedAtGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('end')),
+                        fn (GameDaysRelationManager $livewire, Closure $get) => new SartedAtGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('ended_at')),
                     ]),
 
-                DateTimePicker::make('end')
-                    ->label(GameDay::transAttribute('end'))
+                DateTimePicker::make('ended_at')
+                    ->label(GameDay::transAttribute('ended_at'))
                     ->firstDayOfWeek(1)
                     ->required()
                     ->rules([
@@ -105,8 +105,8 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('end')
-                    ->label(GameDay::transAttribute('end'))
+                TextColumn::make('ended_at')
+                    ->label(GameDay::transAttribute('ended_at'))
                     ->searchable()
                     ->sortable(),
             ])

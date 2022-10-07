@@ -23,7 +23,7 @@ class GameDayFactory extends Factory
             'game_schedule_id' => GameScheduleFactory::new()->lazy(),
             'day' => random_int(1, 10),
             'started_at' => now(),
-            'end' => now()->addDay(),
+            'ended_at' => now()->addDay(),
         ];
     }
 }

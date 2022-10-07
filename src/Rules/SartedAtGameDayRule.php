@@ -38,7 +38,7 @@ class SartedAtGameDayRule extends ValidationRule implements Rule
 
         if (true === $this->gameSchedule->days()
             ->where('day', '<', $this->day)
-            ->where('end', '>=', $this->value)
+            ->where('ended_at', '>=', $this->value)
             ->exists()
         ) {
             $this->translationRuleKey = 'rules.game_day_started_at_pre_days';

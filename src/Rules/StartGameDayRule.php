@@ -1,0 +1,4 @@
+StartGameDayRule
+$startDate
+
+endDate

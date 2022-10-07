@@ -14,7 +14,7 @@ class GameDayData extends DataTransferObject
 
     public string $started_at;
 
-    public string $end;
+    public string $ended_at;
 
     /**
      * @param  array<mixed>  $args
