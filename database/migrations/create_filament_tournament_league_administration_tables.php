@@ -62,7 +62,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('game_schedule_id')->index();
             $table->unsignedInteger('day')->index();
-            $table->timestamp('start')->nullable()->index();
+            $table->timestamp('started_at')->nullable()->index();
             $table->timestamp('end')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();
@@ -119,7 +119,7 @@ return new class extends Migration
             $table->boolean('has_an_overtime')->default(false)->index();
             $table->integer('home_points_after_draw')->nullable();
             $table->integer('guest_points_after_draw')->nullable();
-            $table->timestamp('start')->nullable()->index();
+            $table->timestamp('started_at')->nullable()->index();
             $table->timestamp('end')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();

@@ -73,12 +73,12 @@ class GameDaysRelationManager extends TranslateableRelationManager
                         fn (GameDaysRelationManager $livewire, ?Model $record) => new UniqueGameDayRule($livewire->getOwnerRecord(), $record),
                     ]),
 
-                DateTimePicker::make('start')
-                    ->label(GameDay::transAttribute('start'))
+                DateTimePicker::make('started_at')
+                    ->label(GameDay::transAttribute('started_at'))
                     ->firstDayOfWeek(1)
                     ->required()
                     ->rules([
-                        fn (GameDaysRelationManager $livewire, Closure $get) => new StartGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('end')),
+                        fn (GameDaysRelationManager $livewire, Closure $get) => new started_atGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('end')),
                     ]),
 
                 DateTimePicker::make('end')
@@ -86,7 +86,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->firstDayOfWeek(1)
                     ->required()
                     ->rules([
-                        fn (GameDaysRelationManager $livewire, Closure $get) => new EndGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('start')),
+                        fn (GameDaysRelationManager $livewire, Closure $get) => new EndGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('started_at')),
                     ]),
             ]);
     }
@@ -100,8 +100,8 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('start')
-                    ->label(GameDay::transAttribute('start'))
+                TextColumn::make('started_at')
+                    ->label(GameDay::transAttribute('started_at'))
                     ->searchable()
                     ->sortable(),
 

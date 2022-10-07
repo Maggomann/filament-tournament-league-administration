@@ -80,7 +80,7 @@ return [
         'game_day' => [
             'game_schedule_id' => 'Spielplan',
             'day' => 'Spieltag',
-            'start' => 'Beginn',
+            'started_at' => 'Beginn',
             'end' => 'Ende',
             'created_at' => 'Erstellt am',
             'updated_at' => 'Aktualisiert am',

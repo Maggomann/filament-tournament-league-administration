@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $day
- * @property \Illuminate\Support\Carbon|null $start
+ * @property \Illuminate\Support\Carbon|null $started_at
  * @property \Illuminate\Support\Carbon|null $end
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -25,7 +25,7 @@ class GameDay extends TranslateableModel
     protected $table = 'tournament_league_game_days';
 
     protected $dates = [
-        'start',
+        'started_at',
         'end',
         'created_at',
         'updated_at',
@@ -37,7 +37,7 @@ class GameDay extends TranslateableModel
      */
     protected $fillable = [
         'day',
-        'start',
+        'started_at',
         'end',
         'created_at',
         'updated_at',

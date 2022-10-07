@@ -50,7 +50,7 @@ class GameSchedulesTableSeeder extends Seeder
                 ->create([
                     'game_schedule_id' => $this->gameSchedule->id,
                     'day' => $day,
-                    'start' => now()->addDays($day),
+                    'started_at' => now()->addDays($day),
                     'end' => now()->addDays($day + 1),
                 ]);
         }

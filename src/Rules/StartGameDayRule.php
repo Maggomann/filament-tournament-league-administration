@@ -5,11 +5,11 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Rules;
 use Illuminate\Contracts\Validation\Rule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 
-class StartGameDayRule extends ValidationRule implements Rule
+class started_atGameDayRule extends ValidationRule implements Rule
 {
     protected string $value;
 
-    protected string $translationRuleKey = 'rules.start_game_day';
+    protected string $translationRuleKey = 'rules.started_at_game_day';
 
     public function __construct(
         public GameSchedule $gameSchedule,
@@ -31,7 +31,7 @@ class StartGameDayRule extends ValidationRule implements Rule
         $this->value = $value;
 
         if ($this->value >= $this->endDate) {
-            $this->translationRuleKey = 'rules.game_day_start_must_be_smaller_than_end_date';
+            $this->translationRuleKey = 'rules.game_day_started_at_must_be_smaller_than_end_date';
 
             return false;
         }
@@ -41,19 +41,19 @@ class StartGameDayRule extends ValidationRule implements Rule
             ->where('end', '>=', $this->value)
             ->exists()
         ) {
-            $this->translationRuleKey = 'rules.game_day_start_pre_days';
+            $this->translationRuleKey = 'rules.game_day_started_at_pre_days';
 
             return false;
         }
 
-        if ($this->value <= $this->gameSchedule->period_start) {
-            $this->translationRuleKey = 'rules.game_day_start_must_be_between_game_schedule_dates';
+        if ($this->value <= $this->gameSchedule->period_started_at) {
+            $this->translationRuleKey = 'rules.game_day_started_at_must_be_between_game_schedule_dates';
 
             return false;
         }
 
         if ($this->value >= $this->gameSchedule->period_end) {
-            $this->translationRuleKey = 'rules.game_day_start_must_be_between_game_schedule_dates';
+            $this->translationRuleKey = 'rules.game_day_started_at_must_be_between_game_schedule_dates';
 
             return false;
         }
