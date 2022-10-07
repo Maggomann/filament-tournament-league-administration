@@ -46,7 +46,7 @@ class SartedAtGameDayRule extends ValidationRule implements Rule
             return false;
         }
 
-        if ($this->value <= $this->gameSchedule->period_started_at) {
+        if ($this->value <= $this->gameSchedule->started_at) {
             $this->translationRuleKey = 'rules.game_day_started_at_must_be_between_game_schedule_dates';
 
             return false;

@@ -18,7 +18,7 @@ class GameScheduleData extends DataTransferObject
 
     public string $name;
 
-    public string $period_start;
+    public string $started_at;
 
     public string $period_end;
 

@@ -68,7 +68,7 @@ return [
         ],
         'game_schedule' => [
             'name' => 'Name',
-            'period_start' => 'Begin',
+            'started_at' => 'Begin',
             'period_end' => 'Ende',
             'created_at' => 'Created at',
             'updated_at' => 'Updated at',

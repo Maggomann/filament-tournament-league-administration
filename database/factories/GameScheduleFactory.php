@@ -25,7 +25,7 @@ class GameScheduleFactory extends Factory
             'gameschedulable_type' => (new League())->getMorphClass(),
             'gameschedulable_id' => LeagueFactory::new()->lazy(),
             'name' => $this->faker->words(2, true),
-            'period_start' => now(),
+            'started_at' => now(),
             'period_end' => now()->addWeeks(4),
         ];
     }

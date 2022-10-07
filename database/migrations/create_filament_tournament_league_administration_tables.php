@@ -90,7 +90,7 @@ return new class extends Migration
             $table->unsignedBigInteger('federation_id')->nullable()->index();
             $table->morphs('gameschedulable', 'gameschedulable_index');
             $table->string('name')->index();
-            $table->timestamp('period_start')->nullable()->index();
+            $table->timestamp('started_at')->nullable()->index();
             $table->timestamp('period_end')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();

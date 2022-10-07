@@ -111,8 +111,8 @@ class GameScheduleResource extends TranslateableResource
                             ->required()
                             ->reactive(),
 
-                        DateTimePicker::make('period_start')
-                            ->label(GameSchedule::transAttribute('period_start'))
+                        DateTimePicker::make('started_at')
+                            ->label(GameSchedule::transAttribute('started_at'))
                             ->firstDayOfWeek(1)
                             ->required()
                             ->rules([
@@ -124,7 +124,7 @@ class GameScheduleResource extends TranslateableResource
                             ->firstDayOfWeek(1)
                             ->required()
                             ->rules([
-                                fn (Closure $get) => new PeriodEndGameScheduleRule($get('period_start')),
+                                fn (Closure $get) => new PeriodEndGameScheduleRule($get('started_at')),
                             ]),
 
                         Select::make('game_days')
@@ -164,8 +164,8 @@ class GameScheduleResource extends TranslateableResource
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('period_start')
-                    ->label(GameSchedule::transAttribute('period_start'))
+                TextColumn::make('started_at')
+                    ->label(GameSchedule::transAttribute('started_at'))
                     ->date()
                     ->toggleable(),
 

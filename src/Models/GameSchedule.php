@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string $name
- * @property \Illuminate\Support\Carbon|null $period_start
+ * @property \Illuminate\Support\Carbon|null $started_at
  * @property \Illuminate\Support\Carbon|null $period_end
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -28,7 +28,7 @@ class GameSchedule extends TranslateableModel
     protected $table = 'tournament_league_game_schedules';
 
     protected $dates = [
-        'period_start',
+        'started_at',
         'period_end',
         'created_at',
         'updated_at',
@@ -40,7 +40,7 @@ class GameSchedule extends TranslateableModel
      */
     protected $fillable = [
         'name',
-        'period_start',
+        'started_at',
         'period_end',
         'created_at',
         'updated_at',
