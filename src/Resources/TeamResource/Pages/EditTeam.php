@@ -4,8 +4,8 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResourc
 
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Application\Team\Actions\UpdateTeamAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Application\Team\DTO\TeamData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Team\Actions\UpdateTeamAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Team\DTO\TeamData;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource;
 
 class EditTeam extends EditRecord

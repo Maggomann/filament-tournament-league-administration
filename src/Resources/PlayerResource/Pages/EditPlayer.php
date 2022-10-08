@@ -4,8 +4,8 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResou
 
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Application\Player\Actions\UpdatePlayerAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Application\Player\DTO\PlayerData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\Actions\UpdatePlayerAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\DTO\PlayerData;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource;
 
 class EditPlayer extends EditRecord

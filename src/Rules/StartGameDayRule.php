@@ -1,4 +1,0 @@
-StartGameDayRule
-$startDate
-
-endDate

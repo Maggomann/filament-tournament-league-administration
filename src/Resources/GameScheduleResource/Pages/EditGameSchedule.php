@@ -4,8 +4,8 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameSchedul
 
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\Actions\UpdateGameScheduleAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\DTO\GameScheduleData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\UpdateGameScheduleAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\DTO\GameScheduleData;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource;
 
 class EditGameSchedule extends EditRecord

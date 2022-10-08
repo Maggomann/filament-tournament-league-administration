@@ -4,8 +4,8 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameSchedul
 
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\Actions\CreateGameScheduleAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\DTO\GameScheduleData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\CreateGameScheduleAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\DTO\GameScheduleData;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource;
 
 class CreateGameSchedule extends CreateRecord

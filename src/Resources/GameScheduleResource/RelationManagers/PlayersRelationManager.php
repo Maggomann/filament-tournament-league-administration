@@ -8,7 +8,7 @@ use Filament\Tables\Actions\AttachAction;
 use Filament\Tables\Actions\DetachAction;
 use Filament\Tables\Actions\DetachBulkAction;
 use Filament\Tables\Columns\TextColumn;
-use Maggomann\FilamentTournamentLeagueAdministration\Application\GameSchedule\Actions\SyncAllGameSchedulePlayersAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\SyncAllGameSchedulePlayersAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\AttachEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\AttachEntrySucceededNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;

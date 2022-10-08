@@ -4,8 +4,8 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResou
 
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Application\Player\Actions\CreatePlayerAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Application\Player\DTO\PlayerData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\Actions\CreatePlayerAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\DTO\PlayerData;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource;
 
 class CreatePlayer extends CreateRecord
