@@ -30,6 +30,8 @@
         "nunomaduro/collision": "^6.0",
         "nunomaduro/larastan": "^2.0.1",
         "orchestra/testbench": "^7.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
@@ -87,7 +89,9 @@
             "@lint:fix",
             "@test:types",
             "@test:unit"
-        ]
+        ],
+        "test:pest": "vendor/bin/pest",
+        "test:pest-coverage": "vendor/bin/pest coverage"
     },
     "repositories": {
         "maggomann/laravel-addressable": {
