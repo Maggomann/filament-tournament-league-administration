@@ -6,18 +6,21 @@ use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
+use Filament\Notifications\NotificationsServiceProvider;
+use Filament\SpatieLaravelSettingsPluginServiceProvider;
+use Filament\SpatieLaravelTranslatablePluginServiceProvider;
 use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Livewire\LivewireServiceProvider;
-use Maggomann\FilamentTournamentLeagueAdministration\FilamentTournamentLeagueAdministrationServiceProvider;
-use Orchestra\Testbench\TestCase as Orchestra;
-use Illuminate\Support\Str;
+use Orchestra\Testbench\TestCase as BaseTestCase;
+use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 
-class TestCase extends Orchestra
+class TestCase extends BaseTestCase
 {
+    use LazilyRefreshDatabase;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -27,48 +30,37 @@ class TestCase extends Orchestra
         );
     }
 
-    protected function getPackageProviders($app)
+    use LazilyRefreshDatabase;
+
+    protected function getPackageProviders($app): array
     {
         return [
-            BladeIconsServiceProvider::class,
+            BladeCaptureDirectiveServiceProvider::class,
             BladeHeroiconsServiceProvider::class,
-            LivewireServiceProvider::class,
+            BladeIconsServiceProvider::class,
             FilamentServiceProvider::class,
             FormsServiceProvider::class,
+            LivewireServiceProvider::class,
+            NotificationsServiceProvider::class,
+            SpatieLaravelSettingsPluginServiceProvider::class,
+            SpatieLaravelTranslatablePluginServiceProvider::class,
             SupportServiceProvider::class,
             TablesServiceProvider::class,
-            FilamentTournamentLeagueAdministrationServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    protected function defineDatabaseMigrations(): void
     {
-        // Setup default database to use sqlite :memory:
-        $app['config']->set('app.key', Str::random(32));
-
-        $this->dropAndCreateDatabase();
-
-        $migration = include __DIR__.'/../database/migrations/create_filament_tournament_league_administration_tables.php';
-        $migration->up();
-
+        // $this->refreshDatabase();
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }
 
-    private function dropAndCreateDatabase(): void
+    protected function getEnvironmentSetUp($app): void
     {
-        if (app('env') !== 'testing') {
-            return;
-        }
-
-        $database = 'testing';
-
-        config()->set('database.default', 'mysql');
-        config()->set('database.connections.mysql.database', $database);
-        config()->set('database.connections.mysql.username', 'root');
-
-        Schema::getConnection()->getDoctrineSchemaManager()->dropDatabase("`{$database}`");
-
-        Schema::getConnection()->getDoctrineSchemaManager()->createDatabase("`{$database}`");
-
-        DB::reconnect('mysql');
+        $app['config']->set('auth.providers.users.model', User::class);
+        // $app['config']->set('view.paths', array_merge(
+        //     $app['config']->get('view.paths'),
+        //     [__DIR__ . '/../resources/views'],
+        // ));
     }
 }

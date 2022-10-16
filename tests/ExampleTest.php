@@ -1,12 +1,11 @@
 <?php
 
-namespace Maggomann\FilamentTournamentLeagueAdministration\Tests;
+use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
 
-class ExampleTest extends TestCase
-{
-    /** test */
-    public function test_that_true_is_true()
-    {
-        $this->assertTrue(true);
-    }
-}
+uses(TestCase::class);
+
+test('asserts true is true', function () {
+    $this->assertTrue(true);
+
+    expect(true)->toBeTrue();
+});
