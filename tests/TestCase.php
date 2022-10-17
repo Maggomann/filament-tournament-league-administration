@@ -13,24 +13,24 @@ use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 
-class TestCase extends BaseTestCase
+abstract class TestCase extends BaseTestCase
 {
     use LazilyRefreshDatabase;
+    // use RefreshDatabase;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
+    // protected function setUp(): void
+    // {
+    //     parent::setUp();
 
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Maggomann\\FilamentTournamentLeagueAdministration\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
-    use LazilyRefreshDatabase;
+    //     Factory::guessFactoryNamesUsing(
+    //         fn (string $modelName) => 'Maggomann\\FilamentTournamentLeagueAdministration\\Database\\Factories\\'.class_basename($modelName).'Factory'
+    //     );
+    // }
 
     protected function getPackageProviders($app): array
     {
@@ -51,8 +51,7 @@ class TestCase extends BaseTestCase
 
     protected function defineDatabaseMigrations(): void
     {
-        // $this->refreshDatabase();
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     protected function getEnvironmentSetUp($app): void

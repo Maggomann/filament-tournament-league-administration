@@ -15,12 +15,12 @@ class CreateFedrationSmallAction
     public function execute(FederationData $federationData): Federation
     {
         try {
-            return DB::transaction(function () use ($federationData) {
+            return  DB::transaction(function () use ($federationData) {
                 $federation = new Federation();
                 $federation->fill($federationData->toArray());
                 $federation->calculation_type_id = $federationData->calculation_type_id;
 
-                $federation->save();
+                $federation->saveQuietly();
 
                 return $federation;
             });

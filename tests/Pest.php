@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
+use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
 
-expect()->extend('toBeSameModel', function (Model $model) {
-    return $this
-        ->is($model)->toBeTrue();
-});
+// use Illuminate\Database\Eloquent\Model;
+
+// expect()->extend('toBeSameModel', function (Model $model) {
+//     return $this
+//         ->is($model)->toBeTrue();
+// });
+
+uses(TestCase::class)->in(__DIR__);

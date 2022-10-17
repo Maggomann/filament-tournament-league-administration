@@ -8,7 +8,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Calculators\DSABC
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Calculators\HDLCalculator;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 
-return new class extends Migration
+return new class() extends Migration
 {
     public function up(): void
     {
@@ -66,23 +66,6 @@ return new class extends Migration
             $table->timestamp('ended_at')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();
-        });
-
-        DB::update("
-            ALTER TABLE tournament_league_game_days
-            ADD COLUMN game_schedule_day_unique varchar (512) 
-            GENERATED ALWAYS AS
-            (
-                CONCAT(
-                    CONCAT(day, '#', game_schedule_id),
-                    '#',
-                    IF(deleted_at IS NULL, '-',  deleted_at)
-                )
-            ) VIRTUAL;
-        ");
-
-        Schema::table('tournament_league_game_days', function (Blueprint $table) {
-            $table->unique(['game_schedule_day_unique'], 'game_schedule_day_unique_index');
         });
 
         Schema::create('tournament_league_game_schedules', function (Blueprint $table) {
@@ -154,6 +137,40 @@ return new class extends Migration
         // usw
 
         $this->addCalcutaionTypes();
+
+        // DB::update("
+        //     ALTER TABLE tournament_league_game_days
+        //     ADD COLUMN game_schedule_day_unique varchar (512)
+        //     GENERATED ALWAYS AS
+        //     (
+        //         CONCAT(
+        //             CONCAT(day, '#', game_schedule_id),
+        //             '#',
+        //             IF(deleted_at IS NULL, '-',  deleted_at)
+        //         )
+        //     ) VIRTUAL;
+
+        // ");
+        // DB::update("
+        //     CREATE UNIQUE INDEX game_schedule_day_unique ON tournament_league_game_days (game_schedule_day_unique);
+        // ");
+
+        Schema::table('tournament_league_game_days', function (Blueprint $table) {
+            $table->string('game_schedule_day_unique')
+                ->virtualAs(
+                    DB::raw(
+                        "CONCAT(
+                            CONCAT(day, '#', game_schedule_id),
+                            '#',
+                            IF(deleted_at IS NULL, '-',  deleted_at)
+                        )"
+                    )
+                );
+        });
+
+        Schema::table('tournament_league_game_days', function (Blueprint $table) {
+            $table->unique(['game_schedule_day_unique'], 'game_schedule_day_unique_index');
+        });
     }
 
     private function addCalcutaionTypes(): void
@@ -178,5 +195,24 @@ return new class extends Migration
         ];
 
         CalculationType::insert($calculators);
+    }
+
+    public function down(): void
+    {
+        if (! app()->environment('testing')) {
+            return;
+        }
+
+        Schema::dropIfExists('tournament_league_calculation_types');
+        Schema::dropIfExists('tournament_league_game_days');
+        Schema::dropIfExists('tournament_league_federations');
+        Schema::dropIfExists('tournament_league_leagues');
+        Schema::dropIfExists('tournament_league_teams');
+        Schema::dropIfExists('tournament_league_players');
+        Schema::dropIfExists('tournament_league_game_schedules');
+        Schema::dropIfExists('game_schedule_team');
+        Schema::dropIfExists('game_schedule_player');
+        Schema::dropIfExists('tournament_league_games');
+        Schema::dropIfExists('tournament_league_total_team_points');
     }
 };
