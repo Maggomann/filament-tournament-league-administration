@@ -45,7 +45,8 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "maggomann/laravel-addressable": "dev-beta"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -91,7 +92,7 @@
             "@test:types",
             "@test:unit"
         ],
-        "test:pest": "vendor/bin/pest",
+        "test:pest": "vendor/bin/pest --order-by default",
         "test:pest-coverage": "vendor/bin/pest coverage"
     },
     "repositories": {

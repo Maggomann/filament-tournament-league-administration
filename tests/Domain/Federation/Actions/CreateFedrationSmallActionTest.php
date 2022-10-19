@@ -1,5 +1,27 @@
 <?php
 
-test('test 1', function () {
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Federation\Actions\CreateFedrationSmallAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Federation\DTO\FederationData;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
+
+test('example', function () {
     expect(true)->toBeTrue();
 });
+
+it('adds a federation', function ($calculationTypeId, $name) {
+    $federationData = FederationData::create([
+        'calculation_type_id' => $calculationTypeId,
+        'name' => $name,
+    ]);
+
+    $federation = app(CreateFedrationSmallAction::class)->execute($federationData);
+
+    $this->assertDatabaseHas(Federation::class, [
+        'id' => $federation->id,
+        'calculation_type_id' => $calculationTypeId,
+        'name' => $name,
+    ]);
+})->with([
+    [1, 'Example 1'],
+    [2, 'Example 2'],
+]);
