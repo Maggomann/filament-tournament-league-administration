@@ -11,29 +11,13 @@ use Filament\SpatieLaravelSettingsPluginServiceProvider;
 use Filament\SpatieLaravelTranslatablePluginServiceProvider;
 use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\LivewireServiceProvider;
 use Maggomann\FilamentTournamentLeagueAdministration\FilamentTournamentLeagueAdministrationServiceProvider;
-use Maggomann\LaravelAddressable\LaravelAddressableServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
-    use LazilyRefreshDatabase;
-    // use RefreshDatabase;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        // Factory::guessFactoryNamesUsing(
-        //     fn (string $modelName) => 'Maggomann\\FilamentTournamentLeagueAdministration\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        // );
-    }
-
     protected function getPackageProviders($app): array
     {
         return [
@@ -48,13 +32,16 @@ abstract class TestCase extends BaseTestCase
             SpatieLaravelTranslatablePluginServiceProvider::class,
             SupportServiceProvider::class,
             TablesServiceProvider::class,
-            // LaravelAddressableServiceProvider::class,
             FilamentTournamentLeagueAdministrationServiceProvider::class,
         ];
     }
 
     protected function defineDatabaseMigrations(): void
     {
+        $this->loadMigrationsFrom(
+            __DIR__.'/../vendor/maggomann/laravel-addressable/database/migrations'
+        );
+
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 

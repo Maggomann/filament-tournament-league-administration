@@ -5,10 +5,6 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\Upda
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\UpdateAddressData;
 use Maggomann\LaravelAddressable\Models\Address;
 
-test('example', function () {
-    expect(true)->toBeTrue();
-});
-
 it('updates an address', function () {
     $address = AddressFactory::new()->create();
 
@@ -16,6 +12,7 @@ it('updates an address', function () {
         $address,
         UpdateAddressData::create([
             'gender_id' => 1,
+            'category_id' => 1,
             'first_name' => 'first_name example',
             'last_name' => 'last_name name example',
             'name' => 'name example',
@@ -24,12 +21,15 @@ it('updates an address', function () {
             'postal_code' => 'postal_code example',
             'city' => 'city example',
             'country_code' => 'DE',
+            'is_preferred' => false,
+            'is_main' => false,
         ])
     );
 
     $this->assertDatabaseHas(Address::class, [
         'id' => $address->id,
         'gender_id' => 1,
+        'category_id' => 1,
         'first_name' => 'first_name example',
         'last_name' => 'last_name name example',
         'name' => 'name example',
@@ -38,5 +38,7 @@ it('updates an address', function () {
         'postal_code' => 'postal_code example',
         'city' => 'city example',
         'country_code' => 'DE',
+        'is_preferred' => false,
+        'is_main' => false,
     ]);
 });

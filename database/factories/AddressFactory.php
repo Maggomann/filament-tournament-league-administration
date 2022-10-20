@@ -20,6 +20,8 @@ class AddressFactory extends Factory
     public function definition(): array
     {
         return [
+            'addressable_id' => PlayerFactory::new()->lazy(),
+            'addressable_type' => 'player',
             'gender_id' => $this->faker->randomElement([1, 2]),
             'category_id' => 1,
             'first_name' => $this->faker->firstName,

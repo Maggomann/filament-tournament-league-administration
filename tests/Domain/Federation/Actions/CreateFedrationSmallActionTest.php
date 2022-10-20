@@ -4,10 +4,6 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Federation\Actions\C
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Federation\DTO\FederationData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 
-test('example', function () {
-    expect(true)->toBeTrue();
-});
-
 it('adds a federation', function ($calculationTypeId, $name) {
     $federationData = FederationData::create([
         'calculation_type_id' => $calculationTypeId,
