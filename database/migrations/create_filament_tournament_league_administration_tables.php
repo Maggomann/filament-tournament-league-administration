@@ -138,23 +138,6 @@ return new class() extends Migration
 
         $this->addCalcutaionTypes();
 
-        // DB::update("
-        //     ALTER TABLE tournament_league_game_days
-        //     ADD COLUMN game_schedule_day_unique varchar (512)
-        //     GENERATED ALWAYS AS
-        //     (
-        //         CONCAT(
-        //             CONCAT(day, '#', game_schedule_id),
-        //             '#',
-        //             IF(deleted_at IS NULL, '-',  deleted_at)
-        //         )
-        //     ) VIRTUAL;
-
-        // ");
-        // DB::update("
-        //     CREATE UNIQUE INDEX game_schedule_day_unique ON tournament_league_game_days (game_schedule_day_unique);
-        // ");
-
         Schema::table('tournament_league_game_days', function (Blueprint $table) {
             $table->string('game_schedule_day_unique')
                 ->virtualAs(

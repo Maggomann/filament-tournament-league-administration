@@ -177,7 +177,6 @@ class AdressesRelationManager extends TranslateableRelationManager
                 CreateAction::make()
                     ->using(function (HasRelationshipTable $livewire, array $data): Address {
                         try {
-
                             return app(CreateAddressAction::class)->execute(
                                 $livewire->getRelationship()->getParent(),
                                 CreateAddressData::create($data)

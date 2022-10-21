@@ -23,10 +23,7 @@ class CreateAddressAction
                 $address->category_id = $createAddressData->category_id;
                 $address->gender_id = $createAddressData->gender_id;
 
-                // TODO später durch Relation erstellen
-                $address->addressable_id = $player->id;
-                $address->addressable_type = $player->getMorphClass();
-                $address->push();
+                $player->addresses()->save($address);
 
                 return $address;
             });
