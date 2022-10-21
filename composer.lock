@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6ed9f893ddf62b2e94fcda9e74aca04f",
+    "content-hash": "8b5afaf61794ddfc3928ebde8ce7203f",
     "packages": [
         {
             "name": "brick/math",
@@ -1304,7 +1304,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../laravel-packages/laravel-addressable",
-                "reference": "350f545b2019eb8ed796d16a48312f4506c72d29"
+                "reference": "e6ce12ab157a63d859f7e61933f00fc14fa3ac1f"
             },
             "require": {
                 "dcblogdev/laravel-countries": "^2.0",
