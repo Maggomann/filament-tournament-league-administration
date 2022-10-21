@@ -2,9 +2,9 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions;
 
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\DB;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\CreateAddressData;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\LaravelAddressable\Models\Address;
 use Throwable;
 
@@ -13,16 +13,20 @@ class CreateAddressAction
     /**
      * @throws Throwable
      */
-    public function execute(MorphMany $morphMany, CreateAddressData $createAddressData): Address
+    public function execute(Player $player, CreateAddressData $createAddressData): Address
     {
         try {
-            return DB::transaction(function () use ($morphMany, $createAddressData) {
-                $address = $morphMany->create($createAddressData->toArray());
+            return DB::transaction(function () use ($player, $createAddressData) {
+                $address = new Address();
+                $address->fill($createAddressData->toArray());
 
                 $address->category_id = $createAddressData->category_id;
                 $address->gender_id = $createAddressData->gender_id;
 
-                $address->save();
+                // TODO später durch Relation erstellen
+                $address->addressable_id = $player->id;
+                $address->addressable_type = $player->getMorphClass();
+                $address->push();
 
                 return $address;
             });
