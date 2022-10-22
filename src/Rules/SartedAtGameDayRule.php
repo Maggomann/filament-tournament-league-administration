@@ -9,7 +9,7 @@ class SartedAtGameDayRule extends ValidationRule implements Rule
 {
     protected string $value;
 
-    protected string $translationRuleKey = 'rules.started_at_game_day';
+    protected string $translationRuleKey = 'rules.started_at_must_be_smaller_than_ended_at';
 
     public function __construct(
         public GameSchedule $gameSchedule,
@@ -31,7 +31,7 @@ class SartedAtGameDayRule extends ValidationRule implements Rule
         $this->value = $value;
 
         if ($this->value >= $this->endedAt) {
-            $this->translationRuleKey = 'rules.game_day_started_at_must_be_smaller_than_end_date';
+            $this->translationRuleKey = 'rules.started_at_must_be_smaller_than_ended_at';
 
             return false;
         }
@@ -47,13 +47,13 @@ class SartedAtGameDayRule extends ValidationRule implements Rule
         }
 
         if ($this->value <= $this->gameSchedule->started_at) {
-            $this->translationRuleKey = 'rules.game_day_started_at_must_be_between_game_schedule_dates';
+            $this->translationRuleKey = 'rules.game_day_date_must_be_between_game_schedule_dates';
 
             return false;
         }
 
         if ($this->value >= $this->gameSchedule->ended_at) {
-            $this->translationRuleKey = 'rules.game_day_started_at_must_be_between_game_schedule_dates';
+            $this->translationRuleKey = 'rules.game_day_date_must_be_between_game_schedule_dates';
 
             return false;
         }

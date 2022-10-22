@@ -21,6 +21,8 @@ use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimest
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\Pages;
+use Maggomann\FilamentTournamentLeagueAdministration\Rules\GameEndetAtRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Rules\GameStartedAtRule;
 
 class GameResource extends TranslateableResource
 {
@@ -39,8 +41,7 @@ class GameResource extends TranslateableResource
                 Tabs::make('Heading')
                     ->tabs([
                         Tab::make('Spielplan')
-                            ->icon('heroicon-o-bell')
-                            ->badge('s')
+                            ->icon('heroicon-o-clock')
                             ->schema([
                                 Select::make('game_schedule_id')
                                     ->relationship('gameSchedule', 'name')
@@ -96,12 +97,18 @@ class GameResource extends TranslateableResource
                                 DateTimePicker::make('started_at')
                                     ->label(Game::transAttribute('started_at'))
                                     ->firstDayOfWeek(1)
-                                    ->required(),
+                                    ->required()
+                                    ->rules([
+                                        fn (Closure $get) => new GameStartedAtRule($get('ended_at'), $get('game_day_id')),
+                                    ]),
 
                                 DateTimePicker::make('ended_at')
                                     ->label(Game::transAttribute('ended_at'))
                                     ->firstDayOfWeek(1)
-                                    ->required(),
+                                    ->required()
+                                    ->rules([
+                                        fn (Closure $get) => new GameEndetAtRule($get('started_at'), $get('game_day_id')),
+                                    ]),
                             ]),
                         Tab::make('Mannschaften')
                             ->icon('heroicon-o-users')

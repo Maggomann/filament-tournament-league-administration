@@ -9,7 +9,7 @@ class EndedAtGameDayRule extends ValidationRule implements Rule
 {
     protected string $value;
 
-    protected string $translationRuleKey = 'rules.started_at_game_day';
+    protected string $translationRuleKey = 'rules.ended_at_must_be_greater_than_started_at';
 
     public function __construct(
         public GameSchedule $gameSchedule,
@@ -31,7 +31,7 @@ class EndedAtGameDayRule extends ValidationRule implements Rule
         $this->value = $value;
 
         if ($this->startedAt >= $this->value) {
-            $this->translationRuleKey = 'rules.game_day_end_must_be_greater_than_start_date';
+            $this->translationRuleKey = 'rules.ended_at_must_be_greater_than_started_at';
 
             return false;
         }
@@ -41,19 +41,19 @@ class EndedAtGameDayRule extends ValidationRule implements Rule
             ->where('started_at', '<=', $this->value)
             ->exists()
         ) {
-            $this->translationRuleKey = 'rules.game_day_end_pre_days';
+            $this->translationRuleKey = 'rules.game_day_ended_at_pre_days';
 
             return false;
         }
 
         if ($this->value <= $this->gameSchedule->started_at) {
-            $this->translationRuleKey = 'rules.game_day_started_at_must_be_between_game_schedule_dates';
+            $this->translationRuleKey = 'rules.game_day_date_must_be_between_game_schedule_dates';
 
             return false;
         }
 
         if ($this->value >= $this->gameSchedule->ended_at) {
-            $this->translationRuleKey = 'rules.game_day_started_at_must_be_between_game_schedule_dates';
+            $this->translationRuleKey = 'rules.game_day_date_must_be_between_game_schedule_dates';
 
             return false;
         }
