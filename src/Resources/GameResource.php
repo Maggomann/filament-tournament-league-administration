@@ -2,8 +2,10 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
+use Closure;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
@@ -11,8 +13,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatePlaceholderSelectOption;
 use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\Pages;
 
 class GameResource extends TranslateableResource
@@ -31,6 +35,133 @@ class GameResource extends TranslateableResource
             ->schema([
                 Card::make()
                     ->schema([
+                        Select::make('game_schedule_id')
+                            ->relationship('gameSchedule', 'name')
+                            ->label(Game::transAttribute('game_schedule_id'))
+                            ->placeholder(
+                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'game_schedule_id')
+                            )
+                            ->reactive()
+                            ->afterStateUpdated(function (Closure $set) {
+                                $set('game_day_id', null);
+                                $set('home_team_id', null);
+                                $set('guest_team_id', null);
+                            }),
+
+                        Select::make('game_day_id')
+                            ->label(Game::transAttribute('game_day_id'))
+                            ->validationAttribute(Game::transAttribute('game_day_id'))
+                            ->options(function (Closure $get, Closure $set, ?Game $record) {
+                                $gameScheduleId = $get('game_schedule_id');
+
+                                if (! $record) {
+                                    if (! $gameScheduleId) {
+                                        return collect([]);
+                                    }
+
+                                    return GameSchedule::with('days')
+                                        ->find($gameScheduleId)
+                                        ?->days
+                                        ?->pluck('day', 'id') ?? collect([]);
+                                }
+
+                                $recordGameScheduleById = $record->gameSchedule?->id;
+
+                                if ($recordGameScheduleById === $gameScheduleId) {
+                                    return $record->gameSchedule
+                                        ?->days
+                                        ?->pluck('day', 'id')
+                                        ?? collect([]);
+                                }
+
+                                return GameSchedule::with('days')
+                                    ->find($gameScheduleId)
+                                    ?->days
+                                    ?->pluck('day', 'id') ?? collect([]);
+                            })
+                            ->placeholder(
+                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'game_day_id')
+                            )
+                            ->required()
+                            ->searchable()
+                            ->reactive(),
+
+                        Select::make('home_team_id')
+                            ->label(Game::transAttribute('home_team_id'))
+                            ->validationAttribute(Game::transAttribute('home_team_id'))
+                            ->options(function (Closure $get, Closure $set, ?Game $record) {
+                                $gameScheduleId = $get('game_schedule_id');
+
+                                if (! $record) {
+                                    if (! $gameScheduleId) {
+                                        return collect([]);
+                                    }
+
+                                    return GameSchedule::with('teams')
+                                        ->find($gameScheduleId)
+                                        ?->teams
+                                        ?->pluck('name', 'id') ?? collect([]);
+                                }
+
+                                $recordGameScheduleById = $record->gameSchedule?->id;
+
+                                if ($recordGameScheduleById === $gameScheduleId) {
+                                    return $record->gameSchedule
+                                        ?->teams
+                                        ?->pluck('name', 'id')
+                                        ?? collect([]);
+                                }
+
+                                return GameSchedule::with('teams')
+                                    ->find($gameScheduleId)
+                                    ?->teams
+                                    ?->pluck('name', 'id') ?? collect([]);
+                            })
+                            ->placeholder(
+                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'home_team_id')
+                            )
+                            ->required()
+                            ->searchable()
+                            ->reactive(),
+
+                        Select::make('guest_team_id')
+                            ->label(Game::transAttribute('guest_team_id'))
+                            ->validationAttribute(Game::transAttribute('guest_team_id'))
+                            ->options(function (Closure $get, Closure $set, ?Game $record) {
+                                $gameScheduleId = $get('game_schedule_id');
+
+                                if (! $record) {
+                                    if (! $gameScheduleId) {
+                                        return collect([]);
+                                    }
+
+                                    return GameSchedule::with('teams')
+                                        ->find($gameScheduleId)
+                                        ?->teams
+                                        ?->pluck('name', 'id') ?? collect([]);
+                                }
+
+                                $recordGameScheduleById = $record->gameSchedule?->id;
+
+                                if ($recordGameScheduleById === $gameScheduleId) {
+                                    return $record->gameSchedule
+                                        ?->teams
+                                        ?->pluck('name', 'id')
+                                        ?? collect([]);
+                                }
+
+                                return GameSchedule::with('teams')
+                                    ->find($gameScheduleId)
+                                    ?->teams
+                                    ?->pluck('name', 'id') ?? collect([]);
+                            })
+                            ->placeholder(
+                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'guest_team_id')
+                            )
+                            ->required()
+                            ->searchable()
+                            ->reactive(),
+
                         DateTimePicker::make('started_at')
                             ->label(Game::transAttribute('started_at'))
                             ->firstDayOfWeek(1)

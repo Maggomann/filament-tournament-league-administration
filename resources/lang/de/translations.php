@@ -21,6 +21,10 @@ return [
                     'league_id' => 'Bitte wählen Sie eine Liga aus.',
                     'player_id' => 'Bitte wählen Sie einen Spieler aus.',
                     'team_id' => 'Bitte wählen Sie ein Team aus.',
+                    'game_schedule_id' => 'Bitte wählen Sie einen Spielplan aus.',
+                    'game_day_id' => 'Bitte wählen Sie ein Spieltag aus.',
+                    'home_team_id' => 'Bitte wählen Sie ein Team (Home) aus.',
+                    'guest_team_id' => 'Bitte wählen Sie ein Team (Gast) aus.',
                 ],
             ],
         ],
@@ -30,7 +34,6 @@ return [
         'delete_entry_failed' => 'Es ist ein Fehler beim Löschen des Datensetzes aufgetreten',
         'detach_entry_failed' => 'Es ist ein Fehler beim Trennen der Datensätze aufgetreten',
         'edit_entry_failed' => 'Es ist ein Fehler beim Bearbeiten des Datensetzes aufgetreten',
-
     ],
     'rules' => [
         'unique_game_day' => 'Der :value. Tag ist bereits vorhanden.',
