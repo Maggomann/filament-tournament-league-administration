@@ -1,7 +1,7 @@
-# This is my package filament-tournament-league-administration
+# Work in progress (wip)
+This package is still under development. Use at your own risk.
 
-[![GitHub Tests Action Status](https://github.com/maggomann/filament-tournament-league-administration/workflows/run-tests/badge.svg?branch=master)](https://github.com/maggomann/filament-tournament-league-administration/actions?query=workflow%3Arun-tests+branch%3Amaster)
-
+## This is my package filament-tournament-league-administration
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
