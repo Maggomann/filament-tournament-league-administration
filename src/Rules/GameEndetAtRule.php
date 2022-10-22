@@ -9,6 +9,8 @@ class GameEndetAtRule extends ValidationRule implements Rule
 {
     protected string $value;
 
+    protected string $translationRuleKey = 'rules.ended_at_must_be_greater_than_started_at';
+
     public function __construct(
         public ?string $startedAt,
         public ?int $gameDayId
@@ -18,7 +20,7 @@ class GameEndetAtRule extends ValidationRule implements Rule
     public function message(): string
     {
         $translationKey = static::$translateablePackageKey;
-        $translationKey .= 'rules.ended_at_must_be_greater_than_started_at';
+        $translationKey .= $this->translationRuleKey;
 
         return trans($translationKey, ['value' => $this->value]);
     }

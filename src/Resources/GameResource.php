@@ -19,6 +19,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\Vi
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatePlaceholderSelectOption;
 use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Rules\GameEndetAtRule;
@@ -67,25 +68,45 @@ class GameResource extends TranslateableResource
                                                 return collect([]);
                                             }
 
-                                            return GameSchedule::with('days')
+                                            $collection = GameSchedule::with('days')
                                                 ->find($gameScheduleId)
-                                                ?->days
-                                                ?->pluck('day', 'id') ?? collect([]);
+                                                ?->days;
+
+                                            if ($collection) {
+                                                return $collection->mapWithKeys(fn (GameDay $gameDay) => [
+                                                    $gameDay->id => "{$gameDay->day}  - ({$gameDay->started_at} - {$gameDay->started_at})",
+                                                ]);
+                                            }
+
+                                            return collect([]);
                                         }
 
                                         $recordGameScheduleById = $record->gameSchedule?->id;
 
                                         if ($recordGameScheduleById === $gameScheduleId) {
-                                            return $record->gameSchedule
-                                                ?->days
-                                                ?->pluck('day', 'id')
-                                                ?? collect([]);
+                                            $collection = $record->gameSchedule
+                                                ?->days;
+
+                                            if ($collection) {
+                                                return $collection->mapWithKeys(fn (GameDay $gameDay) => [
+                                                    $gameDay->id => "{$gameDay->day}  - ({$gameDay->started_at} - {$gameDay->started_at})",
+                                                ]);
+                                            }
+
+                                            return collect([]);
                                         }
 
-                                        return GameSchedule::with('days')
-                                            ->find($gameScheduleId)
-                                            ?->days
-                                            ?->pluck('day', 'id') ?? collect([]);
+                                        $collection = GameSchedule::with('days')
+                                                ->find($gameScheduleId)
+                                                ?->days;
+
+                                        if ($collection) {
+                                            return $collection->mapWithKeys(fn (GameDay $gameDay) => [
+                                                $gameDay->id => "{$gameDay->day}  - ({$gameDay->started_at} - {$gameDay->started_at})",
+                                            ]);
+                                        }
+
+                                        return collect([]);
                                     })
                                     ->placeholder(
                                         TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'game_day_id')
