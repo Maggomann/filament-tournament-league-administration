@@ -16,6 +16,7 @@ return [
         'address' => 'Adresse|Adressen',
         'game_schedule' => 'Spielplan|Spielpläne',
         'day' => 'Spieltag|Spieltage',
+        'game' => 'Spiel|Spiele',
     ],
 
     /*
@@ -77,6 +78,24 @@ return [
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',
         ],
+        'game' => [
+            'game_schedule_id' => 'Spielplan',
+            'game_day_id' => 'Spieltag',
+            'home_team_id' => 'Heim Team',
+            'guest_team_id' => 'Gast Team',
+            'home_points_legs' => 'Heim Legs',
+            'guest_points_legs' => 'Gast Legs',
+            'home_points_games' => 'Heim-Punkte Games',
+            'guest_points_games' => 'Heim-Punkte Games',
+            'has_an_overtime' => 'Hat eine Verlängerung',
+            'home_points_after_draw' => 'Heim-Punkte nach Verlängerung',
+            'guest_points_after_draw' => 'Gast-Punkte nach Verlängerung',
+            'started_at' => 'Beginn',
+            'ended_at' => 'Ende',
+            'created_at' => 'Erstellt am',
+            'updated_at' => 'Aktualisiert am',
+            'deleted_at' => 'Gelöscht am',
+        ],
         'game_day' => [
             'game_schedule_id' => 'Spielplan',
             'day' => 'Spieltag',
@@ -111,6 +130,9 @@ return [
             'name' => 'Saisons & Turniere',
         ],
         'game_schedule' => [
+            'name' => 'Saisons & Turniere',
+        ],
+        'game' => [
             'name' => 'Saisons & Turniere',
         ],
     ],
