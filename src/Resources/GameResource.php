@@ -74,7 +74,7 @@ class GameResource extends TranslateableResource
 
                                             if ($collection) {
                                                 return $collection->mapWithKeys(fn (GameDay $gameDay) => [
-                                                    $gameDay->id => "{$gameDay->day}  - ({$gameDay->started_at} - {$gameDay->started_at})",
+                                                    $gameDay->id => "{$gameDay->day}  - ({$gameDay->started_at} - {$gameDay->ended_at})",
                                                 ]);
                                             }
 
@@ -89,7 +89,7 @@ class GameResource extends TranslateableResource
 
                                             if ($collection) {
                                                 return $collection->mapWithKeys(fn (GameDay $gameDay) => [
-                                                    $gameDay->id => "{$gameDay->day}  - ({$gameDay->started_at} - {$gameDay->started_at})",
+                                                    $gameDay->id => "{$gameDay->day}  - ({$gameDay->started_at} - {$gameDay->ended_at})",
                                                 ]);
                                             }
 
@@ -102,7 +102,7 @@ class GameResource extends TranslateableResource
 
                                         if ($collection) {
                                             return $collection->mapWithKeys(fn (GameDay $gameDay) => [
-                                                $gameDay->id => "{$gameDay->day}  - ({$gameDay->started_at} - {$gameDay->started_at})",
+                                                $gameDay->id => "{$gameDay->day}  - ({$gameDay->started_at} - {$gameDay->ended_at})",
                                             ]);
                                         }
 
