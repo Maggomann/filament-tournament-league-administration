@@ -9,9 +9,9 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 
-class SelectOption
+class GameSelectOption
 {
-    public static function gameDays(Closure $get, ?Game $record): Collection
+    public static function forGameDays(Closure $get, ?Game $record): Collection
     {
         $gameScheduleId = $get('game_schedule_id');
 
@@ -20,7 +20,7 @@ class SelectOption
                 return collect([]);
             }
 
-            return self::selectOptionsForGameDays($gameScheduleId);
+            return self::collectionForGameDays($gameScheduleId);
         }
 
         $recordGameScheduleById = $record->gameSchedule?->id;
@@ -29,13 +29,57 @@ class SelectOption
             $collection = $record->gameSchedule
                 ?->days;
 
-            return self::selectOptionsForGameDays($gameScheduleId, $collection);
+            return self::collectionForGameDays($gameScheduleId, $collection);
         }
 
-        return self::selectOptionsForGameDays($gameScheduleId);
+        return self::collectionForGameDays($gameScheduleId);
     }
 
-    protected static function selectOptionsForGameDays(int $gameScheduleId, ?EloquentCollection $collection = null): Collection
+    public static function forHomeTeams(Closure $get, ?Game $record): Collection
+    {
+        $gameScheduleId = $get('game_schedule_id');
+        $otherTeamId = [$get('guest_team_id')];
+
+        if (! $record) {
+            if (! $gameScheduleId) {
+                return collect([]);
+            }
+
+            return self::collectionForTeams($gameScheduleId, $otherTeamId);
+        }
+
+        $recordGameScheduleById = $record->gameSchedule?->id;
+
+        if ($recordGameScheduleById === $gameScheduleId) {
+            return self::collectionForTeams($gameScheduleId, $otherTeamId, $record->gameSchedule);
+        }
+
+        return self::collectionForTeams($gameScheduleId, $otherTeamId);
+    }
+
+    public static function forGuestTeams(Closure $get, ?Game $record): Collection
+    {
+        $gameScheduleId = $get('game_schedule_id');
+        $otherTeamId = [$get('home_team_id')];
+
+        if (! $record) {
+            if (! $gameScheduleId) {
+                return collect([]);
+            }
+
+            return self::collectionForTeams($gameScheduleId, $otherTeamId);
+        }
+
+        $recordGameScheduleById = $record->gameSchedule?->id;
+
+        if ($recordGameScheduleById === $gameScheduleId) {
+            return self::collectionForTeams($gameScheduleId, $otherTeamId, $record->gameSchedule);
+        }
+
+        return self::collectionForTeams($gameScheduleId, $otherTeamId);
+    }
+
+    protected static function collectionForGameDays(int $gameScheduleId, ?EloquentCollection $collection = null): Collection
     {
         if (! $collection) {
             $collection = self::gameSchedule($gameScheduleId)
@@ -51,51 +95,7 @@ class SelectOption
         return collect([]);
     }
 
-    public static function homeTeams(Closure $get, ?Game $record): Collection
-    {
-        $gameScheduleId = $get('game_schedule_id');
-        $otherTeamId = [$get('guest_team_id')];
-
-        if (! $record) {
-            if (! $gameScheduleId) {
-                return collect([]);
-            }
-
-            return self::selectOptionsForTeams($gameScheduleId, $otherTeamId);
-        }
-
-        $recordGameScheduleById = $record->gameSchedule?->id;
-
-        if ($recordGameScheduleById === $gameScheduleId) {
-            return self::selectOptionsForTeams($gameScheduleId, $otherTeamId, $record->gameSchedule);
-        }
-
-        return self::selectOptionsForTeams($gameScheduleId, $otherTeamId);
-    }
-
-    public static function guestTeams(Closure $get, ?Game $record): Collection
-    {
-        $gameScheduleId = $get('game_schedule_id');
-        $otherTeamId = [$get('home_team_id')];
-
-        if (! $record) {
-            if (! $gameScheduleId) {
-                return collect([]);
-            }
-
-            return self::selectOptionsForTeams($gameScheduleId, $otherTeamId);
-        }
-
-        $recordGameScheduleById = $record->gameSchedule?->id;
-
-        if ($recordGameScheduleById === $gameScheduleId) {
-            return self::selectOptionsForTeams($gameScheduleId, $otherTeamId, $record->gameSchedule);
-        }
-
-        return self::selectOptionsForTeams($gameScheduleId, $otherTeamId);
-    }
-
-    protected static function selectOptionsForTeams(int $gameScheduleId, array $otherTeamId, ?GameSchedule $gameSchedule = null): Collection
+    protected static function collectionForTeams(int $gameScheduleId, array $otherTeamId, ?GameSchedule $gameSchedule = null): Collection
     {
         if (! $gameSchedule) {
             return self::gameSchedule($gameScheduleId)

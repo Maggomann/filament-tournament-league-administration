@@ -21,7 +21,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslateComponen
 use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\Pages;
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\Selects\SelectOption;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\Selects\GameSelectOption;
 use Maggomann\FilamentTournamentLeagueAdministration\Rules\GameEndetAtRule;
 use Maggomann\FilamentTournamentLeagueAdministration\Rules\GameStartedAtRule;
 
@@ -62,7 +62,7 @@ class GameResource extends TranslateableResource
                                     ->label(Game::transAttribute('game_day_id'))
                                     ->validationAttribute(Game::transAttribute('game_day_id'))
                                     ->options(function (Closure $get, ?Game $record) {
-                                        return SelectOption::gameDays($get, $record);
+                                        return GameSelectOption::forGameDays($get, $record);
                                     })
                                     ->placeholder(
                                         TranslateComponent::placeholder(static::$translateablePackageKey, 'game_day_id')
@@ -94,7 +94,7 @@ class GameResource extends TranslateableResource
                                     ->label(Game::transAttribute('home_team_id'))
                                     ->validationAttribute(Game::transAttribute('home_team_id'))
                                     ->options(function (Closure $get, ?Game $record) {
-                                        return SelectOption::homeTeams($get, $record);
+                                        return GameSelectOption::forHomeTeams($get, $record);
                                     })
                                     ->placeholder(
                                         TranslateComponent::placeholder(static::$translateablePackageKey, 'home_team_id')
@@ -107,7 +107,7 @@ class GameResource extends TranslateableResource
                                     ->label(Game::transAttribute('guest_team_id'))
                                     ->validationAttribute(Game::transAttribute('guest_team_id'))
                                     ->options(function (Closure $get, ?Game $record) {
-                                        return SelectOption::guestTeams($get, $record);
+                                        return GameSelectOption::forGuestTeams($get, $record);
                                     })
                                     ->placeholder(
                                         TranslateComponent::placeholder(static::$translateablePackageKey, 'guest_team_id')
