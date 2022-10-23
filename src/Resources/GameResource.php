@@ -14,6 +14,7 @@ use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslateComponent;
@@ -195,6 +196,7 @@ class GameResource extends TranslateableResource
             ->actions([
                 EditAction::make()->hideLabellnTooltip(),
                 ViewAction::make()->hideLabellnTooltip(),
+                DeleteAction::make()->hideLabellnTooltip(),
             ]);
     }
 

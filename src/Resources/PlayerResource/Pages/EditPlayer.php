@@ -14,6 +14,8 @@ class EditPlayer extends EditRecord
 
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
+        // TODO: Try catch with Halt-Exception an Error-Notification
+
         return app(UpdatePlayerAction::class)->execute($record, PlayerData::create($data));
     }
 }

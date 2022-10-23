@@ -14,6 +14,8 @@ class CreateGameSchedule extends CreateRecord
 
     protected function handleRecordCreation(array $data): Model
     {
+        // TODO: Try catch with Halt-Exception an Error-Notification
+
         return app(CreateGameScheduleAction::class)->execute(
             app($this->getModel()),
             GameScheduleData::create($data)

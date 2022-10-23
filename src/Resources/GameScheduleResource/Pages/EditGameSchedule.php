@@ -14,6 +14,8 @@ class EditGameSchedule extends EditRecord
 
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
+        // TODO: Try catch with Halt-Exception an Error-Notification
+
         return app(UpdateGameScheduleAction::class)->execute($record, GameScheduleData::create($data));
     }
 }

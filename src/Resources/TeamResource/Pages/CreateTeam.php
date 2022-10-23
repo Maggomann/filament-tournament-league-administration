@@ -14,6 +14,8 @@ class CreateTeam extends CreateRecord
 
     protected function handleRecordCreation(array $data): Model
     {
+        // TODO: Try catch with Halt-Exception an Error-Notification
+
         return app(CreateTeamAction::class)->execute(
             app($this->getModel()),
             TeamData::create($data)
