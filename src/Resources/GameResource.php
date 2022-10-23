@@ -154,7 +154,6 @@ class GameResource extends TranslateableResource
 
                                 TextInput::make('home_points_after_draw')
                                     ->label(Game::transAttribute('home_points_after_draw'))
-                                    ->reactive()
                                     ->default(0)
                                     ->disabled(fn (Closure $get) => ($get('has_an_overtime') === true) ? false : true)
                                     ->required(fn (Closure $get) => $get('has_an_overtime'))
@@ -162,7 +161,6 @@ class GameResource extends TranslateableResource
 
                                 TextInput::make('guest_points_after_draw')
                                     ->label(Game::transAttribute('guest_points_after_draw'))
-                                    ->reactive()
                                     ->default(0)
                                     ->disabled(fn (Closure $get) => ($get('has_an_overtime') === true) ? false : true)
                                     ->required(fn (Closure $get) => $get('has_an_overtime'))

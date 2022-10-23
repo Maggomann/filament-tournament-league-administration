@@ -12,18 +12,19 @@ class UpdateGameAction
     /**
      * @throws Throwable
      */
-    public function execute(Game $Game, GameData $GameData): Game
+    public function execute(Game $game, GameData $gameData): Game
     {
         try {
-            return DB::transaction(function () use ($Game, $GameData) {
-                $Game->fill($GameData->toArray());
-                $Game->federation_id = $GameData->federation_id;
-                $Game->gameschedulable_type = $GameData->gameschedulable_type;
-                $Game->gameschedulable_id = $GameData->gameschedulable_id;
+            return DB::transaction(function () use ($game, $gameData) {
+                $game->fill($gameData->toArray());
+                $game->game_schedule_id = $gameData->game_schedule_id;
+                $game->game_day_id = $gameData->game_day_id;
+                $game->home_team_id = $gameData->home_team_id;
+                $game->guest_team_id = $gameData->guest_team_id;
 
-                $Game->save();
+                $game->save();
 
-                return $Game;
+                // TODO: recalculate the totals and save it in tournament_league_total_team_points
             });
         } catch (Throwable $e) {
             throw $e;

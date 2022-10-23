@@ -15,9 +15,7 @@ class DeleteGameAction
     {
         try {
             DB::transaction(function () use ($game): void {
-                $game->days()->delete();
-                $game->teams()->delete();
-                $game->players()->delete();
+                // TODO: delete the totals in tournament_league_total_team_points
 
                 $game->delete();
             });

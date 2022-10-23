@@ -110,7 +110,7 @@ class SelectOption
             ?->pluck('name', 'id') ?? collect([]);
     }
 
-    public static function gameSchedule(int $gameScheduleId): ?GameSchedule
+    protected static function gameSchedule(int $gameScheduleId): ?GameSchedule
     {
         return once(fn () => GameSchedule::with(['days', 'teams'])->find($gameScheduleId));
     }

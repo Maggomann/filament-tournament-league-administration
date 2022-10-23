@@ -25,6 +25,8 @@ class CreateGameAction
 
                 $game->save();
 
+                // TODO: recalculate the totals and save it in tournament_league_total_team_points
+
                 return $game;
             });
         } catch (Throwable $e) {
