@@ -29,6 +29,7 @@ test('FederationData throws an error when invalid data is submitted', function (
         Arr::set($this->validParams, $key, $value)
     );
 })->with([
+    ['id', []],
     ['calculation_type_id', null],
     ['name', null],
 ]);
