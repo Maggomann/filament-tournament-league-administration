@@ -50,6 +50,10 @@ class Game extends TranslateableModel
         'deleted_at',
     ];
 
+    protected $casts = [
+        'is_admin' => 'has_an_overtime',
+    ];
+
     public function gameSchedule(): BelongsTo
     {
         return $this->belongsTo(GameSchedule::class);

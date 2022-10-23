@@ -50,6 +50,7 @@ class GameResource extends TranslateableResource
                                     ->placeholder(
                                         TranslateComponent::placeholder(static::$translateablePackageKey, 'game_schedule_id')
                                     )
+                                    ->required()
                                     ->reactive()
                                     ->afterStateUpdated(function (Closure $set) {
                                         $set('game_day_id', null);
@@ -236,14 +237,20 @@ class GameResource extends TranslateableResource
                             ->schema([
                                 Toggle::make('has_an_overtime')
                                     ->label(Game::transAttribute('has_an_overtime'))
+                                    ->reactive()
                                     ->columnSpan(2),
 
                                 TextInput::make('home_points_after_draw')
                                     ->label(Game::transAttribute('home_points_after_draw'))
+                                    ->reactive()
+                                    ->disabled(fn (Closure $get) => ($get('has_an_overtime') === true) ? false : true)
+                                    ->required(fn (Closure $get) => $get('has_an_overtime'))
                                     ->numeric(),
 
                                 TextInput::make('guest_points_after_draw')
                                     ->label(Game::transAttribute('guest_points_after_draw'))
+                                    ->reactive()
+                                    ->required(fn (Closure $get) => $get('has_an_overtime'))
                                     ->numeric(),
                             ]),
                     ])->columns([
