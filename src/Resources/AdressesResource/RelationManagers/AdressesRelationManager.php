@@ -16,7 +16,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\Edi
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\CreateAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatePlaceholderSelectOption;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\CreateAddressAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\UpdateAddressAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\CreateAddressData;
@@ -51,7 +51,7 @@ class AdressesRelationManager extends TranslateableRelationManager
                             ->mapWithKeys(fn ($value, $key) => [$key => __("laravel-addressable.{$value}")])
                     )
                     ->placeholder(
-                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'address_category_id')
+                        TranslateComponent::placeholder(static::$translateablePackageKey, 'address_category_id')
                     )
                     ->default(1)
                     ->required()
@@ -65,7 +65,7 @@ class AdressesRelationManager extends TranslateableRelationManager
                             ->mapWithKeys(fn ($value, $key) => [$key => __("laravel-addressable.{$value}")])
                     )
                     ->placeholder(
-                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'address_gender_id')
+                        TranslateComponent::placeholder(static::$translateablePackageKey, 'address_gender_id')
                     )
                     ->default(1)
                     ->required()
@@ -143,7 +143,7 @@ class AdressesRelationManager extends TranslateableRelationManager
                             })
                     )
                     ->placeholder(
-                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'address_country_id')
+                        TranslateComponent::placeholder(static::$translateablePackageKey, 'address_country_id')
                     )
                     ->default('DE')
                     ->required()

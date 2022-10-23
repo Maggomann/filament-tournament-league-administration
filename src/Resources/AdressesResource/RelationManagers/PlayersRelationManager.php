@@ -13,7 +13,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatePlaceholderSelectOption;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
@@ -38,7 +38,7 @@ class PlayersRelationManager extends TranslateableRelationManager
                     ->relationship('team', 'name')
                     ->options(Team::all()->pluck('name', 'id'))
                     ->placeholder(
-                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'team_id')
+                        TranslateComponent::placeholder(static::$translateablePackageKey, 'team_id')
                     )
                     ->required()
                     ->searchable(),

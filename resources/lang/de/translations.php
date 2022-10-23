@@ -27,6 +27,12 @@ return [
                     'guest_team_id' => 'Bitte wählen Sie ein Team (Gast) aus.',
                 ],
             ],
+            'tabs' => [
+                'game_schedule' => 'Spielplan',
+                'teams' => 'Mannschaften',
+                'points' => 'Punkte',
+                'points_after_overtime' => 'Punkte nach Verlängerung',
+            ],
         ],
     ],
     'notifications' => [

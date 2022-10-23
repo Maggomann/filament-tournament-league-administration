@@ -19,7 +19,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\Del
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatePlaceholderSelectOption;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Federation\Actions\CreateFedrationSmallAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Federation\DTO\FederationData;
 use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
@@ -52,7 +52,7 @@ class TeamResource extends TranslateableResource
                             ->validationAttribute(League::transAttribute('federation_id'))
                             ->options(Federation::all()->pluck('name', 'id'))
                             ->placeholder(
-                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'federation_id')
+                                TranslateComponent::placeholder(static::$translateablePackageKey, 'federation_id')
                             )
                             ->required()
                             ->reactive()
@@ -64,7 +64,7 @@ class TeamResource extends TranslateableResource
                                     ->validationAttribute(Federation::transAttribute('calculation_type_id'))
                                     ->options(CalculationType::all()->pluck('name', 'id'))
                                     ->placeholder(
-                                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'calculation_type_id')
+                                        TranslateComponent::placeholder(static::$translateablePackageKey, 'calculation_type_id')
                                     )
                                     ->exists(table: CalculationType::class, column: 'id')
                                     ->required()
@@ -119,7 +119,7 @@ class TeamResource extends TranslateableResource
                                     ?->pluck('name', 'id');
                             })
                             ->placeholder(
-                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'league_id')
+                                TranslateComponent::placeholder(static::$translateablePackageKey, 'league_id')
                             )
                             ->required()
                             ->searchable(),

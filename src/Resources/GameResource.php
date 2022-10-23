@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatePlaceholderSelectOption;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
@@ -41,14 +41,14 @@ class GameResource extends TranslateableResource
             ->schema([
                 Tabs::make('Heading')
                     ->tabs([
-                        Tab::make('Spielplan')
+                        Tab::make(TranslateComponent::tab(static::$translateablePackageKey, 'game_schedule'))
                             ->icon('heroicon-o-clock')
                             ->schema([
                                 Select::make('game_schedule_id')
                                     ->relationship('gameSchedule', 'name')
                                     ->label(Game::transAttribute('game_schedule_id'))
                                     ->placeholder(
-                                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'game_schedule_id')
+                                        TranslateComponent::placeholder(static::$translateablePackageKey, 'game_schedule_id')
                                     )
                                     ->reactive()
                                     ->afterStateUpdated(function (Closure $set) {
@@ -109,7 +109,7 @@ class GameResource extends TranslateableResource
                                         return collect([]);
                                     })
                                     ->placeholder(
-                                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'game_day_id')
+                                        TranslateComponent::placeholder(static::$translateablePackageKey, 'game_day_id')
                                     )
                                     ->required()
                                     ->searchable()
@@ -131,7 +131,7 @@ class GameResource extends TranslateableResource
                                         fn (Closure $get) => new GameEndetAtRule($get('started_at'), $get('game_day_id')),
                                     ]),
                             ]),
-                        Tab::make('Mannschaften')
+                        Tab::make(TranslateComponent::tab(static::$translateablePackageKey, 'teams'))
                             ->icon('heroicon-o-users')
                             ->schema([
                                 Select::make('home_team_id')
@@ -166,7 +166,7 @@ class GameResource extends TranslateableResource
                                             ?->pluck('name', 'id') ?? collect([]);
                                     })
                                     ->placeholder(
-                                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'home_team_id')
+                                        TranslateComponent::placeholder(static::$translateablePackageKey, 'home_team_id')
                                     )
                                     ->required()
                                     ->searchable()
@@ -204,14 +204,14 @@ class GameResource extends TranslateableResource
                                             ?->pluck('name', 'id') ?? collect([]);
                                     })
                                     ->placeholder(
-                                        TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'guest_team_id')
+                                        TranslateComponent::placeholder(static::$translateablePackageKey, 'guest_team_id')
                                     )
                                     ->required()
                                     ->searchable()
                                     ->reactive(),
 
                             ]),
-                        Tab::make('Punkte')
+                        Tab::make(TranslateComponent::tab(static::$translateablePackageKey, 'points'))
                             ->icon('heroicon-o-calculator')
                             ->schema([
                                 TextInput::make('home_points_legs')
@@ -231,7 +231,7 @@ class GameResource extends TranslateableResource
                                     ->numeric(),
 
                             ]),
-                        Tab::make('Punkte nach Verlängerung')
+                        Tab::make(TranslateComponent::tab(static::$translateablePackageKey, 'points_after_overtime'))
                             ->icon('heroicon-o-scale')
                             ->schema([
                                 Toggle::make('has_an_overtime')

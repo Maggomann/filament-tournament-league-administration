@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatePlaceholderSelectOption;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
@@ -56,7 +56,7 @@ class FederationResource extends TranslateableResource
                             ->relationship('calculationType', 'name')
                             ->options(CalculationType::all()->pluck('name', 'id'))
                             ->placeholder(
-                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'calculation_type_id')
+                                TranslateComponent::placeholder(static::$translateablePackageKey, 'calculation_type_id')
                             )
                             ->exists(table: CalculationType::class, column: 'id')
                             ->required()

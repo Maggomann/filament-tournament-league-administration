@@ -18,7 +18,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\Del
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslatePlaceholderSelectOption;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\DeleteGameScheduleAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
@@ -59,7 +59,7 @@ class GameScheduleResource extends TranslateableResource
                             ->validationAttribute(League::transAttribute('federation_id'))
                             ->options(Federation::all()->pluck('name', 'id'))
                             ->placeholder(
-                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'federation_id')
+                                TranslateComponent::placeholder(static::$translateablePackageKey, 'federation_id')
                             )
                             ->required()
                             ->searchable()
@@ -106,7 +106,7 @@ class GameScheduleResource extends TranslateableResource
                                     ?->pluck('name', 'id') ?? collect([]);
                             })
                             ->placeholder(
-                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'league_id')
+                                TranslateComponent::placeholder(static::$translateablePackageKey, 'league_id')
                             )
                             ->required()
                             ->reactive(),
@@ -132,7 +132,7 @@ class GameScheduleResource extends TranslateableResource
                             ->options(collect()->times(50)->mapWithKeys(fn ($value) => [$value => $value]))
                             ->visible(fn (Page $livewire) => $livewire instanceof CreateRecord)
                             ->placeholder(
-                                TranslatePlaceholderSelectOption::placeholder(static::$translateablePackageKey, 'game_days')
+                                TranslateComponent::placeholder(static::$translateablePackageKey, 'game_days')
                             )
                            ->searchable(),
                     ])

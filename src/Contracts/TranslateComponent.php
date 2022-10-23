@@ -2,7 +2,7 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Contracts;
 
-class TranslatePlaceholderSelectOption
+class TranslateComponent
 {
     public static function placeholder(string $translateablePackageKey, string $translationKey): string
     {
@@ -11,5 +11,12 @@ class TranslatePlaceholderSelectOption
         return ($translation = trans($translationKey)) !== $translationKey
         ? $translation
         : __('forms::components.select.placeholder');
+    }
+
+    public static function tab(string $translateablePackageKey, string $translationKey): string
+    {
+        $translationKey = "{$translateablePackageKey}translations.forms.components.tabs.{$translationKey}";
+
+        return  __($translationKey);
     }
 }
