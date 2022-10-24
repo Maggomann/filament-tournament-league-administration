@@ -183,6 +183,26 @@ class GameResource extends TranslateableResource
     {
         return $table
             ->columns([
+                TextColumn::make('gameSchedule.name')
+                    ->label(Game::transAttribute('game_schedule_id'))
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('gameDay.day')
+                    ->label(Game::transAttribute('game_day_id'))
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('homeTeam.name')
+                    ->label(Game::transAttribute('home_team_id'))
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('guestTeam.name')
+                    ->label(Game::transAttribute('guest_team_id'))
+                    ->searchable()
+                    ->sortable(),
+
                 TextColumn::make('started_at')
                     ->label(Game::transAttribute('started_at'))
                     ->date()
@@ -221,7 +241,7 @@ class GameResource extends TranslateableResource
     {
         return parent::getGlobalSearchEloquentQuery()->with([
             'gameSchedule',
-            'ganeDay',
+            'gameDay',
             'homeTeam',
             'guestTeam',
         ]);

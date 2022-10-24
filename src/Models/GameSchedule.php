@@ -76,4 +76,9 @@ class GameSchedule extends TranslateableModel
     {
         return $this->belongsToMany(Player::class);
     }
+
+    public function games(): HasMany
+    {
+        return $this->hasMany(Game::class);
+    }
 }

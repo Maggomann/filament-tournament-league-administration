@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  */
-class Game extends TranslateableModel
+class TotalTeamPoint extends TranslateableModel
 {
     use HasFactory;
     use SoftDeletes;
@@ -22,11 +22,9 @@ class Game extends TranslateableModel
     /**
      * @var string
      */
-    protected $table = 'tournament_league_games';
+    protected $table = 'tournament_league_total_team_points';
 
     protected $dates = [
-        'started_at',
-        'ended_at',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -36,22 +34,19 @@ class Game extends TranslateableModel
      * @var array<int, string>
      */
     protected $fillable = [
-        'home_points_legs',
-        'guest_points_legs',
-        'home_points_games',
-        'guest_points_games',
-        'has_an_overtime',
-        'home_points_after_draw',
-        'guest_points_after_draw',
-        'started_at',
-        'ended_at',
+        'total_number_of_encounters',
+        'total_wins',
+        'total_defeats',
+        'total_defeats',
+        'total_draws',
+        'total_victory_after_defeats',
+        'total_home_points_games',
+        'total_guest_points_games',
+        'total_home_points_after_draw',
+        'total_guest_points_after_draw',
         'created_at',
         'updated_at',
         'deleted_at',
-    ];
-
-    protected $casts = [
-        'is_admin' => 'has_an_overtime',
     ];
 
     public function gameSchedule(): BelongsTo
@@ -59,18 +54,8 @@ class Game extends TranslateableModel
         return $this->belongsTo(GameSchedule::class);
     }
 
-    public function gameDay(): BelongsTo
+    public function team(): BelongsTo
     {
-        return $this->belongsTo(GameDay::class);
-    }
-
-    public function homeTeam(): BelongsTo
-    {
-        return $this->belongsTo(Team::class, 'home_team_id');
-    }
-
-    public function guestTeam(): BelongsTo
-    {
-        return $this->belongsTo(Team::class, 'guest_team_id');
+        return $this->belongsTo(Team::class);
     }
 }
