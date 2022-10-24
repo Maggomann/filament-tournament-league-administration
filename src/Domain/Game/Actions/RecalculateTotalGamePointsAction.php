@@ -114,12 +114,6 @@ class RecalculateTotalGamePointsAction
             ->where(function ($query) use ($team) {
                 $query->where('home_team_id', $team->id)
                     ->orWhere('guest_team_id', $team->id);
-
-                $query->where(function ($subQuery) use ($team) {
-                    $subQuery->where('home_team_id', $team->id)->whereRaw('home_points_games < guest_points_games');
-                })->orWhere(function ($subQuery) use ($team) {
-                    $subQuery->where('guest_team_id', $team->id)->whereRaw('home_points_games > guest_points_games');
-                });
             })
             ->count();
     }
