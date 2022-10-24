@@ -3,10 +3,13 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\Pages;
 
 use Filament\Resources\Pages\EditRecord;
+use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\CreatedEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\Actions\UpdatePlayerAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\DTO\PlayerData;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource;
+use Throwable;
 
 class EditPlayer extends EditRecord
 {
@@ -14,8 +17,12 @@ class EditPlayer extends EditRecord
 
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
-        // TODO: Try catch with Halt-Exception an Error-Notification
+        try {
+            return app(UpdatePlayerAction::class)->execute($record, PlayerData::create($data));
+        } catch (Throwable $e) {
+            CreatedEntryFailedNotification::make()->send();
 
-        return app(UpdatePlayerAction::class)->execute($record, PlayerData::create($data));
+            throw new Halt($e->getMessage());
+        }
     }
 }

@@ -20,7 +20,6 @@ class CreateGame extends CreateRecord
         try {
             return app(CreateGameAction::class)->execute(GameData::create($data));
         } catch (Throwable $e) {
-            throw $e;
             CreatedEntryFailedNotification::make()->send();
 
             throw new Halt($e->getMessage());
