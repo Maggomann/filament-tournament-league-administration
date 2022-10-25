@@ -2,23 +2,43 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Contracts\Calculators;
 
-use Illuminate\Database\ClassMorphViolationException;
-use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Manager;
+use Illuminate\Support\Str;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 
-class Calculator
+class Calculator extends Manager
 {
-    public static function getMorphClass(): string
+    protected TotalTeamPoint $totalTeamPoint;
+
+    public function __construct()
     {
-        $morphMap = Relation::morphMap();
+        parent::__construct(app());
+    }
 
-        if (! empty($morphMap) && in_array(static::class, $morphMap)) {
-            return array_search(static::class, $morphMap, true);
-        }
+    public static function make(TotalTeamPoint $totalTeamPoint): Request
+    {
+        $totalTeamPoint->load('gameSchedule.federation.calculationType');
 
-        if (Relation::requiresMorphMap()) {
-            throw new ClassMorphViolationException(new self());
-        }
+        $instance = new static();
+        $instance->totalTeamPoint = $totalTeamPoint;
 
-        return static::class;
+        return $instance->driver(
+            Str::of($totalTeamPoint->gameSchedule->federation->calculationType->calculator)->explode('\\')->last()
+        );
+    }
+
+    public function getDefaultDriver()
+    {
+        return 'HDLCalculator';
+    }
+
+    protected function createHDLCalculatorDriver(): HDLCalculator
+    {
+        return new HDLCalculator($this->totalTeamPoint);
+    }
+
+    protected function createDSABCalculatorDriver(): DSABCalculator
+    {
+        return new DSABCalculator($this->totalTeamPoint);
     }
 }

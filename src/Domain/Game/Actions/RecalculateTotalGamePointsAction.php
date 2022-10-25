@@ -3,6 +3,7 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions;
 
 use Illuminate\Support\Facades\DB;
+use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Calculators\Calculator;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
@@ -20,19 +21,6 @@ class RecalculateTotalGamePointsAction
             DB::transaction(function () use ($game) {
                 // FIXME: prozedural
                 // TODO: refactoring because this ist only brainstorming and absolut shit :-)
-
-                // $table->id();
-                // $table->unsignedBigInteger('game_schedule_id')->nullable()->index();
-                // $table->unsignedBigInteger('team_id')->nullable()->index();
-                // $table->integer('total_number_of_encounters')->nullable(); // Anzahl Begegnungen
-                // $table->integer('total_wins')->nullable();
-                // $table->integer('total_defeats')->nullable();
-                // $table->integer('total_draws')->nullable();
-                // $table->integer('total_victory_after_defeats')->nullable();
-                // $table->integer('total_home_points_games')->nullable();
-                // $table->integer('total_guest_points_games')->nullable();
-                // $table->integer('total_home_points_after_draw')->nullable();
-                // $table->integer('total_guest_points_after_draw')->nullable();
 
                 $this->saveTotalTeamPoints($game->gameSchedule, $game->homeTeam);
                 $this->saveTotalTeamPoints($game->gameSchedule, $game->guestTeam);
@@ -66,8 +54,15 @@ class RecalculateTotalGamePointsAction
             'total_victory_after_defeats' => $this->totalVictoryAfterDefeats($gameSchedule, $team),
             'total_home_points_legs' => $this->totalHomePointsOfLegs($gameSchedule, $team),
             'total_guest_points_legs' => $this->totalGuestPointsOfLegs($gameSchedule, $team),
+            'total_home_points_games' => $this->totalHomePointsOfGames($gameSchedule, $team),
+            'total_guest_points_games' => $this->totalGuestPointsOfGames($gameSchedule, $team),
+            'total_home_points_from_games_and_legs' => $this->totalHomePointsFromGamesAndLegs($gameSchedule, $team),
+            'total_guest_points_from_games_and_legs' => $this->totalGuestPointsFromGamesAndLegs($gameSchedule, $team),
         ]);
 
+        $totalTeamPoint->save();
+
+        $totalTeamPoint->total_points = Calculator::make($totalTeamPoint)->recalculate();
         $totalTeamPoint->save();
     }
 
@@ -170,5 +165,39 @@ class RecalculateTotalGamePointsAction
                 ->games()
                 ->where('guest_team_id', $team->id)
                 ->sum('home_points_legs');
+    }
+
+    private function totalHomePointsOfGames(GameSchedule $gameSchedule, Team $team): int
+    {
+        return $gameSchedule
+                ->games()
+                ->where('home_team_id', $team->id)
+                ->sum('home_points_games') +
+            $gameSchedule
+                ->games()
+                ->where('guest_team_id', $team->id)
+                ->sum('guest_points_games');
+    }
+
+    private function totalGuestPointsOfGames(GameSchedule $gameSchedule, Team $team): int
+    {
+        return $gameSchedule
+                ->games()
+                ->where('home_team_id', $team->id)
+                ->sum('guest_points_games') +
+            $gameSchedule
+                ->games()
+                ->where('guest_team_id', $team->id)
+                ->sum('home_points_games');
+    }
+
+    private function totalHomePointsFromGamesAndLegs(GameSchedule $gameSchedule, Team $team): int
+    {
+        return once(fn () => $this->totalHomePointsOfLegs($gameSchedule, $team) + $this->totalHomePointsOfGames($gameSchedule, $team));
+    }
+
+    private function totalGuestPointsFromGamesAndLegs(GameSchedule $gameSchedule, Team $team): int
+    {
+        return once(fn () => $this->totalGuestPointsOfLegs($gameSchedule, $team) + $this->totalGuestPointsOfGames($gameSchedule, $team));
     }
 }

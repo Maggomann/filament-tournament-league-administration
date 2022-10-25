@@ -122,10 +122,9 @@ return new class() extends Migration
             $table->integer('total_guest_points_legs')->nullable();
             $table->integer('total_home_points_games')->nullable();
             $table->integer('total_guest_points_games')->nullable();
-            $table->integer('total_home_points_after_draw')->nullable();
-            $table->integer('total_guest_points_after_draw')->nullable();
             $table->integer('total_home_points_from_games_and_legs')->nullable();
             $table->integer('total_guest_points_from_games_and_legs')->nullable();
+            $table->integer('total_points')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
