@@ -59,9 +59,13 @@ class RecalculateTotalGamePointsAction
 
         $totalTeamPoint->fill([
             'total_number_of_encounters' => $this->totalNumberOfEncounters($gameSchedule, $team),
+            'total_points_of_legs' => $this->totalPointsOfLegs($gameSchedule, $team),
             'total_wins' => $this->totalWins($gameSchedule, $team),
             'total_defeats' => $this->totalDefeats($gameSchedule, $team),
             'total_draws' => $this->totalDraws($gameSchedule, $team),
+            'total_victory_after_defeats' => $this->totalVictoryAfterDefeats($gameSchedule, $team),
+            'total_home_points_legs' => $this->totalHomePointsOfLegs($gameSchedule, $team),
+            'total_guest_points_legs' => $this->totalGuestPointsOfLegs($gameSchedule, $team),
         ]);
 
         $totalTeamPoint->save();
@@ -76,6 +80,18 @@ class RecalculateTotalGamePointsAction
                     ->orWhere('guest_team_id', $team->id);
             })
             ->count();
+    }
+
+    private function totalPointsOfLegs(GameSchedule $gameSchedule, Team $team): int
+    {
+        return $gameSchedule
+                ->games()
+                ->where('home_team_id', $team->id)
+                ->sum('home_points_legs') +
+            $gameSchedule
+                ->games()
+                ->where('guest_team_id', $team->id)
+                ->sum('guest_points_legs');
     }
 
     private function totalWins(GameSchedule $gameSchedule, Team $team): int
@@ -116,5 +132,43 @@ class RecalculateTotalGamePointsAction
                     ->orWhere('guest_team_id', $team->id);
             })
             ->count();
+    }
+
+    private function totalVictoryAfterDefeats(GameSchedule $gameSchedule, Team $team): int
+    {
+        return $gameSchedule
+            ->games()
+            ->where(function ($query) use ($team) {
+                $query->where(function ($subQuery) use ($team) {
+                    $subQuery->where('home_team_id', $team->id)->whereRaw('home_points_after_draw > guest_points_after_draw');
+                })->orWhere(function ($subQuery) use ($team) {
+                    $subQuery->where('guest_team_id', $team->id)->whereRaw('home_points_after_draw < guest_points_after_draw');
+                });
+            })
+            ->count();
+    }
+
+    private function totalHomePointsOfLegs(GameSchedule $gameSchedule, Team $team): int
+    {
+        return $gameSchedule
+                ->games()
+                ->where('home_team_id', $team->id)
+                ->sum('home_points_legs') +
+            $gameSchedule
+                ->games()
+                ->where('guest_team_id', $team->id)
+                ->sum('guest_points_legs');
+    }
+
+    private function totalGuestPointsOfLegs(GameSchedule $gameSchedule, Team $team): int
+    {
+        return $gameSchedule
+                ->games()
+                ->where('home_team_id', $team->id)
+                ->sum('guest_points_legs') +
+            $gameSchedule
+                ->games()
+                ->where('guest_team_id', $team->id)
+                ->sum('home_points_legs');
     }
 }

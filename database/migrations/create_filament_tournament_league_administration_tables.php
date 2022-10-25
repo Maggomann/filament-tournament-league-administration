@@ -113,14 +113,19 @@ return new class() extends Migration
             $table->unsignedBigInteger('game_schedule_id')->nullable()->index();
             $table->unsignedBigInteger('team_id')->nullable()->index();
             $table->integer('total_number_of_encounters')->nullable(); // Anzahl Begegnungen
+            $table->integer('total_points_of_legs')->nullable();
             $table->integer('total_wins')->nullable();
             $table->integer('total_defeats')->nullable();
             $table->integer('total_draws')->nullable();
             $table->integer('total_victory_after_defeats')->nullable();
+            $table->integer('total_home_points_legs')->nullable();
+            $table->integer('total_guest_points_legs')->nullable();
             $table->integer('total_home_points_games')->nullable();
             $table->integer('total_guest_points_games')->nullable();
             $table->integer('total_home_points_after_draw')->nullable();
             $table->integer('total_guest_points_after_draw')->nullable();
+            $table->integer('total_home_points_from_games_and_legs')->nullable();
+            $table->integer('total_guest_points_from_games_and_legs')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
