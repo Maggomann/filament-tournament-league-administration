@@ -3,7 +3,7 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions;
 
 use Illuminate\Support\Facades\DB;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Calculators\CalculatorManager;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Contracts\Calculators\CalculatorManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;

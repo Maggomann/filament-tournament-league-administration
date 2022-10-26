@@ -81,4 +81,9 @@ class GameSchedule extends TranslateableModel
     {
         return $this->hasMany(Game::class);
     }
+
+    public function totalTeamPoints(): HasMany
+    {
+        return $this->hasMany(TotalTeamPoint::class, 'game_schedule_id', 'id');
+    }
 }

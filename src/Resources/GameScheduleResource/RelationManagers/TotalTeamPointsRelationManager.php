@@ -1,0 +1,100 @@
+<?php
+
+namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers;
+
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
+
+class TotalTeamPointsRelationManager extends TranslateableRelationManager
+{
+    protected static string $relationship = 'totalTeamPoints';
+
+    protected static ?string $recordTitleAttribute = 'id';
+
+    public static function getTitle(): string
+    {
+        return static::$title ?? trans_choice(static::$translateablePackageKey.'filament-model.models.total_team_point', number: 1);
+    }
+
+    public static function getRecordTitle(?Model $record): ?string
+    {
+        $recordTitleSingular = trans_choice(static::$translateablePackageKey.'filament-model.models.total_team_point', number: 1);
+
+        if (! $record) {
+            return $recordTitleSingular;
+        }
+
+        $recordTitle = $recordTitleSingular;
+        $recordTitle .= ' ';
+
+        $recordTitle .= $record->getAttributeValue(static::getRecordTitleAttribute());
+
+        return $recordTitle;
+    }
+
+    public static function form(Form $form): Form
+    {
+        return $form;
+    }
+
+    public static function table(Table $table): Table
+    {
+        $legs = fn (TotalTeamPoint $record) => "{$record->total_home_points_legs} : {$record->total_guest_points_legs}";
+
+        return $table
+            ->columns([
+                TextColumn::make('team.name')
+                    ->label(TotalTeamPoint::transAttribute('team_id')),
+
+                TextColumn::make('total_number_of_encounters')
+                    ->label(TotalTeamPoint::transAttribute('total_number_of_encounters')),
+
+                TextColumn::make('total_wins')
+                    ->label(TotalTeamPoint::transAttribute('total_wins')),
+
+                TextColumn::make('total_defeats')
+                    ->label(TotalTeamPoint::transAttribute('total_defeats')),
+
+                TextColumn::make('total_draws')
+                    ->label(TotalTeamPoint::transAttribute('total_draws')),
+
+                TextColumn::make('total_victory_after_defeats')
+                    ->label(TotalTeamPoint::transAttribute('total_victory_after_defeats'))
+                    ->hidden(
+                        fn (TotalTeamPointsRelationManager $livewire) => $livewire->getOwnerRecord()->federation->calculationType->id !== 2
+                    ),
+
+                TextColumn::make(TotalTeamPoint::transAttribute('legs'))
+                    ->getStateUsing(
+                        fn (TotalTeamPoint $record): string => "{$record->total_home_points_legs} : {$record->total_guest_points_legs}"
+                    ),
+
+                TextColumn::make(TotalTeamPoint::transAttribute('games'))
+                    ->getStateUsing(
+                        fn (TotalTeamPoint $record): string => "{$record->total_home_points_games} : {$record->total_guest_points_games}"
+                    ),
+
+                TextColumn::make('total_points')
+                    ->label(TotalTeamPoint::transAttribute('total_points')),
+
+            ])
+            ->filters([])
+            ->headerActions([])
+            ->actions([])
+            ->bulkActions([]);
+    }
+
+    public static function getPages(): array
+    {
+        return [];
+    }
+
+    protected function getDefaultTableSortColumn(): ?string
+    {
+        return 'id';
+    }
+}

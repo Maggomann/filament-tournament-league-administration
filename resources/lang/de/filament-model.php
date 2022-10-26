@@ -17,6 +17,7 @@ return [
         'game_schedule' => 'Spielplan|Spielpläne',
         'day' => 'Spieltag|Spieltage',
         'game' => 'Spiel|Spiele',
+        'total_team_point' => 'Punktetabelle|Punktetabellen',
     ],
 
     /*
@@ -105,6 +106,29 @@ return [
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',
         ],
+        'total_team_point' => [
+            'game_schedule_id' => 'Spielplan',
+            'team_id' => 'Team',
+            'total_number_of_encounters' => 'Anz. Beg.',
+            'total_points_of_legs' => 'Satzanzahl',
+            'total_wins' => 'S',
+            'total_defeats' => 'N',
+            'total_draws' => 'U',
+            'total_victory_after_defeats' => 'SnU',
+            'total_home_points_legs' => 'Heim Gesamtpunkte Legs',
+            'total_guest_points_legs' => 'Gast Gesamtpunkte Legs',
+            'total_home_points_games' => 'Heim Gesamtpunkte Spiele',
+            'total_guest_points_games' => 'Gast Gesamtpunkte Spiele',
+            'total_home_points_after_draw' => 'Heim Gesamtpunkte nach Unentschieden',
+            'total_guest_points_after_draw' => 'Gast Gesamtpunkte nach Unentschieden',
+            'total_points' => 'Punkte',
+            'legs' => 'Legs',
+            'games' => 'Spiele',
+            'created_at' => 'Erstellt am',
+            'updated_at' => 'Aktualisiert',
+            'deleted_at' => 'Gelöscht am',
+        ],
+
     ],
 
     /*

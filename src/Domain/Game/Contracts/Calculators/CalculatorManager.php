@@ -1,6 +1,6 @@
 <?php
 
-namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Calculators;
+namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Contracts\Calculators;
 
 use Illuminate\Support\Manager;
 use Illuminate\Support\Str;

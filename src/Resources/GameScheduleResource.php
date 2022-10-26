@@ -31,6 +31,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResou
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\GameDaysRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\PlayersRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\TeamsRelationManager;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\TotalTeamPointsRelationManager;
 use Throwable;
 
 class GameScheduleResource extends TranslateableResource
@@ -196,6 +197,7 @@ class GameScheduleResource extends TranslateableResource
             GameDaysRelationManager::class,
             TeamsRelationManager::class,
             PlayersRelationManager::class,
+            TotalTeamPointsRelationManager::class,
         ];
     }
 
@@ -210,7 +212,14 @@ class GameScheduleResource extends TranslateableResource
 
     protected static function getGlobalSearchEloquentQuery(): Builder
     {
-        return parent::getGlobalSearchEloquentQuery()->with(['federation', 'league', 'days', 'teams', 'players']);
+        return parent::getGlobalSearchEloquentQuery()->with([
+            'federation',
+            'league',
+            'days',
+            'teams',
+            'players',
+            'totalTeamPoints.gameSchedule.federation.calculationType',
+        ]);
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array

@@ -1,6 +1,6 @@
 <?php
 
-namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Calculators;
+namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Contracts\Calculators;
 
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Traits\HasMorphClass;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
