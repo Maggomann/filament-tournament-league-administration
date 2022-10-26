@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Calculators\DSABCalculator;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Calculators\HDLCalculator;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Calculators\DSABCalculator;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Calculators\HDLCalculator;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 
 return new class() extends Migration

@@ -11,19 +11,19 @@ use Filament\Resources\Table;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\EditEntryFailedNotification;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\CreateAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\EditEntryFailedNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\CreateAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameDay\Actions\UpdateGameDayAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameDay\DTO\GameDayData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
-use Maggomann\FilamentTournamentLeagueAdministration\Rules\EndedAtGameDayRule;
-use Maggomann\FilamentTournamentLeagueAdministration\Rules\StartedAtGameDayRule;
-use Maggomann\FilamentTournamentLeagueAdministration\Rules\UniqueGameDayRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\EndedAtGameDayRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\StartedAtGameDayRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\UniqueGameDayRule;
 use Throwable;
 
 class GameDaysRelationManager extends TranslateableRelationManager

@@ -3,7 +3,7 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions;
 
 use Illuminate\Support\Facades\DB;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Calculators\Calculator;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Calculators\CalculatorManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
@@ -62,7 +62,7 @@ class RecalculateTotalGamePointsAction
 
         $totalTeamPoint->save();
 
-        $totalTeamPoint->total_points = Calculator::make($totalTeamPoint)->recalculate();
+        $totalTeamPoint->total_points = CalculatorManager::make($totalTeamPoint)->recalculate();
         $totalTeamPoint->save();
     }
 

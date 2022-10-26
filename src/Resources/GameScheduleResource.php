@@ -14,13 +14,13 @@ use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Notifications\DeleteEntryFailedNotification;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\DeleteAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\EditAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\Tables\Actions\ViewAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Contracts\TranslateComponent;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DeleteEntryFailedNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\DeleteGameScheduleAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Forms\Components\CardTimestamps;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
@@ -29,8 +29,8 @@ use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResou
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\GameDaysRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\PlayersRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\TeamsRelationManager;
-use Maggomann\FilamentTournamentLeagueAdministration\Rules\PeriodEndGameScheduleRule;
-use Maggomann\FilamentTournamentLeagueAdministration\Rules\PeriodStartGameScheduleRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\PeriodEndGameScheduleRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\PeriodStartGameScheduleRule;
 use Throwable;
 
 class GameScheduleResource extends TranslateableResource
