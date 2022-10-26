@@ -5,9 +5,9 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResou
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\Actions\CreatePlayerAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\DTO\PlayerData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource;
 use Throwable;
 
