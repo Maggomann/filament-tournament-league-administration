@@ -95,6 +95,11 @@ class TotalTeamPointsRelationManager extends TranslateableRelationManager
 
     protected function getDefaultTableSortColumn(): ?string
     {
-        return 'id';
+        return 'total_points';
+    }
+
+    protected function getDefaultTableSortDirection(): ?string
+    {
+        return 'desc';
     }
 }
