@@ -11,7 +11,7 @@ class TeamsTableSeeder extends Seeder
     public function run(): void
     {
         League::get()->each(fn (League $league) => TeamFactory::new()
-            ->times(5)
+            ->times(6)
             ->create(['league_id' => $league->id])
         );
     }

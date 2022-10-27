@@ -21,7 +21,7 @@ class GameDayFactory extends Factory
     {
         return [
             'game_schedule_id' => GameScheduleFactory::new()->lazy(),
-            'day' => random_int(1, 10),
+            'day' => $this->faker->numberBetween($min = 1, $max = 10),
             'started_at' => now(),
             'ended_at' => now()->addDay(),
         ];
