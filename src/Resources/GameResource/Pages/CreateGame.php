@@ -6,7 +6,7 @@ use Filament\Resources\Pages\CreateRecord;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\CreateGameAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Contracts\Calculators\GameData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\DTO\GameData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource;
 use Throwable;

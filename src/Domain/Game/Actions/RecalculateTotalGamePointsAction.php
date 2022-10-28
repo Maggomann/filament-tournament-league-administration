@@ -5,199 +5,77 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions;
 use Illuminate\Support\Facades\DB;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Contracts\Calculators\CalculatorManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
-use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 use Throwable;
 
 class RecalculateTotalGamePointsAction
 {
+    protected Game $game;
+
     /**
      * @throws Throwable
      */
     public function execute(Game $game): void
     {
         try {
-            DB::transaction(function () use ($game) {
+            $this->game = $game;
+
+            DB::transaction(function () {
                 // FIXME: prozedural
                 // TODO: refactoring because this ist only brainstorming and absolut shit :-)
 
-                $this->saveTotalTeamPoints($game->gameSchedule, $game->homeTeam);
-                $this->saveTotalTeamPoints($game->gameSchedule, $game->guestTeam);
+                $this->saveTotalTeamPoints($this->game->homeTeam);
+
+                $this->saveTotalTeamPoints($this->game->guestTeam);
             });
         } catch (Throwable $e) {
             throw $e;
         }
     }
 
-    private function saveTotalTeamPoints(GameSchedule $gameSchedule, Team $team): void
+    private function saveTotalTeamPoints(Team $team): TotalTeamPoint
     {
         $totalTeamPoint = TotalTeamPoint::query()
-            ->where('game_schedule_id', $gameSchedule->id)
+            ->where('game_schedule_id', $this->game->gameSchedule->id)
             ->where('team_id', $team->id)
             ->first();
 
         if (is_null($totalTeamPoint)) {
             $totalTeamPoint = new TotalTeamPoint();
-            $totalTeamPoint->game_schedule_id = $gameSchedule->id;
+            $totalTeamPoint->game_schedule_id = $this->game->gameSchedule->id;
             $totalTeamPoint->team_id = $team->id;
 
             $totalTeamPoint->save();
         }
 
-        $totalTeamPoint->fill([
-            'total_number_of_encounters' => $this->totalNumberOfEncounters($gameSchedule, $team),
-            'total_points_of_legs' => $this->totalPointsOfLegs($gameSchedule, $team),
-            'total_wins' => $this->totalWins($gameSchedule, $team),
-            'total_defeats' => $this->totalDefeats($gameSchedule, $team),
-            'total_draws' => $this->totalDraws($gameSchedule, $team),
-            'total_victory_after_defeats' => $this->totalVictoryAfterDefeats($gameSchedule, $team),
-            'total_home_points_legs' => $this->totalHomePointsOfLegs($gameSchedule, $team),
-            'total_guest_points_legs' => $this->totalGuestPointsOfLegs($gameSchedule, $team),
-            'total_home_points_games' => $this->totalHomePointsOfGames($gameSchedule, $team),
-            'total_guest_points_games' => $this->totalGuestPointsOfGames($gameSchedule, $team),
-            'total_home_points_from_games_and_legs' => $this->totalHomePointsFromGamesAndLegs($gameSchedule, $team),
-            'total_guest_points_from_games_and_legs' => $this->totalGuestPointsFromGamesAndLegs($gameSchedule, $team),
-        ]);
+        $gameResult = $this->game->load('gameSchedule', 'games', 'guestGames')->recalculate($team)->first();
 
-        $totalTeamPoint->save();
+        $totalTeamPoint->fill([
+            'total_number_of_encounters' => $gameResult->total_number_of_encounters,
+            'total_wins' => $gameResult->total_wins,
+            'total_defeats' => $gameResult->total_defeats,
+            'total_draws' => $gameResult->total_draws,
+            'total_victory_after_defeats' => $gameResult->total_victory_after_defeats,
+            'total_home_points_legs' => ((int) $gameResult->games_sum_home_points_legs + (int) $gameResult->games_sum_guest_points_legs),
+            'total_guest_points_legs' => ((int) $gameResult->guest_games_sum_home_points_legs + (int) $gameResult->guest_games_sum_guest_points_legs),
+            'total_home_points_games' => ((int) $gameResult->games_sum_home_points_games + (int) $gameResult->games_sum_guest_points_games),
+            'total_guest_points_games' => ((int) $gameResult->guest_games_sum_guest_points_games + (int) $gameResult->guest_games_sum_home_points_games),
+            'total_home_points_from_games_and_legs' => ((int) $gameResult->games_sum_home_points_legs
+                + (int) $gameResult->games_sum_guest_points_legs
+                + (int) $gameResult->games_sum_home_points_games
+                + (int) $gameResult->games_sum_guest_points_games
+            ),
+            'total_guest_points_from_games_and_legs' => ((int) $gameResult->guest_games_sum_home_points_legs
+                + (int) $gameResult->guest_games_sum_guest_points_legs
+                + (int) $gameResult->guest_games_sum_guest_points_games
+                + (int) $gameResult->guest_games_sum_home_points_games
+            ),
+        ]);
 
         $totalTeamPoint->total_points = CalculatorManager::make($totalTeamPoint)->recalculate();
         $totalTeamPoint->save();
-    }
 
-    private function totalNumberOfEncounters(GameSchedule $gameSchedule, Team $team): int
-    {
-        return $gameSchedule
-            ->games()
-            ->where(function ($query) use ($team) {
-                $query->where('home_team_id', $team->id)
-                    ->orWhere('guest_team_id', $team->id);
-            })
-            ->count();
-    }
-
-    private function totalPointsOfLegs(GameSchedule $gameSchedule, Team $team): int
-    {
-        return $gameSchedule
-                ->games()
-                ->where('home_team_id', $team->id)
-                ->sum('home_points_legs') +
-            $gameSchedule
-                ->games()
-                ->where('guest_team_id', $team->id)
-                ->sum('guest_points_legs');
-    }
-
-    private function totalWins(GameSchedule $gameSchedule, Team $team): int
-    {
-        return $gameSchedule
-            ->games()
-            ->where(function ($query) use ($team) {
-                $query->where(function ($subQuery) use ($team) {
-                    $subQuery->where('home_team_id', $team->id)->whereRaw('home_points_games > guest_points_games');
-                })->orWhere(function ($subQuery) use ($team) {
-                    $subQuery->where('guest_team_id', $team->id)->whereRaw('home_points_games < guest_points_games');
-                });
-            })
-            ->count();
-    }
-
-    private function totalDefeats(GameSchedule $gameSchedule, Team $team): int
-    {
-        return $gameSchedule
-            ->games()
-            ->where(function ($query) use ($team) {
-                $query->where(function ($subQuery) use ($team) {
-                    $subQuery->where('home_team_id', $team->id)->whereRaw('home_points_games < guest_points_games');
-                })->orWhere(function ($subQuery) use ($team) {
-                    $subQuery->where('guest_team_id', $team->id)->whereRaw('home_points_games > guest_points_games');
-                });
-            })
-            ->count();
-    }
-
-    private function totalDraws(GameSchedule $gameSchedule, Team $team): int
-    {
-        return $gameSchedule
-            ->games()
-            ->whereRaw('home_points_games = guest_points_games')
-            ->where(function ($query) use ($team) {
-                $query->where('home_team_id', $team->id)
-                    ->orWhere('guest_team_id', $team->id);
-            })
-            ->count();
-    }
-
-    private function totalVictoryAfterDefeats(GameSchedule $gameSchedule, Team $team): int
-    {
-        return $gameSchedule
-            ->games()
-            ->where(function ($query) use ($team) {
-                $query->where(function ($subQuery) use ($team) {
-                    $subQuery->where('home_team_id', $team->id)->whereRaw('home_points_after_draw > guest_points_after_draw');
-                })->orWhere(function ($subQuery) use ($team) {
-                    $subQuery->where('guest_team_id', $team->id)->whereRaw('home_points_after_draw < guest_points_after_draw');
-                });
-            })
-            ->count();
-    }
-
-    private function totalHomePointsOfLegs(GameSchedule $gameSchedule, Team $team): int
-    {
-        return $gameSchedule
-                ->games()
-                ->where('home_team_id', $team->id)
-                ->sum('home_points_legs') +
-            $gameSchedule
-                ->games()
-                ->where('guest_team_id', $team->id)
-                ->sum('guest_points_legs');
-    }
-
-    private function totalGuestPointsOfLegs(GameSchedule $gameSchedule, Team $team): int
-    {
-        return $gameSchedule
-                ->games()
-                ->where('home_team_id', $team->id)
-                ->sum('guest_points_legs') +
-            $gameSchedule
-                ->games()
-                ->where('guest_team_id', $team->id)
-                ->sum('home_points_legs');
-    }
-
-    private function totalHomePointsOfGames(GameSchedule $gameSchedule, Team $team): int
-    {
-        return $gameSchedule
-                ->games()
-                ->where('home_team_id', $team->id)
-                ->sum('home_points_games') +
-            $gameSchedule
-                ->games()
-                ->where('guest_team_id', $team->id)
-                ->sum('guest_points_games');
-    }
-
-    private function totalGuestPointsOfGames(GameSchedule $gameSchedule, Team $team): int
-    {
-        return $gameSchedule
-                ->games()
-                ->where('home_team_id', $team->id)
-                ->sum('guest_points_games') +
-            $gameSchedule
-                ->games()
-                ->where('guest_team_id', $team->id)
-                ->sum('home_points_games');
-    }
-
-    private function totalHomePointsFromGamesAndLegs(GameSchedule $gameSchedule, Team $team): int
-    {
-        return once(fn () => $this->totalHomePointsOfLegs($gameSchedule, $team) + $this->totalHomePointsOfGames($gameSchedule, $team));
-    }
-
-    private function totalGuestPointsFromGamesAndLegs(GameSchedule $gameSchedule, Team $team): int
-    {
-        return once(fn () => $this->totalGuestPointsOfLegs($gameSchedule, $team) + $this->totalGuestPointsOfGames($gameSchedule, $team));
+        return $totalTeamPoint;
     }
 }

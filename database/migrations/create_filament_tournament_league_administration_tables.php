@@ -113,7 +113,6 @@ return new class() extends Migration
             $table->unsignedBigInteger('game_schedule_id')->nullable()->index();
             $table->unsignedBigInteger('team_id')->nullable()->index();
             $table->integer('total_number_of_encounters')->default(0);
-            $table->integer('total_points_of_legs')->default(0);
             $table->integer('total_wins')->default(0);
             $table->integer('total_defeats')->default(0);
             $table->integer('total_draws')->default(0);

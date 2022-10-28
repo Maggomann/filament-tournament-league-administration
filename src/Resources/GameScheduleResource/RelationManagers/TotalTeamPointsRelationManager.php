@@ -43,8 +43,6 @@ class TotalTeamPointsRelationManager extends TranslateableRelationManager
 
     public static function table(Table $table): Table
     {
-        $legs = fn (TotalTeamPoint $record) => "{$record->total_home_points_legs} : {$record->total_guest_points_legs}";
-
         return $table
             ->columns([
                 TextColumn::make('team.name')

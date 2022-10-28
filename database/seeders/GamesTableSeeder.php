@@ -23,13 +23,20 @@ class GamesTableSeeder extends Seeder
                         ->crossJoin($gameSchedule->teams->whereNotIn('id', [$firstTeam->id])->pluck('id'))
                         ->each(fn ($crossJoinTeams) => GameFactory::new()
                                 ->for($gameSchedule, 'gameSchedule')
-                                ->for($gameSchedule->days->shuffle()->first(), 'gameDay')
+                                ->for($gameDay = $gameSchedule->days->shuffle()->first(), 'gameDay')
                                 ->create([
                                     'home_team_id' => $crossJoinTeams[0],
                                     'guest_team_id' => $crossJoinTeams[1],
+                                    'has_an_overtime' => false,
+                                    'started_at' => $gameDay->started_at->addHours(
+                                        random_int(1, 11)
+                                    ),
+                                    'ended_at' => $gameDay->started_at->subHours(
+                                        random_int(1, 11)
+                                    ),
                                 ])
                         )
-                )
+            )
             );
     }
 }

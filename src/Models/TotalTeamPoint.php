@@ -35,7 +35,6 @@ class TotalTeamPoint extends TranslateableModel
      */
     protected $fillable = [
         'total_number_of_encounters',
-        'total_points_of_legs',
         'total_wins',
         'total_defeats',
         'total_draws',

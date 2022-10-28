@@ -1,6 +1,6 @@
 <?php
 
-namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Contracts\Calculators;
+namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\DTO;
 
 use Illuminate\Support\Arr;
 use Spatie\DataTransferObject\DataTransferObject;

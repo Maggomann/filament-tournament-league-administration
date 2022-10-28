@@ -110,7 +110,6 @@ return [
             'game_schedule_id' => 'Spielplan',
             'team_id' => 'Team',
             'total_number_of_encounters' => 'Anz. Beg.',
-            'total_points_of_legs' => 'Satzanzahl',
             'total_wins' => 'S',
             'total_defeats' => 'N',
             'total_draws' => 'U',

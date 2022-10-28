@@ -6,7 +6,7 @@ use Filament\Resources\Pages\EditRecord;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\UpdateGameAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Contracts\Calculators\GameData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\DTO\GameData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\EditEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource;
 use Throwable;
@@ -20,6 +20,7 @@ class EditGame extends EditRecord
         try {
             return app(UpdateGameAction::class)->execute($record, GameData::create($data));
         } catch (Throwable $e) {
+            dd($e);
             EditEntryFailedNotification::make()->send();
 
             throw new Halt($e->getMessage());
