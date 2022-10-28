@@ -31,7 +31,7 @@ class GamesTableSeeder extends Seeder
                                     'started_at' => $gameDay->started_at->addHours(
                                         random_int(1, 11)
                                     ),
-                                    'ended_at' => $gameDay->started_at->subHours(
+                                    'ended_at' => $gameDay->ended_at->subHours(
                                         random_int(1, 11)
                                     ),
                                 ])
