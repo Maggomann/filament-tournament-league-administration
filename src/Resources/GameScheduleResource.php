@@ -29,6 +29,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\GameDaysRelationManager;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\GamesRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\PlayersRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\TeamsRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\TotalTeamPointsRelationManager;
@@ -197,6 +198,7 @@ class GameScheduleResource extends TranslateableResource
             GameDaysRelationManager::class,
             TeamsRelationManager::class,
             PlayersRelationManager::class,
+            GamesRelationManager::class,
             TotalTeamPointsRelationManager::class,
         ];
     }

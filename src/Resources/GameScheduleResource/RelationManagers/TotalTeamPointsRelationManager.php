@@ -72,11 +72,13 @@ class TotalTeamPointsRelationManager extends TranslateableRelationManager
                     ),
 
                 TextColumn::make(TotalTeamPoint::transAttribute('legs'))
+                    ->label(TotalTeamPoint::transAttribute('legs'))
                     ->getStateUsing(
                         fn (TotalTeamPoint $record): string => "{$record->total_home_points_legs} : {$record->total_guest_points_legs}"
                     ),
 
                 TextColumn::make(TotalTeamPoint::transAttribute('games'))
+                    ->label(TotalTeamPoint::transAttribute('games'))
                     ->getStateUsing(
                         fn (TotalTeamPoint $record): string => "{$record->total_home_points_games} : {$record->total_guest_points_games}"
                     ),

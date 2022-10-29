@@ -21,6 +21,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actio
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\SelectOptions\GameDaySelect;
@@ -202,6 +203,24 @@ class GameResource extends TranslateableResource
                     ->label(Game::transAttribute('guest_team_id'))
                     ->searchable()
                     ->sortable(),
+
+                TextColumn::make(TotalTeamPoint::transAttribute('legs'))
+                    ->label(TotalTeamPoint::transAttribute('legs'))
+                    ->getStateUsing(
+                        fn (Game $record): string => "{$record->home_points_legs} : {$record->guest_points_legs}"
+                    ),
+
+                TextColumn::make(TotalTeamPoint::transAttribute('games'))
+                    ->label(TotalTeamPoint::transAttribute('games'))
+                    ->getStateUsing(
+                        fn (Game $record): string => "{$record->home_points_games} : {$record->guest_points_games}"
+                    ),
+
+                TextColumn::make(TotalTeamPoint::transAttribute('points_after_draws'))
+                    ->label(TotalTeamPoint::transAttribute('points_after_draws'))
+                    ->getStateUsing(
+                        fn (Game $record): string => "{$record->home_points_after_draw} : {$record->guest_points_after_draw}"
+                    ),
 
                 TextColumn::make('started_at')
                     ->label(Game::transAttribute('started_at'))
