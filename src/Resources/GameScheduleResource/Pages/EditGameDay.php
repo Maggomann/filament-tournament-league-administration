@@ -9,6 +9,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\DTO\GameScheduleData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\EditEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource;
+use Throwable;
 
 class EditGameDay extends EditRecord
 {
@@ -19,7 +20,6 @@ class EditGameDay extends EditRecord
         try {
             return app(UpdateGameScheduleAction::class)->execute($record, GameScheduleData::create($data));
         } catch (Throwable $e) {
-            throw $e;
             EditEntryFailedNotification::make()->send();
 
             throw new Halt($e->getMessage());

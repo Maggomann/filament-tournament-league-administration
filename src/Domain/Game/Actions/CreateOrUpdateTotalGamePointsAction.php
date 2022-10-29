@@ -10,24 +10,20 @@ use Throwable;
 
 class CreateOrUpdateTotalGamePointsAction
 {
-    protected Game $game;
-
     /**
      * @throws Throwable
      */
     public function execute(Game $game): void
     {
         try {
-            $this->game = $game;
-
-            DB::transaction(function () {
+            DB::transaction(function () use ($game) {
                 collect([
-                    $this->game->homeTeam,
-                    $this->game->guestTeam,
-                ])->each(function (Team $team) {
+                    $game->homeTeam,
+                    $game->guestTeam,
+                ])->each(function (Team $team) use ($game) {
                     $totalTeamPoint = app(FirstOrCreateTotalTeamPointAction::class)->execute(
                         $team,
-                        $this->game->gameSchedule
+                        $game->gameSchedule
                     );
 
                     $totalTeamPointData = TotalTeamPointData::createFromTotalTeamPointWithRecalculation($totalTeamPoint);

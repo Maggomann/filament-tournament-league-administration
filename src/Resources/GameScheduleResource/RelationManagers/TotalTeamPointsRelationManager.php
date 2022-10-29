@@ -4,10 +4,15 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameSchedul
 
 use Filament\Resources\Form;
 use Filament\Resources\Table;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\CreateOrUpdateTotalGameSchedulePointsAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreateEntrySuccessNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
+use Throwable;
 
 class TotalTeamPointsRelationManager extends TranslateableRelationManager
 {
@@ -81,7 +86,22 @@ class TotalTeamPointsRelationManager extends TranslateableRelationManager
 
             ])
             ->filters([])
-            ->headerActions([])
+            ->headerActions([
+                Action::make('recalculateGamePoints')
+                    ->label('Neuberechnung der Spielplanpunkte')
+                    ->button()
+                    ->action(function (TotalTeamPointsRelationManager $livewire): void {
+                        try {
+                            app(CreateOrUpdateTotalGameSchedulePointsAction::class)->execute(
+                                $livewire->getRelationship()->getParent()
+                            );
+
+                            CreateEntrySuccessNotification::make()->send();
+                        } catch (Throwable) {
+                            CreatedEntryFailedNotification::make()->send();
+                        }
+                    }),
+            ])
             ->actions([])
             ->bulkActions([]);
     }

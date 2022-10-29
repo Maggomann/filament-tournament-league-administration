@@ -12,6 +12,8 @@ This package is still under development. Use at your own risk.
 
 ![spielplan teams](./src/docs/assets/008_spielplan_teams.png)
 
+![spielplan punktetabelle](./src/docs/assets/011_spielplan_punktetabelle.png)
+
 ![spiel erstellen reiter punkte](./src/docs/assets/010_spiel_erstellen_reiter_punkte.png)
 
 

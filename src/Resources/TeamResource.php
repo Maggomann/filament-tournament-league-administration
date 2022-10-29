@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Federation\Actions\CreateFedrationSmallAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Federation\DTO\FederationData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreateEntrySuccessNotification;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DeleteEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
@@ -92,7 +92,7 @@ class TeamResource extends TranslateableResource
 
                                     return $federation->getKey();
                                 } catch (Throwable) {
-                                    DeleteEntryFailedNotification::make()->send();
+                                    CreatedEntryFailedNotification::make()->send();
                                 }
                             })
                             ->afterStateUpdated(fn ($state, Closure $set) => $set('league_id', null)),
