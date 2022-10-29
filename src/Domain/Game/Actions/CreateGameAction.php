@@ -25,7 +25,7 @@ class CreateGameAction
 
                 $game->save();
 
-                app(RecalculateTotalGamePointsAction::class)->execute($game);
+                app(CreateOrUpdateTotalGamePointsAction::class)->execute($game);
 
                 return $game;
             });

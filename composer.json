@@ -17,6 +17,7 @@
     "homepage": "https://github.com/maggomann/filament-tournament-league-administration",
     "require": {
         "php": "^8.1",
+        "korridor/laravel-has-many-merged": "^0.0.3",
         "maggomann/filament-model-translator": "dev-beta",
         "maggomann/laravel-addressable": "dev-beta",
         "rinvex/countries": "^8.1",
