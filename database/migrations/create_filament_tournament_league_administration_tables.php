@@ -174,6 +174,7 @@ return new class() extends Migration
         $this->addCalcutaionTypes();
         $this->addModes();
         $this->addDartTypes();
+        $this->addQualificationLevels();
 
         Schema::table('tournament_league_game_days', function (Blueprint $table) {
             $table->string('game_schedule_day_unique')
