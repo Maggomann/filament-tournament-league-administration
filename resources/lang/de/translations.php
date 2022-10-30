@@ -25,6 +25,9 @@ return [
                     'game_day_id' => 'Bitte wählen Sie ein Spieltag aus.',
                     'home_team_id' => 'Bitte wählen Sie ein Team (Home) aus.',
                     'guest_team_id' => 'Bitte wählen Sie ein Team (Gast) aus.',
+                    'mode_id' => 'Bitte wählen Sie ein Spielmodus aus.',
+                    'type_id' => 'Bitte wählen Sie ein Dart-Typ aus.',
+                    'qualification_level_id' => 'Bitte wählen Sie ein Qualifikationsniveau aus.',
                 ],
             ],
             'tabs' => [
