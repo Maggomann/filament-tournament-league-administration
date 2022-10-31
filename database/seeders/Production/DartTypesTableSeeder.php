@@ -13,47 +13,12 @@ class DartTypesTableSeeder extends Seeder
 
         $dartTypes = [
             [
-                'title_translation_key' => 'tournament_league_dart_types.title.301_so',
+                'title_translation_key' => 'tournament_league_dart_types.title.soft_darts',
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
             [
-                'title_translation_key' => 'tournament_league_dart_types.title.301_mo',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.301_do',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.501_so',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.501_mo',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.501_do',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.cricket',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.splitscore',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.shanghai',
+                'title_translation_key' => 'tournament_league_dart_types.title.steel_darts',
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
