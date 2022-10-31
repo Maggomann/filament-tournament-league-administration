@@ -52,7 +52,7 @@ class Game extends TranslateableModel
     ];
 
     protected $casts = [
-        'is_admin' => 'has_an_overtime',
+        'has_an_overtime' => 'boolean',
     ];
 
     public function gameSchedule(): BelongsTo
