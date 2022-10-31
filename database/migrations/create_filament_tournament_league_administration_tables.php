@@ -2,15 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Contracts\Calculators\DSABCalculator;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Contracts\Calculators\HDLCalculator;
-use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
-use Maggomann\FilamentTournamentLeagueAdministration\Models\DartType;
-use Maggomann\FilamentTournamentLeagueAdministration\Models\Mode;
-use Maggomann\FilamentTournamentLeagueAdministration\Models\Modes;
-use Maggomann\FilamentTournamentLeagueAdministration\Models\QualificationLevel;
 
 return new class() extends Migration
 {
@@ -171,10 +165,9 @@ return new class() extends Migration
             $table->softDeletes();
         });
 
-        $this->addCalcutaionTypes();
-        $this->addModes();
-        $this->addDartTypes();
-        $this->addQualificationLevels();
+        Artisan::call('db:seed', [
+            '--class' => FilamentTournamentProductionTableSeeder::class,
+        ]);
 
         Schema::table('tournament_league_game_days', function (Blueprint $table) {
             $table->string('game_schedule_day_unique')
@@ -194,147 +187,6 @@ return new class() extends Migration
         });
     }
 
-    private function addCalcutaionTypes(): void
-    {
-        // TODO: Übersetzung einbauen
-        $now = now();
-        $calculators = [
-            [
-                'name' => 'HDL',
-                'description' => 'Herner Dart Liga / Win: 2pkt. Lose: 0pkt. Draw: jeweils 1pkt',
-                'calculator' => HDLCalculator::getMorphClass(),
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'name' => 'DSAB',
-                'description' => 'Deutscher Sportautomaten Bund / Win: 3pkt. Lose: 0pkt. Draw: Verlängerung => Gewinner 2pkt | Verlierer 1pkt.',
-                'calculator' => DSABCalculator::getMorphClass(),
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-        ];
-
-        CalculationType::insert($calculators);
-    }
-
-    private function addModes(): void
-    {
-        $now = now();
-        $modes = [
-            [
-                'title_translation_key' => 'tournament_league_modes.title.soft_darts',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_modes.title.steel_darts',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-        ];
-
-        Mode::insert($modes);
-    }
-
-    private function addDartTypes(): void
-    {
-        $now = now();
-        $dartTypes = [
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.301_so',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.301_mo',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.301_do',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.501_so',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.501_mo',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.501_do',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.cricket',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.splitscore',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_dart_types.title.shanghai',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ]
-        ];
-
-        DartType::insert($dartTypes);
-    }
-
-    private function addQualificationLevels(): void
-    {
-        $now = now();
-        $qualificationLevels = [
-            [
-                'title_translation_key' => 'tournament_league_qualification_levels.title.open',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_qualification_levels.title.c_league',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_qualification_levels.title.up_to_b_league',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_qualification_levels.title.until_a_league',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_qualification_levels.title.until_bz_league',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_qualification_levels.title.until_bzo_league',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'title_translation_key' => 'tournament_league_qualification_levels.title.until_bundesliga',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-        ];
-
-        QualificationLevel::insert($qualificationLevels);
-    }
-
     public function down(): void
     {
         if (! app()->environment('testing')) {
@@ -352,5 +204,9 @@ return new class() extends Migration
         Schema::dropIfExists('game_schedule_player');
         Schema::dropIfExists('tournament_league_games');
         Schema::dropIfExists('tournament_league_total_team_points');
+        Schema::dropIfExists('tournament_league_modes');
+        Schema::dropIfExists('tournament_league_dart_types');
+        Schema::dropIfExists('tournament_league_qualification_levels');
+        Schema::dropIfExists('tournament_league_free_tournaments');
     }
 };

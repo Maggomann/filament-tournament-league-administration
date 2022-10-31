@@ -2,9 +2,7 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -13,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  */
-class DartType extends TranslateableModel
+class QualificationLevel extends TranslateableModel
 {
     use HasFactory;
     use SoftDeletes;
