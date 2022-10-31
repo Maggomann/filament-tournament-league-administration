@@ -214,6 +214,9 @@ return [
         'game' => [
             'name' => 'Saisons & Turniere',
         ],
+        'free_tournament' => [
+            'name' => 'Saisons & Turniere',
+        ],
     ],
 
 ];
