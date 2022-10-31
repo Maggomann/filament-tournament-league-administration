@@ -4,6 +4,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
 use Closure;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
@@ -14,9 +15,13 @@ use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentResource\Pages;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentResource\SelectOptions\DartTypeSelect;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentResource\SelectOptions\ModeSelect;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentResource\SelectOptions\QualificationLevelSelect;
 
 class FreeTournamentResource extends TranslateableResource
 {
@@ -45,6 +50,40 @@ class FreeTournamentResource extends TranslateableResource
                             ->disabled()
                             ->required()
                             ->unique(FreeTournament::class, 'slug', fn ($record) => $record),
+
+                        Select::make('mode_id')
+                            ->label(FreeTournament::transAttribute('mode_id'))
+                            ->validationAttribute(FreeTournament::transAttribute('mode_id'))
+                            ->options(fn () => ModeSelect::options())
+                            ->placeholder(
+                                TranslateComponent::placeholder(static::$translateablePackageKey, 'mode_id')
+                            )
+                            ->preload()
+                            ->required()
+                            ->searchable(),
+
+                        Select::make('dart_type_id')
+                            ->label(FreeTournament::transAttribute('dart_type_id'))
+                            ->validationAttribute(FreeTournament::transAttribute('dart_type_id'))
+                            ->options(fn () => DartTypeSelect::options())
+                            ->placeholder(
+                                TranslateComponent::placeholder(static::$translateablePackageKey, 'dart_type_id')
+                            )
+                            ->preload()
+                            ->required()
+                            ->searchable(),
+
+                        Select::make('qualification_level_id')
+                            ->label(FreeTournament::transAttribute('qualification_level_id'))
+                            ->validationAttribute(FreeTournament::transAttribute('qualification_level_id'))
+                            ->options(fn () => QualificationLevelSelect::options())
+                            ->placeholder(
+                                TranslateComponent::placeholder(static::$translateablePackageKey, 'qualification_level_id')
+                            )
+                            ->preload()
+                            ->required()
+                            ->searchable(),
+
                     ])
                     ->columns([
                         'sm' => 2,

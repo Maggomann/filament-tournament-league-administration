@@ -171,7 +171,7 @@ return [
         'free_tournament' => [
             'mode_id' => 'Spielmodus',
             'dart_type_id' => 'Dart-Typ',
-            'qualification_level' => 'Höchstes Qualifikationsniveau',
+            'qualification_level_id' => 'Höchstes Qualifikationsniveau',
             'name' => 'Name',
             'slug' => 'Slug',
             'maximum_number_of_participants' => 'Maximale Anzahl von Teilnehmern',

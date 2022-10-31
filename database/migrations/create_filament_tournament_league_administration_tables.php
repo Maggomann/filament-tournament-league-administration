@@ -145,7 +145,7 @@ return new class() extends Migration
             $table->id();
             $table->unsignedBigInteger('mode_id')->nullable()->index();
             $table->unsignedBigInteger('dart_type_id')->nullable()->index();
-            $table->unsignedBigInteger('qualification_level')->nullable()->index();
+            $table->unsignedBigInteger('qualification_level_id')->nullable()->index();
             $table->string('name')->index();
             $table->text('description')->nullable();
             $table->string('slug')->nullable()->index();
