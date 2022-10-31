@@ -127,25 +127,17 @@ return new class() extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('tournament_league_modes', function (Blueprint $table) {
-            $table->id();
-            $table->string('title_translation_key');
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        Schema::create('tournament_league_dart_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('title_translation_key');
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        Schema::create('tournament_league_qualification_levels', function (Blueprint $table) {
-            $table->id();
-            $table->string('title_translation_key');
-            $table->timestamps();
-            $table->softDeletes();
+        collect([
+            'tournament_league_modes',
+            'tournament_league_dart_types',
+            'tournament_league_qualification_levels',
+        ])->each(function (string $tableName) {
+            Schema::create($tableName, function (Blueprint $table) {
+                $table->id();
+                $table->string('title_translation_key');
+                $table->timestamps();
+                $table->softDeletes();
+            });
         });
 
         Schema::create('tournament_league_free_tournaments', function (Blueprint $table) {
@@ -193,20 +185,21 @@ return new class() extends Migration
             return;
         }
 
-        Schema::dropIfExists('tournament_league_calculation_types');
-        Schema::dropIfExists('tournament_league_game_days');
-        Schema::dropIfExists('tournament_league_federations');
-        Schema::dropIfExists('tournament_league_leagues');
-        Schema::dropIfExists('tournament_league_teams');
-        Schema::dropIfExists('tournament_league_players');
-        Schema::dropIfExists('tournament_league_game_schedules');
-        Schema::dropIfExists('game_schedule_team');
-        Schema::dropIfExists('game_schedule_player');
-        Schema::dropIfExists('tournament_league_games');
-        Schema::dropIfExists('tournament_league_total_team_points');
-        Schema::dropIfExists('tournament_league_modes');
-        Schema::dropIfExists('tournament_league_dart_types');
-        Schema::dropIfExists('tournament_league_qualification_levels');
-        Schema::dropIfExists('tournament_league_free_tournaments');
+        collect([
+            'tournament_league_calculation_types',
+            'tournament_league_game_days',
+            'tournament_league_federations',
+            'tournament_league_leagues',
+            'tournament_league_teams',
+            'tournament_league_players',
+            'tournament_league_game_schedules',
+            'game_schedule_team',
+            'game_schedule_player',
+            'tournament_league_total_team_points',
+            'tournament_league_modes',
+            'tournament_league_dart_types',
+            'tournament_league_qualification_levels',
+            'tournament_league_free_tournaments',
+        ])->each(fn (string $tableName) => Schema::dropIfExists($tableName));
     }
 };
