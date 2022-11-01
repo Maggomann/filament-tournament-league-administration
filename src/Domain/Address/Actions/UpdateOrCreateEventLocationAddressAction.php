@@ -25,7 +25,7 @@ class UpdateOrCreateEventLocationAddressAction
                 $address->category_id = $eventLocationAAddressData->category_id;
                 $address->gender_id = $eventLocationAAddressData->gender_id;
 
-                $freeTournament->addresses()->save($address);
+                $freeTournament->address()->save($address);
 
                 return $address;
             });

@@ -15,6 +15,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLoc
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DeleteEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\EditEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\CreateAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
@@ -181,6 +182,7 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
                         }
                     }),
                 ViewAction::make()->hideLabellnTooltip(),
+                DeleteAction::make()->hideLabellnTooltip(),
             ])
             ->bulkActions([
                 //
