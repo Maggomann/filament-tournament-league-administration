@@ -4,6 +4,8 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources;
 
 use Closure;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -15,6 +17,7 @@ use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Traits\HasContentEditor;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
@@ -25,6 +28,8 @@ use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentRes
 
 class FreeTournamentResource extends TranslateableResource
 {
+    use HasContentEditor;
+
     protected static ?string $model = FreeTournament::class;
 
     protected static ?string $slug = 'tournament-league/FreeTournaments';
@@ -50,6 +55,9 @@ class FreeTournamentResource extends TranslateableResource
                             ->disabled()
                             ->required()
                             ->unique(FreeTournament::class, 'slug', fn ($record) => $record),
+
+                        self::getContentEditor('description')
+                            ->label(FreeTournament::transAttribute('description')),
 
                         Select::make('mode_id')
                             ->label(FreeTournament::transAttribute('mode_id'))
@@ -83,6 +91,41 @@ class FreeTournamentResource extends TranslateableResource
                             ->preload()
                             ->required()
                             ->searchable(),
+
+                        TextInput::make('maximum_number_of_participants')
+                            ->label(FreeTournament::transAttribute('maximum_number_of_participants'))
+                            ->required()
+                            ->numeric()
+                            ->minValue(1)
+                            ->maxValue(10),
+
+                        TextInput::make('coin_money')
+                            ->label(FreeTournament::transAttribute('coin_money'))
+                            ->required()
+                            ->numeric()
+                            ->minValue(1),
+
+                        KeyValue::make('prize_money_depending_on_placement')
+                            ->keyLabel(FreeTournament::transAttribute('prize_money_depending_on_placement_key_value.key_label'))
+                            ->valueLabel(FreeTournament::transAttribute('prize_money_depending_on_placement_key_value.value_label'))
+                            ->label(FreeTournament::transAttribute('prize_money_depending_on_placement'))
+                            ->required(),
+
+                        DateTimePicker::make('started_at')
+                            ->label(FreeTournament::transAttribute('started_at'))
+                            ->firstDayOfWeek(1)
+                            ->required()
+                            ->rules([
+                                //
+                            ]),
+
+                        DateTimePicker::make('ended_at')
+                            ->label(FreeTournament::transAttribute('ended_at'))
+                            ->firstDayOfWeek(1)
+                            ->required()
+                            ->rules([
+                                //
+                            ]),
 
                     ])
                     ->columns([

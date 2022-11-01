@@ -174,6 +174,7 @@ return [
             'qualification_level_id' => 'Höchstes Qualifikationsniveau',
             'name' => 'Name',
             'slug' => 'Slug',
+            'description' => 'Beschreibung',
             'maximum_number_of_participants' => 'Maximale Anzahl von Teilnehmern',
             'coin_money' => 'Münzgeld',
             'prize_money_depending_on_placement' => 'Preisgeld je nach Platzierung',
@@ -182,6 +183,10 @@ return [
             'created_at' => 'Erstellt am',
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',
+            'prize_money_depending_on_placement_key_value' => [
+                'key_label' => 'Platzierung',
+                'value_label' => 'Preis',
+            ],
         ],
 
     ],

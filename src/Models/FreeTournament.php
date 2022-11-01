@@ -51,6 +51,10 @@ class FreeTournament extends TranslateableModel
         'deleted_at',
     ];
 
+    protected $casts = [
+        'prize_money_depending_on_placement' => 'array',
+    ];
+
     /**
      * Get the options for generating the slug.
      */

@@ -147,8 +147,8 @@ return new class() extends Migration
             $table->unsignedBigInteger('dart_type_id')->nullable()->index();
             $table->unsignedBigInteger('qualification_level_id')->nullable()->index();
             $table->string('name')->index();
-            $table->text('description')->nullable();
             $table->string('slug')->nullable()->index();
+            $table->text('description')->nullable();
             $table->integer('maximum_number_of_participants')->default(0);
             $table->integer('coin_money')->default(0);
             $table->string('prize_money_depending_on_placement');
