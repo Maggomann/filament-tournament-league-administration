@@ -21,7 +21,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\AdressesResource\RelationManagers\AdressesRelationManager;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\RelationManagers\AddressesRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\RelationManagers\TeamRelationManager;
@@ -219,7 +219,7 @@ class PlayerResource extends TranslateableResource
     {
         return [
             TeamRelationManager::class,
-            AdressesRelationManager::class,
+            AddressesRelationManager::class,
         ];
     }
 

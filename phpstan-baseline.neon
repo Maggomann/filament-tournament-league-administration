@@ -153,27 +153,27 @@ parameters:
 		-
 			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
 			count: 2
-			path: src/Resources/AdressesResource/RelationManagers/AdressesRelationManager.php
+			path: src/Resources/AddressesResource/RelationManagers/AddressesRelationManager.php
 
 		-
 			message: "#^Parameter \\#1 \\$address of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\Address\\\\Actions\\\\UpdateAddressAction\\:\\:execute\\(\\) expects Maggomann\\\\LaravelAddressable\\\\Models\\\\Address, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
 			count: 1
-			path: src/Resources/AdressesResource/RelationManagers/AdressesRelationManager.php
+			path: src/Resources/AddressesResource/RelationManagers/AddressesRelationManager.php
 
 		-
 			message: "#^Parameter \\#1 \\$morphMany of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Application\\\\Address\\\\Actions\\\\CreateAddressAction\\:\\:execute\\(\\) expects Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\MorphMany, Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\Relation given\\.$#"
 			count: 1
-			path: src/Resources/AdressesResource/RelationManagers/AdressesRelationManager.php
+			path: src/Resources/AddressesResource/RelationManagers/AddressesRelationManager.php
 
 		-
 			message: "#^Unable to resolve the template type TKey in call to function collect$#"
 			count: 3
-			path: src/Resources/AdressesResource/RelationManagers/AdressesRelationManager.php
+			path: src/Resources/AddressesResource/RelationManagers/AddressesRelationManager.php
 
 		-
 			message: "#^Unable to resolve the template type TValue in call to function collect$#"
 			count: 3
-			path: src/Resources/AdressesResource/RelationManagers/AdressesRelationManager.php
+			path: src/Resources/AddressesResource/RelationManagers/AddressesRelationManager.php
 
 		-
 			message: "#^Unable to resolve the template type TKey in call to function collect$#"

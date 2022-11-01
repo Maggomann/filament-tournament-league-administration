@@ -1,6 +1,6 @@
 <?php
 
-namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\AdressesResource\RelationManagers;
+namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\RelationManagers;
 
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -27,7 +27,7 @@ use Maggomann\LaravelAddressable\Models\AddressCategory;
 use Maggomann\LaravelAddressable\Models\AddressGender;
 use Throwable;
 
-class AdressesRelationManager extends TranslateableRelationManager
+class AddressesRelationManager extends TranslateableRelationManager
 {
     protected static string $relationship = 'addresses';
 

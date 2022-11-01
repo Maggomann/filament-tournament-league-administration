@@ -5,7 +5,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\Crea
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\CreateAddressData;
 use Maggomann\LaravelAddressable\Models\Address;
 
-dataset('CreateAdresses', function () {
+dataset('CreateAddresses', function () {
     yield fn () => CreateAddressData::create([
         'gender_id' => 1,
         'category_id' => 1,
@@ -52,4 +52,4 @@ it('creates an address', function (CreateAddressData $createAddressData) {
             ])
             ->toArray()
     );
-})->with('CreateAdresses');
+})->with('CreateAddresses');
