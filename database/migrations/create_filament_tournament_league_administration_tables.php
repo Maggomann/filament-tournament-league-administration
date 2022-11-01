@@ -158,10 +158,48 @@ return new class() extends Migration
             $table->softDeletes();
         });
 
+        Schema::create('tournament_league_event_locations', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->index();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        $this->addUniqueIndicesToTables();
+
         Artisan::call('db:seed', [
             '--class' => FilamentTournamentProductionTableSeeder::class,
         ]);
+    }
 
+    private function addUniqueIndicesToTables(): void
+    {
+        $this->addUniqueIndicesToEventLocations();
+        $this->addUniqueIndicesToGameDays();
+    }
+
+    private function addUniqueIndicesToEventLocations(): void
+    {
+        Schema::table('tournament_league_event_locations', function (Blueprint $table) {
+            $table->string('name_unique')
+                ->virtualAs(
+                    DB::raw(
+                        "CONCAT(
+                            name,
+                            '#',
+                            IF(deleted_at IS NULL, '-',  deleted_at)
+                        )"
+                    )
+                );
+        });
+
+        Schema::table('tournament_league_event_locations', function (Blueprint $table) {
+            $table->unique(['name_unique'], 'name_unique_index');
+        });
+    }
+
+    private function addUniqueIndicesToGameDays(): void
+    {
         Schema::table('tournament_league_game_days', function (Blueprint $table) {
             $table->string('game_schedule_day_unique')
                 ->virtualAs(
@@ -201,6 +239,7 @@ return new class() extends Migration
             'tournament_league_dart_types',
             'tournament_league_qualification_levels',
             'tournament_league_free_tournaments',
+            'tournament_league_event_locations',
         ])->each(fn (string $tableName) => Schema::dropIfExists($tableName));
     }
 };

@@ -20,6 +20,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actio
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Traits\HasContentEditor;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\RelationManagers\EventLocalctionAddressRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentResource\SelectOptions\DartTypeSelect;
@@ -163,6 +164,7 @@ class FreeTournamentResource extends TranslateableResource
     public static function getRelations(): array
     {
         return [
+            EventLocalctionAddressRelationManager::class,
         ];
     }
 
@@ -177,7 +179,7 @@ class FreeTournamentResource extends TranslateableResource
 
     protected static function getGlobalSearchEloquentQuery(): Builder
     {
-        return parent::getGlobalSearchEloquentQuery()->with(['mode', 'dartType', 'qualificationLevel']);
+        return parent::getGlobalSearchEloquentQuery()->with(['mode', 'dartType', 'qualificationLevel', 'address']);
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array

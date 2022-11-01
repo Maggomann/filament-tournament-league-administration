@@ -5,6 +5,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Maggomann\LaravelAddressable\Traits\Addressable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -18,6 +19,7 @@ use Spatie\Sluggable\SlugOptions;
  */
 class FreeTournament extends TranslateableModel
 {
+    use Addressable;
     use HasFactory;
     use HasSlug;
     use SoftDeletes;

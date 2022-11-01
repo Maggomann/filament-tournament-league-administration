@@ -19,6 +19,7 @@ return [
         'game' => 'Spiel|Spiele',
         'total_team_point' => 'Punktetabelle|Punktetabellen',
         'free_tournament' => 'Freies Turnier|Freie Tuniere',
+        'event_location' => 'Veranstaltungsort|Veranstaltungsorte',
     ],
 
     /*
@@ -187,6 +188,12 @@ return [
                 'key_label' => 'Platzierung',
                 'value_label' => 'Preis',
             ],
+        ],
+        'event_location' => [
+            'name' => 'Name',
+            'created_at' => 'Erstellt am',
+            'updated_at' => 'Aktualisiert am',
+            'deleted_at' => 'Gelöscht am',
         ],
 
     ],
