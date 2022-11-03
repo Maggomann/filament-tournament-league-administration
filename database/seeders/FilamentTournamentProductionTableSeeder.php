@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Database\Seeders\Production\CalculationTypesTableSeeder;
 use Database\Seeders\Production\DartTypesTableSeeder;
+use Database\Seeders\Production\EventLocationTableSeeder;
 use Database\Seeders\Production\ModesTableSeeder;
 use Database\Seeders\Production\QualificationLevelsTableSeeder;
 use Illuminate\Database\Seeder;
@@ -17,6 +18,7 @@ class FilamentTournamentProductionTableSeeder extends Seeder
             DartTypesTableSeeder::class,
             ModesTableSeeder::class,
             QualificationLevelsTableSeeder::class,
+            EventLocationTableSeeder::class,
         ]);
     }
 }

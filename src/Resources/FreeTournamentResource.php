@@ -117,7 +117,7 @@ class FreeTournamentResource extends TranslateableResource
                             ->firstDayOfWeek(1)
                             ->required()
                             ->rules([
-                                //
+                                // FIXME: add rule :-)
                             ]),
 
                         DateTimePicker::make('ended_at')
@@ -125,7 +125,7 @@ class FreeTournamentResource extends TranslateableResource
                             ->firstDayOfWeek(1)
                             ->required()
                             ->rules([
-                                //
+                                // FIXME: add rule :-)
                             ]),
 
                     ])

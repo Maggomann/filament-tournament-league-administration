@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Maggomann\LaravelAddressable\Traits\Addressable;
 
 /**
- * @property int|null $team_id
  * @property string $name
- * @property string $emai
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -19,6 +17,8 @@ class EventLocation extends TranslateableModel
     use Addressable;
     use HasFactory;
     use SoftDeletes;
+
+    public const AS_DEFAULT_NAME = 'EventLocation';
 
     /**
      * @var string
