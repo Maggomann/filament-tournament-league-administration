@@ -188,6 +188,7 @@ return [
                 'key_label' => 'Platzierung',
                 'value_label' => 'Preis',
             ],
+            'event_location' => 'Veranstaltungsort',
         ],
         'event_location' => [
             'name' => 'Name',

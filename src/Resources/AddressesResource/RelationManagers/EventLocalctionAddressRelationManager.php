@@ -2,6 +2,7 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\RelationManagers;
 
+use Closure;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -19,6 +20,8 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actio
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\SelectOptions\EventLocationSelect;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Maggomann\LaravelAddressable\Models\Address;
 use Maggomann\LaravelAddressable\Models\AddressGender;
@@ -40,6 +43,34 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
         return $form
             ->schema([
                 // Nur zum Testen für das Addressable-Paket, kommt später wieder weg
+
+                Select::make('event_location_id')
+                    ->label(FreeTournament::transAttribute('event_location'))
+                    ->validationAttribute(FreeTournament::transAttribute('event_location'))
+                    ->options(fn () => EventLocationSelect::options())
+                    ->placeholder(
+                        TranslateComponent::placeholder(static::$translateablePackageKey, 'event_location')
+                    )
+                    ->required()
+                    ->searchable()
+                    ->reactive()
+                    ->afterStateUpdated(
+                        function (Closure $set, Closure $get) {
+                            $address = Address::find($get('event_location_id'));
+
+                            if ($address) {
+                                $set('company', $address->company);
+                                $set('gender_id', $address->gender_id);
+                                $set('first_name', $address->first_name);
+                                $set('last_name', $address->last_name);
+                                $set('street_address', $address->street_address);
+                                $set('street_addition', $address->street_addition);
+                                $set('postal_code', $address->postal_code);
+                                $set('city', $address->city);
+                                $set('country_code', $address->country_code);
+                            }
+                        })
+                    ->columnSpan(2),
 
                 TextInput::make('company')
                     ->label(__('laravel-addressable.attributes.addresses.company'))

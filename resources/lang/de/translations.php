@@ -28,6 +28,7 @@ return [
                     'mode_id' => 'Bitte wählen Sie ein Spielmodus aus.',
                     'type_id' => 'Bitte wählen Sie ein Dart-Typ aus.',
                     'qualification_level_id' => 'Bitte wählen Sie ein Qualifikationsniveau aus.',
+                    'event_location' => 'Bitte wählen Sie ein Veranstaltungsort aus.',
                 ],
             ],
             'tabs' => [
