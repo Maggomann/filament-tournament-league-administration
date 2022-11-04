@@ -11,7 +11,7 @@ use Filament\Tables\Contracts\HasRelationshipTable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\UpdateOrCreateEventLocationAddressAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAAddressData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DeleteEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\EditEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\CreateAction;
@@ -159,7 +159,7 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
                         try {
                             return app(UpdateOrCreateEventLocationAddressAction::class)->execute(
                                 $livewire->getRelationship()->getParent(),
-                                EventLocationAAddressData::create($data),
+                                EventLocationAddressData::create($data),
                                 $livewire->getRelationship()->getParent()->address
                             );
                         } catch (Throwable) {
@@ -174,7 +174,7 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
                         try {
                             return app(UpdateOrCreateEventLocationAddressAction::class)->execute(
                                 $livewire->getRelationship()->getParent(),
-                                EventLocationAAddressData::create($data),
+                                EventLocationAddressData::create($data),
                                 $record
                             );
                         } catch (Throwable) {

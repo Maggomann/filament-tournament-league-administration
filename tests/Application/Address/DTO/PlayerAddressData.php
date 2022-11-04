@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Arr;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\CreateAddressData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\PlayerAddressData;
 
 beforeEach(function () {
     $this->validParams = [
@@ -26,17 +26,17 @@ beforeEach(function () {
     ];
 });
 
-it('returns a CreateAddressData when valid data is submitted', function () {
-    $data = CreateAddressData::create($this->validParams);
+it('returns a PlayerAddressData when valid data is submitted', function () {
+    $data = PlayerAddressData::create($this->validParams);
 
-    $this->assertInstanceOf(CreateAddressData::class, $data);
+    $this->assertInstanceOf(PlayerAddressData::class, $data);
 });
 
-test('CreateAddressData throws an error when invalid data is submitted', function ($key, $value) {
+test('PlayerAddressData throws an error when invalid data is submitted', function ($key, $value) {
     $this->withoutExceptionHandling();
     $this->expectException(TypeError::class);
 
-    CreateAddressData::create(
+    PlayerAddressData::create(
         Arr::set($this->validParams, $key, $value)
     );
 })->with([

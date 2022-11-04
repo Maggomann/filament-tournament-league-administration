@@ -2,17 +2,19 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Illuminate\Support\Arr;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Contracts\AddressData;
+use Maggomann\LaravelAddressable\Models\AddressCategory;
 
-class CreateAddressData extends DataTransferObject
+class EventLocationAddressData extends AddressData
 {
     public int $category_id;
 
-    public int $gender_id;
+    public ?int $gender_id;
 
-    public string $first_name;
+    public ?string $first_name;
 
-    public string $last_name;
+    public ?string $last_name;
 
     public ?string $name;
 
@@ -47,6 +49,12 @@ class CreateAddressData extends DataTransferObject
     {
         if (is_array($args[0] ?? null)) {
             $args = $args[0];
+        }
+
+        if (Arr::has($args, 'is_preferred') === false) {
+            Arr::set($args, 'is_preferred', 1);
+            Arr::set($args, 'is_main', 1);
+            Arr::set($args, 'category_id', AddressCategory::firstWhere('title_translation_key', 'address_categories.title.standard')->id);
         }
 
         return new self($args);

@@ -1,12 +1,13 @@
 <?php
 
+use Database\Factories\AddressFactory;
 use Database\Factories\PlayerFactory;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\CreateAddressAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\CreateAddressData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\UpdateOrCreateAddressAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\PlayerAddressData;
 use Maggomann\LaravelAddressable\Models\Address;
 
-dataset('CreateAddresses', function () {
-    yield fn () => CreateAddressData::create([
+dataset('UpdateOrCreateAddresses', function () {
+    yield fn () => PlayerAddressData::create([
         'gender_id' => 1,
         'category_id' => 1,
         'first_name' => 'first_name example',
@@ -21,7 +22,7 @@ dataset('CreateAddresses', function () {
         'is_main' => false,
     ]);
 
-    yield fn () => CreateAddressData::create([
+    yield fn () => PlayerAddressData::create([
         'gender_id' => 1,
         'category_id' => 1,
         'first_name' => 'first_name example 2',
@@ -37,14 +38,14 @@ dataset('CreateAddresses', function () {
     ]);
 });
 
-it('creates an address', function (CreateAddressData $createAddressData) {
+it('creates an address', function (PlayerAddressData $playerAddressData) {
     $player = PlayerFactory::new()->create();
 
-    $address = app(CreateAddressAction::class)->execute($player, $createAddressData);
+    $address = app(UpdateOrCreateAddressAction::class)->execute($player, $playerAddressData);
 
     $this->assertDatabaseHas(
         Address::class,
-        collect($createAddressData->toArray())
+        collect($playerAddressData->toArray())
             ->merge([
                 'id' => $address->id,
                 'addressable_id' => $player->id,
@@ -52,4 +53,14 @@ it('creates an address', function (CreateAddressData $createAddressData) {
             ])
             ->toArray()
     );
-})->with('CreateAddresses');
+})->with('UpdateOrCreateAddresses');
+
+it('updates an address', function (PlayerAddressData $playerAddressData) {
+    $address = AddressFactory::new()->create();
+
+    $playerAddressData->id = $address->id;
+
+    $address = app(UpdateOrCreateAddressAction::class)->execute($address->addressable, $playerAddressData, $address);
+
+    $this->assertDatabaseHas(Address::class, $playerAddressData->toArray());
+})->with('UpdateOrCreateAddresses');

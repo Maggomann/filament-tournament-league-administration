@@ -11,10 +11,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Contracts\HasRelationshipTable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\CreateAddressAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\UpdateAddressAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\CreateAddressData;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\UpdateAddressData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\UpdateOrCreateAddressAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\PlayerAddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DeleteEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\EditEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\CreateAction;
@@ -177,11 +175,12 @@ class AddressesRelationManager extends TranslateableRelationManager
                 CreateAction::make()
                     ->using(function (HasRelationshipTable $livewire, array $data): Address {
                         try {
-                            return app(CreateAddressAction::class)->execute(
+                            return app(UpdateOrCreateAddressAction::class)->execute(
                                 $livewire->getRelationship()->getParent(),
-                                CreateAddressData::create($data)
+                                PlayerAddressData::create($data)
                             );
-                        } catch (Throwable) {
+                        } catch (Throwable $e) {
+                            dd($e);
                             DeleteEntryFailedNotification::make()->send();
                         }
                     }),
@@ -189,11 +188,12 @@ class AddressesRelationManager extends TranslateableRelationManager
             ->actions([
                 EditAction::make()
                     ->hideLabellnTooltip()
-                    ->using(function (Model $record, array $data): Address {
+                    ->using(function (HasRelationshipTable $livewire, Model $record, array $data): Address {
                         try {
-                            return app(UpdateAddressAction::class)->execute(
+                            return app(UpdateOrCreateAddressAction::class)->execute(
+                                $livewire->getRelationship()->getParent(),
+                                PlayerAddressData::create($data),
                                 $record,
-                                UpdateAddressData::create($data)
                             );
                         } catch (Throwable) {
                             EditEntryFailedNotification::make()->send();

@@ -4,28 +4,32 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Action
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAAddressData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Contracts\AddressAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAddressData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Traits\HasMakeableAddress;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\EventLocation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
 use Maggomann\LaravelAddressable\Models\Address;
 use Throwable;
 
-class UpdateOrCreateEventLocationAddressAction
+class UpdateOrCreateEventLocationAddressAction implements AddressAction
 {
+    use HasMakeableAddress;
+
     protected EventLocation $eventLocation;
 
-    protected EventLocationAAddressData $eventLocationAAddressData;
+    protected EventLocationAddressData $eventLocationAddressData;
 
     protected FreeTournament $freeTournament;
 
     /**
      * @throws Throwable
      */
-    public function execute(FreeTournament $freeTournament, EventLocationAAddressData $eventLocationAAddressData, ?Address $address = null): Address
+    public function execute(FreeTournament $freeTournament, EventLocationAddressData $eventLocationAddressData, ?Address $address = null): Address
     {
         try {
-            return DB::transaction(function () use ($freeTournament, $eventLocationAAddressData, $address) {
-                $this->eventLocationAAddressData = $eventLocationAAddressData;
+            return DB::transaction(function () use ($freeTournament, $eventLocationAddressData, $address) {
+                $this->eventLocationAddressData = $eventLocationAddressData;
                 $this->freeTournament = $freeTournament;
 
                 return $this->firstOrCreateFreeTournamentAddress($address)
@@ -40,7 +44,7 @@ class UpdateOrCreateEventLocationAddressAction
 
     private function firstOrCreateFreeTournamentAddress(?Address $address = null): self
     {
-        $address = $this->makeAddress($address);
+        $address = $this->makeAddress($this->eventLocationAddressData, $address);
 
         $this->freeTournament->address()->save($address);
 
@@ -59,8 +63,9 @@ class UpdateOrCreateEventLocationAddressAction
     private function firstOrCreateEventLocationAddress(): self
     {
         $address = $this->makeAddress(
+            $this->eventLocationAddressData,
             $this->eventLocation->addresses()
-                ->where($this->eventLocationAAddressData->toArray())
+                ->where($this->eventLocationAddressData->toArray())
                 ->first()
         );
 
@@ -75,18 +80,5 @@ class UpdateOrCreateEventLocationAddressAction
     private function freeTournamentAddress(): Address
     {
         return $this->freeTournament->address()->firstOrFail();
-    }
-
-    private function makeAddress(?Address $address = null): Address
-    {
-        if (is_null($address)) {
-            $address = new Address();
-        }
-
-        $address->fill($this->eventLocationAAddressData->toArray());
-        $address->category_id = $this->eventLocationAAddressData->category_id;
-        $address->gender_id = $this->eventLocationAAddressData->gender_id;
-
-        return $address;
     }
 }
