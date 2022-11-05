@@ -53,11 +53,11 @@ class TotalTeamPoint extends TranslateableModel
 
     public function gameSchedule(): BelongsTo
     {
-        return $this->belongsTo(GameSchedule::class);
+        return $this->belongsTo(GameSchedule::class)->withTrashed();
     }
 
     public function team(): BelongsTo
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Team::class)->withTrashed();
     }
 }

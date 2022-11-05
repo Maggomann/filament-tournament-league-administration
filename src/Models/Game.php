@@ -57,22 +57,22 @@ class Game extends TranslateableModel
 
     public function gameSchedule(): BelongsTo
     {
-        return $this->belongsTo(GameSchedule::class);
+        return $this->belongsTo(GameSchedule::class)->withTrashed();
     }
 
     public function gameDay(): BelongsTo
     {
-        return $this->belongsTo(GameDay::class);
+        return $this->belongsTo(GameDay::class)->withTrashed();
     }
 
     public function homeTeam(): BelongsTo
     {
-        return $this->belongsTo(Team::class, 'home_team_id');
+        return $this->belongsTo(Team::class, 'home_team_id')->withTrashed();
     }
 
     public function guestTeam(): BelongsTo
     {
-        return $this->belongsTo(Team::class, 'guest_team_id');
+        return $this->belongsTo(Team::class, 'guest_team_id')->withTrashed();
     }
 
     public function scopeCollection(Builder $query, string $collectionName): Builder

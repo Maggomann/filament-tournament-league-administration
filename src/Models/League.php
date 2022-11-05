@@ -58,12 +58,12 @@ class League extends TranslateableModel
 
     public function federation(): BelongsTo
     {
-        return $this->belongsTo(Federation::class);
+        return $this->belongsTo(Federation::class)->withTrashed();
     }
 
     public function teams(): HasMany
     {
-        return $this->hasMany(Team::class);
+        return $this->hasMany(Team::class)->withTrashed();
     }
 
     public function players(): HasManyThrough
@@ -71,11 +71,11 @@ class League extends TranslateableModel
         return $this->hasManyThrough(
             Player::class,
             Team::class,
-        );
+        )->withTrashed();
     }
 
     public function gameSchedules(): HasMany
     {
-        return $this->hasMany(GameSchedule::class);
+        return $this->hasMany(GameSchedule::class)->withTrashed();
     }
 }

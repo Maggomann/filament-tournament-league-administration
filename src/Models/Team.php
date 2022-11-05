@@ -65,42 +65,42 @@ class Team extends TranslateableModel
 
     public function league(): BelongsTo
     {
-        return $this->belongsTo(League::class);
+        return $this->belongsTo(League::class)->withTrashed();
     }
 
     public function players(): HasMany
     {
-        return $this->hasMany(Player::class);
+        return $this->hasMany(Player::class)->withTrashed();
     }
 
     public function gameSchedules(): BelongsToMany
     {
-        return $this->belongsToMany(GameSchedule::class);
+        return $this->belongsToMany(GameSchedule::class)->withTrashed();
     }
 
     public function games(): HasManyMerged
     {
-        return $this->hasManyMerged(Game::class, ['home_team_id', 'guest_team_id']);
+        return $this->hasManyMerged(Game::class, ['home_team_id', 'guest_team_id'])->withTrashed();
     }
 
     public function homeGames(): HasMany
     {
-        return $this->hasMany(Game::class, 'home_team_id', 'id');
+        return $this->hasMany(Game::class, 'home_team_id', 'id')->withTrashed();
     }
 
     public function guestGames(): HasMany
     {
-        return $this->hasMany(Game::class, 'guest_team_id', 'id');
+        return $this->hasMany(Game::class, 'guest_team_id', 'id')->withTrashed();
     }
 
     public function opponentHomeGames(): HasMany
     {
-        return $this->hasMany(Game::class, 'guest_team_id', 'id');
+        return $this->hasMany(Game::class, 'guest_team_id', 'id')->withTrashed();
     }
 
     public function opponentGuestGames(): HasMany
     {
-        return $this->hasMany(Game::class, 'home_team_id', 'id');
+        return $this->hasMany(Game::class, 'home_team_id', 'id')->withTrashed();
     }
 
     public function scopeRecalculatePoints(Builder $query, GameSchedule $gameSchedule): Builder
