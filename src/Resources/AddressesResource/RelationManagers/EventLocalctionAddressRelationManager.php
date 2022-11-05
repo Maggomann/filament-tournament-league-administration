@@ -51,7 +51,6 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
                     ->placeholder(
                         TranslateComponent::placeholder(static::$translateablePackageKey, 'event_location')
                     )
-                    ->required()
                     ->searchable()
                     ->reactive()
                     ->afterStateUpdated(

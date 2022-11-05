@@ -45,8 +45,8 @@ class GameSchedulesTableSeeder extends Seeder
     {
         for ($day = 1; $day < 11; $day++) {
             GameDayFactory::new()
+                ->for($this->gameSchedule)
                 ->create([
-                    'game_schedule_id' => $this->gameSchedule->id,
                     'day' => $day,
                     'started_at' => now()->addDays($day),
                     'ended_at' => now()->addDays($day + 1),
