@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
-use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule>
@@ -22,8 +21,7 @@ class GameScheduleFactory extends Factory
     {
         return [
             'federation_id' => FederationFactory::new()->lazy(),
-            'gameschedulable_type' => (new League())->getMorphClass(),
-            'gameschedulable_id' => LeagueFactory::new()->lazy(),
+            'league_id' => LeagueFactory::new()->lazy(),
             'name' => $this->faker->words(2, true),
             'started_at' => now(),
             'ended_at' => now()->addWeeks(4),

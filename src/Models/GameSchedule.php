@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -52,14 +51,9 @@ class GameSchedule extends TranslateableModel
         return $this->belongsTo(Federation::class);
     }
 
-    public function league(): MorphOne
+    public function league(): BelongsTo
     {
-        return $this->morphOne(League::class, 'gameschedulable', null, null, 'gameschedulable_id');
-    }
-
-    public function leagueBT(): BelongsTo
-    {
-        return $this->belongsTo(League::class, 'gameschedulable_id', 'id', 'league');
+        return $this->belongsTo(League::class);
     }
 
     public function days(): HasMany

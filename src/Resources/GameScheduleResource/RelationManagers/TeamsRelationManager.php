@@ -68,7 +68,7 @@ class TeamsRelationManager extends TranslateableRelationManager
                         return $relationship
                             ->getRelated()
                             ->query()
-                            ->whereHas('league', fn ($query) => $query->where('tournament_league_teams.league_id', $relationship->getParent()->leagueBT->id))
+                            ->whereHas('league', fn ($query) => $query->where('tournament_league_teams.league_id', $relationship->getParent()->league->id))
                             ->orderBy($titleColumnName);
                     }),
             ])

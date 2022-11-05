@@ -34,11 +34,9 @@ class GameSchedulesTableSeeder extends Seeder
     private function createGameSchedule(Federation $federation, League $league): self
     {
         $this->gameSchedule = GameScheduleFactory::new()
-            ->create([
-                'federation_id' => $federation->id,
-                'gameschedulable_type' => $league->getMorphClass(),
-                'gameschedulable_id' => $league->id,
-            ]);
+            ->for($league)
+            ->for($federation)
+            ->create();
 
         return $this;
     }

@@ -16,7 +16,7 @@ class SyncAllGameScheduleTeamsAction
         try {
             return DB::transaction(function () use ($gameSchedule) {
                 $gameSchedule->teams()->sync(
-                    $gameSchedule->leagueBT->teams()->pluck('id')
+                    $gameSchedule->league->teams()->pluck('id')
                 );
 
                 return $gameSchedule;

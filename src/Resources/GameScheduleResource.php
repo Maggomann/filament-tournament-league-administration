@@ -68,10 +68,10 @@ class GameScheduleResource extends TranslateableResource
                             ->reactive()
                             ->afterStateUpdated(
                                 function (Closure $set) {
-                                    $set('gameschedulable_id', null);
+                                    $set('league_id', null);
                                 }),
 
-                        Select::make('gameschedulable_id')
+                        Select::make('league_id')
                             ->label(Team::transAttribute('league_id'))
                             ->validationAttribute(Team::transAttribute('league_id'))
                             ->options(function (Closure $get, Closure $set, ?GameSchedule $record) {
@@ -161,7 +161,7 @@ class GameScheduleResource extends TranslateableResource
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('leagueBT.name')
+                TextColumn::make('league.name')
                     ->label(Team::transAttribute('league_id'))
                     ->searchable()
                     ->sortable(),

@@ -9,7 +9,7 @@ class EventLocationTableSeeder extends Seeder
 {
     public function run(): void
     {
-        EventLocation::creatOrUpdate(
+        EventLocation::updateOrCreate(
             ['name' => EventLocation::AS_DEFAULT_NAME],
         );
     }

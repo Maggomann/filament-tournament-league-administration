@@ -12,9 +12,7 @@ class GameScheduleData extends DataTransferObject
 
     public int $federation_id;
 
-    public string $gameschedulable_type;
-
-    public int $gameschedulable_id;
+    public int $league_id;
 
     public string $name;
 
@@ -33,10 +31,9 @@ class GameScheduleData extends DataTransferObject
             $args = $args[0];
         }
 
-        $league = League::findOrFail(Arr::get($args, 'gameschedulable_id'));
+        $league = League::findOrFail(Arr::get($args, 'league_id'));
 
-        Arr::set($args, 'gameschedulable_type', $league->getMorphClass());
-        Arr::set($args, 'gameschedulable_id', $league->id);
+        Arr::set($args, 'league_id', $league->id);
 
         return new self($args);
     }

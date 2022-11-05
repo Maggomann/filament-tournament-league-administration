@@ -70,7 +70,7 @@ return new class() extends Migration
         Schema::create('tournament_league_game_schedules', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('federation_id')->nullable()->index();
-            $table->morphs('gameschedulable', 'gameschedulable_index');
+            $table->unsignedBigInteger('league_id')->nullable()->index();
             $table->string('name')->index();
             $table->timestamp('started_at')->nullable()->index();
             $table->timestamp('ended_at')->nullable()->index();
