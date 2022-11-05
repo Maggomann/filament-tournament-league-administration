@@ -48,12 +48,12 @@ class GameSchedule extends TranslateableModel
 
     public function federation(): BelongsTo
     {
-        return $this->belongsTo(Federation::class);
+        return $this->belongsTo(Federation::class)->withTrashed();
     }
 
     public function league(): BelongsTo
     {
-        return $this->belongsTo(League::class);
+        return $this->belongsTo(League::class)->withTrashed();
     }
 
     public function days(): HasMany
@@ -63,17 +63,17 @@ class GameSchedule extends TranslateableModel
 
     public function teams(): BelongsToMany
     {
-        return $this->belongsToMany(Team::class);
+        return $this->belongsToMany(Team::class)->withTrashed();
     }
 
     public function players(): BelongsToMany
     {
-        return $this->belongsToMany(Player::class);
+        return $this->belongsToMany(Player::class)->withTrashed();
     }
 
     public function games(): HasMany
     {
-        return $this->hasMany(Game::class);
+        return $this->hasMany(Game::class)->withTrashed();
     }
 
     public function totalTeamPoints(): HasMany
