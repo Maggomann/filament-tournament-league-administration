@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
+ * @property int|null $guest_team_id
+ * @property int|null $home_team_id
+ * @property int|null $game_schedule_id.
+ * @property int|null $game_day_id.
  * @property int $day
  * @property int $home_points_legs
  * @property int $guest_points_legs

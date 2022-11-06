@@ -4,6 +4,10 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Contra
 
 use Spatie\DataTransferObject\DataTransferObject;
 
+/**
+ * @property int $gender_id
+ * @property int $category_id
+ */
 class AddressData extends DataTransferObject
 {
 }

@@ -13,6 +13,7 @@ use Spatie\Sluggable\SlugOptions;
 /**
  * @property int|null $federation_id
  * @property string $name
+ * @property string|null $slug
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at

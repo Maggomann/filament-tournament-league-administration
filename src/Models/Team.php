@@ -16,6 +16,19 @@ use Spatie\Sluggable\SlugOptions;
 /**
  * @property int $league_id
  * @property string $name
+ * @property int $total_number_of_encounters
+ * @property int $total_wins
+ * @property int $total_defeats
+ * @property int $total_draws
+ * @property int $total_victory_after_defeats
+ * @property int $guest_games_sum_guest_points_legs
+ * @property int $home_games_sum_home_points_legs
+ * @property int $opponent_guest_games_sum_guest_points_legs
+ * @property int $opponent_home_games_sum_home_points_legs
+ * @property int $guest_games_sum_guest_points_games
+ * @property int $home_games_sum_home_points_games
+ * @property int $opponent_guest_games_sum_guest_points_games
+ * @property int $opponent_home_games_sum_home_points_games
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -106,6 +119,7 @@ class Team extends TranslateableModel
     public function scopeRecalculatePoints(Builder $query, GameSchedule $gameSchedule): Builder
     {
         return $query
+            ->withTrashed()
             ->where('id', $this->id)
             ->withSum([
                 'homeGames' => fn (Builder $query) => $query->where('game_schedule_id', $gameSchedule->id),

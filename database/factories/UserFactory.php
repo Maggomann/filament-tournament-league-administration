@@ -4,9 +4,10 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Maggomann\FilamentTournamentLeagueAdministration\Tests\Models\User;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Maggomann\FilamentTournamentLeagueAdministration\Tests\Models>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Maggomann\FilamentTournamentLeagueAdministration\Tests\Models\User>
  */
 class UserFactory extends Factory
 {

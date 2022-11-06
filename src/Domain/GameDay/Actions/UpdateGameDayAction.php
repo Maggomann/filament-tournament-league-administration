@@ -3,7 +3,7 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\GameDay\Actions;
 
 use Illuminate\Support\Facades\DB;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameDay\DTO\gameDayData;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameDay\DTO\GameDayData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Throwable;
 

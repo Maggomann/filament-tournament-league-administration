@@ -2,8 +2,8 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Traits;
 
-use Illuminate\Database\ClassMorphViolationException;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use RuntimeException;
 
 trait HasMorphClass
 {
@@ -16,7 +16,9 @@ trait HasMorphClass
         }
 
         if (Relation::requiresMorphMap()) {
-            throw new ClassMorphViolationException(new self());
+            $class = static::class;
+
+            throw new RuntimeException("No morph map defined for model [{$class}].");
         }
 
         return static::class;

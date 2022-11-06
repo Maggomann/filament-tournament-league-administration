@@ -6,7 +6,7 @@ use Illuminate\Support\Manager;
 use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 
-class CalculatorManager extends Manager
+final class CalculatorManager extends Manager
 {
     protected TotalTeamPoint $totalTeamPoint;
 

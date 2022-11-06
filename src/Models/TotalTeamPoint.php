@@ -7,7 +7,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
+ * @property int|null $game_schedule_id
+ * @property int|null $team_id
  * @property int $day
+ * @property int $total_number_of_encounters
+ * @property int $total_wins
+ * @property int $total_defeats
+ * @property int $total_draws
+ * @property int $total_victory_after_defeats
+ * @property int $total_home_points_legs
+ * @property int $total_home_points_games
+ * @property int $total_guest_points_games
+ * @property int $total_home_points_after_draw
+ * @property int $total_guest_points_after_draw
+ * @property int $total_points
  * @property \Illuminate\Support\Carbon|null $started_at
  * @property \Illuminate\Support\Carbon|null $ended_at
  * @property \Illuminate\Support\Carbon|null $created_at

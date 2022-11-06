@@ -10,7 +10,15 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 /**
- * @property int $day
+ * @property int|null $mode_id
+ * @property int|null $dart_type_id
+ * @property int|null $qualification_level_id
+ * @property string $name
+ * @property string|null $slug
+ * @property string|null $description
+ * @property int $maximum_number_of_participants
+ * @property int $coin_money
+ * @property string $prize_money_depending_on_placement
  * @property \Illuminate\Support\Carbon|null $started_at
  * @property \Illuminate\Support\Carbon|null $ended_at
  * @property \Illuminate\Support\Carbon|null $created_at
