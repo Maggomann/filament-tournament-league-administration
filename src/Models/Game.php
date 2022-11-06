@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $day
+ * @property int $home_points_legs
+ * @property int $guest_points_legs
+ * @property int $home_points_games
+ * @property int $guest_points_games
+ * @property bool $has_an_overtime
+ * @property int $home_points_after_draw
+ * @property int $guest_points_after_draw
  * @property \Illuminate\Support\Carbon|null $started_at
  * @property \Illuminate\Support\Carbon|null $ended_at
  * @property \Illuminate\Support\Carbon|null $created_at
