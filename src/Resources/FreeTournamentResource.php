@@ -14,6 +14,8 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\PeriodEndedAtRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\PeriodStartedAtRule;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
@@ -117,7 +119,7 @@ class FreeTournamentResource extends TranslateableResource
                             ->firstDayOfWeek(1)
                             ->required()
                             ->rules([
-                                // FIXME: add rule :-)
+                                fn (Closure $get) => new PeriodStartedAtRule($get('ended_at')),
                             ]),
 
                         DateTimePicker::make('ended_at')
@@ -125,7 +127,7 @@ class FreeTournamentResource extends TranslateableResource
                             ->firstDayOfWeek(1)
                             ->required()
                             ->rules([
-                                // FIXME: add rule :-)
+                                fn (Closure $get) => new PeriodEndedAtRule($get('started_at')),
                             ]),
 
                     ])
