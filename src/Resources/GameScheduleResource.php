@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\DeleteGameScheduleAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DeleteEntryFailedNotification;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\PeriodEndGameScheduleRule;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\PeriodStartGameScheduleRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\PeriodEndedAtRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\PeriodStartedAtRule;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
@@ -118,7 +118,7 @@ class GameScheduleResource extends TranslateableResource
                             ->firstDayOfWeek(1)
                             ->required()
                             ->rules([
-                                fn (Closure $get) => new PeriodStartGameScheduleRule($get('ended_at')),
+                                fn (Closure $get) => new PeriodStartedAtRule($get('ended_at')),
                             ]),
 
                         DateTimePicker::make('ended_at')
@@ -126,7 +126,7 @@ class GameScheduleResource extends TranslateableResource
                             ->firstDayOfWeek(1)
                             ->required()
                             ->rules([
-                                fn (Closure $get) => new PeriodEndGameScheduleRule($get('started_at')),
+                                fn (Closure $get) => new PeriodEndedAtRule($get('started_at')),
                             ]),
 
                         Select::make('game_days')

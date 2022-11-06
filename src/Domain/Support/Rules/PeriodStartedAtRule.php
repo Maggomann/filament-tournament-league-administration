@@ -4,18 +4,18 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class PeriodEndGameScheduleRule extends ValidationRule implements Rule
+class PeriodStartedAtRule extends ValidationRule implements Rule
 {
     protected string $value;
 
-    public function __construct(public ?string $started_at)
+    public function __construct(public ?string $ended_at)
     {
     }
 
     public function message(): string
     {
         $translationKey = static::$translateablePackageKey;
-        $translationKey .= 'rules.ended_at_must_be_greater_than_started_at';
+        $translationKey .= 'rules.started_at_must_be_smaller_than_ended_at';
 
         return trans($translationKey, ['value' => $this->value]);
     }
@@ -24,6 +24,6 @@ class PeriodEndGameScheduleRule extends ValidationRule implements Rule
     {
         $this->value = $value;
 
-        return $this->value > $this->started_at;
+        return $this->value < $this->ended_at;
     }
 }
