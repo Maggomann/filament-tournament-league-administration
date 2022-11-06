@@ -25,6 +25,8 @@ use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\RelationManagers\TeamRelationManager;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\SelectOptions\LeagueSelect;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\SelectOptions\TeamSelect;
 
 class PlayerResource extends TranslateableResource
 {
@@ -63,40 +65,7 @@ class PlayerResource extends TranslateableResource
                             ->label(Team::transAttribute('league_id'))
                             ->validationAttribute(Team::transAttribute('league_id'))
                             ->options(function (Closure $get, Closure $set, ?Player $record) {
-                                $federationId = $get('federation_id');
-
-                                if (! $record) {
-                                    if (! $federationId) {
-                                        return collect([]);
-                                    }
-
-                                    return Federation::with('leagues')
-                                        ->find($federationId)
-                                        ?->leagues
-                                        ?->pluck('name', 'id') ?? collect([]);
-                                }
-
-                                $recordFederationId = $record->league
-                                    ?->federation
-                                    ?->id;
-
-                                if ($federationId === null) {
-                                    $set('federation_id', $recordFederationId);
-                                    $federationId = $recordFederationId;
-                                }
-
-                                if ($recordFederationId === $federationId) {
-                                    return $record->league
-                                        ?->federation
-                                        ?->leagues
-                                        ?->pluck('name', 'id')
-                                        ?? collect([]);
-                                }
-
-                                return Federation::with('leagues')
-                                    ->find($federationId)
-                                    ?->leagues
-                                    ?->pluck('name', 'id') ?? collect([]);
+                                return LeagueSelect::options($get, $set, $record);
                             })
                             ->placeholder(
                                 TranslateComponent::placeholder(static::$translateablePackageKey, 'league_id')
@@ -108,45 +77,8 @@ class PlayerResource extends TranslateableResource
                         Select::make('team_id')
                             ->label(Player::transAttribute('team_id'))
                             ->validationAttribute(Player::transAttribute('team_id'))
-                            ->options(Team::all()->pluck('name', 'id'))
                             ->options(function (Closure $get, Closure $set, ?Player $record) {
-                                $leagueId = $get('league_id');
-                                $federationId = $get('federation_id');
-
-                                if (! $federationId) {
-                                    return collect([]);
-                                }
-
-                                if (! $record) {
-                                    if (! $leagueId) {
-                                        return collect([]);
-                                    }
-
-                                    return League::with('teams')
-                                        ->find($leagueId)
-                                        ?->teams
-                                        ?->pluck('name', 'id') ?? collect([]);
-                                }
-
-                                $recordLeagueId = $record->league?->id;
-
-                                if ($leagueId === null) {
-                                    $set('league_id', $recordLeagueId);
-                                    $leagueId = $recordLeagueId;
-                                }
-
-                                if ($recordLeagueId === $leagueId) {
-                                    return $record->league
-                                        ?->teams
-                                        ?->pluck('name', 'id')
-                                        ?? collect([]);
-                                }
-
-                                return League::with('teams')
-                                    ->find($leagueId)
-                                    ?->teams
-                                    ?->pluck('name', 'id')
-                                    ?? collect([]);
+                                return TeamSelect::options($get, $set, $record);
                             })
                             ->placeholder(
                                 TranslateComponent::placeholder(static::$translateablePackageKey, 'team_id')

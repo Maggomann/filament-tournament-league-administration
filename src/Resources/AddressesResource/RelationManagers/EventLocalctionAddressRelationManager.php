@@ -10,7 +10,6 @@ use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Contracts\HasRelationshipTable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\UpdateOrCreateEventLocationAddressAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DeleteEntryFailedNotification;
@@ -21,6 +20,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actio
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\SelectOptions\CountryCodeSelect;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\SelectOptions\EventLocationSelect;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Maggomann\LaravelAddressable\Models\Address;
@@ -126,38 +126,7 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
                 Select::make('country_code')
                     ->label(__('laravel-addressable.attributes.addresses.country_code'))
                     ->validationAttribute(__('laravel-addressable.attributes.addresses.country_code'))
-                    ->options(
-                        collect(countries(true))
-                            ->mapWithKeys(function ($country) {
-                                $commonName = Arr::get($country, 'name.common');
-
-                                $languages = collect(Arr::get($country, 'languages')) ?? collect();
-
-                                $language = $languages->keys()->first() ?? null;
-
-                                $nativeNames = Arr::get($country, 'name.native');
-
-                                if (
-                                    filled($language) &&
-                                        filled($nativeNames) &&
-                                        filled($nativeNames[$language]) ?? null
-                                ) {
-                                    $native = $nativeNames[$language]['common'] ?? null;
-                                }
-
-                                if (blank($native ?? null) && filled($nativeNames)) {
-                                    $native = collect($nativeNames)->first()['common'] ?? null;
-                                }
-
-                                $native = $native ?? $commonName;
-
-                                if ($native !== $commonName && filled($native)) {
-                                    $native = "$native ($commonName)";
-                                }
-
-                                return [Arr::get($country, 'iso_3166_1_alpha2') => $native];
-                            })
-                    )
+                    ->options(fn () => CountryCodeSelect::options())
                     ->placeholder(
                         TranslateComponent::placeholder(static::$translateablePackageKey, 'address_country_id')
                     )

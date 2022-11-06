@@ -10,11 +10,6 @@ class EventLocationSelect
 {
     public static function options(): Collection
     {
-        return self::collection();
-    }
-
-    protected static function collection(): Collection
-    {
         return EventLocation::firstWhere('name', EventLocation::AS_DEFAULT_NAME)
             ?->addresses
             ->mapWithKeys(function (Address $address) {

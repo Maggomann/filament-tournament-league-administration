@@ -29,6 +29,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\RelationManagers\PlayersRelationManager;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\SelectOptions\LeagueSelect;
 use Throwable;
 
 class TeamResource extends TranslateableResource
@@ -101,22 +102,7 @@ class TeamResource extends TranslateableResource
                             ->label(Team::transAttribute('league_id'))
                             ->validationAttribute(Team::transAttribute('league_id'))
                             ->options(function (Closure $get, Closure $set, ?Team $record) {
-                                $federationId = $get('federation_id');
-
-                                if ($record && $federationId === null) {
-                                    $federationId = $record->league?->federation?->id;
-
-                                    $set('federation_id', $federationId);
-                                }
-
-                                if ($federationId === null) {
-                                    return League::all()->pluck('name', 'id');
-                                }
-
-                                return Federation::with('leagues')
-                                    ->find($federationId)
-                                    ?->leagues
-                                    ?->pluck('name', 'id');
+                                return LeagueSelect::options($get, $set, $record);
                             })
                             ->placeholder(
                                 TranslateComponent::placeholder(static::$translateablePackageKey, 'league_id')
