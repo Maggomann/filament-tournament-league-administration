@@ -15,6 +15,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notification
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\AttachEntrySucceededNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DetachBuldEntriesFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DetachBuldEntriesSucceededNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;
@@ -44,7 +45,7 @@ class TeamsRelationManager extends TranslateableRelationManager
             ])
             ->headerActions([
                 Action::make('syncAllTeams')
-                    ->label('Alle Teams aus der Liga verknüpfen')
+                    ->label(TranslateComponent::buttonLlabel(static::$translateablePackageKey, 'link_all_teams_in_the_league'))
                     ->button()
                     ->action(function (TeamsRelationManager $livewire): void {
                         try {

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\CreateOrUpdateTotalGameSchedulePointsAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreateEntrySuccessNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;
@@ -90,7 +91,7 @@ class TotalTeamPointsRelationManager extends TranslateableRelationManager
             ->filters([])
             ->headerActions([
                 Action::make('recalculateGamePoints')
-                    ->label('Neuberechnung der Spielplanpunkte')
+                    ->label(TranslateComponent::buttonLlabel(static::$translateablePackageKey, 'recalculation_of_the_game_plan_points'))
                     ->button()
                     ->action(function (TotalTeamPointsRelationManager $livewire): void {
                         try {

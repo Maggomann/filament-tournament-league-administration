@@ -18,6 +18,8 @@ class DeleteGameScheduleAction
                 $gameSchedule->days()->delete();
                 $gameSchedule->teams()->delete();
                 $gameSchedule->players()->delete();
+                $gameSchedule->games()->delete();
+                $gameSchedule->totalTeamPoints()->delete();
 
                 $gameSchedule->delete();
             });

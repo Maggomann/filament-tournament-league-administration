@@ -4,6 +4,13 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Support;
 
 class TranslateComponent
 {
+    public static function buttonLlabel(string $translateablePackageKey, string $translationKey): string
+    {
+        $translationKey = "{$translateablePackageKey}translations.forms.components.buttons.labels.{$translationKey}";
+
+        return  __($translationKey);
+    }
+
     public static function placeholder(string $translateablePackageKey, string $translationKey): string
     {
         $translationKey = "{$translateablePackageKey}translations.forms.components.select.placeholder.{$translationKey}";

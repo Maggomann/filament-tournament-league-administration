@@ -11,6 +11,7 @@ use Filament\Tables\Columns\TextColumn;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\SyncAllGameSchedulePlayersAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\AttachEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\AttachEntrySucceededNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;
@@ -40,7 +41,7 @@ class PlayersRelationManager extends TranslateableRelationManager
             ])
             ->headerActions([
                 Action::make('syncAllTeams')
-                    ->label('Alle Spieler aus den verknüpfen Teams verknüpfen')
+                    ->label(TranslateComponent::buttonLlabel(static::$translateablePackageKey, 'link_all_players_from_the_linked_teams'))
                     ->button()
                     ->action(function (PlayersRelationManager $livewire): void {
                         try {

@@ -10,6 +10,13 @@ return [
 
     'forms' => [
         'components' => [
+            'buttons' => [
+                'labels' => [
+                    'link_all_players_from_the_linked_teams' => 'Alle Spieler aus den verknüpfen Teams verknüpfen',
+                    'link_all_teams_in_the_league' => 'Alle Teams aus der Liga verknüpfen',
+                    'recalculation_of_the_game_plan_points' => 'Neuberechnung der Spielplanpunkte',
+                ],
+            ],
             'select' => [
                 'placeholder' => [
                     'address_category_id' => 'Bitte wählen Sie ein Adresstypen aus.',
