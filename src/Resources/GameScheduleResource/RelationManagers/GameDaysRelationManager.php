@@ -119,7 +119,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
             ->actions([
                 EditAction::make()
                     ->hideLabellnTooltip()
-                    ->using(function (Model $record, array $data): GameDay {
+                    ->using(function (Model $record, array $data) {
                         try {
                             return app(UpdateGameDayAction::class)->execute(
                                 $record,

@@ -154,7 +154,7 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
             ])
             ->headerActions([
                 CreateAction::make()
-                    ->using(function (HasRelationshipTable $livewire, array $data): Address {
+                    ->using(function (HasRelationshipTable $livewire, array $data) {
                         try {
                             return app(UpdateOrCreateEventLocationAddressAction::class)->execute(
                                 $livewire->getRelationship()->getParent(),
@@ -169,7 +169,7 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
             ->actions([
                 EditAction::make()
                     ->hideLabellnTooltip()
-                    ->using(function (HasRelationshipTable $livewire, Model $record, array $data): Address {
+                    ->using(function (HasRelationshipTable $livewire, Model $record, array $data) {
                         try {
                             return app(UpdateOrCreateEventLocationAddressAction::class)->execute(
                                 $livewire->getRelationship()->getParent(),

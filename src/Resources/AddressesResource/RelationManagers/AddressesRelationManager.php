@@ -157,7 +157,7 @@ class AddressesRelationManager extends TranslateableRelationManager
             ->actions([
                 EditAction::make()
                     ->hideLabellnTooltip()
-                    ->using(function (HasRelationshipTable $livewire, Model $record, array $data): Address {
+                    ->using(function (HasRelationshipTable $livewire, Model $record, array $data) {
                         try {
                             return app(UpdateOrCreateAddressAction::class)->execute(
                                 $livewire->getRelationship()->getParent(),
