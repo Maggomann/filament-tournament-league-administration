@@ -18,6 +18,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actio
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\SelectOptions\CountryCodeSelect;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Maggomann\LaravelAddressable\Models\Address;
@@ -142,14 +143,16 @@ class AddressesRelationManager extends TranslateableRelationManager
             ])
             ->headerActions([
                 CreateAction::make()
-                    ->using(function (HasRelationshipTable $livewire, array $data): Address {
+                    ->using(function (HasRelationshipTable $livewire, array $data) {
                         try {
+                            /** @var Player $player */
+                            $player = $livewire->getRelationship()->getParent();
+
                             return app(UpdateOrCreateAddressAction::class)->execute(
-                                $livewire->getRelationship()->getParent(),
+                                $player,
                                 PlayerAddressData::create($data)
                             );
-                        } catch (Throwable $e) {
-                            dd($e);
+                        } catch (Throwable) {
                             DeleteEntryFailedNotification::make()->send();
                         }
                     }),
@@ -159,10 +162,15 @@ class AddressesRelationManager extends TranslateableRelationManager
                     ->hideLabellnTooltip()
                     ->using(function (HasRelationshipTable $livewire, Model $record, array $data) {
                         try {
+                            /** @var Player $player */
+                            $player = $livewire->getRelationship()->getParent();
+                            /** @var Address $address */
+                            $address = $record;
+
                             return app(UpdateOrCreateAddressAction::class)->execute(
-                                $livewire->getRelationship()->getParent(),
+                                $player,
                                 PlayerAddressData::create($data),
-                                $record,
+                                $address,
                             );
                         } catch (Throwable) {
                             EditEntryFailedNotification::make()->send();

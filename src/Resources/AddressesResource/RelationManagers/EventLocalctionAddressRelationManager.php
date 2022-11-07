@@ -156,10 +156,13 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
                 CreateAction::make()
                     ->using(function (HasRelationshipTable $livewire, array $data) {
                         try {
+                            /** @var FreeTournament $freeTournament */
+                            $freeTournament = $livewire->getRelationship()->getParent();
+
                             return app(UpdateOrCreateEventLocationAddressAction::class)->execute(
-                                $livewire->getRelationship()->getParent(),
+                                $freeTournament,
                                 EventLocationAddressData::create($data),
-                                $livewire->getRelationship()->getParent()->address
+                                $freeTournament->address
                             );
                         } catch (Throwable) {
                             DeleteEntryFailedNotification::make()->send();
@@ -171,10 +174,15 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
                     ->hideLabellnTooltip()
                     ->using(function (HasRelationshipTable $livewire, Model $record, array $data) {
                         try {
+                            /** @var FreeTournament $freeTournament */
+                            $freeTournament = $livewire->getRelationship()->getParent();
+                            /** @var Address $address */
+                            $address = $record;
+
                             return app(UpdateOrCreateEventLocationAddressAction::class)->execute(
-                                $livewire->getRelationship()->getParent(),
+                                $freeTournament,
                                 EventLocationAddressData::create($data),
-                                $record
+                                $$address
                             );
                         } catch (Throwable) {
                             EditEntryFailedNotification::make()->send();

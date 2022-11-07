@@ -7,9 +7,13 @@ use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 
+/**
+ * @method static GameSchedule getOwnerRecord()
+ */
 class GamesRelationManager extends TranslateableRelationManager
 {
     protected static string $relationship = 'games';

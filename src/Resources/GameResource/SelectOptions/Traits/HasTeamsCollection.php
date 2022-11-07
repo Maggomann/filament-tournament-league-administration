@@ -10,15 +10,14 @@ trait HasTeamsCollection
     protected static function collection(int $gameScheduleId, array $otherTeamId, ?GameSchedule $gameSchedule = null): Collection
     {
         if (! $gameSchedule) {
-            return self::gameSchedule($gameScheduleId)
-                ?->teams
-                ?->whereNotIn('id', $otherTeamId)
-                ?->pluck('name', 'id') ?? collect([]);
+            $gameSchedule = self::gameSchedule($gameScheduleId);
         }
 
-        return $gameSchedule
-            ?->teams
-            ?->whereNotIn('id', $otherTeamId)
-            ?->pluck('name', 'id') ?? collect([]);
+        $teamCollection = $gameSchedule
+                ?->teams
+                ?->whereNotIn('id', $otherTeamId)
+                ?->pluck('name', 'id');
+
+        return ($teamCollection instanceof Collection) ? $teamCollection : collect([]);
     }
 }

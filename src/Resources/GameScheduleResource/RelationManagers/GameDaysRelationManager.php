@@ -22,10 +22,14 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actio
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;
 
+/**
+ * @method static GameSchedule getOwnerRecord()
+ */
 class GameDaysRelationManager extends TranslateableRelationManager
 {
     protected static string $relationship = 'days';
@@ -65,12 +69,13 @@ class GameDaysRelationManager extends TranslateableRelationManager
 
                 TextInput::make('day')
                     ->label(GameDay::transAttribute('day'))
-                    ->disabled(fn (?Model $record) => $record instanceof GameDay)
+                    ->disabled(fn (?GameDay $record) => $record instanceof GameDay)
                     ->minValue(1)
                     ->integer(true)
                     ->required()
                     ->rules([
-                        fn (GameDaysRelationManager $livewire, ?Model $record) => new UniqueGameDayRule($livewire->getOwnerRecord(), $record),
+                        fn (GameDaysRelationManager $livewire, ?GameDay $record) => new UniqueGameDayRule($livewire->getOwnerRecord(), $record
+                        ),
                     ]),
 
                 DateTimePicker::make('started_at')
@@ -121,6 +126,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->hideLabellnTooltip()
                     ->using(function (Model $record, array $data) {
                         try {
+                            /** @var GameDay $record */
                             return app(UpdateGameDayAction::class)->execute(
                                 $record,
                                 GameDayData::create($data)

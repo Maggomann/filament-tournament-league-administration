@@ -13,16 +13,16 @@ class CountryCodeSelect
             ->mapWithKeys(function ($country) {
                 $commonName = Arr::get($country, 'name.common');
 
-                $languages = collect(Arr::get($country, 'languages')) ?? collect();
+                $languages = collect(Arr::get($country, 'languages'));
 
-                $language = $languages->keys()->first() ?? null;
+                $language = $languages->keys()->first();
 
                 $nativeNames = Arr::get($country, 'name.native');
 
                 if (
-                    filled($language) &&
-                        filled($nativeNames) &&
-                        filled($nativeNames[$language]) ?? null
+                    filled($language)
+                    && filled($nativeNames)
+                    && filled($nativeNames[$language])
                 ) {
                     $native = $nativeNames[$language]['common'] ?? null;
                 }

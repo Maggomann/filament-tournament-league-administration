@@ -5,10 +5,11 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Compo
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Placeholder;
 use Illuminate\Database\Eloquent\Model;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\TranslateableModel;
 
 class CardTimestamps
 {
-    public static function make(Model $model): Card
+    public static function make(TranslateableModel $model): Card
     {
         return Card::make()
             ->schema([

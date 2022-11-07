@@ -26,48 +26,13 @@ parameters:
 			path: src/Models/Team.php
 
 		-
-			message: "#^Parameter \\#1 \\$player of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Address\\\\Actions\\\\UpdateOrCreateAddressAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Player, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 2
-			path: src/Resources/AddressesResource/RelationManagers/AddressesRelationManager.php
-
-		-
-			message: "#^Parameter \\#3 \\$address of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Address\\\\Actions\\\\UpdateOrCreateAddressAction\\:\\:execute\\(\\) expects Maggomann\\\\LaravelAddressable\\\\Models\\\\Address\\|null, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/AddressesResource/RelationManagers/AddressesRelationManager.php
-
-		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 1
-			path: src/Resources/AddressesResource/RelationManagers/AddressesRelationManager.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$address\\.$#"
-			count: 1
-			path: src/Resources/AddressesResource/RelationManagers/EventLocalctionAddressRelationManager.php
-
-		-
-			message: "#^Parameter \\#1 \\$freeTournament of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Address\\\\Actions\\\\UpdateOrCreateEventLocationAddressAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\FreeTournament, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 2
-			path: src/Resources/AddressesResource/RelationManagers/EventLocalctionAddressRelationManager.php
-
-		-
-			message: "#^Parameter \\#3 \\$address of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Address\\\\Actions\\\\UpdateOrCreateEventLocationAddressAction\\:\\:execute\\(\\) expects Maggomann\\\\LaravelAddressable\\\\Models\\\\Address\\|null, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/AddressesResource/RelationManagers/EventLocalctionAddressRelationManager.php
-
-		-
-			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
-			count: 2
-			path: src/Resources/AddressesResource/SelectOptions/CountryCodeSelect.php
-
-		-
 			message: "#^Unable to resolve the template type TKey in call to function collect$#"
-			count: 3
+			count: 2
 			path: src/Resources/AddressesResource/SelectOptions/CountryCodeSelect.php
 
 		-
 			message: "#^Unable to resolve the template type TValue in call to function collect$#"
-			count: 3
+			count: 2
 			path: src/Resources/AddressesResource/SelectOptions/CountryCodeSelect.php
 
 		-
@@ -81,59 +46,9 @@ parameters:
 			path: src/Resources/Forms/Components/CardTimestamps.php
 
 		-
-			message: "#^Call to an undefined static method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:transAttribute\\(\\)\\.$#"
-			count: 2
-			path: src/Resources/Forms/Components/CardTimestamps.php
-
-		-
-			message: "#^Parameter \\#2 \\$freeTournament of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\FreeTournament\\\\Actions\\\\UpdateOrCreateFreeTournamentAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\FreeTournament\\|null, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/FreeTournamentResource/Pages/EditFreeTournament.php
-
-		-
-			message: "#^Parameter \\#1 \\$game of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Game\\\\Actions\\\\UpdateGameAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Game, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/GameResource/Pages/EditGame.php
-
-		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 1
-			path: src/Resources/GameResource/Pages/EditGame.php
-
-		-
 			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Database\\\\Eloquent\\\\Collection\\<\\(int\\|string\\),Illuminate\\\\Database\\\\Eloquent\\\\Model\\>\\:\\:mapWithKeys\\(\\) expects callable\\(Illuminate\\\\Database\\\\Eloquent\\\\Model, \\(int\\|string\\)\\)\\: array\\<int, string\\>, Closure\\(Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameDay\\)\\: non\\-empty\\-array\\<int, non\\-falsy\\-string\\> given\\.$#"
 			count: 1
 			path: src/Resources/GameResource/SelectOptions/GameDaySelect.php
-
-		-
-			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
-			count: 1
-			path: src/Resources/GameResource/SelectOptions/GuestTeamSelect.php
-
-		-
-			message: "#^Using nullsafe method call on non\\-nullable type Illuminate\\\\Database\\\\Eloquent\\\\Collection\\<int, Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Team\\>\\. Use \\-\\> instead\\.$#"
-			count: 2
-			path: src/Resources/GameResource/SelectOptions/GuestTeamSelect.php
-
-		-
-			message: "#^Using nullsafe property access on non\\-nullable type Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule\\. Use \\-\\> instead\\.$#"
-			count: 1
-			path: src/Resources/GameResource/SelectOptions/GuestTeamSelect.php
-
-		-
-			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
-			count: 1
-			path: src/Resources/GameResource/SelectOptions/HomeTeamSelect.php
-
-		-
-			message: "#^Using nullsafe method call on non\\-nullable type Illuminate\\\\Database\\\\Eloquent\\\\Collection\\<int, Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Team\\>\\. Use \\-\\> instead\\.$#"
-			count: 2
-			path: src/Resources/GameResource/SelectOptions/HomeTeamSelect.php
-
-		-
-			message: "#^Using nullsafe property access on non\\-nullable type Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule\\. Use \\-\\> instead\\.$#"
-			count: 1
-			path: src/Resources/GameResource/SelectOptions/HomeTeamSelect.php
 
 		-
 			message: "#^Unable to resolve the template type TKey in call to function collect$#"
@@ -149,61 +64,6 @@ parameters:
 			message: "#^Unable to resolve the template type TValue in call to function collect$#"
 			count: 1
 			path: src/Resources/GameScheduleResource.php
-
-		-
-			message: "#^Parameter \\#1 \\$gameSchedule of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\GameSchedule\\\\Actions\\\\UpdateGameScheduleAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/Pages/EditGameDay.php
-
-		-
-			message: "#^Call to method getMessage\\(\\) on an unknown class Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Resources\\\\GameScheduleResource\\\\Pages\\\\Throwable\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/Pages/EditGameSchedule.php
-
-		-
-			message: "#^Caught class Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Resources\\\\GameScheduleResource\\\\Pages\\\\Throwable not found\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/Pages/EditGameSchedule.php
-
-		-
-			message: "#^Parameter \\#1 \\$gameSchedule of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\GameSchedule\\\\Actions\\\\UpdateGameScheduleAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/Pages/EditGameSchedule.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$id\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/GameDaysRelationManager.php
-
-		-
-			message: "#^Parameter \\#1 \\$gameDay of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\GameDay\\\\Actions\\\\UpdateGameDayAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameDay, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/GameDaysRelationManager.php
-
-		-
-			message: "#^Parameter \\#1 \\$gameSchedule of class Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Support\\\\Rules\\\\EndedAtGameDayRule constructor expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/GameDaysRelationManager.php
-
-		-
-			message: "#^Parameter \\#1 \\$gameSchedule of class Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Support\\\\Rules\\\\StartedAtGameDayRule constructor expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/GameDaysRelationManager.php
-
-		-
-			message: "#^Parameter \\#1 \\$gameSchedule of class Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Support\\\\Rules\\\\UniqueGameDayRule constructor expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/GameDaysRelationManager.php
-
-		-
-			message: "#^Parameter \\#2 \\$gameDay of class Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Support\\\\Rules\\\\UniqueGameDayRule constructor expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameDay\\|null, Illuminate\\\\Database\\\\Eloquent\\\\Model\\|null given\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/GameDaysRelationManager.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$federation\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/GamesRelationManager.php
 
 		-
 			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:teams\\(\\)\\.$#"
@@ -249,3 +109,4 @@ parameters:
 			message: "#^Parameter \\#1 \\$team of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Team\\\\Actions\\\\UpdateTeamAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Team, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
 			count: 1
 			path: src/Resources/TeamResource/Pages/EditTeam.php
+
