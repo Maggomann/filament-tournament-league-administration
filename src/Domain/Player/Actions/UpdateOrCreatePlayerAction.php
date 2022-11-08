@@ -7,15 +7,15 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\DTO\PlayerDat
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Throwable;
 
-class UpdatePlayerAction
+class UpdateOrCreatePlayerAction
 {
     /**
      * @throws Throwable
      */
-    public function execute(Player $player, PlayerData $playerData): Player
+    public function execute(PlayerData $playerData, ?Player $player = null): Player
     {
         try {
-            return DB::transaction(function () use ($player, $playerData) {
+            return DB::transaction(function () use ($playerData, $player) {
                 $player->fill($playerData->toArray());
                 $player->team_id = $playerData->team_id;
 

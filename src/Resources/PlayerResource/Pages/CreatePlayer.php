@@ -5,7 +5,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResou
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\Actions\CreatePlayerAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\Actions\UpdateOrCreatePlayerAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\DTO\PlayerData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource;
@@ -18,9 +18,9 @@ class CreatePlayer extends CreateRecord
     protected function handleRecordCreation(array $data): Model
     {
         try {
-            return app(CreatePlayerAction::class)->execute(
-                app($this->getModel()),
-                PlayerData::create($data)
+            return app(UpdateOrCreatePlayerAction::class)->execute(
+                PlayerData::create($data),
+                app($this->getModel())
             );
         } catch (Throwable $e) {
             CreatedEntryFailedNotification::make()->send();

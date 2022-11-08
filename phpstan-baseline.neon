@@ -3,12 +3,12 @@ parameters:
 		-
 			message: "#^Unable to resolve the template type TKey in call to function collect$#"
 			count: 1
-			path: src/Domain/GameSchedule/Actions/CreateGameScheduleAction.php
+			path: src/Domain/GameSchedule/Actions/UpdateOrCreateGameScheduleAction.php
 
 		-
 			message: "#^Unable to resolve the template type TValue in call to function collect$#"
 			count: 1
-			path: src/Domain/GameSchedule/Actions/CreateGameScheduleAction.php
+			path: src/Domain/GameSchedule/Actions/UpdateOrCreateGameScheduleAction.php
 
 		-
 			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\:\\:withTrashed\\(\\)\\.$#"
@@ -61,12 +61,12 @@ parameters:
 			path: src/Resources/GameScheduleResource.php
 
 		-
-			message: "#^Parameter \\#1 \\$player of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Player\\\\Actions\\\\UpdatePlayerAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Player, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			message: "#^Parameter \\#2 \\$player of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Player\\\\Actions\\\\UpdateOrCreatePlayerAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Player\\|null, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
 			count: 1
 			path: src/Resources/PlayerResource/Pages/EditPlayer.php
 
 		-
-			message: "#^Parameter \\#1 \\$team of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Team\\\\Actions\\\\UpdateTeamAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Team, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			message: "#^Parameter \\#2 \\$team of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Team\\\\Actions\\\\UpdateOrCreateTeamAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Team, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
 			count: 1
 			path: src/Resources/TeamResource/Pages/EditTeam.php
 

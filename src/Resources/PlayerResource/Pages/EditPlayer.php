@@ -5,7 +5,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResou
 use Filament\Resources\Pages\EditRecord;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\Actions\UpdatePlayerAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\Actions\UpdateOrCreatePlayerAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\DTO\PlayerData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource;
@@ -18,7 +18,7 @@ class EditPlayer extends EditRecord
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
         try {
-            return app(UpdatePlayerAction::class)->execute($record, PlayerData::create($data));
+            return app(UpdateOrCreatePlayerAction::class)->execute(PlayerData::create($data), $record);
         } catch (Throwable $e) {
             CreatedEntryFailedNotification::make()->send();
 
