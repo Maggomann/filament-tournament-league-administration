@@ -10,7 +10,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Throwable;
 
-class CreateOrUpdateTotalGameSchedulePointsAction
+class UpdateOrCreateTotalGameSchedulePointsAction
 {
     /**
      * @throws Throwable

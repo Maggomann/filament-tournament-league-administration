@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Database\Factories\GameFactory;
 use Illuminate\Database\Seeder;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\CreateOrUpdateTotalGameSchedulePointsAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\UpdateOrCreateTotalGameSchedulePointsAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
@@ -40,7 +40,7 @@ class GamesTableSeeder extends Seeder
                     )
                 );
 
-                app(CreateOrUpdateTotalGameSchedulePointsAction::class)->execute($gameSchedule);
+                app(UpdateOrCreateTotalGameSchedulePointsAction::class)->execute($gameSchedule);
             });
     }
 }

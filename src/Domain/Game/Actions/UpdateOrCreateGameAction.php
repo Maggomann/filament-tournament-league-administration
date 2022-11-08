@@ -7,15 +7,19 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\DTO\GameData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Throwable;
 
-class UpdateGameAction
+class UpdateOrCreateGameAction
 {
     /**
      * @throws Throwable
      */
-    public function execute(Game $game, GameData $gameData): Game
+    public function execute(GameData $gameData, ?Game $game = null): Game
     {
         try {
-            return DB::transaction(function () use ($game, $gameData) {
+            return DB::transaction(function () use ($gameData, $game) {
+                if (is_null($game)) {
+                    $game = new Game();
+                }
+
                 $game->fill($gameData->toArray());
                 $game->game_schedule_id = $gameData->game_schedule_id;
                 $game->game_day_id = $gameData->game_day_id;
@@ -24,7 +28,7 @@ class UpdateGameAction
 
                 $game->save();
 
-                app(CreateOrUpdateTotalGamePointsAction::class)->execute($game);
+                app(UpdateOrCreateTotalGamePointsAction::class)->execute($game);
 
                 return $game;
             });

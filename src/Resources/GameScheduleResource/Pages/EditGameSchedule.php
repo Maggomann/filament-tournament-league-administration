@@ -5,7 +5,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameSchedul
 use Filament\Resources\Pages\EditRecord;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\UpdateGameScheduleAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\UpdateOrCreateGameScheduleAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\DTO\GameScheduleData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\EditEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
@@ -20,7 +20,7 @@ class EditGameSchedule extends EditRecord
     {
         try {
             /** @var GameSchedule $record */
-            return app(UpdateGameScheduleAction::class)->execute($record, GameScheduleData::create($data));
+            return app(UpdateOrCreateGameScheduleAction::class)->execute(GameScheduleData::create($data), $record);
         } catch (Throwable $e) {
             EditEntryFailedNotification::make()->send();
 

@@ -11,7 +11,7 @@ use Filament\Resources\Table;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameDay\Actions\UpdateGameDayAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameDay\Actions\UpdateOrCreateGameDayAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameDay\DTO\GameDayData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\EditEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\EndedAtGameDayRule;
@@ -127,9 +127,9 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->using(function (Model $record, array $data) {
                         try {
                             /** @var GameDay $record */
-                            return app(UpdateGameDayAction::class)->execute(
-                                $record,
-                                GameDayData::create($data)
+                            return app(UpdateOrCreateGameDayAction::class)->execute(
+                                GameDayData::create($data),
+                                $record
                             );
                         } catch (Throwable) {
                             EditEntryFailedNotification::make()->send();

@@ -8,17 +8,17 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Throwable;
 
-class CreateGameScheduleAction
+class UpdateOrCreateGameScheduleAction
 {
     /**
      * @throws Throwable
      */
-    public function execute(GameSchedule $gameSchedule, GameScheduleData $gameScheduleData): GameSchedule
+    public function execute(GameScheduleData $gameScheduleData, ?GameSchedule $gameSchedule = null): GameSchedule
     {
         try {
-            return DB::transaction(function () use ($gameSchedule, $gameScheduleData) {
+            return DB::transaction(function () use ($gameScheduleData, $gameSchedule) {
                 $gameSchedule = $this->createGameSchedule($gameSchedule, $gameScheduleData);
-                $gameSchedule = $this->createGameDays($gameSchedule, $gameScheduleData);
+                $gameSchedule = $this->createGameDaysIfNotAvailable($gameSchedule, $gameScheduleData);
 
                 return $gameSchedule;
             });
@@ -38,8 +38,16 @@ class CreateGameScheduleAction
         return $gameSchedule;
     }
 
-    private function createGameDays(GameSchedule $gameSchedule, GameScheduleData $gameScheduleData): GameSchedule
+    private function createGameDaysIfNotAvailable(GameSchedule $gameSchedule, GameScheduleData $gameScheduleData): GameSchedule
     {
+        if ($gameScheduleData->game_days === 0) {
+            return $gameSchedule;
+        }
+
+        if ($gameSchedule->days()->exists()) {
+            return $gameSchedule;
+        }
+
         $gameDays = collect()->times($gameScheduleData->game_days, function (int $day) use ($gameSchedule): GameDay {
             $gameDay = new GameDay();
             $gameDay->game_schedule_id = $gameSchedule->id;

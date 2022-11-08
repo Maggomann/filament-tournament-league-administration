@@ -5,7 +5,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameSchedul
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\CreateGameScheduleAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\UpdateOrCreateGameScheduleAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\DTO\GameScheduleData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource;
@@ -18,9 +18,9 @@ class CreateGameSchedule extends CreateRecord
     protected function handleRecordCreation(array $data): Model
     {
         try {
-            return app(CreateGameScheduleAction::class)->execute(
-                app($this->getModel()),
-                GameScheduleData::create($data)
+            return app(UpdateOrCreateGameScheduleAction::class)->execute(
+                GameScheduleData::create($data),
+                app($this->getModel())
             );
         } catch (Throwable $e) {
             CreatedEntryFailedNotification::make()->send();

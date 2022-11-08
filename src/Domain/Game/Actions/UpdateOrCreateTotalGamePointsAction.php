@@ -8,7 +8,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Throwable;
 
-class CreateOrUpdateTotalGamePointsAction
+class UpdateOrCreateTotalGamePointsAction
 {
     /**
      * @throws Throwable

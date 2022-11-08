@@ -7,7 +7,7 @@ use Filament\Resources\Table;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\CreateOrUpdateTotalGameSchedulePointsAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\UpdateOrCreateTotalGameSchedulePointsAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreateEntrySuccessNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
@@ -102,7 +102,7 @@ class TotalTeamPointsRelationManager extends TranslateableRelationManager
                             /** @var GameSchedule $gameSchedule */
                             $gameSchedule = $livewire->getRelationship()->getParent();
 
-                            app(CreateOrUpdateTotalGameSchedulePointsAction::class)->execute($gameSchedule);
+                            app(UpdateOrCreateTotalGameSchedulePointsAction::class)->execute($gameSchedule);
 
                             CreateEntrySuccessNotification::make()->send();
                         } catch (Throwable) {
