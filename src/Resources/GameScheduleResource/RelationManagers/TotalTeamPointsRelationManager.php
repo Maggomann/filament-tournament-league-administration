@@ -11,10 +11,14 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreateEntrySuccessNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;
 
+/**
+ * @method static GameSchedule getOwnerRecord()
+ */
 class TotalTeamPointsRelationManager extends TranslateableRelationManager
 {
     protected static string $relationship = 'totalTeamPoints';
@@ -95,9 +99,10 @@ class TotalTeamPointsRelationManager extends TranslateableRelationManager
                     ->button()
                     ->action(function (TotalTeamPointsRelationManager $livewire): void {
                         try {
-                            app(CreateOrUpdateTotalGameSchedulePointsAction::class)->execute(
-                                $livewire->getRelationship()->getParent()
-                            );
+                            /** @var GameSchedule $gameSchedule */
+                            $gameSchedule = $livewire->getRelationship()->getParent();
+
+                            app(CreateOrUpdateTotalGameSchedulePointsAction::class)->execute($gameSchedule);
 
                             CreateEntrySuccessNotification::make()->send();
                         } catch (Throwable) {

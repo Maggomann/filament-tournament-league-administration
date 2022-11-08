@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $total_draws
  * @property int $total_victory_after_defeats
  * @property int $total_home_points_legs
+ * @property int $total_guest_points_legs
  * @property int $total_home_points_games
  * @property int $total_guest_points_games
  * @property int $total_home_points_after_draw

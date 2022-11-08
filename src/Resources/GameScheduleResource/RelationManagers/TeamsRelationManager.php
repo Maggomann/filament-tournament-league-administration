@@ -16,6 +16,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notification
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DetachBuldEntriesFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DetachBuldEntriesSucceededNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;
@@ -49,9 +50,10 @@ class TeamsRelationManager extends TranslateableRelationManager
                     ->button()
                     ->action(function (TeamsRelationManager $livewire): void {
                         try {
-                            app(SyncAllGameScheduleTeamsAction::class)->execute(
-                                $livewire->getRelationship()->getParent()
-                            );
+                            /** @var GameSchedule $gameSchedule */
+                            $gameSchedule = $livewire->getRelationship()->getParent();
+
+                            app(SyncAllGameScheduleTeamsAction::class)->execute($gameSchedule);
 
                             AttachEntrySucceededNotification::make()->send();
                         } catch (Throwable) {
@@ -63,13 +65,14 @@ class TeamsRelationManager extends TranslateableRelationManager
                     ->preloadRecordSelect()
                     ->recordSelectOptionsQuery(function (TeamsRelationManager $livewire) {
                         $relationship = $livewire->getRelationship();
-
                         $titleColumnName = $livewire->getRecordTitleAttribute();
+                        /** @var GameSchedule $gameSchedule */
+                        $gameSchedule = $relationship->getParent();
 
                         return $relationship
                             ->getRelated()
                             ->query()
-                            ->whereHas('league', fn ($query) => $query->where('tournament_league_teams.league_id', $relationship->getParent()->league->id))
+                            ->whereHas('league', fn ($query) => $query->where('tournament_league_teams.league_id', $gameSchedule->league->id))
                             ->orderBy($titleColumnName);
                     }),
             ])

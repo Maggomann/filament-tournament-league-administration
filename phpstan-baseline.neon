@@ -66,41 +66,6 @@ parameters:
 			path: src/Resources/GameScheduleResource.php
 
 		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:teams\\(\\)\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/PlayersRelationManager.php
-
-		-
-			message: "#^Parameter \\#1 \\$gameSchedule of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\GameSchedule\\\\Actions\\\\SyncAllGameSchedulePlayersAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/PlayersRelationManager.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$league\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/TeamsRelationManager.php
-
-		-
-			message: "#^Parameter \\#1 \\$gameSchedule of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\GameSchedule\\\\Actions\\\\SyncAllGameScheduleTeamsAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/TeamsRelationManager.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$federation\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/TotalTeamPointsRelationManager.php
-
-		-
-			message: "#^Access to an undefined property Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\TotalTeamPoint\\:\\:\\$total_guest_points_legs\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/TotalTeamPointsRelationManager.php
-
-		-
-			message: "#^Parameter \\#1 \\$gameSchedule of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\GameSchedule\\\\Actions\\\\CreateOrUpdateTotalGameSchedulePointsAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameSchedule, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
-			count: 1
-			path: src/Resources/GameScheduleResource/RelationManagers/TotalTeamPointsRelationManager.php
-
-		-
 			message: "#^Parameter \\#1 \\$player of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Player\\\\Actions\\\\UpdatePlayerAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Player, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
 			count: 1
 			path: src/Resources/PlayerResource/Pages/EditPlayer.php
