@@ -83,7 +83,10 @@ class TeamsRelationManager extends TranslateableRelationManager
                 DetachBulkAction::make()
                     ->action(function (TeamsRelationManager $livewire, Collection $records): void {
                         try {
-                            app(DetachGameScheduleTeamsAction::class)->execute($livewire, $records);
+                            /** @var GameSchedule $gameSchedule */
+                            $gameSchedule = $livewire->getRelationship()->getParent();
+
+                            app(DetachGameScheduleTeamsAction::class)->execute($gameSchedule, $records);
 
                             DetachBuldEntriesSucceededNotification::make()->send();
                         } catch (Throwable) {
