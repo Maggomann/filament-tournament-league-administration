@@ -21,7 +21,7 @@ class EditFreeTournament extends EditRecord
         try {
             /** @var FreeTournament $record */
             return app(UpdateOrCreateFreeTournamentAction::class)->execute(
-                FreeTournamentData::create($data),
+                FreeTournamentData::from($data),
                 $record
             );
         } catch (Throwable $e) {

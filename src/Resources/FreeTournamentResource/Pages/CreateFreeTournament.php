@@ -18,7 +18,7 @@ class CreateFreeTournament extends CreateRecord
     protected function handleRecordCreation(array $data): Model
     {
         try {
-            return app(UpdateOrCreateFreeTournamentAction::class)->execute(FreeTournamentData::create($data));
+            return app(UpdateOrCreateFreeTournamentAction::class)->execute(FreeTournamentData::from($data));
         } catch (Throwable $e) {
             CreatedEntryFailedNotification::make()->send();
 
