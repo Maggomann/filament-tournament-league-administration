@@ -84,7 +84,7 @@ class TeamResource extends TranslateableResource
                             ->createOptionUsing(static function (Select $component, array $data) {
                                 try {
                                     $federation = app(CreateFedrationSmallAction::class)->execute(
-                                        FederationData::create($data)
+                                        FederationData::from($data)
                                     );
 
                                     $component->options(Federation::all()->pluck('name', 'id'));

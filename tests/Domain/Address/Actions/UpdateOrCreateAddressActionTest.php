@@ -7,7 +7,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\PlayerAd
 use Maggomann\LaravelAddressable\Models\Address;
 
 dataset('UpdateOrCreateAddresses', function () {
-    yield fn () => PlayerAddressData::create([
+    yield fn () => PlayerAddressData::from([
         'gender_id' => 1,
         'category_id' => 1,
         'first_name' => 'first_name example',
@@ -22,7 +22,7 @@ dataset('UpdateOrCreateAddresses', function () {
         'is_main' => false,
     ]);
 
-    yield fn () => PlayerAddressData::create([
+    yield fn () => PlayerAddressData::from([
         'gender_id' => 1,
         'category_id' => 1,
         'first_name' => 'first_name example 2',

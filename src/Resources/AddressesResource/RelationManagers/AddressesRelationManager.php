@@ -150,7 +150,7 @@ class AddressesRelationManager extends TranslateableRelationManager
 
                             return app(UpdateOrCreateAddressAction::class)->execute(
                                 $player,
-                                PlayerAddressData::create($data)
+                                PlayerAddressData::from($data)
                             );
                         } catch (Throwable) {
                             DeleteEntryFailedNotification::make()->send();
@@ -169,7 +169,7 @@ class AddressesRelationManager extends TranslateableRelationManager
 
                             return app(UpdateOrCreateAddressAction::class)->execute(
                                 $player,
-                                PlayerAddressData::create($data),
+                                PlayerAddressData::from($data),
                                 $address,
                             );
                         } catch (Throwable) {

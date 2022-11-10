@@ -3,33 +3,26 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\DTO;
 
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\LaravelData\Data;
 
-class TotalTeamPointData extends DataTransferObject
+class TotalTeamPointData extends Data
 {
-    public int $total_number_of_encounters = 0;
+    public function __construct(
+        public int $total_number_of_encounters = 0,
+        public int $total_wins = 0,
+        public int $total_defeats = 0,
+        public int $total_draws = 0,
+        public int $total_victory_after_defeats = 0,
+        public int $total_home_points_legs = 0,
+        public int $total_guest_points_legs = 0,
+        public int $total_home_points_games = 0,
+        public int $total_guest_points_games = 0,
+        public int $total_home_points_from_games_and_legs = 0,
+        public int $total_guest_points_from_games_and_legs = 0
+    ) {
+    }
 
-    public int $total_wins = 0;
-
-    public int $total_defeats = 0;
-
-    public int $total_draws = 0;
-
-    public int $total_victory_after_defeats = 0;
-
-    public int $total_home_points_legs = 0;
-
-    public int $total_guest_points_legs = 0;
-
-    public int $total_home_points_games = 0;
-
-    public int $total_guest_points_games = 0;
-
-    public int $total_home_points_from_games_and_legs = 0;
-
-    public int $total_guest_points_from_games_and_legs = 0;
-
-    public static function createFromTotalTeamPointWithRecalculation(TotalTeamPoint $totalTeamPoint): self
+    public static function createFromTotalTeamPointWithRecalculation(TotalTeamPoint $totalTeamPoint): static
     {
         $result = $totalTeamPoint
             ->load([
@@ -43,7 +36,7 @@ class TotalTeamPointData extends DataTransferObject
             ->recalculatePoints($totalTeamPoint->gameSchedule)
             ->first();
 
-        return new self([
+        return static::from([
             'total_number_of_encounters' => $result->total_number_of_encounters,
             'total_wins' => $result->total_wins,
             'total_defeats' => $result->total_defeats,

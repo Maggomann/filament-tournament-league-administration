@@ -27,7 +27,7 @@ beforeEach(function () {
 });
 
 it('returns a PlayerAddressData when valid data is submitted', function () {
-    $data = PlayerAddressData::create($this->validParams);
+    $data = PlayerAddressData::from($this->validParams);
 
     $this->assertInstanceOf(PlayerAddressData::class, $data);
 });
@@ -36,7 +36,7 @@ test('PlayerAddressData throws an error when invalid data is submitted', functio
     $this->withoutExceptionHandling();
     $this->expectException(TypeError::class);
 
-    PlayerAddressData::create(
+    PlayerAddressData::from(
         Arr::set($this->validParams, $key, $value)
     );
 })->with([

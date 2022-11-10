@@ -12,7 +12,7 @@ beforeEach(function () {
 });
 
 it('returns a FederationData when valid data is submitted', function ($key, $value) {
-    $data = FederationData::create(
+    $data = FederationData::from(
         Arr::set($this->validParams, $key, $value)
     );
 
@@ -25,7 +25,7 @@ it('returns a FederationData when valid data is submitted', function ($key, $val
 test('FederationData throws an error when invalid data is submitted', function ($key, $value) {
     $this->expectException(TypeError::class);
 
-    FederationData::create(
+    FederationData::from(
         Arr::set($this->validParams, $key, $value)
     );
 })->with([

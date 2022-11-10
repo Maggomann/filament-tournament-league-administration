@@ -2,12 +2,12 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Contracts;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\LaravelData\Data;
 
 /**
  * @property int $gender_id
  * @property int $category_id
  */
-class AddressData extends DataTransferObject
+class AddressData extends Data
 {
 }

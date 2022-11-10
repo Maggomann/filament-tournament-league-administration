@@ -5,7 +5,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Federation\DTO\Feder
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 
 it('adds a federation', function ($calculationTypeId, $name) {
-    $federationData = FederationData::create([
+    $federationData = FederationData::from([
         'calculation_type_id' => $calculationTypeId,
         'name' => $name,
     ]);

@@ -16,7 +16,7 @@ class FreeTournamentData extends Data
         public int $qualification_level_id,
         public string $name,
         public string $description,
-        #[Min(1), Max(10),]
+        #[Min(1), Max(10), ]
         public int $maximum_number_of_participants,
         public int $coin_money,
         public array $prize_money_depending_on_placement,
