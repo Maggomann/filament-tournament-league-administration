@@ -128,7 +128,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
                         try {
                             /** @var GameDay $record */
                             return app(UpdateOrCreateGameDayAction::class)->execute(
-                                GameDayData::create($data),
+                                GameDayData::from($data),
                                 $record
                             );
                         } catch (Throwable) {

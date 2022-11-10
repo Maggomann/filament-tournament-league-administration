@@ -14,7 +14,7 @@ beforeEach(function () {
 });
 
 it('returns a PlayerData when valid data is submitted', function ($key, $value) {
-    $data = PlayerData::create(
+    $data = PlayerData::from(
         Arr::set($this->validParams, $key, $value)
     );
 
@@ -27,7 +27,7 @@ it('returns a PlayerData when valid data is submitted', function ($key, $value) 
 test('PlayerData throws an error when invalid data is submitted', function ($key, $value) {
     $this->expectException(TypeError::class);
 
-    PlayerData::create(
+    PlayerData::from(
         Arr::set($this->validParams, $key, $value)
     );
 })->with([

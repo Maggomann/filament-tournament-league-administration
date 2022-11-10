@@ -18,7 +18,7 @@ class EditTeam extends EditRecord
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
         try {
-            return app(UpdateOrCreateTeamAction::class)->execute(TeamData::create($data), $record);
+            return app(UpdateOrCreateTeamAction::class)->execute(TeamData::from($data), $record);
         } catch (Throwable $e) {
             EditEntryFailedNotification::make()->send();
 

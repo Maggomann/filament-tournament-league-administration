@@ -27,7 +27,7 @@ it('returns a GameDayData when valid data is submitted', function ($key, $value)
 test('GameDayData throws an error when invalid data is submitted', function ($key, $value) {
     $this->expectException(TypeError::class);
 
-    GameDayData::create(
+    GameDayData::from(
         Arr::set($this->validParams, $key, $value)
     );
 })->with([

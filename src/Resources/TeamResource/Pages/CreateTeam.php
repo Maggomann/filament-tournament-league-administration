@@ -19,7 +19,7 @@ class CreateTeam extends CreateRecord
     {
         try {
             return app(UpdateOrCreateTeamAction::class)->execute(
-                TeamData::create($data),
+                TeamData::from($data),
                 app($this->getModel())
             );
         } catch (Throwable $e) {

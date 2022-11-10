@@ -18,7 +18,7 @@ class EditPlayer extends EditRecord
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
         try {
-            return app(UpdateOrCreatePlayerAction::class)->execute(PlayerData::create($data), $record);
+            return app(UpdateOrCreatePlayerAction::class)->execute(PlayerData::from($data), $record);
         } catch (Throwable $e) {
             CreatedEntryFailedNotification::make()->send();
 

@@ -2,27 +2,16 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Team\DTO;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\LaravelData\Data;
 
-class TeamData extends DataTransferObject
+class TeamData extends Data
 {
-    public ?int $id;
+    public function __construct(
+        public null|int $id,
+        public int $league_id,
+        public string $name,
+        public string $slug
 
-    public int $league_id;
-
-    public string $name;
-
-    public string $slug;
-
-    /**
-     * @param  array<mixed>  $args
-     */
-    public static function create(...$args): self
-    {
-        if (is_array($args[0] ?? null)) {
-            $args = $args[0];
-        }
-
-        return new self($args);
+    ) {
     }
 }

@@ -4,28 +4,29 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\D
 
 use Illuminate\Support\Arr;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\LaravelData\Attributes\Validation\Date;
+use Spatie\LaravelData\Data;
 
-class GameScheduleData extends DataTransferObject
+class GameScheduleData extends Data
 {
-    public ?int $id;
+    public function __construct(
+        public null|int $id,
+        public int $federation_id,
+        public int $league_id,
+        public string $name,
+        public int $game_days,
+        #[Date]
+        public string $started_at,
+        #[Date]
+        public string $ended_at
 
-    public int $federation_id;
-
-    public int $league_id;
-
-    public string $name;
-
-    public string $started_at;
-
-    public string $ended_at;
-
-    public int $game_days = 0;
+    ) {
+    }
 
     /**
      * @param  array<mixed>  $args
      */
-    public static function create(...$args): self
+    public static function create(...$args): static
     {
         if (is_array($args[0] ?? null)) {
             $args = $args[0];
@@ -35,6 +36,6 @@ class GameScheduleData extends DataTransferObject
 
         Arr::set($args, 'league_id', $league->id);
 
-        return new self($args);
+        return static::from($args);
     }
 }

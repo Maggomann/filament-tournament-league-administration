@@ -2,29 +2,19 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\GameDay\DTO;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\LaravelData\Attributes\Validation\Date;
+use Spatie\LaravelData\Data;
 
-class GameDayData extends DataTransferObject
+class GameDayData extends Data
 {
-    public ?int $id;
-
-    public int $game_schedule_id;
-
-    public int $day;
-
-    public string $started_at;
-
-    public string $ended_at;
-
-    /**
-     * @param  array<mixed>  $args
-     */
-    public static function create(...$args): self
-    {
-        if (is_array($args[0] ?? null)) {
-            $args = $args[0];
-        }
-
-        return new self($args);
+    public function __construct(
+        public null|int $id,
+        public int $game_schedule_id,
+        public int $day,
+        #[Date]
+        public string $started_at,
+        #[Date]
+        public string $ended_at
+    ) {
     }
 }

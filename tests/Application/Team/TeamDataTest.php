@@ -26,7 +26,7 @@ it('returns a TeamData when valid data is submitted', function ($key, $value) {
 test('TeamData throws an error when invalid data is submitted', function ($key, $value) {
     $this->expectException(TypeError::class);
 
-    TeamData::create(
+    TeamData::from(
         Arr::set($this->validParams, $key, $value)
     );
 })->with([

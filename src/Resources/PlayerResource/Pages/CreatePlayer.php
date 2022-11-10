@@ -19,7 +19,7 @@ class CreatePlayer extends CreateRecord
     {
         try {
             return app(UpdateOrCreatePlayerAction::class)->execute(
-                PlayerData::create($data),
+                PlayerData::from($data),
                 app($this->getModel())
             );
         } catch (Throwable $e) {
