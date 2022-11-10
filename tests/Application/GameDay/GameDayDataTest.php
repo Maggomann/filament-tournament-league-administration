@@ -14,7 +14,7 @@ beforeEach(function () {
 });
 
 it('returns a GameDayData when valid data is submitted', function ($key, $value) {
-    $data = GameDayData::create(
+    $data = GameDayData::from(
         Arr::set($this->validParams, $key, $value)
     );
 

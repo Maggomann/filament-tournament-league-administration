@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\LaravelAddressable\Models\Address;
 
 /**
@@ -21,7 +22,7 @@ class AddressFactory extends Factory
     {
         return [
             'addressable_id' => PlayerFactory::new()->lazy(),
-            'addressable_type' => 'player',
+            'addressable_type' => Player::class,
             'gender_id' => $this->faker->randomElement([1, 2]),
             'category_id' => 1,
             'first_name' => $this->faker->firstName,

@@ -13,7 +13,7 @@ beforeEach(function () {
 });
 
 it('returns a TeamData when valid data is submitted', function ($key, $value) {
-    $data = TeamData::create(
+    $data = TeamData::from(
         Arr::set($this->validParams, $key, $value)
     );
 
