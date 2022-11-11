@@ -3,6 +3,7 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\DTO;
 
 use Illuminate\Support\Arr;
+use Spatie\LaravelData\Attributes\Validation\Date;
 use Spatie\LaravelData\Data;
 
 class GameData extends Data
@@ -20,7 +21,9 @@ class GameData extends Data
         public bool $has_an_overtime,
         public int $home_points_after_draw,
         public int $guest_points_after_draw,
+        #[Date]
         public string $started_at,
+        #[Date]
         public string $ended_at
     ) {
     }
