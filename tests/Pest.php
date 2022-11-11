@@ -1,6 +1,6 @@
 <?php
 
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
+// use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
 
 // use Illuminate\Database\Eloquent\Model;
 
@@ -9,4 +9,4 @@ use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
 //         ->is($model)->toBeTrue();
 // });
 
-uses(TestCase::class)->in(__DIR__);
+// uses(TestCase::class)->in(__DIR__);

@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Arr;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\DTO\PlayerData;
+use Maggomann\FilamentTournamentLeagueAdministration\Tests\Application\Player\DTO\TestCase;
+
+uses(TestCase::class);
 
 beforeEach(function () {
     $this->validParams = [

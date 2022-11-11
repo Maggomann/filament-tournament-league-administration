@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Arr;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\PlayerAddressData;
+use Maggomann\FilamentTournamentLeagueAdministration\Tests\Application\Address\DTO\TestCase;
+
+uses(TestCase::class);
 
 beforeEach(function () {
     $this->validParams = [
@@ -14,13 +17,12 @@ beforeEach(function () {
         'street_addition' => 'street_addition example',
         'postal_code' => 'postal_code example',
         'city' => 'city example',
-        'country_code' => null,
+        'country_code' => 'DE',
         'state' => null,
         'company' => null,
         'job_title' => null,
         'latitude' => null,
         'longitude' => null,
-        'country_code' => 'DE',
         'is_preferred' => false,
         'is_main' => false,
     ];

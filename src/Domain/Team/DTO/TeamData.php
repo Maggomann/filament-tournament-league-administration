@@ -11,7 +11,6 @@ class TeamData extends Data
         public int $league_id,
         public string $name,
         public string $slug
-
     ) {
     }
 }

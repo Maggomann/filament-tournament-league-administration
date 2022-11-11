@@ -19,7 +19,6 @@ class GameScheduleData extends Data
         public string $started_at,
         #[Date]
         public string $ended_at
-
     ) {
     }
 
