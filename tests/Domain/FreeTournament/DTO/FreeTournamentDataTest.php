@@ -3,7 +3,7 @@
 use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\FreeTournament\DTO\FreeTournamentData;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\Application\Address\DTO\TestCase;
+use Maggomann\FilamentTournamentLeagueAdministration\Tests\Domain\Address\DTO\TestCase;
 
 uses(TestCase::class);
 

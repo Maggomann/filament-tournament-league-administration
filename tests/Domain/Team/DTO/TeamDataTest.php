@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Arr;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Team\DTO\TeamData;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\Application\Team\DTO\TestCase;
+use Maggomann\FilamentTournamentLeagueAdministration\Tests\Domain\Team\DTO\TestCase;
 
 uses(TestCase::class);
 

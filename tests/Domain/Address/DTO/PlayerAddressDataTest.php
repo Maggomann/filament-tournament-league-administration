@@ -3,7 +3,7 @@
 use Illuminate\Support\Arr;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Contracts\AddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\PlayerAddressData;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\Application\Address\DTO\TestCase;
+use Maggomann\FilamentTournamentLeagueAdministration\Tests\Domain\Address\DTO\TestCase;
 
 uses(TestCase::class);
 

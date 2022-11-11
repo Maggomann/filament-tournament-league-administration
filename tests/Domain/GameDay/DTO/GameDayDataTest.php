@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Arr;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameDay\DTO\GameDayData;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\Application\GameDay\DTO\TestCase;
+use Maggomann\FilamentTournamentLeagueAdministration\Tests\Domain\GameDay\DTO\TestCase;
 
 uses(TestCase::class);
 

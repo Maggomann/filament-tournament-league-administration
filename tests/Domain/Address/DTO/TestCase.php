@@ -1,6 +1,6 @@
 <?php
 
-namespace Maggomann\FilamentTournamentLeagueAdministration\Tests\Application\Team\DTO;
+namespace Maggomann\FilamentTournamentLeagueAdministration\Tests\Domain\Address\DTO;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Spatie\LaravelData\LaravelDataServiceProvider;
