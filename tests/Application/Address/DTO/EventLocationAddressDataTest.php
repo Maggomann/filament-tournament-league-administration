@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Arr;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Contracts\AddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Tests\Application\Address\DTO\TestCase;
 
@@ -32,6 +33,7 @@ it('returns a EventLocationAddressData when valid data is submitted', function (
     $data = EventLocationAddressData::from($this->validParams);
 
     $this->assertInstanceOf(EventLocationAddressData::class, $data);
+    $this->assertInstanceOf(AddressData::class, $data);
 });
 
 test('EventLocationAddressData throws an error when invalid data is submitted', function ($key, $value) {

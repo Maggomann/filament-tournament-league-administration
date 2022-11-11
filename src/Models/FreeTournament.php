@@ -62,7 +62,7 @@ class FreeTournament extends TranslateableModel
     ];
 
     protected $casts = [
-        'prize_money_depending_on_placement' => 'array',
+        'prize_money_depending_on_placement' => 'json',
     ];
 
     /**

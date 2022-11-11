@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Arr;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Contracts\AddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\PlayerAddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Tests\Application\Address\DTO\TestCase;
 
@@ -32,6 +33,7 @@ it('returns a PlayerAddressData when valid data is submitted', function () {
     $data = PlayerAddressData::from($this->validParams);
 
     $this->assertInstanceOf(PlayerAddressData::class, $data);
+    $this->assertInstanceOf(AddressData::class, $data);
 });
 
 test('PlayerAddressData throws an error when invalid data is submitted', function ($key, $value) {
