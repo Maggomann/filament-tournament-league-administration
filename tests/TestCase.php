@@ -13,6 +13,8 @@ use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Maggomann\FilamentTournamentLeagueAdministration\FilamentTournamentLeagueAdministrationServiceProvider;
+use Maggomann\FilamentTournamentLeagueAdministration\Tests\Database\Factories\UserFactory;
+use Maggomann\FilamentTournamentLeagueAdministration\Tests\Models\User;
 use Maggomann\LaravelAddressable\LaravelAddressableServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
@@ -20,6 +22,13 @@ use Spatie\LaravelData\LaravelDataServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->actingAs(UserFactory::new()->create());
+    }
+
     protected function getPackageProviders($app): array
     {
         return [
@@ -47,6 +56,7 @@ abstract class TestCase extends BaseTestCase
         );
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }
 
     protected function getEnvironmentSetUp($app): void

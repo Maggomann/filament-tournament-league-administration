@@ -2,7 +2,6 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Tests\Models;
 
-use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -33,10 +32,5 @@ class User extends Authenticatable implements FilamentUser
     public function canAccessFilament(): bool
     {
         return true;
-    }
-
-    protected static function newFactory()
-    {
-        return UserFactory::new();
     }
 }
