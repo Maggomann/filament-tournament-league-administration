@@ -60,7 +60,7 @@ class GameSchedule extends TranslateableModel
 
     public function days(): HasMany
     {
-        return $this->hasMany(GameDay::class, 'game_schedule_id', 'id');
+        return $this->hasMany(GameDay::class);
     }
 
     public function teams(): BelongsToMany
@@ -80,6 +80,6 @@ class GameSchedule extends TranslateableModel
 
     public function totalTeamPoints(): HasMany
     {
-        return $this->hasMany(TotalTeamPoint::class, 'game_schedule_id', 'id');
+        return $this->hasMany(TotalTeamPoint::class);
     }
 }

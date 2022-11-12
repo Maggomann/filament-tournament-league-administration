@@ -68,22 +68,22 @@ class GamesRelationManager extends TranslateableRelationManager
                 TextColumn::make(TotalTeamPoint::transAttribute('legs'))
                     ->label(TotalTeamPoint::transAttribute('legs'))
                     ->getStateUsing(
-                        fn (Game $record): string => "{$record->home_points_legs} : {$record->guest_points_legs}"
+                        fn (?Game $record): string => "{$record?->home_points_legs} : {$record?->guest_points_legs}"
                     ),
 
                 TextColumn::make(TotalTeamPoint::transAttribute('games'))
                     ->label(TotalTeamPoint::transAttribute('games'))
                     ->getStateUsing(
-                        fn (Game $record): string => "{$record->home_points_games} : {$record->guest_points_games}"
+                        fn (?Game $record): string => "{$record?->home_points_games} : {$record?->guest_points_games}"
                     ),
 
                 TextColumn::make(TotalTeamPoint::transAttribute('points_after_draws'))
                     ->label(TotalTeamPoint::transAttribute('points_after_draws'))
                     ->getStateUsing(
-                        fn (Game $record): string => "{$record->home_points_after_draw} : {$record->guest_points_after_draw}"
+                        fn (?Game $record): string => "{$record?->home_points_after_draw} : {$record?->guest_points_after_draw}"
                     )
                     ->hidden(
-                        fn (GamesRelationManager $livewire) => $livewire->getOwnerRecord()->federation->calculationType->id !== 2
+                        fn (GamesRelationManager $livewire) => $livewire->getOwnerRecord()->federation?->calculationType?->id !== 2
                     ),
 
                 TextColumn::make('started_at')

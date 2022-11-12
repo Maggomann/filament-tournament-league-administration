@@ -37,7 +37,6 @@ it('returns a EventLocationAddressData when valid data is submitted', function (
 });
 
 test('EventLocationAddressData throws an error when invalid data is submitted', function ($key, $value) {
-    $this->withoutExceptionHandling();
     $this->expectException(TypeError::class);
 
     EventLocationAddressData::from(

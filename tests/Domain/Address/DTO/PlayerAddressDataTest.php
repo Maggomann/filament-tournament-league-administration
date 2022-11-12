@@ -37,7 +37,6 @@ it('returns a PlayerAddressData when valid data is submitted', function () {
 });
 
 test('PlayerAddressData throws an error when invalid data is submitted', function ($key, $value) {
-    $this->withoutExceptionHandling();
     $this->expectException(TypeError::class);
 
     PlayerAddressData::from(

@@ -12,10 +12,14 @@ class UpdateOrCreateTeamAction
     /**
      * @throws Throwable
      */
-    public function execute(TeamData $teamData, Team $team): Team
+    public function execute(TeamData $teamData, ?Team $team = null): Team
     {
         try {
             return DB::transaction(function () use ($teamData, $team) {
+                if (is_null($team)) {
+                    $team = new Team();
+                }
+
                 $team->fill($teamData->toArray());
                 $team->league_id = $teamData->league_id;
 
