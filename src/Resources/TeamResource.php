@@ -57,20 +57,20 @@ class TeamResource extends TranslateableResource
                             )
                             ->required()
                             ->reactive()
-                            // ->createOptionForm([
-                            //     TextInput::make('name')
-                            //         ->required(),
-                            //     Select::make('calculation_type_id')
-                            //         ->label(Federation::transAttribute('calculation_type_id'))
-                            //         ->validationAttribute(Federation::transAttribute('calculation_type_id'))
-                            //         ->options(CalculationType::all()->pluck('name', 'id'))
-                            //         ->placeholder(
-                            //             TranslateComponent::placeholder(static::$translateablePackageKey, 'calculation_type_id')
-                            //         )
-                            //         ->exists(table: CalculationType::class, column: 'id')
-                            //         ->required()
-                            //         ->searchable(),
-                            // ])
+                            ->createOptionForm([
+                                TextInput::make('name')
+                                    ->required(),
+                                Select::make('calculation_type_id')
+                                    ->label(Federation::transAttribute('calculation_type_id'))
+                                    ->validationAttribute(Federation::transAttribute('calculation_type_id'))
+                                    ->options(CalculationType::all()->pluck('name', 'id'))
+                                    ->placeholder(
+                                        TranslateComponent::placeholder(static::$translateablePackageKey, 'calculation_type_id')
+                                    )
+                                    ->exists(table: CalculationType::class, column: 'id')
+                                    ->required()
+                                    ->searchable(),
+                            ])
                             ->createOptionAction(function (Action $action) {
                                 $createTitle = __('filament::resources/pages/create-record.title', [
                                     'label' => FederationResource::getModelLabel(),

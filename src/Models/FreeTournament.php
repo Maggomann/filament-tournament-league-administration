@@ -82,16 +82,16 @@ class FreeTournament extends TranslateableModel
 
     public function mode(): BelongsTo
     {
-        return $this->belongsTo(Mode::class)->withTrashed();
+        return $this->belongsTo(Mode::class);
     }
 
     public function dartType(): BelongsTo
     {
-        return $this->belongsTo(DartType::class)->withTrashed();
+        return $this->belongsTo(DartType::class);
     }
 
     public function qualificationLevel(): BelongsTo
     {
-        return $this->belongsTo(QualificationLevel::class)->withTrashed();
+        return $this->belongsTo(QualificationLevel::class);
     }
 }

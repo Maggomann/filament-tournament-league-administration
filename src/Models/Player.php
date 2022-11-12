@@ -66,7 +66,7 @@ class Player extends TranslateableModel
 
     public function team(): BelongsTo
     {
-        return $this->belongsTo(Team::class)->withTrashed();
+        return $this->belongsTo(Team::class);
     }
 
     public function league(): HasOneThrough
@@ -78,11 +78,11 @@ class Player extends TranslateableModel
             'tournament_league_leagues.id',
             'team_id',
             'league_id'
-        )->withTrashed();
+        );
     }
 
     public function gameSchedules(): BelongsToMany
     {
-        return $this->belongsToMany(GameSchedule::class)->withTrashed();
+        return $this->belongsToMany(GameSchedule::class);
     }
 }

@@ -5,6 +5,7 @@ use Database\Factories\FederationFactory;
 use Database\Factories\GameScheduleFactory;
 use Database\Factories\LeagueFactory;
 use Database\Factories\TeamFactory;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Team\Actions\UpdateOrCreateTeamAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Team\DTO\TeamData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
@@ -147,4 +148,55 @@ it('can save a team', function () {
         'name' => 'Example Edit',
         'slug' => 'example-edit',
     ]);
+});
+
+it('team edit page should receive execute from UpdateOrCreateTeamAction', function () {
+    $federation = FederationFactory::new()->create();
+    $league = LeagueFactory::new()->for($federation)->create();
+
+    $gameSchedule = GameScheduleFactory::new()
+        ->for($federation)
+        ->for($league)
+        ->create();
+    $team = TeamFactory::new()->for($league)->create();
+    $team->gameSchedules()->save($gameSchedule);
+
+    $team = TeamFactory::new()->create();
+
+    $mock = $this->mock(UpdateOrCreateTeamAction::class);
+    $mock->shouldReceive('execute')
+        ->with(TeamData::class, Team::class)
+        ->once()
+        ->andReturn(Team::class);
+
+    $editTeam = new TeamResource\Pages\EditTeam();
+    $editTeam->record = $team;
+    $editTeam->form->fill([
+        'federation_id' => $federation->id,
+        'league_id' => $league->id,
+        'name' => 'Example Test',
+        'slug' => 'example-test',
+    ]);
+    $editTeam->save();
+});
+
+it('can delete a team', function () {
+    $federation = FederationFactory::new()->create();
+    $league = LeagueFactory::new()->for($federation)->create();
+
+    $gameSchedule = GameScheduleFactory::new()
+        ->for($federation)
+        ->for($league)
+        ->create();
+    $team = TeamFactory::new()->for($league)->create();
+    $team->gameSchedules()->save($gameSchedule);
+
+    $team = TeamFactory::new()->create();
+
+    livewire(TeamResource\Pages\EditTeam::class, [
+        'record' => $team->getRouteKey(),
+    ])
+        ->callPageAction(DeleteAction::class);
+
+    $this->assertSoftDeleted($team);
 });

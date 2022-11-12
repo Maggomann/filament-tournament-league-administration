@@ -61,7 +61,7 @@ class Federation extends TranslateableModel
 
     public function leagues(): HasMany
     {
-        return $this->hasMany(League::class)->withTrashed();
+        return $this->hasMany(League::class);
     }
 
     public function calculationType(): BelongsTo
