@@ -65,6 +65,12 @@ dataset('UpdateOrCreateGames', function () {
 it('creates an game', function (GameData $gameData) {
     $game = app(UpdateOrCreateGameAction::class)->execute($gameData);
 
+    if (env('DB_CONNECTION') === 'sqlite') {
+        $this->assertDatabaseHas(Game::class, $game->getAttributes());
+
+        return;
+    }
+
     $this->assertDatabaseHas(Game::class, $game->attributesToArray());
 })->with('UpdateOrCreateGames');
 
@@ -79,6 +85,12 @@ it('updates an game', function (GameData $gameData) {
                 'guest_team_id' => null,
             ])
         );
+
+    if (env('DB_CONNECTION') === 'sqlite') {
+        $this->assertDatabaseHas(Game::class, $game->getAttributes());
+
+        return;
+    }
 
     $this->assertDatabaseHas(Game::class, $game->attributesToArray());
 })->with('UpdateOrCreateGames');

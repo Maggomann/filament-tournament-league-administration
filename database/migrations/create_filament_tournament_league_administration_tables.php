@@ -107,8 +107,8 @@ return new class() extends Migration
 
         if (! Schema::hasTable('game_schedule_player')) {
             Schema::create('game_schedule_player', function (Blueprint $table) {
-                $table->unsignedBigInteger('game_schedule_id')->nullable()->index('game_schedule_id_index');
-                $table->unsignedBigInteger('player_id')->nullable()->index('player_id_index');
+                $table->unsignedBigInteger('game_schedule_id')->nullable()->index('gsp_game_schedule_id_index');
+                $table->unsignedBigInteger('player_id')->nullable()->index('gsp_player_id_index');
             });
         }
 
@@ -210,6 +210,10 @@ return new class() extends Migration
 
     private function addUniqueIndicesToEventLocations(): void
     {
+        if (env('DB_CONNECTION') !== 'mysql') {
+            return;
+        }
+
         Schema::table('tournament_league_event_locations', function (Blueprint $table) {
             $table->string('name_unique')
                 ->virtualAs(
@@ -230,6 +234,10 @@ return new class() extends Migration
 
     private function addUniqueIndicesToGameDays(): void
     {
+        if (env('DB_CONNECTION') !== 'mysql') {
+            return;
+        }
+
         Schema::table('tournament_league_game_days', function (Blueprint $table) {
             $table->string('game_schedule_day_unique')
                 ->virtualAs(

@@ -29,8 +29,6 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->refreshApplication();
-
         $this->actingAs(UserFactory::new()->create());
     }
 
@@ -71,5 +69,12 @@ abstract class TestCase extends BaseTestCase
         //     $app['config']->get('view.paths'),
         //     [__DIR__ . '/../resources/views'],
         // ));
+
+        // $app['config']->set('database.default', 'sqlite');
+        // $app['config']->set('database.connections.sqlite', [
+        //     'driver' => 'sqlite',
+        //     'prefix' => '',
+        //     'database' => ':memory:',
+        // ]);
     }
 }

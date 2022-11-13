@@ -47,6 +47,17 @@ it('creates an free tournament', function (FreeTournamentData $freeTournamentDat
         )
     );
 
+    if (env('DB_CONNECTION') === 'sqlite') {
+        collect([
+            'started_at',
+            'ended_at',
+            'created_at',
+            'updated_at',
+        ])->each(function ($value) use ($freeTournament, &$assertAttributes) {
+            Arr::set($assertAttributes, $value, $freeTournament->{$value}->toDateTimeString());
+        });
+    }
+
     $this->assertDatabaseHas(
         FreeTournament::class,
         $assertAttributes
@@ -68,6 +79,17 @@ it('updates an free tournament', function (FreeTournamentData $freeTournamentDat
             Arr::get($assertAttributes, 'prize_money_depending_on_placement')
         )
     );
+
+    if (env('DB_CONNECTION') === 'sqlite') {
+        collect([
+            'started_at',
+            'ended_at',
+            'created_at',
+            'updated_at',
+        ])->each(function ($value) use ($freeTournament, &$assertAttributes) {
+            Arr::set($assertAttributes, $value, $freeTournament->{$value}->toDateTimeString());
+        });
+    }
 
     $this->assertDatabaseHas(
         FreeTournament::class,
