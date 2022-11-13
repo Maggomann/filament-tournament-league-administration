@@ -96,14 +96,14 @@
             "@test:unit"
         ]
     },
-    "repositories": {
-        "maggomann/laravel-addressable": {
-            "type": "path",
-            "url": "../../laravel-packages/laravel-addressable"
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:Maggomann/filament-model-translator.git"
         },
-        "maggomann/filament-model-translator": {
-            "type": "path",
-            "url": "../filament-model-translator"
+        {
+            "type": "vcs",
+            "url": "git@github.com:Maggomann/laravel-addressable.git"
         }
-    }
+    ]
 }
