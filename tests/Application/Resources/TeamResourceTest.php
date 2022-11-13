@@ -64,18 +64,19 @@ it('can create a team', function () {
 });
 
 it('can validate input for team page', function () {
-    $federation = FederationFactory::new()->create();
-    $league = LeagueFactory::new()->for($federation)->create();
-
     livewire(TeamResource\Pages\CreateTeam::class)
         ->fillForm([
-            'federation_id' => $federation->id,
-            'league_id' => $league->id,
+            'federation_id' => null,
+            'league_id' => null,
             'name' => null,
             'slug' => 'example',
         ])
         ->call('create')
-        ->assertHasFormErrors(['name' => 'required']);
+        ->assertHasFormErrors([
+            'federation_id' => 'required',
+            'league_id' => 'required',
+            'name' => 'required',
+        ]);
 });
 
 it('team create page should receive execute from UpdateOrCreateTeamAction', function () {

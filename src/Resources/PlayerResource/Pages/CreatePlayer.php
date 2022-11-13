@@ -18,10 +18,7 @@ class CreatePlayer extends CreateRecord
     protected function handleRecordCreation(array $data): Model
     {
         try {
-            return app(UpdateOrCreatePlayerAction::class)->execute(
-                PlayerData::from($data),
-                app($this->getModel())
-            );
+            return app(UpdateOrCreatePlayerAction::class)->execute(PlayerData::from($data));
         } catch (Throwable $e) {
             CreatedEntryFailedNotification::make()->send();
 

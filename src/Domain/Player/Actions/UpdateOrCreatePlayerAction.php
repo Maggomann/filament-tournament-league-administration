@@ -16,6 +16,10 @@ class UpdateOrCreatePlayerAction
     {
         try {
             return DB::transaction(function () use ($playerData, $player) {
+                if (is_null($player)) {
+                    $player = new Player();
+                }
+
                 $player->fill($playerData->toArray());
                 $player->team_id = $playerData->team_id;
 
