@@ -25,4 +25,18 @@ class PlayerFactory extends Factory
             'slug' => null,
         ];
     }
+
+    public function withPlausibleBelongsToRelations(array $parameters = []): self
+    {
+        return $this->afterCreating(
+            function (Player $player) use ($parameters) {
+                $team = TeamFactory::new()
+                    ->withPlausibleRelations($parameters)
+                    ->create($parameters);
+
+                $player->team()->associate($team);
+                $player->save();
+            }
+        );
+    }
 }

@@ -20,7 +20,6 @@ it('can render game create form', function () {
 
 it('can render game edit form', function () {
     $gameSchedule = GameScheduleFactory::new()->create();
-    $gameDay = GameDayFactory::new()->for($gameSchedule)->create();
     $homeTeam = TeamFactory::new()->create();
     $homeTeam->gameSchedules()->save($gameSchedule);
     $guestTeam = TeamFactory::new()->create();
@@ -29,7 +28,7 @@ it('can render game edit form', function () {
     $this->get(GameResource::getUrl('edit', [
         'record' => GameFactory::new()
             ->for($gameSchedule)
-            ->for($gameDay)
+            ->for(GameDayFactory::new()->for($gameSchedule))
             ->for($homeTeam, 'homeTeam')
             ->for($guestTeam, 'guestTeam')
             ->create(),

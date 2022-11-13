@@ -18,10 +18,8 @@ it('can render federation create form', function () {
 });
 
 it('can render federation edit form', function () {
-    $federation = FederationFactory::new()->create();
-
     $this->get(FederationResource::getUrl('edit', [
-        'record' => $federation,
+        'record' => FederationFactory::new()->create(),
     ]))->assertSuccessful();
 });
 

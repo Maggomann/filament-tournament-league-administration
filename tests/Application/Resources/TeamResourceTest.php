@@ -25,15 +25,9 @@ it('can render team create form', function () {
 });
 
 it('can render team edit form', function () {
-    $federation = FederationFactory::new()->create();
-    $league = LeagueFactory::new()->for($federation)->create();
-
-    $gameSchedule = GameScheduleFactory::new()
-        ->for($federation)
-        ->for($league)
+    $team = TeamFactory::new()
+        ->withPlausibleRelations()
         ->create();
-    $team = TeamFactory::new()->for($league)->create();
-    $team->gameSchedules()->save($gameSchedule);
 
     $this->get(TeamResource::getUrl('edit', [
         'record' => $team,
@@ -41,15 +35,9 @@ it('can render team edit form', function () {
 });
 
 it('can render all player relation managers', function () {
-    $federation = FederationFactory::new()->create();
-    $league = LeagueFactory::new()->for($federation)->create();
-
-    $gameSchedule = GameScheduleFactory::new()
-        ->for($federation)
-        ->for($league)
+    $team = TeamFactory::new()
+        ->withPlausibleRelations()
         ->create();
-    $team = TeamFactory::new()->for($league)->create();
-    $team->gameSchedules()->save($gameSchedule);
 
     livewire(PlayersRelationManager::class, [
         'ownerRecord' => $team,
@@ -117,14 +105,14 @@ it('can save a team', function () {
     $federation = FederationFactory::new()->create();
     $league = LeagueFactory::new()->for($federation)->create();
 
-    $gameSchedule = GameScheduleFactory::new()
+    GameScheduleFactory::new()
         ->for($federation)
         ->for($league)
         ->create();
-    $team = TeamFactory::new()->for($league)->create();
-    $team->gameSchedules()->save($gameSchedule);
 
-    $team = TeamFactory::new()->create();
+    $team = TeamFactory::new()
+        ->withPlausibleRelations()
+        ->create();
 
     livewire(TeamResource\Pages\EditTeam::class, [
         'record' => $team->getRouteKey(),
@@ -154,14 +142,14 @@ it('team edit page should receive execute from UpdateOrCreateTeamAction', functi
     $federation = FederationFactory::new()->create();
     $league = LeagueFactory::new()->for($federation)->create();
 
-    $gameSchedule = GameScheduleFactory::new()
+    GameScheduleFactory::new()
         ->for($federation)
         ->for($league)
         ->create();
-    $team = TeamFactory::new()->for($league)->create();
-    $team->gameSchedules()->save($gameSchedule);
 
-    $team = TeamFactory::new()->create();
+    $team = TeamFactory::new()
+        ->withPlausibleRelations()
+        ->create();
 
     $mock = $this->mock(UpdateOrCreateTeamAction::class);
     $mock->shouldReceive('execute')
@@ -181,17 +169,9 @@ it('team edit page should receive execute from UpdateOrCreateTeamAction', functi
 });
 
 it('can delete a team', function () {
-    $federation = FederationFactory::new()->create();
-    $league = LeagueFactory::new()->for($federation)->create();
-
-    $gameSchedule = GameScheduleFactory::new()
-        ->for($federation)
-        ->for($league)
+    $team = TeamFactory::new()
+        ->withPlausibleRelations()
         ->create();
-    $team = TeamFactory::new()->for($league)->create();
-    $team->gameSchedules()->save($gameSchedule);
-
-    $team = TeamFactory::new()->create();
 
     livewire(TeamResource\Pages\EditTeam::class, [
         'record' => $team->getRouteKey(),

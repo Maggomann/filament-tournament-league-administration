@@ -18,10 +18,8 @@ it('can render free tournament create form', function () {
 });
 
 it('can render free tournament edit form', function () {
-    $freeTournament = FreeTournamentFactory::new()->create();
-
     $this->get(FreeTournamentResource::getUrl('edit', [
-        'record' => $freeTournament,
+        'record' => FreeTournamentFactory::new()->create(),
     ]))->assertSuccessful();
 });
 

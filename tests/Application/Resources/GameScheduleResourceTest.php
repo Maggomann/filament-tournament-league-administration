@@ -25,22 +25,20 @@ it('can render game schedule create form', function () {
 
 it('can render game schedule edit form', function () {
     $federation = FederationFactory::new()->create();
-    $league = LeagueFactory::new()->for($federation)->create();
 
     $this->get(GameScheduleResource::getUrl('edit', [
         'record' => GameScheduleFactory::new()
             ->for($federation)
-            ->for($league)
+            ->for(LeagueFactory::new()->for($federation))
             ->create(),
     ]))->assertSuccessful();
 });
 
 it('can render all gameSchedule relation managers', function () {
     $federation = FederationFactory::new()->create();
-    $league = LeagueFactory::new()->for($federation)->create();
     $gameSchedule = GameScheduleFactory::new()
             ->for($federation)
-            ->for($league)
+            ->for(LeagueFactory::new()->for($federation))
             ->create();
 
     livewire(GameDaysRelationManager::class, [
