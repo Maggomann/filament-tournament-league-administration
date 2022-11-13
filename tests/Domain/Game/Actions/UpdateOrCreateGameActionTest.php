@@ -7,9 +7,6 @@ use Database\Factories\TeamFactory;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\UpdateOrCreateGameAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\DTO\GameData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
-
-uses(TestCase::class);
 
 dataset('UpdateOrCreateGames', function () {
     yield fn () => GameData::create([

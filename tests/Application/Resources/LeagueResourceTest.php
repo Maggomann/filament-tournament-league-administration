@@ -5,10 +5,7 @@ use Database\Factories\LeagueFactory;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\RelationManagers\PlayersRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\RelationManagers\TeamsRelationManager;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
 use function Pest\Livewire\livewire;
-
-uses(TestCase::class);
 
 it('can render league list table', function () {
     $this->get(LeagueResource::getUrl('index'))->assertSuccessful();

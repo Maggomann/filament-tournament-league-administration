@@ -3,9 +3,6 @@
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Federation\Actions\CreateFedrationSmallAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Federation\DTO\FederationData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
-
-uses(TestCase::class);
 
 it('adds a federation', function ($calculationTypeId, $name) {
     $federationData = FederationData::from([

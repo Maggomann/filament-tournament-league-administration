@@ -11,6 +11,7 @@ use Filament\SpatieLaravelSettingsPluginServiceProvider;
 use Filament\SpatieLaravelTranslatablePluginServiceProvider;
 use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Livewire\LivewireServiceProvider;
 use Maggomann\FilamentTournamentLeagueAdministration\FilamentTournamentLeagueAdministrationServiceProvider;
 use Maggomann\FilamentTournamentLeagueAdministration\Tests\Database\Factories\UserFactory;
@@ -22,9 +23,13 @@ use Spatie\LaravelData\LaravelDataServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
+    use LazilyRefreshDatabase;
+
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->refreshApplication();
 
         $this->actingAs(UserFactory::new()->create());
     }
@@ -61,7 +66,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function getEnvironmentSetUp($app): void
     {
-        $app['config']->set('auth.providers.users.model', User::class);
+        // $app['config']->set('auth.providers.users.model', User::class);
         // $app['config']->set('view.paths', array_merge(
         //     $app['config']->get('view.paths'),
         //     [__DIR__ . '/../resources/views'],

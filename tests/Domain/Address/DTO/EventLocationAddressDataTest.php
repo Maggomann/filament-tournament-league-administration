@@ -3,9 +3,6 @@
 use Illuminate\Support\Arr;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Contracts\AddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAddressData;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\Domain\Address\DTO\TestCase;
-
-uses(TestCase::class);
 
 beforeEach(function () {
     $this->validParams = [

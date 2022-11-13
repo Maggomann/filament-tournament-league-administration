@@ -11,10 +11,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Team\DTO\TeamData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\RelationManagers\PlayersRelationManager;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
 use function Pest\Livewire\livewire;
-
-uses(TestCase::class);
 
 it('can render team list table', function () {
     $this->get(TeamResource::getUrl('index'))->assertSuccessful();

@@ -4,10 +4,7 @@
 use Database\Factories\FreeTournamentFactory;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\RelationManagers\EventLocalctionAddressRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentResource;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
 use function Pest\Livewire\livewire;
-
-uses(TestCase::class);
 
 it('can render free tournament list table', function () {
     $this->get(FreeTournamentResource::getUrl('index'))->assertSuccessful();

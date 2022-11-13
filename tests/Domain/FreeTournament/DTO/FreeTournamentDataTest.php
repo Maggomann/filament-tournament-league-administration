@@ -3,9 +3,6 @@
 use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\FreeTournament\DTO\FreeTournamentData;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\Domain\Address\DTO\TestCase;
-
-uses(TestCase::class);
 
 beforeEach(function () {
     $this->validParams = [

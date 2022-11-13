@@ -4,10 +4,9 @@ use Database\Factories\AddressFactory;
 use Database\Factories\PlayerFactory;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\UpdateOrCreateAddressAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\PlayerAddressData;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
 use Maggomann\LaravelAddressable\Models\Address;
 
-uses(TestCase::class);
+//
 
 dataset('UpdateOrCreateAddresses', function () {
     yield fn () => PlayerAddressData::from([

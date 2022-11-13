@@ -10,10 +10,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResou
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\PlayersRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\TeamsRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\TotalTeamPointsRelationManager;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
 use function Pest\Livewire\livewire;
-
-uses(TestCase::class);
 
 it('can render game schedule list table', function () {
     $this->get(GameScheduleResource::getUrl('index'))->assertSuccessful();

@@ -5,9 +5,6 @@ use Illuminate\Support\Arr;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\FreeTournament\Actions\UpdateOrCreateFreeTournamentAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\FreeTournament\DTO\FreeTournamentData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
-
-uses(TestCase::class);
 
 dataset('UpdateOrCreateFreeTournaments', function () {
     yield fn () => FreeTournamentData::from([

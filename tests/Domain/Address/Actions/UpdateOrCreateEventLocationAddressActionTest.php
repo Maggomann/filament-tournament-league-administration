@@ -4,10 +4,9 @@ use Database\Factories\AddressFactory;
 use Database\Factories\FreeTournamentFactory;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\UpdateOrCreateEventLocationAddressAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAddressData;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
 use Maggomann\LaravelAddressable\Models\Address;
 
-uses(TestCase::class);
+//
 
 dataset('UpdateOrCreateEventLocationAddress', function () {
     yield fn () => EventLocationAddressData::create([

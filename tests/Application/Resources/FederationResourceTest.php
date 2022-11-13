@@ -4,10 +4,7 @@
 use Database\Factories\FederationFactory;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource\RelationManagers\LeaguesRelationManager;
-use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
 use function Pest\Livewire\livewire;
-
-uses(TestCase::class);
 
 it('can render federation list table', function () {
     $this->get(FederationResource::getUrl('index'))->assertSuccessful();
