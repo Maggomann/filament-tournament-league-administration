@@ -1,6 +1,8 @@
 # Work in progress (wip)
 This package is still under development. Use at your own risk.
 
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/Maggomann/filament-tournament-league-administration/run-tests?label=tests)](https://github.com/Maggomann/filament-tournament-league-administrationg/actions?query=workflow%3Arun-tests+branch%3Abeta)
+
 
 ![verbaende](./src/docs/assets/001_verbaende.png)
 
