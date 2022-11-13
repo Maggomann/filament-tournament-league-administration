@@ -30,14 +30,13 @@ class TeamFactory extends Factory
         return $this->afterCreating(
             function (Team $team) use ($parameters) {
                 $federation = FederationFactory::new()->create($parameters);
-                $league = LeagueFactory::new()->for($federation)->create($parameters);
 
                 $gameSchedule = GameScheduleFactory::new()
                     ->for($federation)
-                    ->for($league)
+                    ->for(LeagueFactory::new()->for($federation))
                     ->create($parameters);
 
-                $team->league()->associate($league);
+                $team->league()->associate($gameSchedule->league);
                 $team->save();
 
                 $team->gameSchedules()->save($gameSchedule);

@@ -258,7 +258,7 @@ return new class() extends Migration
 
     public function down(): void
     {
-        if (! app()->environment('testing')) {
+        if (app()->environment('staging', 'production')) {
             return;
         }
 
