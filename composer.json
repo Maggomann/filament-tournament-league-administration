@@ -62,6 +62,7 @@
     "autoload-dev": {
         "psr-4": {
             "Maggomann\\FilamentTournamentLeagueAdministration\\Tests\\": "tests",
+            "Maggomann\\FilamentTournamentLeagueAdministration\\Tests\\Database\\Factories\\": "tests/database/factories",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
