@@ -17,6 +17,10 @@ class UpdateOrCreateGameScheduleAction
     {
         try {
             return DB::transaction(function () use ($gameScheduleData, $gameSchedule) {
+                if (is_null($gameSchedule)) {
+                    $gameSchedule = new GameSchedule();
+                }
+
                 $gameSchedule = $this->createGameSchedule($gameSchedule, $gameScheduleData);
                 $gameSchedule = $this->createGameDaysIfNotAvailable($gameSchedule, $gameScheduleData);
 
@@ -40,11 +44,7 @@ class UpdateOrCreateGameScheduleAction
 
     private function createGameDaysIfNotAvailable(GameSchedule $gameSchedule, GameScheduleData $gameScheduleData): GameSchedule
     {
-        if ($gameScheduleData->game_days === 0) {
-            return $gameSchedule;
-        }
-
-        if ($gameSchedule->days()->exists()) {
+        if (! $gameScheduleData->game_days) {
             return $gameSchedule;
         }
 

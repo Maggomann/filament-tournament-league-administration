@@ -3,6 +3,7 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\DTO;
 
 use Illuminate\Support\Arr;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Spatie\LaravelData\Attributes\Validation\Date;
 use Spatie\LaravelData\Data;
@@ -14,7 +15,7 @@ class GameScheduleData extends Data
         public int $federation_id,
         public int $league_id,
         public string $name,
-        public int $game_days,
+        public null|int $game_days,
         #[Date]
         public string $started_at,
         #[Date]
@@ -32,8 +33,10 @@ class GameScheduleData extends Data
         }
 
         $league = League::findOrFail(Arr::get($args, 'league_id'));
+        $federation = Federation::findOrFail(Arr::get($args, 'federation_id'));
 
         Arr::set($args, 'league_id', $league->id);
+        Arr::set($args, 'federation_id', $federation->id);
 
         return static::from($args);
     }

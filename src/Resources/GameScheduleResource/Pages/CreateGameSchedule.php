@@ -18,10 +18,7 @@ class CreateGameSchedule extends CreateRecord
     protected function handleRecordCreation(array $data): Model
     {
         try {
-            return app(UpdateOrCreateGameScheduleAction::class)->execute(
-                GameScheduleData::create($data),
-                app($this->getModel())
-            );
+            return app(UpdateOrCreateGameScheduleAction::class)->execute(GameScheduleData::create($data));
         } catch (Throwable $e) {
             CreatedEntryFailedNotification::make()->send();
 
