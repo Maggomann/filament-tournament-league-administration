@@ -23,7 +23,6 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actio
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;
 
@@ -141,13 +140,6 @@ class GameDaysRelationManager extends TranslateableRelationManager
             ->bulkActions([
                 DeleteBulkAction::make(),
             ]);
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'edit' => Pages\EditGameDay::route('/{record}/test-edit'),
-        ];
     }
 
     protected function getDefaultTableSortColumn(): ?string
