@@ -3,6 +3,7 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 
 class EndedAtGameDayRule extends ValidationRule implements Rule
@@ -14,7 +15,8 @@ class EndedAtGameDayRule extends ValidationRule implements Rule
     public function __construct(
         public GameSchedule $gameSchedule,
         public ?int $day,
-        public ?string $startedAt
+        public ?string $startedAt,
+        public ?GameDay $gameDay
     ) {
     }
 
@@ -38,6 +40,7 @@ class EndedAtGameDayRule extends ValidationRule implements Rule
 
         // FIXME: exclude own gameday record
         if (true === $this->gameSchedule->days()
+            ->where('id', '!=', $this->gameDay->id)
             ->where('day', '>', $this->day)
             ->where('started_at', '<=', $this->value)
             ->exists()
