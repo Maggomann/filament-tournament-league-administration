@@ -82,8 +82,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->firstDayOfWeek(1)
                     ->required()
                     ->rules([
-                        fn (GameDaysRelationManager $livewire, Closure $get, ?GameDay $record)
-                            => new StartedAtGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('ended_at'), $record),
+                        fn (GameDaysRelationManager $livewire, Closure $get, ?GameDay $record) => new StartedAtGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('ended_at'), $record),
                     ]),
 
                 DateTimePicker::make('ended_at')
@@ -91,8 +90,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
                     ->firstDayOfWeek(1)
                     ->required()
                     ->rules([
-                        fn (GameDaysRelationManager $livewire, Closure $get, ?GameDay $record)
-                            => new EndedAtGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('started_at'), $record),
+                        fn (GameDaysRelationManager $livewire, Closure $get, ?GameDay $record) => new EndedAtGameDayRule($livewire->getOwnerRecord(), $get('day'), $get('started_at'), $record),
                     ]),
             ]);
     }
