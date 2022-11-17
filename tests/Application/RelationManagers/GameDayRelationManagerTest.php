@@ -146,62 +146,76 @@ it('can edit a game day', function () {
 });
 
 dataset('inputForValidateGameDayPage', function () {
-    yield fn () => new Fluent([
-        'day' => 1,
-        'started_at' => '2022-01-09 00:00:00',
-        'ended_at' => '2022-01-20 00:00:00',
-        'actionErrors' => [
-            'started_at',
-        ],
-    ]);
-    yield fn () => new Fluent([
-        'day' => 1,
-        'started_at' => '2022-01-11 00:00:00',
-        'ended_at' => '2022-01-21 00:00:00',
-        'actionErrors' => [
-            'ended_at',
-        ],
-    ]);
-    yield fn () => new Fluent([
-        'day' => 1,
-        'started_at' => '2022-01-11 00:00:00',
-        'ended_at' => '2022-01-12 00:00:00',
-        'actionErrors' => [
-            'ended_at',
-        ],
-    ]);
-    yield fn () => new Fluent([
-        'day' => 1,
-        'started_at' => '2022-01-11 10:00:00',
-        'ended_at' => '2022-01-11 09:00:00',
-        'actionErrors' => [
-            'ended_at',
-        ],
-    ]);
-    yield fn () => new Fluent([
-        'day' => 3,
-        'started_at' => '2022-01-12 23:59:59',
-        'ended_at' => '2022-01-13 23:59:59',
-        'actionErrors' => [
-            'started_at',
-        ],
-    ]);
-    yield fn () => new Fluent([
-        'day' => 3,
-        'started_at' => '2022-01-13 00:00:00',
-        'ended_at' => '2022-01-14 10:00:00',
-        'actionErrors' => [
-            'ended_at',
-        ],
-    ]);
-    yield fn () => new Fluent([
-        'day' => 5,
-        'started_at' => '2022-01-04 23:00:00',
-        'ended_at' => '2022-01-05 10:00:00',
-        'actionErrors' => [
-            'started_at',
-        ],
-    ]);
+    yield 'the start date of the current day must not be smaller than the start date of the game schedule' => [
+        'fluent' => fn () => new Fluent([
+            'day' => 1,
+            'started_at' => '2022-01-09 00:00:00',
+            'ended_at' => '2022-01-20 00:00:00',
+            'actionErrors' => [
+                'started_at',
+            ],
+        ]),
+    ];
+    yield 'the end date of the current day must not be greater than the end date of the game schedule' => [
+        'fluent' => fn () => new Fluent([
+            'day' => 1,
+            'started_at' => '2022-01-11 00:00:00',
+            'ended_at' => '2022-01-21 00:00:00',
+            'actionErrors' => [
+                'ended_at',
+            ],
+        ]),
+    ];
+    yield 'the end date of the current day must not be greater than the start date of the following day' => [
+        'fluent' => fn () => new Fluent([
+            'day' => 1,
+            'started_at' => '2022-01-11 00:00:00',
+            'ended_at' => '2022-01-12 00:00:00',
+            'actionErrors' => [
+                'ended_at',
+            ],
+        ]),
+    ];
+    yield 'the end date of the current day must not be smaller than the start date of the day' => [
+        'fluent' => fn () => new Fluent([
+            'day' => 1,
+            'started_at' => '2022-01-11 10:00:00',
+            'ended_at' => '2022-01-11 09:00:00',
+            'actionErrors' => [
+                'ended_at',
+            ],
+        ]),
+    ];
+    yield 'the start date of the current day must not be smaller than the end date of the previous day' => [
+        'fluent' => fn () => new Fluent([
+            'day' => 3,
+            'started_at' => '2022-01-12 23:59:59',
+            'ended_at' => '2022-01-13 23:59:59',
+            'actionErrors' => [
+                'started_at',
+            ],
+        ]),
+    ];
+    yield 'the end date of the current day must not be greater than the start date of the following day' => [
+        'fluent' => fn () => new Fluent([
+            'day' => 3,
+            'started_at' => '2022-01-13 00:00:00',
+            'ended_at' => '2022-01-14 10:00:00',
+            'actionErrors' => [
+                'ended_at',
+            ],
+        ]),
+    ];
+    yield 'the start date of the current day must not be smaller than the end date of the previous day' => [
+        'fluent' => fn () => new Fluent([
+            'day' => 5,
+            'started_at' => '2022-01-04 23:00:00',
+            'ended_at' => '2022-01-05 10:00:00',
+            'actionErrors' => [
+                'started_at',
+            ],
+        ]),
+    ];
     yield fn () => new Fluent([
         'day' => 1,
         'started_at' => '2022-01-11 00:00:00',
