@@ -89,6 +89,8 @@ class GameScheduleResource extends TranslateableResource
                             ->firstDayOfWeek(1)
                             ->required()
                             ->rules([
+                                // TODO: Aktuelle Validierung unzureichend.
+                                // Die Datumsangaben der zugewiesenen Tage müssen berücksichtigt werden
                                 fn (Closure $get) => new PeriodStartedAtRule($get('ended_at')),
                             ]),
 
@@ -97,6 +99,8 @@ class GameScheduleResource extends TranslateableResource
                             ->firstDayOfWeek(1)
                             ->required()
                             ->rules([
+                                // TODO: Aktuelle Validierung unzureichend.
+                                // Die Datumsangaben der zugewiesenen Tage müssen berücksichtigt werden
                                 fn (Closure $get) => new PeriodEndedAtRule($get('started_at')),
                             ]),
 

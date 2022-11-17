@@ -4,11 +4,13 @@
 use Database\Factories\FederationFactory;
 use Database\Factories\GameScheduleFactory;
 use Database\Factories\LeagueFactory;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\DeleteGameScheduleAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\UpdateOrCreateGameScheduleAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\DTO\GameScheduleData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\Pages\ListGameSchedules;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\GameDaysRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\GamesRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource\RelationManagers\PlayersRelationManager;
@@ -245,4 +247,20 @@ it('can delete a game schedule', function () {
         ->callPageAction(DeleteAction::class);
 
     $this->assertSoftDeleted($gameSchedule);
+});
+
+it('use the DeleteGameScheduleAction', function () {
+    $federation = FederationFactory::new()->create();
+    $gameSchedule = GameScheduleFactory::new()
+        ->for($federation)
+        ->for(LeagueFactory::new()->for($federation))
+        ->create();
+
+    $mock = $this->mock(DeleteGameScheduleAction::class);
+    $mock->shouldReceive('execute')
+        ->with(GameSchedule::class)
+        ->once();
+
+    livewire(ListGameSchedules::class)
+        ->callTableAction(DeleteAction::class, $gameSchedule);
 });
