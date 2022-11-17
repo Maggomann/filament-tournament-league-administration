@@ -202,7 +202,6 @@ dataset('inputForValidateGameDayPage', function () {
             'started_at',
         ],
     ]);
-
     yield fn () => new Fluent([
         'day' => 1,
         'started_at' => '2022-01-11 00:00:00',
@@ -224,8 +223,6 @@ dataset('inputForValidateGameDayPage', function () {
 });
 
 it('can valiadate input for game day page', function (Fluent $input) {
-    $this->withoutExceptionHandling();
-
     $federation = FederationFactory::new()->create();
     $gameSchedule = GameScheduleFactory::new()
         ->for($federation)
