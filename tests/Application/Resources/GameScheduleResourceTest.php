@@ -2,8 +2,10 @@
 <?php
 
 use Database\Factories\FederationFactory;
+use Database\Factories\GameDayFactory;
 use Database\Factories\GameScheduleFactory;
 use Database\Factories\LeagueFactory;
+use Illuminate\Support\Fluent;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\DeleteGameScheduleAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\UpdateOrCreateGameScheduleAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\DTO\GameScheduleData;
@@ -233,6 +235,105 @@ it('game schedule edit page should receive execute from UpdateOrCreateTeamAction
     ]);
     $editGameSchedule->save();
 });
+
+dataset('inputForValidateGameSchedulePage', function () {
+    yield 'The start date must not be outside the time periods of the assigned days.' => [
+        'fluent' => fn () => new Fluent([
+            'name' => 'Example',
+            'started_at' => '2022-01-16 00:00:00',
+            'ended_at' => '2022-01-19 00:00:00',
+            'actionErrors' => null,
+            'actionErrors' => [
+                'started_at',
+            ],
+        ]),
+    ];
+    yield 'The End date must not be outside the time periods of the assigned days.' => [
+        'fluent' => fn () => new Fluent([
+            'name' => 'Example',
+            'started_at' => '2022-01-09 00:00:00',
+            'ended_at' => '2022-01-15 00:00:00',
+            'actionErrors' => null,
+            'actionErrors' => [
+                'ended_at',
+            ],
+        ]),
+    ];
+    yield 'the current start date must not be greater than the current end date' => [
+        'fluent' => fn () => new Fluent([
+            'day' => 3,
+            'started_at' => '2022-01-15 00:00:00',
+            'ended_at' => '2022-01-14 00:00:00',
+            'actionErrors' => [
+                'started_at',
+                'ended_at',
+            ],
+        ]),
+    ];
+    yield 'the current end date must not be smaller than the current start date' => [
+        'fluent' => fn () => new Fluent([
+            'day' => 3,
+            'started_at' => '2022-01-15 00:00:00',
+            'ended_at' => '2022-01-14 00:00:00',
+            'actionErrors' => [
+                'started_at',
+                'ended_at',
+            ],
+        ]),
+    ];
+    yield fn () => new Fluent([
+        'name' => 'Example',
+        'started_at' => '2022-01-09 00:00:00',
+        'ended_at' => '2022-01-21 00:00:00',
+        'actionErrors' => null,
+    ]);
+    yield fn () => new Fluent([
+        'name' => 'Example',
+        'started_at' => '2022-01-13 00:00:00',
+        'ended_at' => '2022-01-18 00:00:00',
+        'actionErrors' => null,
+    ]);
+});
+
+it('can valiadate input for game schedule page', function (Fluent $input) {
+    $federation = FederationFactory::new()->create();
+
+    $gameSchedule = GameScheduleFactory::new()
+        ->for($federation)
+        ->for(LeagueFactory::new()->for($federation))
+        ->create([
+            'started_at' => '2022-01-10 00:00:00',
+            'ended_at' => '2022-01-20 00:00:00',
+        ]);
+
+    GameDayFactory::new()
+        ->for($gameSchedule)
+        ->create([
+            'started_at' => '2022-01-14 00:00:00',
+            'ended_at' => '2022-01-17 23:59:59',
+            'day' => 1,
+        ]);
+
+    $livewire = livewire(GameScheduleResource\Pages\EditGameSchedule::class, [
+        'record' => $gameSchedule->getRouteKey(),
+    ])
+    ->fillForm([
+        'name' => 'Example Edit',
+        'federation_id' => $federation->id,
+        'league_id' => $gameSchedule->league->id,
+        'started_at' => $input->started_at,
+        'ended_at' => $input->ended_at,
+    ])
+    ->call('save');
+
+    if ($input->actionErrors) {
+        $livewire->assertHasFormErrors($input->actionErrors);
+
+        return;
+    }
+
+    $livewire->assertHasNoFormErrors();
+})->with('inputForValidateGameSchedulePage');
 
 it('can delete a game schedule', function () {
     $federation = FederationFactory::new()->create();

@@ -61,6 +61,8 @@ return [
         'game_day_ended_at_pre_days' => 'Das Enddatum :value muss kleiner als das Startdatum der nachfolgenden Tage sein.',
         'ended_at_must_be_greater_than_started_at' => 'Das Enddatum :value muss nach dem Startdatum liegen.',
         'started_at_must_be_smaller_than_ended_at' => 'Das Startdatum :value muss vor dem Enddatum liegen.',
+        'game_schedule_started_at_must_be_outside_from_the_days_time_periods' => 'Es liegt eine Überschneidung mit den Zeiträumen der zugewiesenen Tage vor. Das Startdatum :value muss außerhalb der Zeiträume der zugewiesenen Tage liegen.',
+        'game_schedule_started_at_must_be_outside_from_the_days_time_periods' => 'Es liegt eine Überschneidung mit den Zeiträumen der zugewiesenen Tage vor. Das Enddatum :value muss außerhalb der Zeiträume der zugewiesenen Tage liegen.',
     ],
 
 ];

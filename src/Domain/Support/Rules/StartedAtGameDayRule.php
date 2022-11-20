@@ -38,7 +38,6 @@ class StartedAtGameDayRule extends ValidationRule implements Rule
             return false;
         }
 
-        // FIXME: exclude own gameday record
         if (true === $this->gameSchedule->days()
             ->where('id', '!=', $this->gameDay?->id)
             ->where('day', '<', $this->day)

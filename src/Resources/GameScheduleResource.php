@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\DeleteGameScheduleAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DeleteEntryFailedNotification;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\PeriodEndedAtRule;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\PeriodStartedAtRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\EndedAtGameScheduleRule;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Rules\GameScheduleStartedAtRule;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
@@ -89,9 +89,7 @@ class GameScheduleResource extends TranslateableResource
                             ->firstDayOfWeek(1)
                             ->required()
                             ->rules([
-                                // TODO: Aktuelle Validierung unzureichend.
-                                // Die Datumsangaben der zugewiesenen Tage müssen berücksichtigt werden
-                                fn (Closure $get) => new PeriodStartedAtRule($get('ended_at')),
+                                fn (Closure $get, ?GameSchedule $record) => new GameScheduleStartedAtRule($get('ended_at'), $record),
                             ]),
 
                         DateTimePicker::make('ended_at')
@@ -99,9 +97,7 @@ class GameScheduleResource extends TranslateableResource
                             ->firstDayOfWeek(1)
                             ->required()
                             ->rules([
-                                // TODO: Aktuelle Validierung unzureichend.
-                                // Die Datumsangaben der zugewiesenen Tage müssen berücksichtigt werden
-                                fn (Closure $get) => new PeriodEndedAtRule($get('started_at')),
+                                fn (Closure $get, ?GameSchedule $record) => new EndedAtGameScheduleRule($get('started_at'), $record),
                             ]),
 
                         Select::make('game_days')
