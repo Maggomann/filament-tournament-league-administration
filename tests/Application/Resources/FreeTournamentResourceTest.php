@@ -3,6 +3,7 @@
 
 use Database\Factories\FreeTournamentFactory;
 use Illuminate\Support\Fluent;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\DartType;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Mode;
@@ -144,4 +145,43 @@ it('can save a free tournament', function () {
             ]);
         }
     );
+});
+
+it('can validate input for free tournament page', function () {
+    livewire(FreeTournamentResource\Pages\CreateFreeTournament::class)
+        ->fillForm([
+            'name' => null,
+            'description' => null,
+            'mode_id' => null,
+            'dart_type_id' => null,
+            'qualification_level_id' => null,
+            'maximum_number_of_participants' => null,
+            'coin_money' => null,
+            'prize_money_depending_on_placement' => null,
+            'started_at' => null,
+            'ended_at' => null,
+        ])
+        ->call('create')
+        ->assertHasFormErrors([
+            'name' => 'required',
+            'mode_id' => 'required',
+            'dart_type_id' => 'required',
+            'qualification_level_id' => 'required',
+            'maximum_number_of_participants' => 'required',
+            'coin_money' => 'required',
+            'prize_money_depending_on_placement' => 'required',
+            'started_at' => 'required',
+            'ended_at' => 'required',
+        ]);
+});
+
+it('can delete a federation', function () {
+    $freeTournament = FreeTournamentFactory::new()->create();
+
+    livewire(FreeTournamentResource\Pages\EditFreeTournament::class, [
+        'record' => $freeTournament->getRouteKey(),
+    ])
+        ->callPageAction(DeleteAction::class);
+
+    $this->assertSoftDeleted($freeTournament);
 });
