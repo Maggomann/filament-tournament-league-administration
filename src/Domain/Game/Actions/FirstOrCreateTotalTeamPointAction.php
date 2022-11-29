@@ -7,13 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
-use Throwable;
 
 class FirstOrCreateTotalTeamPointAction
 {
-    /**
-     * @throws Throwable
-     */
     public function execute(Team $team, GameSchedule $gameSchedule): TotalTeamPoint
     {
         try {
@@ -31,8 +27,6 @@ class FirstOrCreateTotalTeamPointAction
 
                 return $totalTeamPoint;
             });
-        } catch (Throwable $e) {
-            throw $e;
         }
     }
 }

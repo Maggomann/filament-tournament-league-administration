@@ -9,7 +9,6 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\PlayerAd
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Traits\HasMakeableAddress;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\LaravelAddressable\Models\Address;
-use Throwable;
 
 class UpdateOrCreateAddressAction implements AddressAction
 {
@@ -20,21 +19,17 @@ class UpdateOrCreateAddressAction implements AddressAction
     protected Player $player;
 
     /**
-     * @throws Throwable
+     * @throws ModelNotFoundException
      */
     public function execute(Player $player, PlayerAddressData $playerAddressData, ?Address $address = null): Address
     {
-        try {
-            return DB::transaction(function () use ($player, $playerAddressData, $address) {
-                $this->playerAddressData = $playerAddressData;
-                $this->player = $player;
+        return DB::transaction(function () use ($player, $playerAddressData, $address) {
+            $this->playerAddressData = $playerAddressData;
+            $this->player = $player;
 
-                return $this->firstOrCreatePlayerAddress($address)
-                    ->playerAddress();
-            });
-        } catch (Throwable $e) {
-            throw $e;
-        }
+            return $this->firstOrCreatePlayerAddress($address)
+                ->playerAddress();
+        });
     }
 
     private function firstOrCreatePlayerAddress(?Address $address = null): self

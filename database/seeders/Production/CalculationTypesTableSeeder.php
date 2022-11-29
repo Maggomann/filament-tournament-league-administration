@@ -17,14 +17,14 @@ class CalculationTypesTableSeeder extends Seeder
             [
                 'name' => 'HDL',
                 'description' => 'Herner Dart Liga / Win: 2pkt. Lose: 0pkt. Draw: jeweils 1pkt',
-                'calculator' => HDLCalculator::getMorphClass(),
+                'calculator' => HDLCalculator::class,
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
             [
                 'name' => 'DSAB',
                 'description' => 'Deutscher Sportautomaten Bund / Win: 3pkt. Lose: 0pkt. Draw: Verlängerung => Gewinner 2pkt | Verlierer 1pkt.',
-                'calculator' => DSABCalculator::getMorphClass(),
+                'calculator' => DSABCalculator::class,
                 'created_at' => $now,
                 'updated_at' => $now,
             ],

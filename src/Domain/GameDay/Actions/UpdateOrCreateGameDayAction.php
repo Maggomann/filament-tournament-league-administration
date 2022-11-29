@@ -5,26 +5,18 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\GameDay\Action
 use Illuminate\Support\Facades\DB;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameDay\DTO\GameDayData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
-use Throwable;
 
 class UpdateOrCreateGameDayAction
 {
-    /**
-     * @throws Throwable
-     */
     public function execute(GameDayData $gameDayData, GameDay $gameDay): GameDay
     {
-        try {
-            return DB::transaction(function () use ($gameDayData, $gameDay) {
-                $gameDay->fill($gameDayData->toArray());
-                $gameDay->game_schedule_id = $gameDayData->game_schedule_id;
+        return DB::transaction(function () use ($gameDayData, $gameDay) {
+            $gameDay->fill($gameDayData->toArray());
+            $gameDay->game_schedule_id = $gameDayData->game_schedule_id;
 
-                $gameDay->save();
+            $gameDay->save();
 
-                return $gameDay;
-            });
-        } catch (Throwable $e) {
-            throw $e;
-        }
+            return $gameDay;
+        });
     }
 }

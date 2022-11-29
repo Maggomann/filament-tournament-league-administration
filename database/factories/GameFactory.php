@@ -20,8 +20,25 @@ class GameFactory extends Factory
     public function definition(): array
     {
         return [
-            'game_schedule_id' => GameScheduleFactory::new()->lazy(),
-            'game_day_id' => GameFactory::new()->lazy(),
+            'game_schedule_id' => function (array $attributes) {
+                $federation = FederationFactory::new()->create();
+
+                return GameScheduleFactory::new()
+                    ->for($federation)
+                    ->for(LeagueFactory::new()->for($federation))
+                    ->create([
+                        'started_at' => '2022-01-10 00:00:00',
+                        'ended_at' => '2022-01-20 00:00:00',
+                    ]);
+            },
+            'game_day_id' => function (array $attributes) {
+                return GameDayFactory::new()->create([
+                    'game_schedule_id' => $attributes['game_schedule_id'],
+                    'started_at' => '2022-01-12 00:00:00',
+                    'ended_at' => '2022-01-12 23:59:59',
+                    'day' => 2,
+                ]);
+            },
             'home_team_id' => TeamFactory::new()->lazy(),
             'guest_team_id' => TeamFactory::new()->lazy(),
             'home_points_legs' => $this->faker->numberBetween($min = 1, $max = 200),
@@ -42,5 +59,15 @@ class GameFactory extends Factory
             'started_at' => now(),
             'ended_at' => now()->addHour(),
         ];
+    }
+
+    public function withTeams(): self
+    {
+        return $this->afterCreating(
+            function (Game $game) {
+                $game->homeTeam->gameSchedules()->save($game->gameSchedule);
+                $game->guestTeam->gameSchedules()->save($game->gameSchedule);
+            }
+        );
     }
 }

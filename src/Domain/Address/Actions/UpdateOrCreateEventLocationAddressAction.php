@@ -10,7 +10,6 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Traits\HasMa
 use Maggomann\FilamentTournamentLeagueAdministration\Models\EventLocation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
 use Maggomann\LaravelAddressable\Models\Address;
-use Throwable;
 
 class UpdateOrCreateEventLocationAddressAction implements AddressAction
 {
@@ -23,23 +22,19 @@ class UpdateOrCreateEventLocationAddressAction implements AddressAction
     protected FreeTournament $freeTournament;
 
     /**
-     * @throws Throwable
+     * @throws ModelNotFoundException
      */
     public function execute(FreeTournament $freeTournament, EventLocationAddressData $eventLocationAddressData, ?Address $address = null): Address
     {
-        try {
-            return DB::transaction(function () use ($freeTournament, $eventLocationAddressData, $address) {
-                $this->eventLocationAddressData = $eventLocationAddressData;
-                $this->freeTournament = $freeTournament;
+        return DB::transaction(function () use ($freeTournament, $eventLocationAddressData, $address) {
+            $this->eventLocationAddressData = $eventLocationAddressData;
+            $this->freeTournament = $freeTournament;
 
-                return $this->firstOrCreateFreeTournamentAddress($address)
-                    ->firstOrCreateEventLocation()
-                    ->firstOrCreateEventLocationAddress()
-                    ->freeTournamentAddress();
-            });
-        } catch (Throwable $e) {
-            throw $e;
-        }
+            return $this->firstOrCreateFreeTournamentAddress($address)
+                ->firstOrCreateEventLocation()
+                ->firstOrCreateEventLocationAddress()
+                ->freeTournamentAddress();
+        });
     }
 
     private function firstOrCreateFreeTournamentAddress(?Address $address = null): self

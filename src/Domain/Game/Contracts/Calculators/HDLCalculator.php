@@ -2,13 +2,10 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Contracts\Calculators;
 
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Traits\HasMorphClass;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 
 class HDLCalculator implements Calculator
 {
-    use HasMorphClass;
-
     protected int $totalWinMultiplikator = 2;
 
     protected int $totalDrawMultiplikator = 2;

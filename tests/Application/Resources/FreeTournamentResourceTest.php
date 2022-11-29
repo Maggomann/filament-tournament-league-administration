@@ -185,3 +185,59 @@ it('can delete a federation', function () {
 
     $this->assertSoftDeleted($freeTournament);
 });
+
+dataset('inputForValidateFreeTournament', function () {
+    yield 'the start date must not be greater than the end date | the end date must not be less than the start date' => [
+        'fluent' => fn () => new Fluent([
+            'started_at' => '2022-01-10 00:00:00',
+            'ended_at' => '2022-01-09 00:00:00',
+            'actionErrors' => [
+                'ended_at',
+                'started_at',
+            ],
+        ]),
+    ];
+});
+
+it('can valiadate input for free tournament', function (Fluent $input) {
+    $freeTournament = FreeTournamentFactory::new()->create();
+
+    $fluent = new Fluent([
+        'mode_id' => Mode::inRandomOrder()->first()->id,
+        'dart_type_id' => DartType::inRandomOrder()->first()->id,
+        'qualification_level_id' => QualificationLevel::inRandomOrder()->first()->id,
+        'maximum_number_of_participants' => random_int(1, 10),
+        'coin_money' => random_int(20, 250),
+        'prize_money_depending_on_placement' => [
+            '1. Platz' => 'Test',
+        ],
+        'started_at' => '2022-01-10 00:00:00',
+        'ended_at' => '2022-01-20 00:00:00',
+    ]);
+
+    $livewire = livewire(FreeTournamentResource\Pages\EditFreeTournament::class, [
+        'record' => $freeTournament->getRouteKey(),
+    ])
+    ->fillForm([
+        'name' => 'Edit Example',
+        'slug' => 'edit-example',
+        'description' => 'Edit Description',
+        'mode_id' => $fluent->mode_id,
+        'dart_type_id' => $fluent->dart_type_id,
+        'qualification_level_id' => $fluent->qualification_level_id,
+        'maximum_number_of_participants' => $fluent->maximum_number_of_participants,
+        'coin_money' => $fluent->coin_money,
+        'prize_money_depending_on_placement' => $fluent->prize_money_depending_on_placement,
+        'started_at' => $input->started_at,
+        'ended_at' => $input->ended_at,
+    ])
+    ->call('save');
+
+    if ($input->actionErrors) {
+        $livewire->assertHasFormErrors($input->actionErrors);
+
+        return;
+    }
+
+    $livewire->assertHasNoFormErrors();
+})->with('inputForValidateFreeTournament');

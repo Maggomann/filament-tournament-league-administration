@@ -6,29 +6,21 @@ use Illuminate\Support\Facades\DB;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\DTO\GameScheduleData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameDay;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
-use Throwable;
 
 class UpdateOrCreateGameScheduleAction
 {
-    /**
-     * @throws Throwable
-     */
     public function execute(GameScheduleData $gameScheduleData, ?GameSchedule $gameSchedule = null): GameSchedule
     {
-        try {
-            return DB::transaction(function () use ($gameScheduleData, $gameSchedule) {
-                if (is_null($gameSchedule)) {
-                    $gameSchedule = new GameSchedule();
-                }
+        return DB::transaction(function () use ($gameScheduleData, $gameSchedule) {
+            if (is_null($gameSchedule)) {
+                $gameSchedule = new GameSchedule();
+            }
 
-                $gameSchedule = $this->createGameSchedule($gameSchedule, $gameScheduleData);
-                $gameSchedule = $this->createGameDaysIfNotAvailable($gameSchedule, $gameScheduleData);
+            $gameSchedule = $this->createGameSchedule($gameSchedule, $gameScheduleData);
+            $gameSchedule = $this->createGameDaysIfNotAvailable($gameSchedule, $gameScheduleData);
 
-                return $gameSchedule;
-            });
-        } catch (Throwable $e) {
-            throw $e;
-        }
+            return $gameSchedule;
+        });
     }
 
     private function createGameSchedule(GameSchedule $gameSchedule, GameScheduleData $gameScheduleData): GameSchedule

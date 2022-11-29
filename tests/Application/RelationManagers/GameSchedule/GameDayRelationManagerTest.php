@@ -156,6 +156,26 @@ dataset('inputForValidateGameDayPage', function () {
             ],
         ]),
     ];
+    yield 'the start date of the current day must not be same than the end date of the game schedule' => [
+        'fluent' => fn () => new Fluent([
+            'day' => 5,
+            'started_at' => '2022-01-20 00:00:00',
+            'ended_at' => '2022-01-21 00:00:00',
+            'actionErrors' => [
+                'started_at',
+            ],
+        ]),
+    ];
+    yield 'the start date of the current day must not be greater than the end date of the game schedule' => [
+        'fluent' => fn () => new Fluent([
+            'day' => 5,
+            'started_at' => '2022-01-21 00:00:00',
+            'ended_at' => '2022-01-22 00:00:00',
+            'actionErrors' => [
+                'started_at',
+            ],
+        ]),
+    ];
     yield 'the end date of the current day must not be greater than the end date of the game schedule' => [
         'fluent' => fn () => new Fluent([
             'day' => 1,
@@ -213,6 +233,16 @@ dataset('inputForValidateGameDayPage', function () {
             'ended_at' => '2022-01-05 10:00:00',
             'actionErrors' => [
                 'started_at',
+            ],
+        ]),
+    ];
+    yield 'the same day may appear only once' => [
+        'fluent' => fn () => new Fluent([
+            'started_at' => '2022-01-12 00:00:00',
+            'ended_at' => '2022-01-12 23:59:59',
+            'day' => 2,
+            'actionErrors' => [
+                'day',
             ],
         ]),
     ];

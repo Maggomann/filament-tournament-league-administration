@@ -8,27 +8,19 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\UpdateT
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\DTO\TotalTeamPointData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
-use Throwable;
 
 class UpdateOrCreateTotalGameSchedulePointsAction
 {
-    /**
-     * @throws Throwable
-     */
     public function execute(GameSchedule $gameSchedule): void
     {
-        try {
-            DB::transaction(function () use ($gameSchedule) {
-                $gameSchedule->teams->each(function (Team $team) use ($gameSchedule) {
-                    $totalTeamPoint = app(FirstOrCreateTotalTeamPointAction::class)->execute($team, $gameSchedule);
+        DB::transaction(function () use ($gameSchedule) {
+            $gameSchedule->teams->each(function (Team $team) use ($gameSchedule) {
+                $totalTeamPoint = app(FirstOrCreateTotalTeamPointAction::class)->execute($team, $gameSchedule);
 
-                    $totalTeamPointData = TotalTeamPointData::createFromTotalTeamPointWithRecalculation($totalTeamPoint);
+                $totalTeamPointData = TotalTeamPointData::createFromTotalTeamPointWithRecalculation($totalTeamPoint);
 
-                    app(UpdateTotalTeamPointsAction::class)->execute($totalTeamPoint, $totalTeamPointData);
-                });
+                app(UpdateTotalTeamPointsAction::class)->execute($totalTeamPoint, $totalTeamPointData);
             });
-        } catch (Throwable $e) {
-            throw $e;
-        }
+        });
     }
 }

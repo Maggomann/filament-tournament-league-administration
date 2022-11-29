@@ -7,6 +7,7 @@ use Database\Factories\GameFactory;
 use Database\Factories\GameScheduleFactory;
 use Database\Factories\LeagueFactory;
 use Database\Factories\TeamFactory;
+use Illuminate\Support\Fluent;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource;
@@ -183,6 +184,103 @@ it('can save a game', function () {
 });
 
 it('can delete a game', function () {
+    $game = GameFactory::new()
+        ->create();
+
+    livewire(GameResource\Pages\EditGame::class, [
+        'record' => $game->getRouteKey(),
+    ])
+        ->callPageAction(DeleteAction::class);
+
+    $this->assertSoftDeleted($game);
+});
+
+dataset('inputForValidateGame', function () {
+    yield 'the end date of the current day must not be smaller than the start date of the day' => [
+        'fluent' => fn () => new Fluent([
+            'started_at' => '2022-01-11 10:00:00',
+            'ended_at' => '2022-01-11 09:00:00',
+            'actionErrors' => [
+                'ended_at',
+                'started_at',
+            ],
+        ]),
+    ];
+    yield 'the end date must not be the same as the start date of the game day' => [
+        'fluent' => fn () => new Fluent([
+            'started_at' => '2022-01-11 10:00:00',
+            'ended_at' => '2022-01-12 00:00:00',
+            'actionErrors' => [
+                'ended_at',
+            ],
+        ]),
+    ];
+    yield 'the end date must not be smaller than the start date of the game day' => [
+        'fluent' => fn () => new Fluent([
+            'started_at' => '2022-01-11 10:00:00',
+            'ended_at' => '2022-01-11 23:59:00',
+            'actionErrors' => [
+                'ended_at',
+            ],
+        ]),
+    ];
+    yield 'the end date must not be the same as the end date of the game day' => [
+        'fluent' => fn () => new Fluent([
+            'started_at' => '2022-01-11 10:00:00',
+            'ended_at' => '2022-01-12 23:59:59',
+            'actionErrors' => [
+                'ended_at',
+            ],
+        ]),
+    ];
+    yield 'the end date must not be greater than the end date of the game day' => [
+        'fluent' => fn () => new Fluent([
+            'started_at' => '2022-01-11 10:00:00',
+            'ended_at' => '2022-01-13 00:00:00',
+            'actionErrors' => [
+                'ended_at',
+            ],
+        ]),
+    ];
+    yield 'the start date must not be the same as the start date of the game day' => [
+        'fluent' => fn () => new Fluent([
+            'started_at' => '2022-01-12 00:00:00',
+            'ended_at' => '2022-01-12 12:00:00',
+            'actionErrors' => [
+                'started_at',
+            ],
+        ]),
+    ];
+    yield 'the start date must not be smaller than the start date of the game day' => [
+        'fluent' => fn () => new Fluent([
+            'started_at' => '2022-01-11 23:59:00',
+            'ended_at' => '2022-01-12 12:00:00',
+            'actionErrors' => [
+                'started_at',
+            ],
+        ]),
+    ];
+    yield 'the start date must not be the same as the end date of the game day' => [
+        'fluent' => fn () => new Fluent([
+            'started_at' => '2022-01-12 23:59:59',
+            'ended_at' => '2022-01-13 02:00:00',
+            'actionErrors' => [
+                'started_at',
+            ],
+        ]),
+    ];
+    yield 'the start date must not be greater than the end date of the game day' => [
+        'fluent' => fn () => new Fluent([
+            'started_at' => '2022-01-13 00:00:00',
+            'ended_at' => '2022-01-13 02:00:00',
+            'actionErrors' => [
+                'started_at',
+            ],
+        ]),
+    ];
+});
+
+it('can valiadate input for game', function (Fluent $input) {
     $federation = FederationFactory::new()->create();
     $gameSchedule = GameScheduleFactory::new()
         ->for($federation)
@@ -191,7 +289,7 @@ it('can delete a game', function () {
             'started_at' => '2022-01-10 00:00:00',
             'ended_at' => '2022-01-20 00:00:00',
         ]);
-    GameDayFactory::new()
+    $gameDay = GameDayFactory::new()
         ->for($gameSchedule)
         ->create([
             'started_at' => '2022-01-12 00:00:00',
@@ -210,10 +308,31 @@ it('can delete a game', function () {
         ->for($guestTeam, 'guestTeam')
         ->create();
 
-    livewire(GameResource\Pages\EditGame::class, [
+    $livewire = livewire(GameResource\Pages\EditGame::class, [
         'record' => $game->getRouteKey(),
     ])
-        ->callPageAction(DeleteAction::class);
+    ->fillForm([
+        'game_schedule_id' => $gameSchedule->id,
+        'game_day_id' => $gameDay->id,
+        'started_at' => $input->started_at,
+        'ended_at' => $input->ended_at,
+        'home_team_id' => $homeTeam->id,
+        'guest_team_id' => $guestTeam->id,
+        'home_points_legs' => 100,
+        'guest_points_legs' => 50,
+        'home_points_games' => 30,
+        'guest_points_games' => 15,
+        'has_an_overtime' => false,
+        'home_points_after_draw' => 0,
+        'guest_points_after_draw' => 0,
+    ])
+    ->call('save');
 
-    $this->assertSoftDeleted($game);
-});
+    if ($input->actionErrors) {
+        $livewire->assertHasFormErrors($input->actionErrors);
+
+        return;
+    }
+
+    $livewire->assertHasNoFormErrors();
+})->with('inputForValidateGame');
