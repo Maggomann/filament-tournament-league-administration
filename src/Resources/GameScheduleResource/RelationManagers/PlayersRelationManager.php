@@ -41,7 +41,7 @@ class PlayersRelationManager extends TranslateableRelationManager
                 //
             ])
             ->headerActions([
-                Action::make('syncAllTeams')
+                Action::make('syncAllPlayers')
                     ->label(TranslateComponent::buttonLlabel(static::$translateablePackageKey, 'link_all_players_from_the_linked_teams'))
                     ->button()
                     ->action(function (PlayersRelationManager $livewire): void {
@@ -62,6 +62,8 @@ class PlayersRelationManager extends TranslateableRelationManager
                     ->recordSelectOptionsQuery(function (PlayersRelationManager $livewire) {
                         $relationship = $livewire->getRelationship();
                         $titleColumnName = $livewire->getRecordTitleAttribute();
+
+                        // dd($relationship->getRelated());
 
                         /** @var GameSchedule $gameSchedule */
                         $gameSchedule = $relationship->getParent();
