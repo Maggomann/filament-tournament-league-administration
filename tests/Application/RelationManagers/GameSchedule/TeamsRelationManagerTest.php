@@ -4,17 +4,16 @@
 use Database\Factories\FederationFactory;
 use Database\Factories\GameScheduleFactory;
 use Database\Factories\LeagueFactory;
-use Database\Factories\PlayerFactory;
 use Database\Factories\TeamFactory;
 use Filament\Tables\Actions\AttachAction;
 use Filament\Tables\Actions\DetachAction;
 use Filament\Tables\Actions\DetachBulkAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
-use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource;
 use function Pest\Livewire\livewire;
 
-it('can attach a player', function () {
+it('can attach a team', function () {
     $federation = FederationFactory::new()->create();
     $gameSchedule = GameScheduleFactory::new()
         ->for($federation)
@@ -23,35 +22,30 @@ it('can attach a player', function () {
             'started_at' => '2022-01-10 00:00:00',
             'ended_at' => '2022-01-20 00:00:00',
         ]);
-    $team = TeamFactory::new()->create();
-    $team->league()->associate($gameSchedule->league);
-    $team->save();
-    $team->gameSchedules()->save($gameSchedule);
+    $team = TeamFactory::new()->for($gameSchedule->league)->create();
 
-    $playerOne = PlayerFactory::new()->for($team)->create();
-
-    livewire(GameScheduleResource\RelationManagers\PlayersRelationManager::class, [
+    livewire(GameScheduleResource\RelationManagers\TeamsRelationManager::class, [
         'ownerRecord' => $gameSchedule,
     ])->callTableAction(
         AttachAction::class,
         null,
         [
-            'recordId' => $playerOne->id,
+            'recordId' => $team->id,
         ],
     )->assertHasNoTableActionErrors();
 
     tap(
         $gameSchedule->refresh(),
-        function (GameSchedule $gameSchedule) use ($playerOne) {
-            $this->assertDatabaseHas('game_schedule_player', [
+        function (GameSchedule $gameSchedule) use ($team) {
+            $this->assertDatabaseHas('game_schedule_team', [
                 'game_schedule_id' => $gameSchedule->id,
-                'player_id' => $playerOne->id,
+                'team_id' => $team->id,
             ]);
         }
     );
 });
 
-it('can detach a player', function () {
+it('can detach a team', function () {
     $federation = FederationFactory::new()->create();
     $gameSchedule = GameScheduleFactory::new()
         ->for($federation)
@@ -60,30 +54,26 @@ it('can detach a player', function () {
             'started_at' => '2022-01-10 00:00:00',
             'ended_at' => '2022-01-20 00:00:00',
         ]);
-    $team = TeamFactory::new()->create();
-    $team->league()->associate($gameSchedule->league);
-    $team->save();
-    $team->gameSchedules()->save($gameSchedule);
+    $team = TeamFactory::new()->for($gameSchedule->league)->create();
 
-    $playerOne = PlayerFactory::new()->for($team)->create();
-    $gameSchedule->players()->sync([$playerOne->id]);
+    $gameSchedule->teams()->sync([$team->id]);
 
-    livewire(GameScheduleResource\RelationManagers\PlayersRelationManager::class, [
+    livewire(GameScheduleResource\RelationManagers\TeamsRelationManager::class, [
         'ownerRecord' => $gameSchedule,
     ])->callTableAction(
         DetachAction::class,
-        $playerOne,
+        $team,
     )->assertHasNoTableActionErrors();
 
     tap(
         $gameSchedule->refresh(),
         function (GameSchedule $gameSchedule) {
-            $this->assertCount(0, $gameSchedule->players);
+            $this->assertCount(0, $gameSchedule->teams);
         }
     );
 });
 
-it('can sync all players', function () {
+it('can sync all teams', function () {
     $federation = FederationFactory::new()->create();
     $gameSchedule = GameScheduleFactory::new()
         ->for($federation)
@@ -92,42 +82,37 @@ it('can sync all players', function () {
             'started_at' => '2022-01-10 00:00:00',
             'ended_at' => '2022-01-20 00:00:00',
         ]);
-    $team = TeamFactory::new()->create();
-    $team->league()->associate($gameSchedule->league);
-    $team->save();
-    $team->gameSchedules()->save($gameSchedule);
+    $teamOne = TeamFactory::new()->for($gameSchedule->league)->create();
+    $teamTwo = TeamFactory::new()->for($gameSchedule->league)->create();
+    $teamThree = TeamFactory::new()->for($gameSchedule->league)->create();
 
-    $playerOne = PlayerFactory::new()->for($team)->create();
-    $playerTwo = PlayerFactory::new()->for($team)->create();
-    $playerThree = PlayerFactory::new()->for($team)->create();
-
-    livewire(GameScheduleResource\RelationManagers\PlayersRelationManager::class, [
+    livewire(GameScheduleResource\RelationManagers\TeamsRelationManager::class, [
         'ownerRecord' => $gameSchedule,
     ])->callTableAction(
-        'syncAllPlayers',
+        'syncAllTeams',
         null,
     )->assertHasNoTableActionErrors();
 
     tap(
         $gameSchedule->refresh(),
-        function (GameSchedule $gameSchedule) use ($playerOne, $playerTwo, $playerThree) {
-            $this->assertDatabaseHas('game_schedule_player', [
+        function (GameSchedule $gameSchedule) use ($teamOne, $teamTwo, $teamThree) {
+            $this->assertDatabaseHas('game_schedule_team', [
                 'game_schedule_id' => $gameSchedule->id,
-                'player_id' => $playerOne->id,
+                'team_id' => $teamOne->id,
             ]);
-            $this->assertDatabaseHas('game_schedule_player', [
+            $this->assertDatabaseHas('game_schedule_team', [
                 'game_schedule_id' => $gameSchedule->id,
-                'player_id' => $playerTwo->id,
+                'team_id' => $teamTwo->id,
             ]);
-            $this->assertDatabaseHas('game_schedule_player', [
+            $this->assertDatabaseHas('game_schedule_team', [
                 'game_schedule_id' => $gameSchedule->id,
-                'player_id' => $playerThree->id,
+                'team_id' => $teamThree->id,
             ]);
         }
     );
 });
 
-it('can bulk detach players', function () {
+it('can bulk detach teams', function () {
     $federation = FederationFactory::new()->create();
     $gameSchedule = GameScheduleFactory::new()
         ->for($federation)
@@ -136,24 +121,19 @@ it('can bulk detach players', function () {
             'started_at' => '2022-01-10 00:00:00',
             'ended_at' => '2022-01-20 00:00:00',
         ]);
-    $team = TeamFactory::new()->create();
-    $team->league()->associate($gameSchedule->league);
-    $team->save();
-    $team->gameSchedules()->save($gameSchedule);
+    $teams = TeamFactory::new()->for($gameSchedule->league)->times(10)->create();
+    $gameSchedule->teams()->sync($teams->pluck('id'));
 
-    $players = PlayerFactory::new()->for($team)->times(10)->create();
-    $gameSchedule->players()->sync($players->pluck('id'));
-
-    livewire(GameScheduleResource\RelationManagers\PlayersRelationManager::class, [
+    livewire(GameScheduleResource\RelationManagers\TeamsRelationManager::class, [
         'ownerRecord' => $gameSchedule,
-    ])->callTableBulkAction(DetachBulkAction::class, $players)
+    ])->callTableBulkAction(DetachBulkAction::class, $teams)
         ->assertHasNoTableActionErrors();
 
     tap(
         $gameSchedule->refresh(),
         function (GameSchedule $gameSchedule) {
-            $this->assertCount(0, $gameSchedule->players);
-            $this->assertCount(10, Player::all());
+            $this->assertCount(0, $gameSchedule->teams);
+            $this->assertCount(10, Team::all());
         }
     );
 });

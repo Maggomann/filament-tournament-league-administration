@@ -63,8 +63,6 @@ class PlayersRelationManager extends TranslateableRelationManager
                         $relationship = $livewire->getRelationship();
                         $titleColumnName = $livewire->getRecordTitleAttribute();
 
-                        // dd($relationship->getRelated());
-
                         /** @var GameSchedule $gameSchedule */
                         $gameSchedule = $relationship->getParent();
 
