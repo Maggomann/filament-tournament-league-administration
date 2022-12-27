@@ -19,7 +19,7 @@ it('can show total team points ', function () {
             'started_at' => '2022-01-10 00:00:00',
             'ended_at' => '2022-01-20 00:00:00',
         ]);
-    $gameDay = GameDayFactory::new()
+    GameDayFactory::new()
         ->for($gameSchedule)
         ->create([
             'started_at' => '2022-01-12 00:00:00',
@@ -31,7 +31,7 @@ it('can show total team points ', function () {
     $guestTeam = TeamFactory::new()->create();
     $guestTeam->gameSchedules()->save($gameSchedule);
 
-    $game = GameFactory::new()
+    GameFactory::new()
         ->for($gameSchedule)
         ->for(GameDayFactory::new()->for($gameSchedule))
         ->for($homeTeam, 'homeTeam')
