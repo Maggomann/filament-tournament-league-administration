@@ -12,7 +12,7 @@ class FilamentTournamentPublishSeedingCommand extends Command
 
     public function handle(): int
     {
-        $this->comment('Publishing Filament tournament-league-administration seeders and factroies...');
+        $this->comment('Publishing Filament tournament-league-administration seeders and factories...');
         $this->callSilent('vendor:publish', ['--tag' => 'filament-tournament-league-administration-seeders']);
         $this->callSilent('vendor:publish', ['--tag' => 'tags-seeders']);
         $this->callSilent('vendor:publish', ['--tag' => 'filament-tournament-league-administration-factories']);
