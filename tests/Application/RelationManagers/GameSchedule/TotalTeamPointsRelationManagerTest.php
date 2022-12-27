@@ -7,11 +7,46 @@ use Database\Factories\GameFactory;
 use Database\Factories\GameScheduleFactory;
 use Database\Factories\LeagueFactory;
 use Database\Factories\TeamFactory;
+use Illuminate\Support\Fluent;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameScheduleResource;
 use function Pest\Livewire\livewire;
 
-it('can show total team points ', function () {
-    $federation = FederationFactory::new()->create();
+dataset('inputTotalTeamPointsRelationManagerPage', function () {
+    yield 'with calculation type id 1 - total_victory_after_defeats is hidden' => [
+        'fluent' => fn () => new Fluent([
+            'calculation_type_id' => 1,
+            'assertSee' => [
+                'team_id',
+                'total_number_of_encounters',
+                'total_wins',
+                'total_defeats',
+                'total_draws',
+                'legs',
+                'games',
+                'total_points',
+            ],
+        ]),
+    ];
+    yield 'with calculation type id 2 - total_victory_after_defeats is visible' => [
+        'fluent' => fn () => new Fluent([
+            'calculation_type_id' => 2,
+            'assertSee' => [
+                'team_id',
+                'total_number_of_encounters',
+                'total_wins',
+                'total_defeats',
+                'total_draws',
+                'total_victory_after_defeats',
+                'legs',
+                'games',
+                'total_points',
+            ],
+        ]),
+    ];
+});
+
+it('can show total team points ', function (Fluent $fluent) {
+    $federation = FederationFactory::new()->create(['calculation_type_id' => $fluent->calculation_type_id]);
     $gameSchedule = GameScheduleFactory::new()
         ->for($federation)
         ->for(LeagueFactory::new()->for($federation))
@@ -41,15 +76,5 @@ it('can show total team points ', function () {
     livewire(GameScheduleResource\RelationManagers\TotalTeamPointsRelationManager::class, [
         'ownerRecord' => $gameSchedule,
     ])
-    ->assertSee([
-        'team_id',
-        'total_number_of_encounters',
-        'total_wins',
-        'total_defeats',
-        'total_draws',
-        'total_victory_after_defeats',
-        'legs',
-        'games',
-        'total_points',
-    ]);
-});
+    ->assertSee($fluent->assertSee);
+})->with('inputTotalTeamPointsRelationManagerPage');
