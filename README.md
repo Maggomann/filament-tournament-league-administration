@@ -1,9 +1,35 @@
 # Work in progress (wip)
+
 This package is still under development. Use at your own risk.
 
 ---
 
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/Maggomann/filament-tournament-league-administration/run-phpstan.yml?branch%3Abeta&label=code%20style)](https://github.com/Maggomann/filament-tournament-league-administration/actions?query=workflow%3Arun-phpstan+branch%3Abeta) [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/Maggomann/filament-tournament-league-administration/run-tests.yml?branch%3Abeta&label=tests)](https://github.com/Maggomann/filament-tournament-league-administration/actions?query=workflow%3Arun-tests+branch%3Abeta)
+I am programming the project on the side in my spare time.
+
+Before the package leaves beta status, I would like to implement the following:
+
+- Image upload for the areas
+  - Players
+  - Federations
+  - League
+  - Free Tournament
+- Authorization protection
+- Calculate, save and display team standings
+- Minimum test coverage of 90%
+- Extension of user data
+  - Nickname
+  - etc.
+-Bring codebase to phpstan level 6
+
+**Later extensions:**
+
+- Update to filament 3.X
+- Improved usability:
+  - Creation and editing of records via integrated modal forms
+
+---
+
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/Maggomann/filament-tournament-league-administration/run-phpstan.yml?branch%3Abeta&label=code%20style)](https://github.com/Maggomann/filament-tournament-league-administration/actions?query=workflow%3Arun-phpstan+branch%3Abeta) [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/Maggomann/filament-tournament-league-administration/run-tests.yml?branch%3Abeta&label=tests)](https://github.com/Maggomann/filament-tournament-league-administration/actions?query=workflow%3Arun-tests+branch%3Abeta)[![GitHub license](https://img.shields.io/github/license/Maggomann/filament-tournament-league-administration)]
 
 ---
 
