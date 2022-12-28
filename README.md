@@ -48,7 +48,7 @@ Before the package leaves beta status, I would like to implement the following:
 ![spiel erstellen reiter punkte](./src/docs/assets/010_spiel_erstellen_reiter_punkte.png)
 
 
-## This is my package filament-tournament-league-administration
+## filament-tournament-league-administration plugin for the Filament admin panel
 
 An event and tournament management plugin for the [Filament admin panel](https://filamentphp.com/) in version 2.x, intended for dart clubs in the first implementation. Here you can manage clubs, teams, matches, players and match days including score tables. More detailed information can be found later in the documentation yet to be implemented.
 
@@ -89,7 +89,7 @@ composer test
 or with coverage
 
 ```bash
-test:pest-coverage
+composer test:pest-coverage
 ```
 
 ## Changelog
