@@ -18,6 +18,7 @@ uses(TestCase::class)->in(
     __DIR__.'/Domain/FreeTournament/Actions',
     __DIR__.'/Domain/Game/Actions',
     __DIR__.'/Domain/GameDay/Actions',
+    __DIR__.'/Domain/GameSchedule/Actions',
     __DIR__.'/Domain/Player/Actions',
     __DIR__.'/Domain/Team/Actions',
 );
