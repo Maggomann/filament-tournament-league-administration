@@ -3,9 +3,8 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration;
 
 use Filament\PluginServiceProvider;
-use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamentInstallAndSeedingCommand;
+use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamentInstallWithAddressableCommand;
 use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamentLeagueAdministrationCommand;
-use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamentPublishSeedingCommand;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource;
@@ -41,8 +40,7 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServic
             ->hasMigration('create_filament_tournament_league_administration_tables')
             ->hasCommands([
                 FilamentTournamentLeagueAdministrationCommand::class,
-                FilamentTournamentInstallAndSeedingCommand::class,
-                FilamentTournamentPublishSeedingCommand::class,
+                FilamentTournamentInstallWithAddressableCommand::class,
             ]);
     }
 
