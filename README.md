@@ -1,3 +1,7 @@
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/Maggomann/filament-tournament-league-administration/run-phpstan.yml?branch%3Abeta&label=code%20style)](https://github.com/Maggomann/filament-tournament-league-administration/actions?query=workflow%3Arun-phpstan+branch%3Abeta) [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/Maggomann/filament-tournament-league-administration/run-tests.yml?branch%3Abeta&label=tests)](https://github.com/Maggomann/filament-tournament-league-administration/actions?query=workflow%3Arun-tests+branch%3Abeta)[![GitHub license](https://github.com/Maggomann/filament-tournament-league-administration/blob/beta/LICENSE.md)](https://img.shields.io/github/license/Maggomann/filament-tournament-league-administration)
+
+---
+
 # Work in progress (wip)
 
 This package is still under development. Use at your own risk.
@@ -26,10 +30,6 @@ Before the package leaves beta status, I would like to implement the following:
 - Update to filament 3.X
 - Improved usability:
   - Creation and editing of records via integrated modal forms
-
----
-
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/Maggomann/filament-tournament-league-administration/run-phpstan.yml?branch%3Abeta&label=code%20style)](https://github.com/Maggomann/filament-tournament-league-administration/actions?query=workflow%3Arun-phpstan+branch%3Abeta) [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/Maggomann/filament-tournament-league-administration/run-tests.yml?branch%3Abeta&label=tests)](https://github.com/Maggomann/filament-tournament-league-administration/actions?query=workflow%3Arun-tests+branch%3Abeta)[![GitHub license](https://img.shields.io/github/license/Maggomann/filament-tournament-league-administration)]
 
 ---
 
