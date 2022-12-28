@@ -23,7 +23,7 @@ Before the package leaves beta status, I would like to implement the following:
 - Extension of user data
   - Nickname
   - etc.
--Bring codebase to phpstan level 6
+- Bring codebase to phpstan level 6
 
 **Later extensions:**
 
