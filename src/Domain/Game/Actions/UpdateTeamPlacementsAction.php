@@ -30,7 +30,8 @@ class UpdateTeamPlacementsAction
 
     private function calculatePlacementsData(): self
     {
-        $this->calculatedPlacementsData = $this->gameSchedule->totalTeamPoints()
+        $this->calculatedPlacementsData = $this->gameSchedule
+            ?->totalTeamPoints()
             ->orderByDesc('total_points')
             ->get()
             ->mapWithKeys(fn (TotalTeamPoint $totalTeamPoint, $key) => [
@@ -45,7 +46,7 @@ class UpdateTeamPlacementsAction
 
     private function savePlacements(): void
     {
-        if ($this->calculatedPlacementsData->isNotEmpty()) {
+        if ($this->calculatedPlacementsData?->isNotEmpty()) {
             TotalTeamPoint::query()->upsert($this->calculatedPlacementsData->all(), 'id');
         }
     }
