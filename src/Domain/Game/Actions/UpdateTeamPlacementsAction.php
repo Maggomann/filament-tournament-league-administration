@@ -31,7 +31,7 @@ class UpdateTeamPlacementsAction
     private function calculatePlacementsData(): self
     {
         $this->calculatedPlacementsData = $this->gameSchedule->totalTeamPoints()
-            ->orderBy('total_points')
+            ->orderByDesc('total_points')
             ->get()
             ->mapWithKeys(fn (TotalTeamPoint $totalTeamPoint, $key) => [
                 $totalTeamPoint->id => [
