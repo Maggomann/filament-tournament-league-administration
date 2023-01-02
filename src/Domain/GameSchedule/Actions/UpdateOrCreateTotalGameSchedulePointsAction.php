@@ -4,7 +4,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\A
 
 use Illuminate\Support\Facades\DB;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\FirstOrCreateTotalTeamPointAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\UpdateTotalTeamPointPlacementsAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\UpdateTeamPlacementsAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\UpdateTotalTeamPointsAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\DTO\TotalTeamPointData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
@@ -23,7 +23,7 @@ class UpdateOrCreateTotalGameSchedulePointsAction
                 app(UpdateTotalTeamPointsAction::class)->execute($totalTeamPoint, $totalTeamPointData);
             });
 
-            app(UpdateTotalTeamPointPlacementsAction::class)->execute($gameSchedule);
+            app(UpdateTeamPlacementsAction::class)->execute($gameSchedule);
         });
     }
 }

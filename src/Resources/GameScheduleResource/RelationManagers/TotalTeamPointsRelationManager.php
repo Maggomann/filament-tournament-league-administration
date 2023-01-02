@@ -5,7 +5,6 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameSchedul
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\DetachAction;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\UpdateOrCreateTotalGameSchedulePointsAction;
