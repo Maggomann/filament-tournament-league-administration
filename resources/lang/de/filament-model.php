@@ -110,6 +110,7 @@ return [
         ],
         'total_team_point' => [
             'game_schedule_id' => 'Spielplan',
+            'placement' => 'Platz',
             'team_id' => 'Team',
             'total_number_of_encounters' => 'Anz. Beg.',
             'total_wins' => 'S',

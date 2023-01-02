@@ -134,11 +134,11 @@ return new class() extends Migration
         }
 
         if (! Schema::hasTable('tournament_league_total_team_points')) {
-            // TODO: Platzierung hinzufügen
             Schema::create('tournament_league_total_team_points', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedBigInteger('game_schedule_id')->nullable()->index();
                 $table->unsignedBigInteger('team_id')->nullable()->index();
+                $table->integer('placement')->default(999)->index();
                 $table->integer('total_number_of_encounters')->default(0);
                 $table->integer('total_wins')->default(0);
                 $table->integer('total_defeats')->default(0);

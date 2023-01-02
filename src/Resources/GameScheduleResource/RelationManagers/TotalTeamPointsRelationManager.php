@@ -5,6 +5,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameSchedul
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\DetachAction;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\UpdateOrCreateTotalGameSchedulePointsAction;
@@ -55,6 +56,9 @@ class TotalTeamPointsRelationManager extends TranslateableRelationManager
     {
         return $table
             ->columns([
+                TextColumn::make('placement')
+                    ->label(TotalTeamPoint::transAttribute('placement')),
+
                 TextColumn::make('team.name')
                     ->label(TotalTeamPoint::transAttribute('team_id')),
 
