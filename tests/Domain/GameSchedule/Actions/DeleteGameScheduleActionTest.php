@@ -9,6 +9,7 @@ use Database\Factories\PlayerFactory;
 use Database\Factories\TeamFactory;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\GameSchedule\Actions\DeleteGameScheduleAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 
 it('can delete a game schedule with his relations', function () {
     $federation = FederationFactory::new()->create();
@@ -54,7 +55,9 @@ it('can delete a game schedule with his relations', function () {
             $this->assertNotSoftDeleted($playerOne);
             $this->assertNotSoftDeleted($playerTwo);
 
-            // TODO: check total points
+            $gameSchedule
+                ->totalTeamPoints
+                ->each(fn (TotalTeamPoint $totalTeamPoint) => $this->assertSoftDeleted($totalTeamPoint));
         }
     );
 });
