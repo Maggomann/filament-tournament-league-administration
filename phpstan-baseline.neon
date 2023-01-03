@@ -12,16 +12,6 @@ parameters:
 
 		-
 			message: "#^Unable to resolve the template type TKey in call to function collect$#"
-			count: 1
-			path: src/Domain/GameSchedule/Actions/UpdateOrCreateGameScheduleAction.php
-
-		-
-			message: "#^Unable to resolve the template type TValue in call to function collect$#"
-			count: 1
-			path: src/Domain/GameSchedule/Actions/UpdateOrCreateGameScheduleAction.php
-
-		-
-			message: "#^Unable to resolve the template type TKey in call to function collect$#"
 			count: 2
 			path: src/Resources/AddressesResource/SelectOptions/CountryCodeSelect.php
 
@@ -46,17 +36,7 @@ parameters:
 			path: src/Resources/GameResource/SelectOptions/GameDaySelect.php
 
 		-
-			message: "#^Unable to resolve the template type TKey in call to function collect$#"
-			count: 1
-			path: src/Resources/GameScheduleResource.php
-
-		-
 			message: "#^Unable to resolve the template type TTimesValue in call to method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:times\\(\\)$#"
-			count: 1
-			path: src/Resources/GameScheduleResource.php
-
-		-
-			message: "#^Unable to resolve the template type TValue in call to function collect$#"
 			count: 1
 			path: src/Resources/GameScheduleResource.php
 
@@ -69,4 +49,3 @@ parameters:
 			message: "#^Parameter \\#2 \\$team of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Team\\\\Actions\\\\UpdateOrCreateTeamAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Team\\|null, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
 			count: 1
 			path: src/Resources/TeamResource/Pages/EditTeam.php
-
