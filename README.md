@@ -18,7 +18,7 @@ Before the package leaves beta status, I would like to implement the following:
   - League
   - Free Tournament
 - Authorization protection
-- Calculate, save and display team standings
+- <s>Calculate, save and display team standings</s>
 - Minimum test coverage of 90%
 - Extension of user data
   - Nickname
