@@ -23,7 +23,7 @@ trait HasHideableLabel
             ->markTooltipWithHiddenLabel();
     }
 
-    public function tooltip(string | Closure | null $tooltip): static
+    public function tooltip(string|Closure|null $tooltip): static
     {
         if ($this->isHiddenLabelDisplayedInTooltip()) {
             return $this->hideLabellnTooltip();

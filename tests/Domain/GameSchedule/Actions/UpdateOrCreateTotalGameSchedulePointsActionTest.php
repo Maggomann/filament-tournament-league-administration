@@ -5,7 +5,6 @@ use Database\Factories\GameDayFactory;
 use Database\Factories\GameFactory;
 use Database\Factories\GameScheduleFactory;
 use Database\Factories\LeagueFactory;
-use Database\Factories\PlayerFactory;
 use Database\Factories\TeamFactory;
 use Database\Factories\TotalTeamPointFactory;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\FirstOrCreateTotalTeamPointAction;
@@ -17,7 +16,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\GameSchedule;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 
-it('it can update or create the points', function () {
+test('all required ation classes are called', function () {
     $federation = FederationFactory::new()->create();
     $gameSchedule = GameScheduleFactory::new()
         ->for($federation)
@@ -39,11 +38,6 @@ it('it can update or create the points', function () {
         ->for($homeTeam, 'homeTeam')
         ->for($guestTeam, 'guestTeam')
         ->create();
-
-    $playerOne = PlayerFactory::new()->for($homeTeam)->create();
-    $playerOne->gameSchedules()->save($gameSchedule);
-    $playerTwo = PlayerFactory::new()->for($guestTeam)->create();
-    $playerTwo->gameSchedules()->save($gameSchedule);
 
     $mockFirstOrCreateTotalTeamPointAction = $this->mock(FirstOrCreateTotalTeamPointAction::class);
     $mockUpdateTotalTeamPointsAction = $this->mock(UpdateTotalTeamPointsAction::class);
