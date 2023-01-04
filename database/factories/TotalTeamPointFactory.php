@@ -20,6 +20,8 @@ class TotalTeamPointFactory extends Factory
     public function definition(): array
     {
         return [
+            'game_schedule_id' => GameScheduleFactory::new()->lazy(),
+            'team_id' => TeamFactory::new()->lazy(),
             'total_number_of_encounters' => 0,
             'total_wins' => 0,
             'total_defeats' => 0,
@@ -29,7 +31,7 @@ class TotalTeamPointFactory extends Factory
             'total_guest_points_legs' => 0,
             'total_home_points_games' => 0,
             'total_guest_points_games' => 0,
-            'total_points' => 0,
+            'total_points' => 999,
         ];
     }
 }
