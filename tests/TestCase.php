@@ -12,6 +12,7 @@ use Filament\SpatieLaravelTranslatablePluginServiceProvider;
 use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\LivewireServiceProvider;
 use Maggomann\FilamentTournamentLeagueAdministration\FilamentTournamentLeagueAdministrationServiceProvider;
 use Maggomann\FilamentTournamentLeagueAdministration\Tests\Database\Factories\UserFactory;
@@ -20,10 +21,12 @@ use Maggomann\LaravelAddressable\LaravelAddressableServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 use Spatie\LaravelData\LaravelDataServiceProvider;
+use Spatie\MediaLibrary\MediaLibraryServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
-    use LazilyRefreshDatabase;
+    // use LazilyRefreshDatabase;
+    // use RefreshDatabase;
 
     protected function setUp(): void
     {
@@ -49,6 +52,7 @@ abstract class TestCase extends BaseTestCase
             LaravelDataServiceProvider::class,
             LaravelAddressableServiceProvider::class,
             FilamentTournamentLeagueAdministrationServiceProvider::class,
+            MediaLibraryServiceProvider::class,
         ];
     }
 

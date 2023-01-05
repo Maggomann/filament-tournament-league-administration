@@ -27,8 +27,6 @@ return new class() extends Migration
             return;
         }
 
-        collect([
-            'users',
-        ])->each(fn (string $tableName) => Schema::dropIfExists($tableName));
+        Schema::dropIfExists('users');
     }
 };
