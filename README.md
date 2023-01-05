@@ -12,11 +12,11 @@ I am programming the project on the side in my spare time.
 
 Before the package leaves beta status, I would like to implement the following:
 
-- Image upload for the areas
-  - Players
-  - Federations
-  - League
-  - Free Tournament
+- <s>Image upload for the areas</s>
+  - <s>Players</s>
+  - <s>Federations</s>
+  - <s>League</s>
+  - <s>Free Tournament</s>
 - Authorization protection
 - <s>Calculate, save and display team standings</s>
 - Minimum test coverage of 90%
