@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Korridor\LaravelHasManyMerged\HasManyMerged;
 use Korridor\LaravelHasManyMerged\HasManyMergedRelation;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -33,11 +35,12 @@ use Spatie\Sluggable\SlugOptions;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  */
-class Team extends TranslateableModel
+class Team extends TranslateableModel implements HasMedia
 {
     use HasFactory;
     use HasManyMergedRelation;
     use HasSlug;
+    use InteractsWithMedia;
     use SoftDeletes;
 
     /**
@@ -60,6 +63,11 @@ class Team extends TranslateableModel
         'updated_at',
         'deleted_at',
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('default')->singleFile();
+    }
 
     /**
      * Get the options for generating the slug.

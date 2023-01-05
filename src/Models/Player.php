@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Maggomann\LaravelAddressable\Traits\Addressable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -20,11 +22,12 @@ use Spatie\Sluggable\SlugOptions;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  */
-class Player extends TranslateableModel
+class Player extends TranslateableModel implements HasMedia
 {
     use Addressable;
     use HasFactory;
     use HasSlug;
+    use InteractsWithMedia;
     use SoftDeletes;
 
     /**
@@ -48,6 +51,11 @@ class Player extends TranslateableModel
         'updated_at',
         'deleted_at',
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('default')->singleFile();
+    }
 
     /**
      * Get the options for generating the slug.

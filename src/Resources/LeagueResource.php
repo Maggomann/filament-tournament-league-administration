@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Traits\HasFileUpload;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
@@ -24,6 +25,8 @@ use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\Re
 
 class LeagueResource extends TranslateableResource
 {
+    use HasFileUpload;
+
     protected static ?string $model = League::class;
 
     protected static ?string $slug = 'tournament-league/leagues';
@@ -62,6 +65,8 @@ class LeagueResource extends TranslateableResource
                             ->disabled()
                             ->required()
                             ->unique(League::class, 'slug', fn ($record) => $record),
+
+                        self::getFileUploadInput(),
                     ])
                     ->columns([
                         'sm' => 2,
@@ -76,6 +81,8 @@ class LeagueResource extends TranslateableResource
     {
         return $table
             ->columns([
+                self::getFileUploadColumn('Logo'),
+
                 TextColumn::make('name')
                     ->label(League::transAttribute('name'))
                     ->searchable()

@@ -20,6 +20,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actio
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Traits\HasContentEditor;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Traits\HasFileUpload;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\RelationManagers\EventLocalctionAddressRelationManager;
@@ -32,6 +33,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentRes
 class FreeTournamentResource extends TranslateableResource
 {
     use HasContentEditor;
+    use HasFileUpload;
 
     protected static ?string $model = FreeTournament::class;
 
@@ -130,6 +132,7 @@ class FreeTournamentResource extends TranslateableResource
                                 fn (Closure $get) => new PeriodEndedAtRule($get('started_at')),
                             ]),
 
+                        self::getFileUploadInput(),
                     ])
                     ->columns([
                         'sm' => 2,
@@ -144,6 +147,8 @@ class FreeTournamentResource extends TranslateableResource
     {
         return $table
             ->columns([
+                self::getFileUploadColumn('Logo'),
+
                 TextColumn::make('name')
                     ->label(FreeTournament::transAttribute('name'))
                     ->searchable()

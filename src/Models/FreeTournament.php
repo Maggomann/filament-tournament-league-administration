@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Maggomann\LaravelAddressable\Traits\Addressable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -25,11 +27,12 @@ use Spatie\Sluggable\SlugOptions;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  */
-class FreeTournament extends TranslateableModel
+class FreeTournament extends TranslateableModel implements HasMedia
 {
     use Addressable;
     use HasFactory;
     use HasSlug;
+    use InteractsWithMedia;
     use SoftDeletes;
 
     /**
@@ -64,6 +67,11 @@ class FreeTournament extends TranslateableModel
     protected $casts = [
         'prize_money_depending_on_placement' => 'json',
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('default')->singleFile();
+    }
 
     /**
      * Get the options for generating the slug.

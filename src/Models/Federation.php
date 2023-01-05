@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -17,10 +19,11 @@ use Spatie\Sluggable\SlugOptions;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  */
-class Federation extends TranslateableModel
+class Federation extends TranslateableModel implements HasMedia
 {
     use HasFactory;
     use HasSlug;
+    use InteractsWithMedia;
     use SoftDeletes;
 
     /**
@@ -43,6 +46,11 @@ class Federation extends TranslateableModel
         'updated_at',
         'deleted_at',
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('default')->singleFile();
+    }
 
     /**
      * Get the options for generating the slug.

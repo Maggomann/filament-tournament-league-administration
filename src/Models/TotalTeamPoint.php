@@ -48,7 +48,7 @@ class TotalTeamPoint extends TranslateableModel
      * @var array<int, string>
      */
     protected $fillable = [
-        'palcement',
+        'placement',
         'total_number_of_encounters',
         'total_wins',
         'total_defeats',
