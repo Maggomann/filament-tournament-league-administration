@@ -18,7 +18,7 @@ trait HasFileUpload
             ->label($field)
             ->preserveFilenames()
             ->image()
-            ->maxSize($maxSize) // 5 MB TODO: config
+            ->maxSize($maxSize)
             ->enableOpen()
             ->enableDownload()
             ->imagePreviewHeight('250')
