@@ -45,7 +45,7 @@ class FilamentTournamenPublishMediaPluginAndMigrateCommand extends Command
         return ! blank(
             collect(scandir(database_path('migrations/')))
                 ->first(fn ($fileName) => Str::of($fileName)->contains('_create_media_table'))
-            );
+        );
     }
 
     protected function migrationDoesntExist(): bool
