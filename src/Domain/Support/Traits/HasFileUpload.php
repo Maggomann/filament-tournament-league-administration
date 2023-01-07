@@ -2,18 +2,23 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Traits;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 
 trait HasFileUpload
 {
-    public static function getFileUploadInput(string $field = 'Upload'): SpatieMediaLibraryFileUpload
+    public static function getFileUploadInput(string $field = 'Upload'): FileUpload|SpatieMediaLibraryFileUpload
     {
-        return SpatieMediaLibraryFileUpload::make('default')
+        $fileUpload = config('filament-tournament-league-administration.form_file_upload');
+        $maxSize = config('filament-tournament-league-administration.file_upload.max_size');
+
+        return $fileUpload::make('default')
             ->label($field)
             ->preserveFilenames()
             ->image()
-            ->maxSize(1024 * 5) // 5 MB TODO: config
+            ->maxSize($maxSize) // 5 MB TODO: config
             ->enableOpen()
             ->enableDownload()
             ->imagePreviewHeight('250')
@@ -24,9 +29,11 @@ trait HasFileUpload
             ->uploadProgressIndicatorPosition('left');
     }
 
-    public static function getFileUploadColumn(string $field = 'Upload'): SpatieMediaLibraryImageColumn
+    public static function getFileUploadColumn(string $field = 'Upload'): ImageColumn|SpatieMediaLibraryImageColumn
     {
-        return SpatieMediaLibraryImageColumn::make('default')
+        $imageColumn = config('filament-tournament-league-administration.table_image_column');
+
+        return $imageColumn::make('default')
             ->label($field)
             ->height(50)
             ->width(50);

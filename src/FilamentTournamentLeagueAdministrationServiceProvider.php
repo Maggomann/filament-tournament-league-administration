@@ -3,6 +3,7 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration;
 
 use Filament\PluginServiceProvider;
+use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamenPublishMediaPluginAndMigrateCommand;
 use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamentInstallWithAddressableCommand;
 use Maggomann\FilamentTournamentLeagueAdministration\Commands\FilamentTournamentLeagueAdministrationCommand;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource;
@@ -39,6 +40,7 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServic
             ->hasTranslations()
             ->hasMigration('create_filament_tournament_league_administration_tables')
             ->hasCommands([
+                FilamentTournamenPublishMediaPluginAndMigrateCommand::class,
                 FilamentTournamentLeagueAdministrationCommand::class,
                 FilamentTournamentInstallWithAddressableCommand::class,
             ]);

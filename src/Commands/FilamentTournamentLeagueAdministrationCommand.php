@@ -28,12 +28,6 @@ class FilamentTournamentLeagueAdministrationCommand extends Command
         $this->callSilent('vendor:publish', ['--tag' => 'filament-tournament-league-administration-factories']);
         $this->callSilent('vendor:publish', ['--tag' => 'tags-factories']);
 
-        // Third-Party Provider
-        $this->callSilent('vendor:publish', [
-            '--provider' => 'Spatie\MediaLibrary\MediaLibraryServiceProvider',
-            '--tag' => 'migrations',
-        ]);
-
         $this->info('Filament filament-tournament-league-administration was installed successfully.');
 
         return self::SUCCESS;

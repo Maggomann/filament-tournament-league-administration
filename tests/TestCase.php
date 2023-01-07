@@ -23,7 +23,7 @@ use Spatie\MediaLibrary\MediaLibraryServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
-    // use LazilyRefreshDatabase;
+    use LazilyRefreshDatabase;
 
     protected function setUp(): void
     {
