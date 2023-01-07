@@ -38,7 +38,23 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServic
             ->name('filament-tournament-league-administration')
             ->hasConfigFile()
             ->hasTranslations()
-            ->hasMigration('create_filament_tournament_league_administration_tables')
+            ->hasMigrations([
+                'create_tournament_league_calculation_types_table',
+                'create_tournament_league_game_days_table',
+                'create_tournament_league_federations_table',
+                'create_tournament_league_leagues_table',
+                'create_tournament_league_teams_table',
+                'create_tournament_league_players_table',
+                'create_tournament_league_game_schedules_table',
+                'create_game_schedule_team_table',
+                'create_game_schedule_player_table',
+                'create_tournament_league_total_team_points_table',
+                'create_tournament_league_modes_table',
+                'create_tournament_league_dart_types_table',
+                'create_tournament_league_qualification_levels_table',
+                'create_tournament_league_free_tournaments_table',
+                'create_tournament_league_event_locations_table',
+            ])
             ->hasCommands([
                 FilamentTournamenPublishMediaPluginAndMigrateCommand::class,
                 FilamentTournamentLeagueAdministrationCommand::class,
