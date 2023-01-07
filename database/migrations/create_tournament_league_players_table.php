@@ -12,9 +12,12 @@ return new class() extends Migration
             Schema::create('tournament_league_players', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedBigInteger('team_id')->nullable()->index();
+                $table->unsignedBigInteger('player_role_id')->nullable()->index();
                 $table->string('name')->index();
                 $table->string('email')->nullable()->unique()->index();
                 $table->string('slug')->nullable()->index();
+                $table->string('nickname')->nullable()->index();
+                $table->string('id_number')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
             });

@@ -108,6 +108,16 @@ return [
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',
         ],
+        'tournament_league_player_roles' => [
+            'title' => [
+                'captain' => 'Kapitän',
+                'cocaptain' => 'Co-Kapitän',
+                'player' => 'Spieler',
+            ],
+            'created_at' => 'Erstellt am',
+            'updated_at' => 'Aktualisiert am',
+            'deleted_at' => 'Gelöscht am',
+        ],
         'total_team_point' => [
             'game_schedule_id' => 'Spielplan',
             'placement' => 'Platz',
