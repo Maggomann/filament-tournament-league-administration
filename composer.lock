@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "25a8b26ec9ab4f9ed7deabf27b7c8e4d",
+    "content-hash": "f4447f9f1ad87223d26e62aaf475b741",
     "packages": [
         {
             "name": "brick/math",
@@ -1688,16 +1688,16 @@
         },
         {
             "name": "maggomann/filament-model-translator",
-            "version": "dev-beta",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maggomann/filament-model-translator.git",
-                "reference": "e6bf714fd6aadb388cf6a0adc066eda97662b706"
+                "reference": "c533059f2ff69912680cdb0decfe2d54bc94ac30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maggomann/filament-model-translator/zipball/e6bf714fd6aadb388cf6a0adc066eda97662b706",
-                "reference": "e6bf714fd6aadb388cf6a0adc066eda97662b706",
+                "url": "https://api.github.com/repos/Maggomann/filament-model-translator/zipball/c533059f2ff69912680cdb0decfe2d54bc94ac30",
+                "reference": "c533059f2ff69912680cdb0decfe2d54bc94ac30",
                 "shasum": ""
             },
             "require": {
@@ -1711,7 +1711,8 @@
                 "laravel/pint": "^1.0",
                 "nunomaduro/collision": "^6.0",
                 "nunomaduro/larastan": "^2.0.1",
-                "orchestra/testbench": "^7.0",
+                "orchestra/testbench": "^7.19",
+                "pestphp/pest": "^1.22",
                 "phpstan/extension-installer": "^1.1",
                 "phpstan/phpstan-deprecation-rules": "^1.0",
                 "phpstan/phpstan-phpunit": "^1.0",
@@ -1734,33 +1735,7 @@
                     "Maggomann\\FilamentModelTranslator\\Database\\Factories\\": "database/factories"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Maggomann\\FilamentModelTranslator\\Tests\\": "tests"
-                }
-            },
-            "scripts": {
-                "lint": [
-                    "vendor/bin/pint --test"
-                ],
-                "lint:fix": [
-                    "vendor/bin/pint"
-                ],
-                "test:coverage": [
-                    "php -dpcov.enabled=1 -dpcov.directory=src/ vendor/bin/phpunit"
-                ],
-                "test:unit": [
-                    "vendor/bin/testbench package:test --no-coverage"
-                ],
-                "test:types": [
-                    "vendor/bin/phpstan analyse"
-                ],
-                "test": [
-                    "@lint:fix",
-                    "@test:types",
-                    "@test:unit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1771,7 +1746,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "This is my package filament-model-translator",
+            "description": "The package translates the Eloquent models using a currently specified translation file. The Eloquent models are used internally in [filament's](https://filamentphp.com/) Resources and RelationManagers for translation. This package provides traits for the Resources and RelationManagers to translate them automatically.",
             "homepage": "https://github.com/maggomann/filament-model-translator",
             "keywords": [
                 "filament-model-translator",
@@ -1781,10 +1756,10 @@
                 "translator"
             ],
             "support": {
-                "source": "https://github.com/Maggomann/filament-model-translator/tree/beta",
-                "issues": "https://github.com/Maggomann/filament-model-translator/issues"
+                "issues": "https://github.com/Maggomann/filament-model-translator/issues",
+                "source": "https://github.com/Maggomann/filament-model-translator/tree/v0.1.0"
             },
-            "time": "2022-10-10T15:28:03+00:00"
+            "time": "2023-01-11T17:42:11+00:00"
         },
         {
             "name": "maggomann/laravel-addressable",
@@ -12278,7 +12253,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "maggomann/filament-model-translator": 20,
         "maggomann/laravel-addressable": 20
     },
     "prefer-stable": true,
