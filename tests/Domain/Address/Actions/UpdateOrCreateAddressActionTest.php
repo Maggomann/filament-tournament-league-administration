@@ -60,8 +60,6 @@ it('creates an address', function (PlayerAddressData $playerAddressData) {
 it('updates an address', function (PlayerAddressData $playerAddressData) {
     $address = AddressFactory::new()->create();
 
-    $playerAddressData->id = $address->id;
-
     $address = app(UpdateOrCreateAddressAction::class)->execute($address->addressable, $playerAddressData, $address);
 
     $this->assertDatabaseHas(Address::class, $playerAddressData->toArray());
