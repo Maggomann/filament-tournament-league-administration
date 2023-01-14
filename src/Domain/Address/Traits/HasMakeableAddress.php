@@ -14,8 +14,8 @@ trait HasMakeableAddress
         }
 
         $address->fill($addressData->toArray());
-        $address->category_id = $addressData->category_id;
-        $address->gender_id = $addressData->gender_id;
+        $address->withCategory($addressData->category_id);
+        $address->withGender($addressData->gender_id);
 
         return $address;
     }
