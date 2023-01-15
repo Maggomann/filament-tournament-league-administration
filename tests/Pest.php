@@ -3,13 +3,6 @@
 use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCase;
 use Maggomann\FilamentTournamentLeagueAdministration\Tests\TestCases\DTO\TestCase as DTOTestCase;
 
-// use Illuminate\Database\Eloquent\Model;
-
-// expect()->extend('toBeSameModel', function (Model $model) {
-//     return $this
-//         ->is($model)->toBeTrue();
-// });
-
 uses(TestCase::class)->in(
     __DIR__.'/Application',
     __DIR__.'/Commands',

@@ -60,8 +60,6 @@ it('updates an address', function (EventLocationAddressData $eventLocationAddres
             'addressable_type' => $freeTournament->getMorphClass(),
         ]);
 
-    $eventLocationAddressData->id = $address->id;
-
     $address = app(UpdateOrCreateEventLocationAddressAction::class)->execute($address->addressable, $eventLocationAddressData, $address);
 
     $this->assertDatabaseHas(Address::class, $eventLocationAddressData->toArray());

@@ -182,7 +182,7 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
                             return app(UpdateOrCreateEventLocationAddressAction::class)->execute(
                                 $freeTournament,
                                 EventLocationAddressData::create($data),
-                                $$address
+                                $address
                             );
                         } catch (Throwable) {
                             EditEntryFailedNotification::make()->send();

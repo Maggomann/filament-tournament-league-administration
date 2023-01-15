@@ -10,8 +10,6 @@ use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Contracts\HasRelationshipTable;
 use Illuminate\Database\Eloquent\Model;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\UpdateOrCreateAddressAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\PlayerAddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DeleteEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\EditEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\CreateAction;
@@ -21,6 +19,8 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateCom
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\SelectOptions\CountryCodeSelect;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
+use Maggomann\LaravelAddressable\Actions\UpdateOrCreateAddressAction;
+use Maggomann\LaravelAddressable\DTO\AddressData;
 use Maggomann\LaravelAddressable\Models\Address;
 use Maggomann\LaravelAddressable\Models\AddressCategory;
 use Maggomann\LaravelAddressable\Models\AddressGender;
@@ -150,7 +150,7 @@ class AddressesRelationManager extends TranslateableRelationManager
 
                             return app(UpdateOrCreateAddressAction::class)->execute(
                                 $player,
-                                PlayerAddressData::from($data)
+                                AddressData::from($data)
                             );
                         } catch (Throwable) {
                             DeleteEntryFailedNotification::make()->send();
@@ -169,7 +169,7 @@ class AddressesRelationManager extends TranslateableRelationManager
 
                             return app(UpdateOrCreateAddressAction::class)->execute(
                                 $player,
-                                PlayerAddressData::from($data),
+                                AddressData::from($data),
                                 $address,
                             );
                         } catch (Throwable) {
