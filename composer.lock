@@ -1768,12 +1768,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maggomann/laravel-addressable.git",
-                "reference": "d5e63530f7c58c5d161c4e2efd04b8d6c5ba8318"
+                "reference": "ae9168f9865f5e5134239b696793b6fb5ecc6146"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maggomann/laravel-addressable/zipball/d5e63530f7c58c5d161c4e2efd04b8d6c5ba8318",
-                "reference": "d5e63530f7c58c5d161c4e2efd04b8d6c5ba8318",
+                "url": "https://api.github.com/repos/Maggomann/laravel-addressable/zipball/ae9168f9865f5e5134239b696793b6fb5ecc6146",
+                "reference": "ae9168f9865f5e5134239b696793b6fb5ecc6146",
                 "shasum": ""
             },
             "require": {
@@ -1864,7 +1864,7 @@
                 "source": "https://github.com/Maggomann/laravel-addressable/tree/beta",
                 "issues": "https://github.com/Maggomann/laravel-addressable/issues"
             },
-            "time": "2023-01-15T13:25:08+00:00"
+            "time": "2023-01-15T14:06:50+00:00"
         },
         {
             "name": "monolog/monolog",
