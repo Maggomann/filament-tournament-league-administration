@@ -7,16 +7,12 @@ use Illuminate\Support\Facades\DB;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\EventLocation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
-use Maggomann\LaravelAddressable\DTO\AddressData;
+use Maggomann\LaravelAddressable\Actions\UpdateOrCreateAddressAction;
 use Maggomann\LaravelAddressable\Models\Address;
 
 class UpdateOrCreateEventLocationAddressAction
 {
     protected EventLocation $eventLocation;
-
-    protected EventLocationAddressData $eventLocationAddressData;
-
-    protected FreeTournament $freeTournament;
 
     /**
      * @throws ModelNotFoundException
@@ -24,23 +20,24 @@ class UpdateOrCreateEventLocationAddressAction
     public function execute(FreeTournament $freeTournament, EventLocationAddressData $eventLocationAddressData, ?Address $address = null): Address
     {
         return DB::transaction(function () use ($freeTournament, $eventLocationAddressData, $address) {
-            $this->eventLocationAddressData = $eventLocationAddressData;
-            $this->freeTournament = $freeTournament;
+            // TODO: refactor - make updateOrCreateEventLocation
+            $this->firstOrCreateEventLocation();
 
-            return $this->firstOrCreateFreeTournamentAddress($address)
-                ->firstOrCreateEventLocation()
-                ->firstOrCreateEventLocationAddress()
-                ->freeTournamentAddress();
+            app(UpdateOrCreateAddressAction::class)->execute(
+                $this->eventLocation,
+                $eventLocationAddressData,
+                $this->eventLocation
+                    ->addresses()
+                    ->where($eventLocationAddressData->toArray())
+                    ->first()
+            );
+
+            return app(UpdateOrCreateAddressAction::class)->execute(
+                $freeTournament,
+                $eventLocationAddressData,
+                $address
+            );
         });
-    }
-
-    private function firstOrCreateFreeTournamentAddress(?Address $address = null): self
-    {
-        $address = $this->makeAddress($this->eventLocationAddressData, $address);
-
-        $this->freeTournament->address()->save($address);
-
-        return $this;
     }
 
     private function firstOrCreateEventLocation(): self
@@ -50,40 +47,5 @@ class UpdateOrCreateEventLocationAddressAction
         );
 
         return $this;
-    }
-
-    private function firstOrCreateEventLocationAddress(): self
-    {
-        $address = $this->makeAddress(
-            $this->eventLocationAddressData,
-            $this->eventLocation->addresses()
-                ->where($this->eventLocationAddressData->toArray())
-                ->first()
-        );
-
-        $this->eventLocation->addresses()->save($address);
-
-        return $this;
-    }
-
-    /**
-     * @throws ModelNotFoundException
-     */
-    private function freeTournamentAddress(): Address
-    {
-        return $this->freeTournament->address()->firstOrFail();
-    }
-
-    private function makeAddress(AddressData $addressData, ?Address $address = null): Address
-    {
-        if (is_null($address)) {
-            $address = new Address();
-        }
-
-        $address->fill($addressData->toArray());
-        $address->withCategory($addressData->category_id);
-        $address->withGender($addressData->gender_id);
-
-        return $address;
     }
 }
