@@ -19,8 +19,8 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateCom
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\SelectOptions\CountryCodeSelect;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
-use Maggomann\LaravelAddressable\Actions\UpdateOrCreateAddressAction;
-use Maggomann\LaravelAddressable\DTO\AddressData;
+use Maggomann\LaravelAddressable\Domain\Actions\UpdateOrCreateAddressAction;
+use Maggomann\LaravelAddressable\Domain\DTO\AddressData;
 use Maggomann\LaravelAddressable\Models\Address;
 use Maggomann\LaravelAddressable\Models\AddressCategory;
 use Maggomann\LaravelAddressable\Models\AddressGender;

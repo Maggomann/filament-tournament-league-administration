@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Arr;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAddressData;
-use Maggomann\LaravelAddressable\DTO\AddressData;
+use Maggomann\LaravelAddressable\Domain\DTO\AddressData;
 
 beforeEach(function () {
     $this->validParams = [

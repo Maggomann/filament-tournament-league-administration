@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\EventLocation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
-use Maggomann\LaravelAddressable\Actions\UpdateOrCreateAddressAction;
+use Maggomann\LaravelAddressable\Domain\Actions\UpdateOrCreateAddressAction;
 use Maggomann\LaravelAddressable\Models\Address;
 
 class UpdateOrCreateEventLocationAddressAction
