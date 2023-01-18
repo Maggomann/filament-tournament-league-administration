@@ -45,8 +45,8 @@ class TeamRelationManager extends TranslateableRelationManager
                 //
             ])
             ->actions([
-                EditAction::make()->hideLabellnTooltip(),
-                ViewAction::make()->hideLabellnTooltip(),
+                EditAction::make()->onlyIconAndTooltip(),
+                ViewAction::make()->onlyIconAndTooltip(),
             ])
             ->bulkActions([
                 //

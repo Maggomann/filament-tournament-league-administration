@@ -122,7 +122,7 @@ class GameDaysRelationManager extends TranslateableRelationManager
             ])
             ->actions([
                 EditAction::make()
-                    ->hideLabellnTooltip()
+                    ->onlyIconAndTooltip()
                     ->using(function (Model $record, array $data) {
                         try {
                             /** @var GameDay $record */
@@ -134,8 +134,8 @@ class GameDaysRelationManager extends TranslateableRelationManager
                             EditEntryFailedNotification::make()->send();
                         }
                     }),
-                ViewAction::make()->hideLabellnTooltip(),
-                DeleteAction::make()->hideLabellnTooltip(),
+                ViewAction::make()->onlyIconAndTooltip(),
+                DeleteAction::make()->onlyIconAndTooltip(),
             ])
             ->bulkActions([
                 DeleteBulkAction::make(),

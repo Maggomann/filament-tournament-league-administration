@@ -4,29 +4,30 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables
 
 use Closure;
 
-trait HasHideableLabel
+trait HasIconLabel
 {
     protected ?string $hiddenLabel = null;
 
-    protected bool $hiddenLabelDisplayedInTooltip = false;
+    protected bool $ishiddenLabelDisplayedInTooltip = false;
 
-    public function hideLabel(): static
+    public function onlyIcon(): static
     {
         return $this->markHiddenLabelWithLabelIfNotYetDone()
             ->markLabelWithEmptyString();
     }
 
-    public function hideLabellnTooltip(): static
+    public function onlyIconAndTooltip(): static
     {
-        return $this->markHiddenLabelDisplayedInTooltip()
-            ->hideLabel()
-            ->markTooltipWithHiddenLabel();
+        return $this->hiddenLabelIsDisplayedInTooltip()
+            ->markHiddenLabelWithLabelIfNotYetDone()
+            ->markTooltipWithHiddenLabel()
+            ->markLabelWithEmptyString();
     }
 
     public function tooltip(string|Closure|null $tooltip): static
     {
-        if ($this->isHiddenLabelDisplayedInTooltip()) {
-            return $this->hideLabellnTooltip();
+        if ($this->ishiddenLabelDisplayedInTooltip) {
+            return $this->onlyIconAndTooltip();
         }
 
         $this->tooltip = $tooltip;
@@ -34,9 +35,9 @@ trait HasHideableLabel
         return $this;
     }
 
-    private function markHiddenLabelDisplayedInTooltip(): static
+    private function hiddenLabelIsDisplayedInTooltip(): static
     {
-        $this->hiddenLabelDisplayedInTooltip = true;
+        $this->ishiddenLabelDisplayedInTooltip = true;
 
         return $this;
     }
@@ -50,7 +51,7 @@ trait HasHideableLabel
 
     private function markHiddenLabelWithLabelIfNotYetDone(): static
     {
-        if ($this->hiddenLabel === null) {
+        if (blank($this->hiddenLabel)) {
             $this->hiddenLabel = $this->label;
         }
 
@@ -62,10 +63,5 @@ trait HasHideableLabel
         $this->label = '';
 
         return $this;
-    }
-
-    public function isHiddenLabelDisplayedInTooltip(): bool
-    {
-        return $this->hiddenLabelDisplayedInTooltip;
     }
 }

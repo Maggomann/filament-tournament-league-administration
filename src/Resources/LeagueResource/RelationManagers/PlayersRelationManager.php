@@ -65,9 +65,9 @@ class PlayersRelationManager extends TranslateableRelationManager
                 CreateAction::make(),
             ])
             ->actions([
-                EditAction::make()->hideLabellnTooltip(),
-                ViewAction::make()->hideLabellnTooltip(),
-                DeleteAction::make()->hideLabellnTooltip(),
+                EditAction::make()->onlyIconAndTooltip(),
+                ViewAction::make()->onlyIconAndTooltip(),
+                DeleteAction::make()->onlyIconAndTooltip(),
             ])
             ->bulkActions([
                 DeleteBulkAction::make(),

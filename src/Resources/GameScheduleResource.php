@@ -150,9 +150,9 @@ class GameScheduleResource extends TranslateableResource
             ->filters([
             ])
             ->actions([
-                EditAction::make()->hideLabellnTooltip(),
-                ViewAction::make()->hideLabellnTooltip(),
-                DeleteAction::make()->hideLabellnTooltip()
+                EditAction::make()->onlyIconAndTooltip(),
+                ViewAction::make()->onlyIconAndTooltip(),
+                DeleteAction::make()->onlyIconAndTooltip()
                     ->using(function (GameSchedule $record): void {
                         try {
                             app(DeleteGameScheduleAction::class)->execute($record);

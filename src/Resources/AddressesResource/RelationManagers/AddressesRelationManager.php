@@ -159,7 +159,7 @@ class AddressesRelationManager extends TranslateableRelationManager
             ])
             ->actions([
                 EditAction::make()
-                    ->hideLabellnTooltip()
+                    ->onlyIconAndTooltip()
                     ->using(function (HasRelationshipTable $livewire, Model $record, array $data) {
                         try {
                             /** @var Player $player */
@@ -176,7 +176,7 @@ class AddressesRelationManager extends TranslateableRelationManager
                             EditEntryFailedNotification::make()->send();
                         }
                     }),
-                ViewAction::make()->hideLabellnTooltip(),
+                ViewAction::make()->onlyIconAndTooltip(),
             ])
             ->bulkActions([
                 //

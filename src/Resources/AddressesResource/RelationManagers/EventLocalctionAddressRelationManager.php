@@ -171,7 +171,7 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
             ])
             ->actions([
                 EditAction::make()
-                    ->hideLabellnTooltip()
+                    ->onlyIconAndTooltip()
                     ->using(function (HasRelationshipTable $livewire, Model $record, array $data) {
                         try {
                             /** @var FreeTournament $freeTournament */
@@ -188,8 +188,8 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
                             EditEntryFailedNotification::make()->send();
                         }
                     }),
-                ViewAction::make()->hideLabellnTooltip(),
-                DeleteAction::make()->hideLabellnTooltip(),
+                ViewAction::make()->onlyIconAndTooltip(),
+                DeleteAction::make()->onlyIconAndTooltip(),
             ])
             ->bulkActions([
                 //
