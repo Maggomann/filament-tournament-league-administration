@@ -8,9 +8,9 @@ use Filament\Resources\Table;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
+use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\DeleteAction;
+use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\EditAction;
+use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 
 class TeamsRelationManager extends TranslateableRelationManager

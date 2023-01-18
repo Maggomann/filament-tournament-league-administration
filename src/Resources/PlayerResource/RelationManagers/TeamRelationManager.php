@@ -7,8 +7,8 @@ use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Str;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\EditAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\ViewAction;
+use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\EditAction;
+use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\ViewAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 
 class TeamRelationManager extends TranslateableRelationManager

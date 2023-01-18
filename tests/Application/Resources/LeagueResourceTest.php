@@ -3,7 +3,7 @@
 
 use Database\Factories\FederationFactory;
 use Database\Factories\LeagueFactory;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
+use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\RelationManagers\PlayersRelationManager;

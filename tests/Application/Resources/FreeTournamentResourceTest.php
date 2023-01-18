@@ -3,7 +3,7 @@
 
 use Database\Factories\FreeTournamentFactory;
 use Illuminate\Support\Fluent;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
+use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\DartType;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Mode;

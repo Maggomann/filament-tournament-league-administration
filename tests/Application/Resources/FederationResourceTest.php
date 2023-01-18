@@ -2,7 +2,7 @@
 <?php
 
 use Database\Factories\FederationFactory;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
+use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource;

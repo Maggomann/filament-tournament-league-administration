@@ -8,7 +8,7 @@ use Database\Factories\GameScheduleFactory;
 use Database\Factories\LeagueFactory;
 use Database\Factories\TeamFactory;
 use Illuminate\Support\Fluent;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
+use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource;
 use function Pest\Livewire\livewire;

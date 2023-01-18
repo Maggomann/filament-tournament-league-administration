@@ -5,7 +5,7 @@ use Database\Factories\FederationFactory;
 use Database\Factories\GameScheduleFactory;
 use Database\Factories\LeagueFactory;
 use Database\Factories\TeamFactory;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Tables\Actions\DeleteAction;
+use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Team\Actions\UpdateOrCreateTeamAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Team\DTO\TeamData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
