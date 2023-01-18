@@ -20,7 +20,7 @@
         "filament/spatie-laravel-media-library-plugin": "^2.16",
         "korridor/laravel-has-many-merged": "^0.0.3",
         "maggomann/filament-model-translator": "^0.1.0",
-        "maggomann/laravel-addressable": "dev-beta",
+        "maggomann/laravel-addressable": "^0.1.0",
         "rinvex/countries": "^8.1",
         "spatie/laravel-data": "^2.0",
         "spatie/laravel-package-tools": "^1.9.2",
@@ -37,7 +37,6 @@
         "laravel/laravel": "^9.3",
         "laravel/pint": "^1.0",
         "livewire/livewire": "^2.10",
-        "maggomann/laravel-addressable": "dev-beta",
         "nunomaduro/collision": "^6.0",
         "nunomaduro/larastan": "^2.0.1",
         "orchestra/testbench": "^7.0",
@@ -97,10 +96,5 @@
             "@test:unit"
         ]
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:Maggomann/laravel-addressable.git"
-        }
-    ]
+    "repositories": []
 }
