@@ -14,6 +14,7 @@ return new class() extends Migration
                 $table->unsignedBigInteger('league_id')->nullable()->index();
                 $table->string('name')->index();
                 $table->string('slug')->nullable()->index();
+                $table->string('upload_image')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
             });

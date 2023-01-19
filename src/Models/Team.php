@@ -59,6 +59,7 @@ class Team extends TranslateableModel implements HasMedia
      */
     protected $fillable = [
         'name',
+        'upload_image',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -66,7 +67,7 @@ class Team extends TranslateableModel implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('default')->singleFile();
+        $this->addMediaCollection('upload_image')->singleFile();
     }
 
     /**

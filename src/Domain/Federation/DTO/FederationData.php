@@ -9,7 +9,8 @@ class FederationData extends Data
     public function __construct(
         public null|int $id,
         public int $calculation_type_id,
-        public string $name
+        public string $name,
+        public null|string $default_image
     ) {
     }
 }

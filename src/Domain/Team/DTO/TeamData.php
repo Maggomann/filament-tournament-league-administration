@@ -10,7 +10,8 @@ class TeamData extends Data
         public null|int $id,
         public int $league_id,
         public string $name,
-        public string $slug
+        public string $slug,
+        public null|string $default_image
     ) {
     }
 }

@@ -20,6 +20,7 @@ class FreeTournamentData extends Data
         public int $maximum_number_of_participants,
         public int $coin_money,
         public array $prize_money_depending_on_placement,
+        public null|string $default_image,
         #[Date]
         public string $started_at,
         #[Date]

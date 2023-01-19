@@ -57,6 +57,7 @@ class FreeTournament extends TranslateableModel implements HasMedia
         'maximum_number_of_participants',
         'coin_money',
         'prize_money_depending_on_placement',
+        'upload_image',
         'started_at',
         'ended_at',
         'created_at',
@@ -70,7 +71,7 @@ class FreeTournament extends TranslateableModel implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('default')->singleFile();
+        $this->addMediaCollection('upload_image')->singleFile();
     }
 
     /**

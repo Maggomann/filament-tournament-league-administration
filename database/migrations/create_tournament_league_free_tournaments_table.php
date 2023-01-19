@@ -20,6 +20,7 @@ return new class() extends Migration
                 $table->integer('maximum_number_of_participants')->default(0);
                 $table->integer('coin_money')->default(0);
                 $table->json('prize_money_depending_on_placement')->nullable();
+                $table->string('upload_image')->nullable();
                 $table->timestamp('started_at')->nullable()->index();
                 $table->timestamp('ended_at')->nullable()->index();
                 $table->timestamps();

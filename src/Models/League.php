@@ -43,11 +43,12 @@ class League extends TranslateableModel implements HasMedia
      */
     protected $fillable = [
         'name',
+        'upload_image',
     ];
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('default')->singleFile();
+        $this->addMediaCollection('upload_image')->singleFile();
     }
 
     /**

@@ -14,7 +14,7 @@ trait HasFileUpload
         $fileUpload = config('filament-tournament-league-administration.form_file_upload');
         $maxSize = config('filament-tournament-league-administration.file_upload.max_size');
 
-        return $fileUpload::make('default')
+        return $fileUpload::make('upload_image')
             ->label($field)
             ->preserveFilenames()
             ->image()
@@ -33,7 +33,7 @@ trait HasFileUpload
     {
         $imageColumn = config('filament-tournament-league-administration.table_image_column');
 
-        return $imageColumn::make('default')
+        return $imageColumn::make('upload_image')
             ->label($field)
             ->height(50)
             ->width(50);
