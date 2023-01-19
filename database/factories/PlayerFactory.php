@@ -23,6 +23,7 @@ class PlayerFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->unique(reset: true)->email,
             'slug' => null,
+            'upload_image' => $this->faker->imageUrl(width: 50, height: 50),
         ];
     }
 

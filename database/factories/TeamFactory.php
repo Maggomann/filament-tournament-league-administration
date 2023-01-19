@@ -22,6 +22,7 @@ class TeamFactory extends Factory
         return [
             'name' => $this->faker->name,
             'slug' => null,
+            'upload_image' => $this->faker->imageUrl(width: 50, height: 50),
         ];
     }
 

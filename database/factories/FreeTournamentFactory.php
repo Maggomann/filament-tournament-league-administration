@@ -31,6 +31,7 @@ class FreeTournamentFactory extends Factory
             'prize_money_depending_on_placement' => [
                 '1. Platz' => 'Test',
             ],
+            'upload_image' => $this->faker->imageUrl(width: 50, height: 50),
             'started_at' => now(),
             'ended_at' => now()->addHour(),
         ];

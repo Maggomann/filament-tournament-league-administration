@@ -22,6 +22,7 @@ class FederationFactory extends Factory
         return [
             'calculation_type_id' => $this->faker->randomElement([1, 2]),
             'name' => $this->faker->company,
+            'upload_image' => $this->faker->imageUrl(width: 50, height: 50),
         ];
     }
 }
