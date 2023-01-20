@@ -60,6 +60,8 @@ return [
             'name' => 'Name',
             'slug' => 'Slug',
             'email' => 'E-Mail-Adresse',
+            'nickname' => 'Spitzname',
+            'id_number' => 'Ausweisnummer',
             'team_id' => 'Team',
             'created_at' => 'Erstellt am',
             'updated_at' => 'Aktualisiert am',

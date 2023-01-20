@@ -47,6 +47,8 @@ class Player extends TranslateableModel implements HasMedia
     protected $fillable = [
         'name',
         'email',
+        'nickname',
+        'id_number',
         'upload_image',
         'created_at',
         'updated_at',

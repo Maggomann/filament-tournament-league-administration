@@ -106,6 +106,14 @@ class PlayerResource extends TranslateableResource
                             ->required()
                             ->email()
                             ->unique(ignoreRecord: true),
+
+                        TextInput::make('nickname')
+                            ->label(Player::transAttribute('nickname'))
+                            ->maxLength(255),
+
+                        TextInput::make('id_number')
+                            ->label(Player::transAttribute('id_number'))
+                            ->maxLength(255),
                     ])
                     ->columns([
                         'sm' => 2,

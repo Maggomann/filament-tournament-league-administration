@@ -10,6 +10,8 @@ beforeEach(function () {
         'name' => 'valid string',
         'slug' => 'valid string',
         'email' => 'valid string',
+        'nickname' => 'valid string',
+        'id_number' => 'valid string',
         'upload_image' => 'valid string',
     ];
 });
@@ -37,5 +39,7 @@ test('PlayerData throws an error when invalid data is submitted', function ($key
     ['name', null],
     ['slug', null],
     ['email', []],
+    ['nickname', []],
+    ['id_number', []],
     ['upload_image', []],
 ]);
