@@ -8,48 +8,6 @@ This package is still under development. Use at your own risk.
 
 ---
 
-I am programming the project on the side in my spare time.
-
-Before the package leaves beta status, I would like to implement the following:
-
-- <s>Image upload for the areas</s>
-  - <s>Players</s>
-  - <s>Federations</s>
-  - <s>League</s>
-  - <s>Free Tournament</s>
-- Authorization protection
-- <s>Calculate, save and display team standings</s>
-- Minimum test coverage of 90%
-- Extension of user data
-  - Nickname
-  - etc.
-- Bring codebase to phpstan level 6
-
----
-
-**Later extensions:**
-
-- Update to filament 3.X
-- Improved usability:
-  - Creation and editing of records via integrated modal forms
-
----
-
-![verbaende](./src/docs/assets/001_verbaende.png)
-
-![verbaend bearbeiten](./src/docs/assets/002_verband_bearbeiten.png)
-
-![verbaend bearbeiten](./src/docs/assets/004_verband_loeschen.png)
-
-![spielplan bearbeiten](./src/docs/assets/006_spielplan_bearbeiten.png)
-
-![spielplan teams](./src/docs/assets/008_spielplan_teams.png)
-
-![spielplan punktetabelle](./src/docs/assets/011_spielplan_punktetabelle.png)
-
-![spiel erstellen reiter punkte](./src/docs/assets/010_spiel_erstellen_reiter_punkte.png)
-
-
 ## filament-tournament-league-administration plugin for the Filament admin panel
 
 An event and tournament management plugin for the [Filament admin panel](https://filamentphp.com/) in version 2.x, intended for dart clubs in the first implementation. Here you can manage clubs, teams, matches, players and match days including score tables. More detailed information can be found later in the documentation yet to be implemented.
@@ -84,7 +42,7 @@ php artisan db:seed --class=FilamentTournamentTableSeeder
 
 This is the contents of the published config file:
 
-```
+```php
 <?php
 
 return [
@@ -151,7 +109,8 @@ return [
         'max_size' => 1024 * 2, // 2 MB
     ],
 ];
-````
+```
+
 ## File uploads
 
 If you want to use the [filament/spatie-laravel-media-library-plugin](https://filamentphp.com/docs/2.x/spatie-laravel-media-library-plugin/installation#requirements) package that is already installed in the background, you need to publish the data and run ide migration.
@@ -193,3 +152,19 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+---
+
+![verbaende](./src/docs/assets/001_verbaende.png)
+
+![verbaend bearbeiten](./src/docs/assets/002_verband_bearbeiten.png)
+
+![verbaend bearbeiten](./src/docs/assets/004_verband_loeschen.png)
+
+![spielplan bearbeiten](./src/docs/assets/006_spielplan_bearbeiten.png)
+
+![spielplan teams](./src/docs/assets/008_spielplan_teams.png)
+
+![spielplan punktetabelle](./src/docs/assets/011_spielplan_punktetabelle.png)
+
+![spiel erstellen reiter punkte](./src/docs/assets/010_spiel_erstellen_reiter_punkte.png)
