@@ -24,7 +24,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Traits\HasFi
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\RelationManagers\EventLocalctionAddressRelationManager;
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardUploadAndTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentResource\SelectOptions\DartTypeSelect;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FreeTournamentResource\SelectOptions\ModeSelect;
@@ -131,14 +131,12 @@ class FreeTournamentResource extends TranslateableResource
                             ->rules([
                                 fn (Closure $get) => new PeriodEndedAtRule($get('started_at')),
                             ]),
-
-                        self::getFileUploadInput(),
                     ])
                     ->columns([
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                CardTimestamps::make((new FreeTournament)),
+                CardUploadAndTimestamps::make((new FreeTournament)),
             ])
             ->columns(3);
     }

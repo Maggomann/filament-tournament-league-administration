@@ -23,7 +23,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\RelationManagers\AddressesRelationManager;
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardUploadAndTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\RelationManagers\TeamRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\SelectOptions\LeagueSelect;
@@ -106,15 +106,12 @@ class PlayerResource extends TranslateableResource
                             ->required()
                             ->email()
                             ->unique(ignoreRecord: true),
-
-                        self::getFileUploadInput(),
                     ])
                     ->columns([
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                CardTimestamps::make((new Player)),
-
+                CardUploadAndTimestamps::make((new Player)),
             ])
             ->columns(3);
     }

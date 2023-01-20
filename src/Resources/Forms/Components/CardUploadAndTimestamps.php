@@ -3,14 +3,21 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components;
 
 use Filament\Forms\Components\Card;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Traits\HasFileUpload;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TranslateableModel;
 
-class CardTimestamps
+class CardUploadAndTimestamps
 {
+    use HasFileUpload;
+
     public static function make(TranslateableModel $model): Card
     {
         return Card::make()
-            ->schema(PlaceholderTimestamps::execute($model))
+            ->schema(
+                array_merge(
+                    [self::getFileUploadInput()],
+                    PlaceholderTimestamps::execute($model)
+                ))
             ->columnSpan(1);
     }
 }

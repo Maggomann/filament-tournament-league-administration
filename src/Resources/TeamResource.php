@@ -27,7 +27,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardUploadAndTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\RelationManagers\PlayersRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\SelectOptions\LeagueSelect;
@@ -124,14 +124,12 @@ class TeamResource extends TranslateableResource
                             ->disabled()
                             ->required()
                             ->unique(Team::class, 'slug', fn ($record) => $record),
-
-                        self::getFileUploadInput(),
                     ])
                     ->columns([
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                CardTimestamps::make((new Team)),
+                CardUploadAndTimestamps::make((new Team)),
             ])
             ->columns(3);
     }

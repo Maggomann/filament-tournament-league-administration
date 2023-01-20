@@ -17,6 +17,7 @@ beforeEach(function () {
         'prize_money_depending_on_placement' => ['1st place' => '1st prize'],
         'started_at' => now()->toString(),
         'ended_at' => now()->toString(),
+        'upload_image' => 'valid string',
     ];
 });
 
@@ -63,4 +64,5 @@ test('FreeTournamentData throws an ValidationException when invalid data is subm
     ['maximum_number_of_participants', 11],
     ['started_at', 'invalid'],
     ['ended_at', 'invalid'],
+    ['upload_image', []],
 ]);

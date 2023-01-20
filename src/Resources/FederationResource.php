@@ -21,7 +21,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\FederationResource\RelationManagers\LeaguesRelationManager;
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardUploadAndTimestamps;
 
 class FederationResource extends TranslateableResource
 {
@@ -64,16 +64,12 @@ class FederationResource extends TranslateableResource
                             ->exists(table: CalculationType::class, column: 'id')
                             ->required()
                             ->searchable(),
-
-                        self::getFileUploadInput(),
                     ])
                     ->columns([
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-
-                CardTimestamps::make((new Federation)),
-
+                CardUploadAndTimestamps::make((new Federation)),
             ])
             ->columns(3);
     }

@@ -9,6 +9,7 @@ beforeEach(function () {
         'league_id' => 1,
         'name' => 'valid string',
         'slug' => 'valid string',
+        'upload_image' => 'valid string',
     ];
 });
 
@@ -34,4 +35,5 @@ test('TeamData throws an error when invalid data is submitted', function ($key, 
     ['league_id', null],
     ['name', null],
     ['slug', null],
+    ['upload_image', []],
 ]);

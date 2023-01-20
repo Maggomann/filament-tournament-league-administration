@@ -8,6 +8,7 @@ beforeEach(function () {
         'id' => 1,
         'calculation_type_id' => 1,
         'name' => 'valid',
+        'upload_image' => 'valid string',
     ];
 });
 
@@ -32,4 +33,5 @@ test('FederationData throws an error when invalid data is submitted', function (
     ['id', []],
     ['calculation_type_id', null],
     ['name', null],
+    ['upload_image', []],
 ]);
