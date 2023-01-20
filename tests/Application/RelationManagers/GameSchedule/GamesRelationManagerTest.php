@@ -16,13 +16,13 @@ dataset('inputGamesRelationManagerPage', function () {
         'fluent' => fn () => new Fluent([
             'calculation_type_id' => 1,
             'assertSee' => [
-                'game_day_id',
-                'home_team_id',
-                'guest_team_id',
-                'legs',
-                'games',
-                'started_at',
-                'ended_at',
+                'game_day_id' => 'Game day',
+                'home_team_id' => 'Home team',
+                'guest_team_id' => 'Guest team',
+                'legs' => 'Legs',
+                'games' => 'Games',
+                'started_at' => 'Start',
+                'ended_at' => 'End',
             ],
         ]),
     ];
@@ -30,14 +30,14 @@ dataset('inputGamesRelationManagerPage', function () {
         'fluent' => fn () => new Fluent([
             'calculation_type_id' => 2,
             'assertSee' => [
-                'game_day_id',
-                'home_team_id',
-                'guest_team_id',
-                'legs',
-                'games',
-                'points_after_draws',
-                'started_at',
-                'ended_at',
+                'game_day_id' => 'Game day',
+                'home_team_id' => 'Home team',
+                'guest_team_id' => 'Guest team',
+                'legs' => 'Legs',
+                'games' => 'Games',
+                'points_after_draws' => 'Points. a. d.',
+                'started_at' => 'Start',
+                'ended_at' => 'End',
             ],
         ]),
     ];

@@ -8,18 +8,18 @@ return [
     */
 
     'models' => [
-        'calculation_type' => 'calculation type|calculation types',
-        'federation' => 'federation|associations',
-        'league' => 'league|leagues',
-        'team' => 'team|teams',
-        'player' => 'player|players',
-        'address' => 'address|addresses',
-        'game_schedule' => 'game schedule|game schedules',
-        'day' => 'game day|game days',
-        'game' => 'game|games',
-        'total_team_point' => 'point table|point tables',
-        'free_tournament' => 'free tournament|free tournaments',
-        'event_location' => 'venue|venues',
+        'calculation_type' => 'Calculation type|Calculation types',
+        'federation' => 'Federation|Federations',
+        'league' => 'League|Leagues',
+        'team' => 'Team|Teams',
+        'player' => 'Player|Players',
+        'address' => 'Address|Addresses',
+        'game_schedule' => 'Game schedule|Game schedules',
+        'day' => 'Game day|Game days',
+        'game' => 'Game|Games',
+        'total_team_point' => 'Point table|Point tables',
+        'free_tournament' => 'Free tournament|Free tournaments',
+        'event_location' => 'Venue|Venues',
     ],
 
     /*
@@ -76,7 +76,7 @@ return [
         ],
         'game_schedule' => [
             'name' => 'Name',
-            'game_days' => 'game days',
+            'game_days' => 'Game days',
             'started_at' => 'Start',
             'ended_at' => 'End',
             'created_at' => 'Created at',
