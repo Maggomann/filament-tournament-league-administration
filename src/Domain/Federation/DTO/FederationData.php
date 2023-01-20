@@ -10,7 +10,7 @@ class FederationData extends Data
         public null|int $id,
         public int $calculation_type_id,
         public string $name,
-        public null|string $default_image
+        public null|string $upload_image
     ) {
     }
 }

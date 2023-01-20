@@ -12,7 +12,7 @@ class PlayerData extends Data
         public string $name,
         public string $slug,
         public null|string $email,
-        public null|string $default_image
+        public null|string $upload_image
     ) {
     }
 }
