@@ -10,7 +10,11 @@ This package is still under development. Use at your own risk.
 
 ## filament-tournament-league-administration plugin for the Filament admin panel
 
-An event and tournament management plugin for the [Filament admin panel](https://filamentphp.com/) in version 2.x, intended for dart clubs in the first implementation. Here you can manage clubs, teams, matches, players and match days including score tables. More detailed information can be found later in the documentation yet to be implemented.
+This package is tailored for [Filament Admin Panel v2.x](https://filamentphp.com/docs/2.x/admin/installation).
+
+Make sure you have installed the admin panel before you continue with the installation. You can check the [documentation here](https://filamentphp.com/docs/2.x/admin/installation)
+
+An event and tournament management plugin for the [Filament Admin Panel v2.x](https://filamentphp.com/docs/2.x/admin/installation), intended for dart clubs in the first implementation. Here you can manage clubs, teams, matches, players and match days including score tables. More detailed information can be found later in the documentation yet to be implemented.
 
 ## Installation
 
@@ -148,6 +152,19 @@ composer test:pest-coverage
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Contributing
+
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+
+## Security Vulnerabilities
+
+Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+
+## Credits
+
+- [Marco Ehrt](https://github.com/Maggomann)
+- [All Contributors](../../contributors)
 
 ## License
 
