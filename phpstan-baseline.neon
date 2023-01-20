@@ -23,12 +23,12 @@ parameters:
 		-
 			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$created_at\\.$#"
 			count: 1
-			path: src/Resources/Forms/Components/CardTimestamps.php
+			path: src/Resources/Forms/Components/PlaceholderTimestamps.php
 
 		-
 			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$updated_at\\.$#"
 			count: 1
-			path: src/Resources/Forms/Components/CardTimestamps.php
+			path: src/Resources/Forms/Components/PlaceholderTimestamps.php
 
 		-
 			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Database\\\\Eloquent\\\\Collection\\<\\(int\\|string\\),Illuminate\\\\Database\\\\Eloquent\\\\Model\\>\\:\\:mapWithKeys\\(\\) expects callable\\(Illuminate\\\\Database\\\\Eloquent\\\\Model, \\(int\\|string\\)\\)\\: array\\<int, string\\>, Closure\\(Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameDay\\)\\: non\\-empty\\-array\\<int, non\\-falsy\\-string\\> given\\.$#"
