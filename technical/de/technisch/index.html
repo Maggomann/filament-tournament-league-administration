@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Technisch - filament-tournament-league-administration</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Technisch";
+        var mkdocs_page_input_path = "technical/de/technisch.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> filament-tournament-league-administration
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Technical</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="#">en</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../en/technical/">Technical</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">de</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Technisch</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#env">.env</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#file-upload">file upload</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Description</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">en</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../description/en/federations/">Federations</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">de</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../description/de/verb%C3%A4nde/">Verbände</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">filament-tournament-league-administration</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Technical &raquo;</li>
+          <li>de &raquo;</li>
+      <li>Technisch</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="technisch">Technisch</h1>
+<h2 id="env">.env</h2>
+<pre><code class="language-console"># for filament classes
+MM_TABLE_IMAGE_COLUMN=\Filament\Tables\Columns\ImageColumn::class
+MM_FORM_FILE_UPLOAD=\Filament\Forms\Components\FileUpload::class
+
+# for spatie media library
+MM_TABLE_IMAGE_COLUMN=\Filament\Tables\Columns\SpatieMediaLibraryImageColumn::class
+MM_FORM_FILE_UPLOAD=\Filament\Forms\Components\SpatieMediaLibraryFileUpload::class
+</code></pre>
+<h2 id="file-upload">file upload</h2>
+<p>Mit den beiden env-Variablen können Sie die Klassen bestimmen, mit denen Sie für den Datei-Upload arbeiten wollen. Standardmäßig verwendet das Paket die filament-Klassen für den Datei-Upload und für die Anzeige der hochgeladenen Bilder. Wenn Sie aber das <a href="https://filamentphp.com/docs/2.x/spatie-laravel-media-library-plugin/installation#requirements">filament/spatie-laravel-media-library-plugin</a> verwenden wollen, können Sie das tun und die env-Variablen entsrpechend anpassen.</p>
+<p>Wenn Sie das Paket <a href="https://filamentphp.com/docs/2.x/spatie-laravel-media-library-plugin/installation#requirements">filament/spatie-laravel-media-library-plugin</a> verwenden möchten, das bereits im Hintergrund installiert ist, müssen Sie die Daten veröffentlichen und die Migration ausführen.</p>
+<p>Sie müssen die Migration veröffentlichen, um die Medientabelle zu erstellen.</p>
+<pre><code class="language-bash">php artisan vendor:publish --provider=&quot;Spatie\MediaLibrary\MediaLibraryServiceProvider&quot; --tag=&quot;migrations&quot;
+</code></pre>
+<p>Führen Sie die Migrationen durch:</p>
+<pre><code class="language-bash">php artisan migrate
+</code></pre>
+<p>oder veröffentlichen Sie die Migration und migrieren Sie die Tabelle mit</p>
+<pre><code class="language-bash">php artisan filament-tournament-league-administration:publish-media-plugin-and-migrate
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../en/technical/" class="btn btn-neutral float-left" title="Technical"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../../description/en/federations/" class="btn btn-neutral float-right" title="Federations">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../en/technical/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../../description/en/federations/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
