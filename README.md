@@ -117,7 +117,7 @@ return [
 
 ## File uploads
 
-If you want to use the [filament/spatie-laravel-media-library-plugin](https://filamentphp.com/docs/2.x/spatie-laravel-media-library-plugin/installation#requirements) package that is already installed in the background, you need to publish the data and run ide migration.
+If you want to use the [filament/spatie-laravel-media-library-plugin](https://filamentphp.com/docs/2.x/spatie-laravel-media-library-plugin/installation#requirements) package that is already installed in the background, you need to publish the data and run the migration.
 
 You must publish the migration to create the media table.
 

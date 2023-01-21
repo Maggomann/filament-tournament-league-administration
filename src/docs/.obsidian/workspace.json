@@ -4,16 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "b096593773968015",
+        "id": "9a4b39ef4a90d78f",
         "type": "tabs",
         "children": [
           {
-            "id": "7d8a686682b94f4f",
+            "id": "a6d4fff4bebd7f89",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "4fed19697148f24b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "mkdocs/docs/en/federations.md",
+                "file": "mkdocs/docs/technical/de/technisch.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": true
@@ -21,51 +29,12 @@
             }
           },
           {
-            "id": "8251573516e266fe",
+            "id": "930f6ec2a8893cc9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "mkdocs/docs/en/federations.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": true
-              }
-            }
-          },
-          {
-            "id": "8043edf93e780ab0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "mkdocs/docs/en/federations.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": true
-              }
-            }
-          },
-          {
-            "id": "b9cf2b4278a8df08",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "mkdocs/docs/en/federations.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": true
-              }
-            }
-          },
-          {
-            "id": "4bd577859520bcd6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "mkdocs/docs/de/verbände.md",
+                "file": "mkdocs/docs/description/de/verbände.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": true
@@ -73,7 +42,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -139,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "mkdocs/docs/de/verbände.md",
+                "file": "mkdocs/docs/description/de/verbände.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -156,7 +125,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "mkdocs/docs/de/verbände.md",
+                "file": "mkdocs/docs/description/de/verbände.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -179,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "mkdocs/docs/de/verbände.md"
+                "file": "mkdocs/docs/description/de/verbände.md"
               }
             }
           }
@@ -201,17 +170,17 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "4bd577859520bcd6",
+  "active": "930f6ec2a8893cc9",
   "lastOpenFiles": [
-    "mkdocs/docs/en/federations.md",
-    "mkdocs/docs/de/verbände.md",
+    "mkdocs/docs/description/en/federations.md",
+    "mkdocs/docs/description/de/verbände.md",
+    "mkdocs/docs/technical/de/technisch.md",
+    "mkdocs/docs/technical/en/technical.md",
+    "mkdocs/docs/technical/de/file-upload.md",
     "mkdocs/docs/index.md",
     "mkdocs/docs/assets/bearbeiten.png",
     "mkdocs/docs/assets/create_and_create_another.png",
     "mkdocs/docs/assets/delete_federation.png",
-    "mkdocs/docs/assets/delete_icon.png",
-    "mkdocs/docs/assets/delete_selected.png",
-    "mkdocs/docs/assets/erstellen_und_erstellen_weiterer_eintrag.png",
-    "mkdocs/docs/assets/teams_create_federation_1.png"
+    "mkdocs/docs/assets/delete_icon.png"
   ]
 }

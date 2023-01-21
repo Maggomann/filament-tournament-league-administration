@@ -16,7 +16,7 @@ Currently, the following attributes can be viewed or edited through the form.
 
 ## Create federation
 
-![](../assets/federations.png)
+![](../../assets/federations.png)
 
 A federation can be created in the area `Seasons & Tournaments | Federations` via the button **New Federation**. By confirming the button `New Federation` you will get to the form input and after successful completion of the form you can create the federation by clicking the button `Create` or `Create & create another`.
 
@@ -28,7 +28,7 @@ A federation can be created in the area `Seasons & Tournaments | Federations` vi
 
 	A click on `Create & create another` takes you back to the create federation form, where you can enter another record.
 
-![](../assets/create_and_create_another.png)
+![](../../assets/create_and_create_another.png)
 
 ---
 
@@ -36,21 +36,29 @@ A federation can be created in the area `Seasons & Tournaments | Federations` vi
 
 An association can be added in the `Seasons & Tournaments | Teams` section of the create or edit teams form. There is a plus icon to the right of the selection field for choosing a federation. This icon can also be used to create a federation.
 
-![](../assets/teams_create_federation_1.png)
+![](../../assets/teams_create_federation_1.png)
 
-![](../assets/teams_create_federation_2.png)
+![](../../assets/teams_create_federation_2.png)
 
 ---
 
 ## Edit federation
 
-![](../assets/edit.png)
+![](../../assets/edit.png)
 
 You can access the editing page of a federation via the listing table. Here you can select the desired record for editing and click on the edit icon. Clicking the edit icon will take you to the edit form.
 
 !!! info
 	The form input options can be found in the above [attribute table](#attributtabelle).
 	
+---
+
+## View federation
+
+You can access the view page of a club via the listing table in the `Seasons & Tournaments | Federations` section. Here you can select the desired record to view and click on the view icon. When you click on the view icon, the record will be displayed in a dialog box.
+
+![](../../assets/view.png)
+
 ---
 
 ## Delete federation
@@ -61,11 +69,11 @@ You can delete individual records, a group of records or all records.
 
 By default, you can delete assignments in the collection table as a whole. However, you can also delete individual records from your collection table by clicking the trash can icon.
 
-![](../assets/delete_selected.png)
+![](../../assets/delete_selected.png)
 
-![](../assets/select_all.png)
+![](../../assets/select_all.png)
 
-![](../assets/delete_icon.png) 
+![](../../assets/delete_icon.png) 
 
 ---
 
@@ -75,8 +83,7 @@ You can access the editing page of a federation via the listing table. Here you 
 
 !!! danger 
 	Jeder Löschvorgang wird erst durch die erfolgreiche Bestätigung der zuvor eingeblendeten Sicherheitsabfrage umgesetzt. Wird die Sicherheitsabfrage abgeborchen, wird auch der Löschvorgang nicht ausgeführt.
-	
-	![](../assets/delete_selected_federations.png) 
-	
-	![](../assets/delete_federation.png)
-	
+![](../../assets/delete_selected_federations.png) 
+
+![](../../assets/delete_federation.png)
+
