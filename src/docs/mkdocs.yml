@@ -1,0 +1,10 @@
+site_name: filament-tournament-league-administration
+nav:
+    - Description:
+      - en:
+          - Federations: en/federations.md
+      - de:
+          - Verbände: de/verbände.md
+theme: readthedocs
+markdown_extensions:
+  - admonition
