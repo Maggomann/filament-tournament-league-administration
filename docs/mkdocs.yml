@@ -1,0 +1,15 @@
+site_name: filament-tournament-league-administration
+nav:
+    - Technical:
+      - en:
+          - Technical: technical/en/technical.md
+      - de:
+          - Technisch: technical/de/technisch.md
+    - Description:
+      - en:
+          - Federations: description/en/federations.md
+      - de:
+          - Verbände: description/de/verbände.md
+theme: readthedocs
+markdown_extensions:
+  - admonition

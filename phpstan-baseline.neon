@@ -1,0 +1,51 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\User\\:\\:\\$password\\.$#"
+			count: 1
+			path: database/seeders/UsersTableSeeder.php
+
+		-
+			message: "#^Call to an undefined static method App\\\\Models\\\\User\\:\\:whereEmail\\(\\)\\.$#"
+			count: 1
+			path: database/seeders/UsersTableSeeder.php
+
+		-
+			message: "#^Unable to resolve the template type TKey in call to function collect$#"
+			count: 2
+			path: src/Resources/AddressesResource/SelectOptions/CountryCodeSelect.php
+
+		-
+			message: "#^Unable to resolve the template type TValue in call to function collect$#"
+			count: 2
+			path: src/Resources/AddressesResource/SelectOptions/CountryCodeSelect.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$created_at\\.$#"
+			count: 1
+			path: src/Resources/Forms/Components/PlaceholderTimestamps.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$updated_at\\.$#"
+			count: 1
+			path: src/Resources/Forms/Components/PlaceholderTimestamps.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Database\\\\Eloquent\\\\Collection\\<\\(int\\|string\\),Illuminate\\\\Database\\\\Eloquent\\\\Model\\>\\:\\:mapWithKeys\\(\\) expects callable\\(Illuminate\\\\Database\\\\Eloquent\\\\Model, \\(int\\|string\\)\\)\\: array\\<int, string\\>, Closure\\(Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\GameDay\\)\\: non\\-empty\\-array\\<int, non\\-falsy\\-string\\> given\\.$#"
+			count: 1
+			path: src/Resources/GameResource/SelectOptions/GameDaySelect.php
+
+		-
+			message: "#^Unable to resolve the template type TTimesValue in call to method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:times\\(\\)$#"
+			count: 1
+			path: src/Resources/GameScheduleResource.php
+
+		-
+			message: "#^Parameter \\#2 \\$player of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Player\\\\Actions\\\\UpdateOrCreatePlayerAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Player\\|null, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/PlayerResource/Pages/EditPlayer.php
+
+		-
+			message: "#^Parameter \\#2 \\$team of method Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Domain\\\\Team\\\\Actions\\\\UpdateOrCreateTeamAction\\:\\:execute\\(\\) expects Maggomann\\\\FilamentTournamentLeagueAdministration\\\\Models\\\\Team\\|null, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Resources/TeamResource/Pages/EditTeam.php
