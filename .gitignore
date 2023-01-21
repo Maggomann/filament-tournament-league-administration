@@ -38,3 +38,6 @@ build
 
 rector.php
 .php_cs
+
+## MkDocs
+/src/docs/mkdocs/site
