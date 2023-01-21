@@ -40,4 +40,6 @@ rector.php
 .php_cs
 
 ## MkDocs
-/src/docs/mkdocs/site
+/docs/.obsidian
+/mkdocs/.obsidian
+/sites

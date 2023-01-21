@@ -5,6 +5,8 @@ Federations is at the top of the hirachie and is an association of several leagu
 
 Currently, the following attributes can be viewed or edited through the form.
 
+## Attribute table
+
 | Feld            | Typ                   | Beschreibung                                                          | Erforderlich     |
 | --------------- | --------------------- | --------------------------------------------------------------------- | ---------------- |
 | Name            | Text input            | The name of the federation                                            | yes              |
@@ -16,12 +18,14 @@ Currently, the following attributes can be viewed or edited through the form.
 
 ## Create federation
 
+### Seasons & Tournaments | Federations
+
 ![](../../assets/federations.png)
 
 A federation can be created in the area `Seasons & Tournaments | Federations` via the button **New Federation**. By confirming the button `New Federation` you will get to the form input and after successful completion of the form you can create the federation by clicking the button `Create` or `Create & create another`.
 
 !!! info
-	The form input options can be found in the above [attribute table](#attributtabelle).
+	The form input options can be found in the above [attribute table](#attribute-table).
 
 !!! tip " `Create` or `Create & create another`"
 	A click on the `Create` button will take you directly to the edit page of the record after creation.
@@ -49,7 +53,7 @@ An association can be added in the `Seasons & Tournaments | Teams` section of th
 You can access the editing page of a federation via the listing table. Here you can select the desired record for editing and click on the edit icon. Clicking the edit icon will take you to the edit form.
 
 !!! info
-	The form input options can be found in the above [attribute table](#attributtabelle).
+	The form input options can be found in the above [attribute table](#attribute-table).
 	
 ---
 
@@ -82,8 +86,8 @@ By default, you can delete assignments in the collection table as a whole. Howe
 You can access the editing page of a federation via the listing table. Here you have the possibility to remove the record by confirming the **Delete** button.
 
 !!! danger 
-	Jeder Löschvorgang wird erst durch die erfolgreiche Bestätigung der zuvor eingeblendeten Sicherheitsabfrage umgesetzt. Wird die Sicherheitsabfrage abgeborchen, wird auch der Löschvorgang nicht ausgeführt.
-![](../../assets/delete_selected_federations.png) 
-
-![](../../assets/delete_federation.png)
+	Each deletion process is only implemented after successful confirmation of the previously displayed confirmation prompt. If the confirmation prompt is cancelled, the deletion process is also not executed.
+	
+	![](../../assets/delete_selected_federations.png) 
+	![](../../assets/delete_federation.png)
 

@@ -86,7 +86,7 @@ Standardmäßig können Sie Zuordnungen in der Auflistungstabelle als Ganzes lö
 Sie können die Bearbeitungsseite eines Verbandes über die Auflistungstabelle im Bereich  `Saisons & Turniere | Verbände` aufrufen.  Hier haben Sie die Möglichkeit, den Datensatz zu entfernen, indem Sie die Schaltfläche **Löschen** bestätigen.
 
 !!! danger 
-	Jeder Löschvorgang wird erst durch die erfolgreiche Bestätigung der zuvor eingeblendeten Sicherheitsabfrage umgesetzt. Wird die Sicherheitsabfrage abgeborchen, wird auch der Löschvorgang nicht ausgeführt.
-![](../../assets/delete_selected_federations.png) 
-
-![](../../assets/delete_federation.png)
+	Jeder Löschvorgang wird erst nach erfolgreicher Bestätigung der zuvor angezeigten Sicherheitsabfrage durchgeführt. Wird die Sicherheitsabfrage abgebrochen, wird auch der Löschvorgang nicht ausgeführt. 
+	
+	![](../../assets/delete_selected_federations.png) 
+	![](../../assets/delete_federation.png)
