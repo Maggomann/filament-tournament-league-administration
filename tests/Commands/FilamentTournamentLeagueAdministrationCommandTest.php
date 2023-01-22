@@ -1,4 +1,3 @@
-
 <?php
 
 it('can install all of the filament-tournament-league-administration resources', function () {

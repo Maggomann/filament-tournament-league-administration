@@ -9,7 +9,6 @@ class UsersTableSeeder extends Seeder
 {
     public function run(): void
     {
-        // TODO: muss wieder raus
         if (User::whereEmail('admin@admin.com')->exists()) {
             return;
         }

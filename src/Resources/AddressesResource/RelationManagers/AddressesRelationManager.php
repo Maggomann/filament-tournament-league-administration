@@ -41,7 +41,6 @@ class AddressesRelationManager extends TranslateableRelationManager
     {
         return $form
             ->schema([
-                // Nur zum Testen für das Addressable-Paket, kommt später wieder weg
                 Select::make('category_id')
                     ->label(__('laravel-addressable.attributes.addresses.category_id'))
                     ->validationAttribute(__('laravel-addressable.attributes.addresses.category_id'))
@@ -93,7 +92,7 @@ class AddressesRelationManager extends TranslateableRelationManager
                     ->validationAttribute(__('laravel-addressable.attributes.addresses.street_addition'))
                     ->maxLength(255),
 
-                // TODO: Validierung anpassen, gibt auch länder ohne postleitzahlen
+                // TODO: Adapt validation, there are also countries without postal codes
                 TextInput::make('postal_code')
                     ->label(__('laravel-addressable.attributes.addresses.postal_code'))
                     ->validationAttribute(__('laravel-addressable.attributes.addresses.postal_code'))

@@ -1,4 +1,3 @@
-
 <?php
 
 it('can publish filament/spatie-laravel-media-library-plugin data and migrate', function () {

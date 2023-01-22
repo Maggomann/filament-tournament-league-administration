@@ -42,8 +42,6 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
     {
         return $form
             ->schema([
-                // Nur zum Testen für das Addressable-Paket, kommt später wieder weg
-
                 Select::make('event_location_id')
                     ->label(FreeTournament::transAttribute('event_location'))
                     ->validationAttribute(FreeTournament::transAttribute('event_location'))
@@ -110,7 +108,7 @@ class EventLocalctionAddressRelationManager extends TranslateableRelationManager
                     ->validationAttribute(__('laravel-addressable.attributes.addresses.street_addition'))
                     ->maxLength(255),
 
-                // TODO: Validierung anpassen, gibt auch länder ohne postleitzahlen
+                // TODO: Adapt validation, there are also countries without postal codes
                 TextInput::make('postal_code')
                     ->label(__('laravel-addressable.attributes.addresses.postal_code'))
                     ->validationAttribute(__('laravel-addressable.attributes.addresses.postal_code'))

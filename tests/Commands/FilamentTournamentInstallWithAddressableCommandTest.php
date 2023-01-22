@@ -1,4 +1,3 @@
-
 <?php
 
 it('can install the tournament-league-administration tables and configurations', function () {

@@ -6,8 +6,6 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Actions\Upda
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAddressData;
 use Maggomann\LaravelAddressable\Models\Address;
 
-//
-
 dataset('UpdateOrCreateEventLocationAddress', function () {
     yield fn () => EventLocationAddressData::create([
         'gender_id' => 1,
