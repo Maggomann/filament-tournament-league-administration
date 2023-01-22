@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7cb690cf4ee133e7cfb38f90449237c1",
+    "content-hash": "2d403eefb23dd0c1ee683c9e65fb38de",
     "packages": [
         {
             "name": "brick/math",
@@ -1722,7 +1722,7 @@
         },
         {
             "name": "maggomann/filament-only-icon-display",
-            "version": "dev-main",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maggomann/filament-only-icon-display.git",
@@ -1751,7 +1751,6 @@
                 "phpstan/phpstan-phpunit": "^1.0",
                 "phpunit/phpunit": "^9.5"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -1790,7 +1789,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Maggomann/filament-only-icon-display/issues",
-                "source": "https://github.com/Maggomann/filament-only-icon-display/tree/main"
+                "source": "https://github.com/Maggomann/filament-only-icon-display/tree/v0.1.0"
             },
             "time": "2023-01-18T20:42:43+00:00"
         },
@@ -12304,9 +12303,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "maggomann/filament-only-icon-display": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

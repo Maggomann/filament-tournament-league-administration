@@ -1,10 +1,11 @@
 {
     "name": "maggomann/filament-tournament-league-administration",
-    "description": "This is my package filament-tournament-league-administration",
+    "description": "An event and tournament management plugin for the Filament Admin Panel v2.x, intended for dart clubs in the first implementation. Here you can manage clubs, teams, matches, players and match days including score tables.",
     "license": "MIT",
     "keywords": [
         "maggomann",
         "laravel",
+        "filament",
         "filament-tournament-league-administration"
     ],
     "authors": [
@@ -20,7 +21,7 @@
         "filament/spatie-laravel-media-library-plugin": "^2.16",
         "korridor/laravel-has-many-merged": "^0.0.3",
         "maggomann/filament-model-translator": "^0.1.0",
-        "maggomann/filament-only-icon-display": "dev-main",
+        "maggomann/filament-only-icon-display": "^0.1.0",
         "maggomann/laravel-addressable": "^0.1.0",
         "rinvex/countries": "^8.1",
         "spatie/laravel-data": "^2.0",
