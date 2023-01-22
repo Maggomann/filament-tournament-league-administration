@@ -1,4 +1,3 @@
-
 # Verbände
 
 Verbände stehen an der Spitze der Hirachie und sind ein Zusammenschluss von mehreren Ligen.
@@ -7,12 +6,12 @@ Derzeit können die folgenden Attribute über das Formular angezeigt oder bearbe
 
 ## Attributtabelle
 
-| Feld            | Typ                   | Beschreibung                                             | Erforderlich    |
-| --------------- | --------------------- | -------------------------------------------------------- | --------------- |
-| Name            | Text input            | Der Name des Verbands                                    | ja              |
-| Slug            | Text input (readonly) | Der Slug wird automatisch aus dem Namen generiert        | ja /automatisch |
-| Kalkulationstyp | Select Box            | Die Berechnungsart, nach der die Spiele berechnet werden | ja              |
-| Upload          | File upload           | Hier können Sie ein Bild zum Verband hochladen           | nein            |
+| Feld            | Typ                   | Beschreibung                                                                       | Erforderlich    |
+| --------------- | --------------------- | ---------------------------------------------------------------------------------- | --------------- |
+| Name            | Text input            | Der Name des Verbands                                                              | ja              |
+| Slug            | Text input (readonly) | Der Slug wird automatisch aus dem Namen generiert                                  | ja /automatisch |
+| Kalkulationstyp | Select Box            | Die [Berechnungsart](calculation-types.de.md), nach der die Spiele berechnet werden | ja              |
+| Upload          | File upload           | Hier können Sie ein Bild zum Verband hochladen                                     | nein            |
 
 ---
 
@@ -20,7 +19,7 @@ Derzeit können die folgenden Attribute über das Formular angezeigt oder bearbe
 
 ### Saisons & Turniere | Verbände
 
-![](../../assets/federations.png)
+![](../assets/federations.png)
 
 Ein Verband kann im Bereich `Saisons & Turniere | Verbände` über den Button **Erstellen** angelegt werden. Durch Bestätigen des Buttons `Erstellen` gelangen Sie zur Formulareingabe und können nach erfolgreichem Ausfüllen des Formulars durch Anklicken des Buttons `Erstellen` oder `Erstellen & weiterer Eintrag` den Verband anlegen.
 
@@ -32,7 +31,7 @@ Ein Verband kann im Bereich `Saisons & Turniere | Verbände` über den Button **
 	
 	Ein Klick auf `Erstellen & weiterer Eintrag` bringt Sie zurück zum Formular Verband erstellen, wo Sie einen weiteren Datensatz eingeben können.
 
-![](../../assets/create_and_create_another.png)
+![](../assets/create_and_create_another.png)
 
 ---
 
@@ -40,17 +39,17 @@ Ein Verband kann im Bereich `Saisons & Turniere | Verbände` über den Button **
 
 Ein Verband kann im Abschnitt  `Saisons & Turniere | Teams` im Formular zum Erstellen oder Bearbeiten von Teams hinzugefügt werden. Rechts neben dem Auswahlfeld für die Auswahl eines Verbandes befindet sich ein Plus-Symbol. Dieses Symbol kann auch verwendet werden, um einen Verband zu erstellen.
 
-![](../../assets/teams_create_federation_1.png)
+![](../assets/teams_create_federation_1.png)
 
-![](../../assets/teams_create_federation_2.png)
+![](../assets/teams_create_federation_2.png)
 
 ---
 
 ## Verband editieren
 
-![](../../assets/edit.png)
-
 Sie können die Bearbeitungsseite eines Verbandes über die Auflistungstabelle im Bereich  `Saisons & Turniere | Verbände` aufrufen. Hier können Sie den gewünschten Datensatz zur Bearbeitung auswählen und auf das Bearbeitungssymbol klicken. Wenn Sie auf das Bearbeitungssymbol klicken, gelangen Sie zum Bearbeitungsformular.
+
+![](../assets/edit.png)
 
 !!! info
 	Die Formular-Eingabemöglichkeiten können Sie der o. g. [Attributtabelle](#attributtabelle) entnehmen.
@@ -61,7 +60,7 @@ Sie können die Bearbeitungsseite eines Verbandes über die Auflistungstabelle i
 
 Sie können die Ansichtsseite eines Verbandes über die Auflistungstabelle im Bereich `Saisons & Turniere | Verbände` aufrufen. Hier können Sie den gewünschten Datensatz zur Ansicht auswählen und auf das Ansichtssymbol klicken. Wenn Sie auf das Ansichtssymbol klicken, wird der Datensatz in einem Dialogfenster angezeigt.
 
-![](../../assets/view.png)
+![](../assets/view.png)
 
 ---
 
@@ -72,12 +71,11 @@ Sie können einzelne Datensätze, eine Gruppe von Datensätzen oder alle Datens�
 ### Über die Auflistungstabelle
 
 Standardmäßig können Sie Zuordnungen in der Auflistungstabelle als Ganzes löschen. Sie können aber auch einzelne Datensätze aus Ihrer Auflistungstabelle löschen, indem Sie auf das Mülleimersymbol klicken.
+![](../assets/delete_icon.png)
 
-![](../../assets/delete_selected.png)
+![](../assets/delete_selected.png)
 
-![](../../assets/select_all.png)
-
-![](../../assets/delete_icon.png) 
+![](../assets/select_all.png)
 
 ---
 
@@ -85,8 +83,10 @@ Standardmäßig können Sie Zuordnungen in der Auflistungstabelle als Ganzes lö
 
 Sie können die Bearbeitungsseite eines Verbandes über die Auflistungstabelle im Bereich  `Saisons & Turniere | Verbände` aufrufen.  Hier haben Sie die Möglichkeit, den Datensatz zu entfernen, indem Sie die Schaltfläche **Löschen** bestätigen.
 
+![](../assets/delete_button.png)
+
 !!! danger 
 	Jeder Löschvorgang wird erst nach erfolgreicher Bestätigung der zuvor angezeigten Sicherheitsabfrage durchgeführt. Wird die Sicherheitsabfrage abgebrochen, wird auch der Löschvorgang nicht ausgeführt. 
 	
-	![](../../assets/delete_selected_federations.png) 
-	![](../../assets/delete_federation.png)
+	![](../assets/delete_selected_federations.png) 
+	![](../assets/delete_federation.png)

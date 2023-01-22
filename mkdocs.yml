@@ -1,15 +1,46 @@
 site_name: filament-tournament-league-administration
-nav:
-    - Technical:
-      - en:
-          - Technical: technical/en/technical.md
-      - de:
-          - Technisch: technical/de/technisch.md
-    - Description:
-      - en:
-          - Federations: description/en/federations.md
-      - de:
-          - Verbände: description/de/verbände.md
-theme: readthedocs
+
+theme:
+    name: material
+    features:
+      - navigation.footer
+      - navigation.top
+    palette:
+      # Palette toggle for light mode
+      - scheme: default
+        toggle:
+          icon: material/brightness-7
+          name: Switch to dark mode
+      # Palette toggle for dark mode
+      - scheme: slate
+        toggle:
+          icon: material/brightness-4
+          name: Switch to light mode
 markdown_extensions:
   - admonition
+plugins:
+  - search:
+      lang:
+        - de
+        - en
+  - i18n:
+      default_language: en
+      material_alternate: true
+      languages:
+        en:
+          name: Englisch
+          build: true
+        de:
+          name: Deutsch
+          build: true
+      nav_translations:
+        de:
+          Description: Beschreibung
+          Technical: Technisch
+          calculation-types: Berechnungsarten
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/Maggomann
+    - icon: fontawesome/brands/github
+      link: https://github.com/Maggomann
