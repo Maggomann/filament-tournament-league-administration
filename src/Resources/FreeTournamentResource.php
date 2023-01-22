@@ -113,8 +113,7 @@ class FreeTournamentResource extends TranslateableResource
                         KeyValue::make('prize_money_depending_on_placement')
                             ->keyLabel(FreeTournament::transAttribute('prize_money_depending_on_placement_key_value.key_label'))
                             ->valueLabel(FreeTournament::transAttribute('prize_money_depending_on_placement_key_value.value_label'))
-                            ->label(FreeTournament::transAttribute('prize_money_depending_on_placement'))
-                            ->required(),
+                            ->label(FreeTournament::transAttribute('prize_money_depending_on_placement')),
 
                         DateTimePicker::make('started_at')
                             ->label(FreeTournament::transAttribute('started_at'))

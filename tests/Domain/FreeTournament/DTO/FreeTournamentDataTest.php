@@ -48,7 +48,7 @@ test('FreeTournamentData throws an error when invalid data is submitted', functi
     ['maximum_number_of_participants', []],
     ['coin_money', 'invalid'],
     ['coin_money', []],
-    ['prize_money_depending_on_placement', 'invalid'],
+    ['prize_money_depending_on_placement', 1],
     ['started_at', []],
     ['ended_at', []],
 ]);

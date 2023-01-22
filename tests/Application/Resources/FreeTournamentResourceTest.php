@@ -1,4 +1,3 @@
-
 <?php
 
 use Database\Factories\FreeTournamentFactory;
@@ -169,7 +168,7 @@ it('can validate input for free tournament page', function () {
             'qualification_level_id' => 'required',
             'maximum_number_of_participants' => 'required',
             'coin_money' => 'required',
-            'prize_money_depending_on_placement' => 'required',
+            'prize_money_depending_on_placement' => null,
             'started_at' => 'required',
             'ended_at' => 'required',
         ]);
