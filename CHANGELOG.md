@@ -2,6 +2,13 @@
 
 All notable changes to `filament-tournament-league-administration` will be documented in this file.
 
-## 1.0.0 - 202X-XX-XX
+## v0.1.0 - 2023-01-22
 
-- initial release
+## What's Changed
+* build(deps): bump actions/checkout from 2 to 3 by @dependabot in https://github.com/Maggomann/filament-tournament-league-administration/pull/1
+* build(deps): bump actions/cache from 2 to 3 by @dependabot in https://github.com/Maggomann/filament-tournament-league-administration/pull/2
+
+## New Contributors
+* @dependabot made their first contribution in https://github.com/Maggomann/filament-tournament-league-administration/pull/1
+
+**Full Changelog**: https://github.com/Maggomann/filament-tournament-league-administration/commits/v0.1.0
