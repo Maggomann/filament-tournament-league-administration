@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../../description/federations/">
+        <link rel="prev" href="../installation/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -298,6 +298,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../description/leagues/" class="md-nav__link">
+        Ligen
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -334,6 +348,20 @@
           Technisch
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installierung
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -461,26 +489,26 @@
 
 <h1 id="technisch">Technisch</h1>
 <h2 id="env">.env</h2>
-<pre><code class="language-console"># for filament classes
-MM_TABLE_IMAGE_COLUMN=\Filament\Tables\Columns\ImageColumn::class
-MM_FORM_FILE_UPLOAD=\Filament\Forms\Components\FileUpload::class
-
-# for spatie media library
-MM_TABLE_IMAGE_COLUMN=\Filament\Tables\Columns\SpatieMediaLibraryImageColumn::class
-MM_FORM_FILE_UPLOAD=\Filament\Forms\Components\SpatieMediaLibraryFileUpload::class
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp"># </span><span class="k">for</span><span class="w"> </span>filament<span class="w"> </span>classes
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">MM_TABLE_IMAGE_COLUMN=\Filament\Tables\Columns\ImageColumn::class</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">MM_FORM_FILE_UPLOAD=\Filament\Forms\Components\FileUpload::class</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="gp"># </span><span class="k">for</span><span class="w"> </span>spatie<span class="w"> </span>media<span class="w"> </span>library
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="go">MM_TABLE_IMAGE_COLUMN=\Filament\Tables\Columns\SpatieMediaLibraryImageColumn::class</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="go">MM_FORM_FILE_UPLOAD=\Filament\Forms\Components\SpatieMediaLibraryFileUpload::class</span>
+</code></pre></div>
 <h2 id="file-upload">file upload</h2>
 <p>Mit den beiden env-Variablen können Sie die Klassen bestimmen, mit denen Sie für den Datei-Upload arbeiten wollen. Standardmäßig verwendet das Paket die filament-Klassen für den Datei-Upload und für die Anzeige der hochgeladenen Bilder. Wenn Sie aber das <a href="https://filamentphp.com/docs/2.x/spatie-laravel-media-library-plugin/installation#requirements">filament/spatie-laravel-media-library-plugin</a> verwenden wollen, können Sie das tun und die env-Variablen entsrpechend anpassen.</p>
 <p>Wenn Sie das Paket <a href="https://filamentphp.com/docs/2.x/spatie-laravel-media-library-plugin/installation#requirements">filament/spatie-laravel-media-library-plugin</a> verwenden möchten, das bereits im Hintergrund installiert ist, müssen Sie die Daten veröffentlichen und die Migration ausführen.</p>
 <p>Sie müssen die Migration veröffentlichen, um die Medientabelle zu erstellen.</p>
-<pre><code class="language-bash">php artisan vendor:publish --provider=&quot;Spatie\MediaLibrary\MediaLibraryServiceProvider&quot; --tag=&quot;migrations&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--provider<span class="o">=</span><span class="s2">&quot;Spatie\MediaLibrary\MediaLibraryServiceProvider&quot;</span><span class="w"> </span>--tag<span class="o">=</span><span class="s2">&quot;migrations&quot;</span>
+</code></pre></div>
 <p>Führen Sie die Migrationen durch:</p>
-<pre><code class="language-bash">php artisan migrate
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate
+</code></pre></div>
 <p>oder veröffentlichen Sie die Migration und migrieren Sie die Tabelle mit</p>
-<pre><code class="language-bash">php artisan filament-tournament-league-administration:publish-media-plugin-and-migrate
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>filament-tournament-league-administration:publish-media-plugin-and-migrate
+</code></pre></div>
 
 
 
@@ -507,7 +535,7 @@ MM_FORM_FILE_UPLOAD=\Filament\Forms\Components\SpatieMediaLibraryFileUpload::cla
       <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
         
           
-          <a href="../../description/federations/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Verbände" rel="prev">
+          <a href="../installation/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Installierung" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -516,7 +544,7 @@ MM_FORM_FILE_UPLOAD=\Filament\Forms\Components\SpatieMediaLibraryFileUpload::cla
                 <span class="md-footer__direction">
                   Zurück
                 </span>
-                Verbände
+                Installierung
               </div>
             </div>
           </a>

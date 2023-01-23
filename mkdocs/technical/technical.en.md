@@ -1,4 +1,4 @@
-# technical
+# Technical
 
 ## .env
 
@@ -26,11 +26,11 @@ php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServicePr
 
 Run the migrations:
 
-  
+
 ```bash
 php artisan migrate
 ```
-  
+
 or publish the migration and migrate the table with
 
 ```bash
