@@ -6,13 +6,12 @@ Currently, the following attributes can be viewed or edited through the form.
 
 ## Attribute table
 
-| Feld            | Typ                   | Description                                                                                      | Required           |
-| --------------- | --------------------- | ------------------------------------------------------------------------------------------------ | ------------------ |
-| federation      | Select Box            | Select the federation to which you want to assign the league                                     | ja                 |
-| Name            | Text input            | The name of the league                                                                           | yes                |
-| Slug            | Text input (readpnly) | The slug is automatically generated from the name                                                | yes /automatically |
-| Kalkulationstyp | Select Box            | The [method of calculation](calculation-types.en.md) according to which the games are calculated | yes                |
-| Upload          | File upload           | Here you can upload a picture to the association                                                 | no                 |
+| Feld       | Typ                   | Description                                                  | Required           |
+| ---------- | --------------------- | ------------------------------------------------------------ | ------------------ |
+| Federation | Select Box            | Select the federation to which you want to assign the league | yes                |
+| Name       | Text input            | The name of the league                                       | yes                |
+| Slug       | Text input (readpnly) | The slug is automatically generated from the name            | yes /automatically |
+| Upload     | File upload           | Here you can upload a picture to the association             | no                 |
 
 
 ---

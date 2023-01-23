@@ -6,13 +6,12 @@ Derzeit können die folgenden Attribute über das Formular angezeigt oder bearbe
 
 ## Attributtabelle
 
-| Feld            | Typ                   | Beschreibung                                                                        | Erforderlich    |
-| --------------- | --------------------- | ----------------------------------------------------------------------------------- | --------------- |
-| Verband         | Select Box            | Wählen Sie den Verband aus, der Sie die Liga zuordnen möchten                       | ja              |
-| Name            | Text input            | Der Name des Ligas                                                                  | ja              |
-| Slug            | Text input (readonly) | Der Slug wird automatisch aus dem Namen generiert                                   | ja /automatisch |
-| Kalkulationstyp | Select Box            | Die [Berechnungsart](calculation-types.de.md), nach der die Spiele berechnet werden | ja              |
-| Upload          | File upload           | Hier können Sie ein Bild zum Liga hochladen                                         | nein            |
+| Feld    | Typ                   | Beschreibung                                                  | Erforderlich    |
+| ------- | --------------------- | ------------------------------------------------------------- | --------------- |
+| Verband | Select Box            | Wählen Sie den Verband aus, der Sie die Liga zuordnen möchten | ja              |
+| Name    | Text input            | Der Name des Ligas                                            | ja              |
+| Slug    | Text input (readonly) | Der Slug wird automatisch aus dem Namen generiert             | ja /automatisch |
+| Upload  | File upload           | Hier können Sie ein Bild zum Liga hochladen                   | nein            |
 
 ---
 
