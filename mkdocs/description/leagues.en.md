@@ -1,7 +1,6 @@
-
 # Leagues
 
-Leagues are subordinate to the league.
+Leagues are subordinate to the federation.
 
 Currently, the following attributes can be viewed or edited through the form.
 
@@ -9,8 +8,8 @@ Currently, the following attributes can be viewed or edited through the form.
 
 | Feld            | Typ                   | Description                                                                                      | Required           |
 | --------------- | --------------------- | ------------------------------------------------------------------------------------------------ | ------------------ |
-| League         | Select Box            | Select the league to which you want to assign the league                        | ja              |
-| Name            | Text input            | The name of the league                                                                       | yes                |
+| federation      | Select Box            | Select the federation to which you want to assign the league                                     | ja                 |
+| Name            | Text input            | The name of the league                                                                           | yes                |
 | Slug            | Text input (readpnly) | The slug is automatically generated from the name                                                | yes /automatically |
 | Kalkulationstyp | Select Box            | The [method of calculation](calculation-types.en.md) according to which the games are calculated | yes                |
 | Upload          | File upload           | Here you can upload a picture to the association                                                 | no                 |

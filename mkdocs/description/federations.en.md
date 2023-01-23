@@ -1,4 +1,3 @@
-
 # Federations
 
 Federations is at the top of the hirachie and is an association of several leagues.

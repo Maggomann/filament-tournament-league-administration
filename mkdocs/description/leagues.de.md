@@ -1,6 +1,6 @@
 # Ligen
 
-Die Ligen sind dem Liga untergeordnet.
+Die Ligen sind dem Verband untergeordnet.
 
 Derzeit können die folgenden Attribute über das Formular angezeigt oder bearbeitet werden.
 
@@ -8,11 +8,11 @@ Derzeit können die folgenden Attribute über das Formular angezeigt oder bearbe
 
 | Feld            | Typ                   | Beschreibung                                                                        | Erforderlich    |
 | --------------- | --------------------- | ----------------------------------------------------------------------------------- | --------------- |
-| Liga         | Select Box            | Wählen Sie den Liga aus, der Sie die Liga zuordnen möchten                       | ja              |
-| Name            | Text input            | Der Name des Ligas                                                               | ja              |
+| Verband         | Select Box            | Wählen Sie den Verband aus, der Sie die Liga zuordnen möchten                       | ja              |
+| Name            | Text input            | Der Name des Ligas                                                                  | ja              |
 | Slug            | Text input (readonly) | Der Slug wird automatisch aus dem Namen generiert                                   | ja /automatisch |
 | Kalkulationstyp | Select Box            | Die [Berechnungsart](calculation-types.de.md), nach der die Spiele berechnet werden | ja              |
-| Upload          | File upload           | Hier können Sie ein Bild zum Liga hochladen                                      | nein            |
+| Upload          | File upload           | Hier können Sie ein Bild zum Liga hochladen                                         | nein            |
 
 ---
 
