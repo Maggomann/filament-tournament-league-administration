@@ -18,7 +18,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Traits\HasFi
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
-use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardUploadAndTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\RelationManagers\PlayersRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\LeagueResource\RelationManagers\TeamsRelationManager;
@@ -65,14 +65,12 @@ class LeagueResource extends TranslateableResource
                             ->disabled()
                             ->required()
                             ->unique(League::class, 'slug', fn ($record) => $record),
-
-                        self::getFileUploadInput(),
                     ])
                     ->columns([
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                CardTimestamps::make((new League)),
+                CardUploadAndTimestamps::make((new League)),
             ])
             ->columns(3);
     }
