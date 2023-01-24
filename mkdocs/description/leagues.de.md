@@ -29,6 +29,8 @@ Eine Liga kann im Bereich `Saisons & Turniere | Ligen` über den Button **Erstel
 
 	Ein Klick auf `Erstellen & weiterer Eintrag` bringt Sie zurück zum Formular Liga erstellen, wo Sie einen weiteren Datensatz eingeben können.
 
+![](../assets/create_and_create_another.png)
+
 ---
 
 ## Liga editieren
@@ -46,6 +48,8 @@ Sie können die Bearbeitungsseite einer Liga über die Auflistungstabelle im Ber
 
 Sie können die Ansichtsseite einer Liga über die Auflistungstabelle im Bereich `Saisons & Turniere | Ligen` aufrufen. Hier können Sie den gewünschten Datensatz zur Ansicht auswählen und auf das Ansichtssymbol klicken. Wenn Sie auf das Ansichtssymbol klicken, wird der Datensatz in einem Dialogfenster angezeigt.
 
+![](../assets/view.png)
+
 ---
 
 ## Liga löschen
@@ -56,11 +60,19 @@ Sie können einzelne Datensätze, eine Gruppe von Datensätzen oder alle Datens�
 
 Standardmäßig können Sie Zuordnungen in der Auflistungstabelle als Ganzes löschen. Sie können aber auch einzelne Datensätze aus Ihrer Auflistungstabelle löschen, indem Sie auf das Mülleimersymbol klicken.
 
+![](../assets/delete_icon.png)
+
+![](../assets/delete_selected.png)
+
+![](../assets/select_all.png)
+
 ---
 
 ### Über das Bearbeitungsformular ausgehend von der Auflistungstabelle
 
 Sie können die Bearbeitungsseite einer Liga über die Auflistungstabelle im Bereich  `Saisons & Turniere | Ligen` aufrufen.  Hier haben Sie die Möglichkeit, den Datensatz zu entfernen, indem Sie die Schaltfläche **Löschen** bestätigen.
+
+![](../assets/delete_button.png)
 
 !!! danger
 	Jeder Löschvorgang wird erst nach erfolgreicher Bestätigung der zuvor angezeigten Sicherheitsabfrage durchgeführt. Wird die Sicherheitsabfrage abgebrochen, wird auch der Löschvorgang nicht ausgeführt.

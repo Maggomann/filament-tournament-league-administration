@@ -30,11 +30,15 @@ A league can be created in the area `Seasons & Tournaments | Leagues` via the bu
 
 	A click on `Create & create another` takes you back to the create league form, where you can enter another record.
 
+![](../assets/create_and_create_another.png)
+
 ---
 
 ## Edit league
 
 You can access the editing page of a league via the listing table. Here you can select the desired record for editing and click on the edit icon. Clicking the edit icon will take you to the edit form.
+
+![](../assets/edit.png)
 
 !!! info
 	The form input options can be found in the above [attribute table](#attribute-table).
@@ -44,6 +48,8 @@ You can access the editing page of a league via the listing table. Here you can 
 ## View league
 
 You can access the view page of a league via the listing table in the `Seasons & Tournaments | Leagues` section. Here you can select the desired record to view and click on the view icon. When you click on the view icon, the record will be displayed in a dialog box.
+
+![](../assets/view.png)
 
 ---
 
@@ -55,11 +61,19 @@ You can delete individual records, a group of records or all records.
 
 By default, you can delete assignments in the collection table as a whole. However, you can also delete individual records from your collection table by clicking the trash can icon.
 
+![](../assets/delete_icon.png)
+
+![](../assets/delete_selected.png)
+
+![](../assets/select_all.png)
+
 ---
 
 ### Via the editing form starting from the list table
 
 You can access the editing page of a league via the listing table. Here you have the possibility to remove the record by confirming the **Delete** button.
+
+![](../assets/delete_button.png)
 
 !!! danger
 	Each deletion process is only implemented after successful confirmation of the previously displayed confirmation prompt. If the confirmation prompt is cancelled, the deletion process is also not executed.

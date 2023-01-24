@@ -71,6 +71,7 @@ Sie können einzelne Datensätze, eine Gruppe von Datensätzen oder alle Datens�
 ### Über die Auflistungstabelle
 
 Standardmäßig können Sie Zuordnungen in der Auflistungstabelle als Ganzes löschen. Sie können aber auch einzelne Datensätze aus Ihrer Auflistungstabelle löschen, indem Sie auf das Mülleimersymbol klicken.
+
 ![](../assets/delete_icon.png)
 
 ![](../assets/delete_selected.png)
