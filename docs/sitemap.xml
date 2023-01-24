@@ -33,6 +33,14 @@
          
     </url>
     <url>
+         <loc>Nonedescription/teams/</loc>
+         <lastmod>2023-01-24</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/description/teams/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="Nonede/description/teams/"/>
+         
+    </url>
+    <url>
          <loc>Nonetechnical/installation/</loc>
          <lastmod>2023-01-24</lastmod>
          <changefreq>daily</changefreq>

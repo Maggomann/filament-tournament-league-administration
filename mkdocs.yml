@@ -1,5 +1,4 @@
 site_name: filament-tournament-league-administration
-
 theme:
     name: material
     features:
@@ -24,10 +23,18 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences
 plugins:
+  - glightbox
   - search:
       lang:
-        - de
         - en
+        - de
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+          remove_comments: true
+      cache_safe: true
   - i18n:
       default_language: en
       material_alternate: true
@@ -48,4 +55,4 @@ extra:
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/Maggomann
     - icon: fontawesome/brands/github
-      link: https://github.com/Maggomann
+      link: https://github.com/Maggoman
