@@ -46,7 +46,7 @@ plugins:
         de:
           name: Deutsch
           build: true
-          link: /de/
+          link: /filament-tournament-league-administration/de/
       nav_translations:
         de:
           Description: Beschreibung
