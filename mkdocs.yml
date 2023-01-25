@@ -42,11 +42,11 @@ plugins:
         en:
           name: Englisch
           build: true
-          link: /en
+          link: /en/
         de:
           name: Deutsch
           build: true
-          link: /de
+          link: /de/
       nav_translations:
         de:
           Description: Beschreibung
