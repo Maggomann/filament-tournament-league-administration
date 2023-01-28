@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
          <loc>None./</loc>
-         <lastmod>2023-01-25</lastmod>
+         <lastmod>2023-01-28</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/"/>
          <xhtml:link rel="alternate" hreflang="de" href="Nonede/"/>
@@ -10,7 +10,7 @@
     </url>
     <url>
          <loc>Nonedescription/calculation-types/</loc>
-         <lastmod>2023-01-25</lastmod>
+         <lastmod>2023-01-28</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/description/calculation-types/"/>
          <xhtml:link rel="alternate" hreflang="de" href="Nonede/description/calculation-types/"/>
@@ -18,7 +18,7 @@
     </url>
     <url>
          <loc>Nonedescription/federations/</loc>
-         <lastmod>2023-01-25</lastmod>
+         <lastmod>2023-01-28</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/description/federations/"/>
          <xhtml:link rel="alternate" hreflang="de" href="Nonede/description/federations/"/>
@@ -26,7 +26,7 @@
     </url>
     <url>
          <loc>Nonedescription/leagues/</loc>
-         <lastmod>2023-01-25</lastmod>
+         <lastmod>2023-01-28</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/description/leagues/"/>
          <xhtml:link rel="alternate" hreflang="de" href="Nonede/description/leagues/"/>
@@ -34,7 +34,7 @@
     </url>
     <url>
          <loc>Nonedescription/teams/</loc>
-         <lastmod>2023-01-25</lastmod>
+         <lastmod>2023-01-28</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/description/teams/"/>
          <xhtml:link rel="alternate" hreflang="de" href="Nonede/description/teams/"/>
@@ -42,7 +42,7 @@
     </url>
     <url>
          <loc>Nonetechnical/installation/</loc>
-         <lastmod>2023-01-25</lastmod>
+         <lastmod>2023-01-28</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/technical/installation/"/>
          <xhtml:link rel="alternate" hreflang="de" href="Nonede/technical/installation/"/>
@@ -50,7 +50,7 @@
     </url>
     <url>
          <loc>Nonetechnical/technical/</loc>
-         <lastmod>2023-01-25</lastmod>
+         <lastmod>2023-01-28</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/technical/technical/"/>
          <xhtml:link rel="alternate" hreflang="de" href="Nonede/technical/technical/"/>
