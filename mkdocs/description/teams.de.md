@@ -1,5 +1,6 @@
 # Teams
 # Teams
+# Teams
 
 Die Teams sind der Liga untergeordnet.
 
@@ -20,7 +21,6 @@ Derzeit können die folgenden Attribute über das Formular angezeigt oder bearbe
 | Feld | Typ        | Beschreibung       | Erforderlich |
 | ---- | ---------- | ------------------ | ------------ |
 | Name | Text input | Der Name des Teams | ja           |
-|      |            |                    |              |
 
 ---
 
@@ -66,7 +66,7 @@ Sie können die Bearbeitungsseite ein Team über die Auflistungstabelle im Berei
 
 !!! info
 	Die Formular-Eingabemöglichkeiten können Sie der o. g. [Attributtabelle](#attributtabelle) entnehmen.
-	
+
 ---
 
 ### Saisons & Turniere | Ligen
@@ -141,4 +141,3 @@ Ein Team kann im Bereich `Saisons & Turniere | Ligen` im Formular zur Bearbeitun
 
 !!! danger
 	Jeder Löschvorgang wird erst nach erfolgreicher Bestätigung der zuvor angezeigten Sicherheitsabfrage durchgeführt. Wird die Sicherheitsabfrage abgebrochen, wird auch der Löschvorgang nicht ausgeführt.
-

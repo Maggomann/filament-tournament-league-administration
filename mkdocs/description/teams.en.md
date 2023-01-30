@@ -12,14 +12,14 @@ Currently, the following attributes can be viewed or edited through the form.
 | League     | Select Box            | Select the league you want to assign to the team     | yes                |
 | Name       | Text input            | The name of the team                                 | yes                |
 | Slug       | Text input (readonly) | The slug is automatically generated from the name    | yes /automatically |
+| Upload     | File upload           | Here you can upload a picture to the team            | no                 |
 
 
 ### minimum attributes
 
-| Feld | Typ        | Description        | Required |
-| ---- | ---------- | ------------------ | -------- |
-| Name | Text input | Der Name des Teams | ja       |
-|      |            |                    |          |
+| Feld | Typ        | Description          | Required |
+| ---- | ---------- | -------------------- | -------- |
+| Name | Text input | The name of the team | yes      |
 
 ---
 
@@ -65,7 +65,7 @@ You can access the edit page a team via the listing table in the  `Seasons & Tou
 
 !!! info
 	The form input options can be found in the above [attribute table](#attribute-table).
-	
+
 ---
 
 ### Seasons & Tournaments | Leagues
