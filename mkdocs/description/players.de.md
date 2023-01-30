@@ -13,7 +13,6 @@ Derzeit können die folgenden Attribute über das Formular angezeigt oder bearbe
 | Team           | Select Box            | Wählen Sie das Team aus, den Sie dem Spieler zuordnen möchten    | ja              |
 | Name           | Text input            | Der Name des Spielers                                            | ja              |
 | Slug           | Text input (readonly) | Der Slug wird automatisch aus dem Namen generiert                | ja /automatisch |
-| Upload         | File upload           | Hier können Sie ein Bild zum Team hochladen                      | nein            |
 | E-Mail-Adresse | Text input            | Die E-Mail-Adresse des Spielers                                  | ja              |
 | Spitzname      | Text input            | Der Spitzname des Spielers                                       | nein            |
 | Ausweisnummer  | Text input            | Die Ausweisnummer des Spielers                                   | nein            |

@@ -13,7 +13,6 @@ Currently, the following attributes can be viewed or edited through the form.
 | Team           | Select Box            | Select the team you want to assign to the player     | yes                |
 | Name           | Text input            | The name of the team                                 | yes                |
 | Slug           | Text input (readonly) | The slug is automatically generated from the name    | yes /automatically |
-| Upload         | File upload           | Here you can upload a picture to the team            | no                 |
 | E-Mail-Adresse | Text input            | The email address of the player                      | yes                |
 | Spitzname      | Text input            | The nickname of the player                           | no                 |
 | Ausweisnummer  | Text input            | The ID number of the player                          | no                 |
