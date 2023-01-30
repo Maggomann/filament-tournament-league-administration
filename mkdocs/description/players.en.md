@@ -82,7 +82,7 @@ A player can be edited in the `Seasons & Tournaments | Teams` section of the ass
 
 ---
 
-## View Player
+## View player
 
 ### Seasons & Tournaments | Players
 

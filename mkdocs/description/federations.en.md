@@ -53,7 +53,7 @@ You can access the editing page of a federation via the listing table. Here you 
 
 !!! info
 	The form input options can be found in the above [attribute table](#attribute-table).
-	
+
 ---
 
 ## View federation
@@ -86,9 +86,8 @@ You can access the editing page of a federation via the listing table. Here you 
 
 ![](../assets/delete_button.png)
 
-!!! danger 
+!!! danger
 	Each deletion process is only implemented after successful confirmation of the previously displayed confirmation prompt. If the confirmation prompt is cancelled, the deletion process is also not executed.
-	
-	![](../assets/delete_selected_federations.png) 
-	![](../assets/delete_federation.png)
 
+	![](../assets/delete_selected_federations.png)
+	![](../assets/delete_federation.png)

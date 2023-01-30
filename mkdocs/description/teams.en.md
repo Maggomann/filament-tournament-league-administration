@@ -78,7 +78,7 @@ A team can be edited in the `Seasons & Tournaments | Leagues` section of the ass
 
 ---
 
-## View Team
+## View team
 
 ### Seasons & Tournaments | Teams
 
