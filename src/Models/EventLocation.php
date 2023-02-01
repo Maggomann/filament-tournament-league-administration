@@ -4,7 +4,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Maggomann\LaravelAddressable\Traits\Addressable;
+use Maggomann\Addressable\Traits\Addressable;
 
 /**
  * @property string $name

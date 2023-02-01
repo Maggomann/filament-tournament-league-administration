@@ -3,8 +3,8 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\SelectOptions;
 
 use Illuminate\Support\Collection;
+use Maggomann\Addressable\Models\Address;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\EventLocation;
-use Maggomann\LaravelAddressable\Models\Address;
 
 class EventLocationSelect
 {

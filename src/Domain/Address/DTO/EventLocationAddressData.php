@@ -3,8 +3,8 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO;
 
 use Illuminate\Support\Arr;
-use Maggomann\LaravelAddressable\Domain\DTO\AddressData;
-use Maggomann\LaravelAddressable\Models\AddressCategory;
+use Maggomann\Addressable\Domain\DTO\AddressData;
+use Maggomann\Addressable\Models\AddressCategory;
 
 class EventLocationAddressData extends AddressData
 {

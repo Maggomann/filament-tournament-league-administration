@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Arr;
+use Maggomann\Addressable\Domain\DTO\AddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAddressData;
-use Maggomann\LaravelAddressable\Domain\DTO\AddressData;
 
 beforeEach(function () {
     $this->validParams = [

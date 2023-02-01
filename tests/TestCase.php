@@ -13,9 +13,9 @@ use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Livewire\LivewireServiceProvider;
+use Maggomann\Addressable\AddressableServiceProvider;
 use Maggomann\FilamentTournamentLeagueAdministration\FilamentTournamentLeagueAdministrationServiceProvider;
 use Maggomann\FilamentTournamentLeagueAdministration\Tests\Database\Factories\UserFactory;
-use Maggomann\LaravelAddressable\LaravelAddressableServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 use Spatie\LaravelData\LaravelDataServiceProvider;
@@ -47,7 +47,7 @@ abstract class TestCase extends BaseTestCase
             SupportServiceProvider::class,
             TablesServiceProvider::class,
             LaravelDataServiceProvider::class,
-            LaravelAddressableServiceProvider::class,
+            AddressableServiceProvider::class,
             FilamentTournamentLeagueAdministrationServiceProvider::class,
             MediaLibraryServiceProvider::class,
         ];
@@ -56,7 +56,7 @@ abstract class TestCase extends BaseTestCase
     protected function defineDatabaseMigrations(): void
     {
         $this->loadMigrationsFrom(
-            __DIR__.'/../vendor/maggomann/laravel-addressable/database/migrations'
+            __DIR__.'/../vendor/maggomann/addressable/database/migrations'
         );
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');

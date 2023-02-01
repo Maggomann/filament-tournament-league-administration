@@ -10,6 +10,11 @@ use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Contracts\HasRelationshipTable;
 use Illuminate\Database\Eloquent\Model;
+use Maggomann\Addressable\Domain\Actions\UpdateOrCreateAddressAction;
+use Maggomann\Addressable\Domain\DTO\AddressData;
+use Maggomann\Addressable\Models\Address;
+use Maggomann\Addressable\Models\AddressCategory;
+use Maggomann\Addressable\Models\AddressGender;
 use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\CreateAction;
 use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\EditAction;
 use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\ViewAction;
@@ -19,11 +24,6 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateCom
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\SelectOptions\CountryCodeSelect;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
-use Maggomann\LaravelAddressable\Domain\Actions\UpdateOrCreateAddressAction;
-use Maggomann\LaravelAddressable\Domain\DTO\AddressData;
-use Maggomann\LaravelAddressable\Models\Address;
-use Maggomann\LaravelAddressable\Models\AddressCategory;
-use Maggomann\LaravelAddressable\Models\AddressGender;
 use Throwable;
 
 class AddressesRelationManager extends TranslateableRelationManager
@@ -42,11 +42,11 @@ class AddressesRelationManager extends TranslateableRelationManager
         return $form
             ->schema([
                 Select::make('category_id')
-                    ->label(__('laravel-addressable.attributes.addresses.category_id'))
-                    ->validationAttribute(__('laravel-addressable.attributes.addresses.category_id'))
+                    ->label(__('addressable.attributes.addresses.category_id'))
+                    ->validationAttribute(__('addressable.attributes.addresses.category_id'))
                     ->options(
                         AddressCategory::all()->pluck('title_translation_key', 'id')
-                            ->mapWithKeys(fn ($value, $key) => [$key => __("laravel-addressable.{$value}")])
+                            ->mapWithKeys(fn ($value, $key) => [$key => __("addressable.{$value}")])
                     )
                     ->placeholder(
                         TranslateComponent::placeholder(static::$translateablePackageKey, 'address_category_id')
@@ -56,11 +56,11 @@ class AddressesRelationManager extends TranslateableRelationManager
                     ->searchable(),
 
                 Select::make('gender_id')
-                    ->label(__('laravel-addressable.attributes.addresses.gender_id'))
-                    ->validationAttribute(__('laravel-addressable.attributes.addresses.gender_id'))
+                    ->label(__('addressable.attributes.addresses.gender_id'))
+                    ->validationAttribute(__('addressable.attributes.addresses.gender_id'))
                     ->options(
                         AddressGender::all()->pluck('title_translation_key', 'id')
-                            ->mapWithKeys(fn ($value, $key) => [$key => __("laravel-addressable.{$value}")])
+                            ->mapWithKeys(fn ($value, $key) => [$key => __("addressable.{$value}")])
                     )
                     ->placeholder(
                         TranslateComponent::placeholder(static::$translateablePackageKey, 'address_gender_id')
@@ -70,44 +70,44 @@ class AddressesRelationManager extends TranslateableRelationManager
                     ->searchable(),
 
                 TextInput::make('first_name')
-                    ->label(__('laravel-addressable.attributes.addresses.first_name'))
-                    ->validationAttribute(__('laravel-addressable.attributes.addresses.first_name'))
+                    ->label(__('addressable.attributes.addresses.first_name'))
+                    ->validationAttribute(__('addressable.attributes.addresses.first_name'))
                     ->required()
                     ->maxLength(255),
 
                 TextInput::make('last_name')
-                    ->label(__('laravel-addressable.attributes.addresses.last_name'))
-                    ->validationAttribute(__('laravel-addressable.attributes.addresses.last_name'))
+                    ->label(__('addressable.attributes.addresses.last_name'))
+                    ->validationAttribute(__('addressable.attributes.addresses.last_name'))
                     ->required()
                     ->maxLength(255),
 
                 TextInput::make('street_address')
-                    ->label(__('laravel-addressable.attributes.addresses.street_address'))
-                    ->validationAttribute(__('laravel-addressable.attributes.addresses.street_address'))
+                    ->label(__('addressable.attributes.addresses.street_address'))
+                    ->validationAttribute(__('addressable.attributes.addresses.street_address'))
                     ->required()
                     ->maxLength(255),
 
                 TextInput::make('street_addition')
-                    ->label(__('laravel-addressable.attributes.addresses.street_addition'))
-                    ->validationAttribute(__('laravel-addressable.attributes.addresses.street_addition'))
+                    ->label(__('addressable.attributes.addresses.street_addition'))
+                    ->validationAttribute(__('addressable.attributes.addresses.street_addition'))
                     ->maxLength(255),
 
                 // TODO: Adapt validation, there are also countries without postal codes
                 TextInput::make('postal_code')
-                    ->label(__('laravel-addressable.attributes.addresses.postal_code'))
-                    ->validationAttribute(__('laravel-addressable.attributes.addresses.postal_code'))
+                    ->label(__('addressable.attributes.addresses.postal_code'))
+                    ->validationAttribute(__('addressable.attributes.addresses.postal_code'))
                     ->required()
                     ->maxLength(255),
 
                 TextInput::make('city')
-                    ->label(__('laravel-addressable.attributes.addresses.city'))
-                    ->validationAttribute(__('laravel-addressable.attributes.addresses.city'))
+                    ->label(__('addressable.attributes.addresses.city'))
+                    ->validationAttribute(__('addressable.attributes.addresses.city'))
                     ->required()
                     ->maxLength(255),
 
                 Select::make('country_code')
-                    ->label(__('laravel-addressable.attributes.addresses.country_code'))
-                    ->validationAttribute(__('laravel-addressable.attributes.addresses.country_code'))
+                    ->label(__('addressable.attributes.addresses.country_code'))
+                    ->validationAttribute(__('addressable.attributes.addresses.country_code'))
                     ->options(fn () => CountryCodeSelect::options())
                     ->placeholder(
                         TranslateComponent::placeholder(static::$translateablePackageKey, 'address_country_id')
@@ -117,11 +117,11 @@ class AddressesRelationManager extends TranslateableRelationManager
                     ->searchable(),
 
                 Toggle::make('is_main')
-                    ->label(__('laravel-addressable.attributes.addresses.is_main'))
+                    ->label(__('addressable.attributes.addresses.is_main'))
                     ->columnSpan(2),
 
                 Toggle::make('is_preferred')
-                    ->label(__('laravel-addressable.attributes.addresses.is_preferred'))
+                    ->label(__('addressable.attributes.addresses.is_preferred'))
                     ->columnSpan(2),
             ]);
     }
@@ -131,11 +131,11 @@ class AddressesRelationManager extends TranslateableRelationManager
         return $table
             ->columns([
                 TextColumn::make('street_address')
-                    ->label(__('laravel-addressable.attributes.addresses.street_address')),
+                    ->label(__('addressable.attributes.addresses.street_address')),
                 TextColumn::make('postal_code')
-                    ->label(__('laravel-addressable.attributes.addresses.postal_code')),
+                    ->label(__('addressable.attributes.addresses.postal_code')),
                 TextColumn::make('city')
-                    ->label(__('laravel-addressable.attributes.addresses.city')),
+                    ->label(__('addressable.attributes.addresses.city')),
             ])
             ->filters([
                 //

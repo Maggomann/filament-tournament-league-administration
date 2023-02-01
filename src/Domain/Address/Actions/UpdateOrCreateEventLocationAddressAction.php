@@ -4,11 +4,11 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\Action
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
+use Maggomann\Addressable\Domain\Actions\UpdateOrCreateAddressAction;
+use Maggomann\Addressable\Models\Address;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Address\DTO\EventLocationAddressData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\EventLocation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\FreeTournament;
-use Maggomann\LaravelAddressable\Domain\Actions\UpdateOrCreateAddressAction;
-use Maggomann\LaravelAddressable\Models\Address;
 
 class UpdateOrCreateEventLocationAddressAction
 {

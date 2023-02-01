@@ -13,8 +13,8 @@ class FilamentTournamentInstallWithAddressableCommand extends Command
 
     public function handle(): int
     {
-        Artisan::call('laravel-addressable:install');
-        Artisan::call('laravel-addressable:install-filament');
+        Artisan::call('addressable:install');
+        Artisan::call('addressable:install-filament');
         Artisan::call('filament-tournament-league-administration:install');
 
         return self::SUCCESS;

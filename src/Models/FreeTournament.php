@@ -5,7 +5,7 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Maggomann\LaravelAddressable\Traits\Addressable;
+use Maggomann\Addressable\Traits\Addressable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;

@@ -3,18 +3,18 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Maggomann\Addressable\Models\Address;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
-use Maggomann\LaravelAddressable\Models\Address;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Maggomann\LaravelAddressable\Models\Address>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Maggomann\Addressable\Models\Address>
  */
 class AddressFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
-     * @var class-string<\Maggomann\LaravelAddressable\Models\Address>
+     * @var class-string<\Maggomann\Addressable\Models\Address>
      */
     protected $model = Address::class;
 
