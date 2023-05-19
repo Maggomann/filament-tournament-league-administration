@@ -30,14 +30,14 @@
         <junit outputFile="build/report.junit.xml"/>
     </logging>
         <php>
-        <env name="APP_ENV" value="env.testing"/>
-        <env name="APP_KEY" value="base64:yk+bUVuZa1p86Dqjk9OjVK2R1pm6XHxC6xEKFq8utH0="/>
-        <env name="APP_URL" value="https://filament-testing.test"/>
-        <env name="DB_CONNECTION" value="sqlite"/>
-        <env name="DB_DATABASE" value="testing"/>
-        <env name="DB_USERNAME" value="root"/>
-        <env name="LOG_CHANNEL" value="testing"/>
-        <env name="CACHE_DRIVER" value="array"/>
-        <env name="FILESYSTEM_DISK" value="local"/>
-    </php>
+            <env name="APP_ENV" value="env.testing"/>
+            <env name="APP_KEY" value="base64:yk+bUVuZa1p86Dqjk9OjVK2R1pm6XHxC6xEKFq8utH0="/>
+            <env name="APP_URL" value="https://filament-testing.test"/>
+            <env name="DB_CONNECTION" value="sqlite"/>
+            <env name="DB_DATABASE" value="testing"/>
+            <env name="DB_USERNAME" value="root"/>
+            <env name="LOG_CHANNEL" value="testing"/>
+            <env name="CACHE_DRIVER" value="array"/>
+            <env name="FILESYSTEM_DISK" value="local"/>
+        </php>
 </phpunit>
