@@ -2,6 +2,18 @@
 
 All notable changes to `filament-tournament-league-administration` will be documented in this file.
 
+## v0.2.1 - 2023-05-19
+
+### What's Changed
+
+- chore: composer update - tests extended by @Maggomann in https://github.com/Maggomann/filament-tournament-league-administration/pull/4
+
+### New Contributors
+
+- @Maggomann made their first contribution in https://github.com/Maggomann/filament-tournament-league-administration/pull/4
+
+**Full Changelog**: https://github.com/Maggomann/filament-tournament-league-administration/compare/v0.2.0...v0.2.1
+
 ## v0.2.0 - 2023-02-01
 
 **Full Changelog**: https://github.com/Maggomann/filament-tournament-league-administration/compare/v0.1.2...v0.2.0
