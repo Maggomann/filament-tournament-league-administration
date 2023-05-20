@@ -2,6 +2,7 @@
 
 namespace Maggomann\FilamentTournamentLeagueAdministration\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -89,5 +90,17 @@ class Game extends TranslateableModel
     public function scopeCollection(Builder $query, string $collectionName): Builder
     {
         return $query->where('collection_name', $collectionName);
+    }
+
+    public function scopeActiveMatches(Builder $query, GameSchedule $gameSchedule, ?Carbon $now = null): Builder
+    {
+        if (blank($now)) {
+            $now = now();
+        }
+
+        return $query
+            ->whereBelongsTo($gameSchedule)
+            ->where('ended_at', '<=', $now)
+            ->where(fn ($subQuery) => $subQuery->where('home_points_games', '>', 0)->orWhere('guest_points_games', '>', 0));
     }
 }
