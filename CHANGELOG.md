@@ -2,6 +2,14 @@
 
 All notable changes to `filament-tournament-league-administration` will be documented in this file.
 
+## v0.3.0 - 2023-05-20
+
+### What's Changed
+
+- feat: Add .nojekyll file, update mkdocs.yml, and include disclaimer in README by @Maggomann in https://github.com/Maggomann/filament-tournament-league-administration/pull/5
+
+**Full Changelog**: https://github.com/Maggomann/filament-tournament-league-administration/compare/v0.2.1...v0.3.0
+
 ## v0.2.1 - 2023-05-19
 
 ### What's Changed
