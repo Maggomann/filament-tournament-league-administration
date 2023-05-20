@@ -125,7 +125,7 @@ class Team extends TranslateableModel implements HasMedia
         return $this->hasMany(Game::class, 'home_team_id', 'id');
     }
 
-    public function scopeRecalculatePointsOld(Builder $query, GameSchedule $gameSchedule): Builder
+    public function scopeRecalculatePoints(Builder $query, GameSchedule $gameSchedule): Builder
     {
         $now = now();
 
