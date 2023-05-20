@@ -310,22 +310,22 @@ it('can valiadate input for game', function (Fluent $input) {
     $livewire = livewire(GameResource\Pages\EditGame::class, [
         'record' => $game->getRouteKey(),
     ])
-    ->fillForm([
-        'game_schedule_id' => $gameSchedule->id,
-        'game_day_id' => $gameDay->id,
-        'started_at' => $input->started_at,
-        'ended_at' => $input->ended_at,
-        'home_team_id' => $homeTeam->id,
-        'guest_team_id' => $guestTeam->id,
-        'home_points_legs' => 100,
-        'guest_points_legs' => 50,
-        'home_points_games' => 30,
-        'guest_points_games' => 15,
-        'has_an_overtime' => false,
-        'home_points_after_draw' => 0,
-        'guest_points_after_draw' => 0,
-    ])
-    ->call('save');
+        ->fillForm([
+            'game_schedule_id' => $gameSchedule->id,
+            'game_day_id' => $gameDay->id,
+            'started_at' => $input->started_at,
+            'ended_at' => $input->ended_at,
+            'home_team_id' => $homeTeam->id,
+            'guest_team_id' => $guestTeam->id,
+            'home_points_legs' => 100,
+            'guest_points_legs' => 50,
+            'home_points_games' => 30,
+            'guest_points_games' => 15,
+            'has_an_overtime' => false,
+            'home_points_after_draw' => 0,
+            'guest_points_after_draw' => 0,
+        ])
+        ->call('save');
 
     if ($input->actionErrors) {
         $livewire->assertHasFormErrors($input->actionErrors);

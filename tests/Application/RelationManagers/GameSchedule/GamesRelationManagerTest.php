@@ -73,5 +73,5 @@ it('can show games', function (Fluent $fluent) {
     livewire(GameScheduleResource\RelationManagers\GamesRelationManager::class, [
         'ownerRecord' => $gameSchedule,
     ])
-    ->assertSee($fluent->assertSee);
+        ->assertSee($fluent->assertSee);
 })->with('inputGamesRelationManagerPage');

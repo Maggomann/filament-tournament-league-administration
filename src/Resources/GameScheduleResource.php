@@ -107,7 +107,7 @@ class GameScheduleResource extends TranslateableResource
                             ->placeholder(
                                 TranslateComponent::placeholder(static::$translateablePackageKey, 'game_days')
                             )
-                           ->searchable(),
+                            ->searchable(),
                     ])
                     ->columns([
                         'sm' => 2,

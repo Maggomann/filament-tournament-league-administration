@@ -18,6 +18,6 @@ class ModeSelect
     protected static function collection(): Collection
     {
         return Mode::all()->pluck('title_translation_key', 'id')
-                ->mapWithKeys(fn ($value, $key) => [$key => __(static::$translatableKeyPrefix."{$value}")]);
+            ->mapWithKeys(fn ($value, $key) => [$key => __(static::$translatableKeyPrefix."{$value}")]);
     }
 }

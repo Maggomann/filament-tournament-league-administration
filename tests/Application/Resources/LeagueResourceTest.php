@@ -80,13 +80,13 @@ it('can save a league', function () {
     livewire(LeagueResource\Pages\EditLeague::class, [
         'record' => $league->getRouteKey(),
     ])
-    ->fillForm([
-        'federation_id' => $federation->id,
-        'name' => 'Example Edit',
-        'slug' => 'example-edit',
-    ])
-    ->call('save')
-    ->assertHasNoFormErrors();
+        ->fillForm([
+            'federation_id' => $federation->id,
+            'name' => 'Example Edit',
+            'slug' => 'example-edit',
+        ])
+        ->call('save')
+        ->assertHasNoFormErrors();
 
     expect($league->refresh())
         ->name->toBe('Example Edit')

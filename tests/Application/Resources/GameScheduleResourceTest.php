@@ -173,15 +173,15 @@ it('can save a game schedule', function () {
     livewire(GameScheduleResource\Pages\EditGameSchedule::class, [
         'record' => $gameSchedule->getRouteKey(),
     ])
-    ->fillForm([
-        'name' => 'Example Edit',
-        'federation_id' => $federation->id,
-        'league_id' => $league->id,
-        'started_at' => $startedAt,
-        'ended_at' => $endedAt,
-    ])
-    ->call('save')
-    ->assertHasNoFormErrors();
+        ->fillForm([
+            'name' => 'Example Edit',
+            'federation_id' => $federation->id,
+            'league_id' => $league->id,
+            'started_at' => $startedAt,
+            'ended_at' => $endedAt,
+        ])
+        ->call('save')
+        ->assertHasNoFormErrors();
 
     tap(
         $gameSchedule->refresh(),
@@ -316,14 +316,14 @@ it('can valiadate input for game schedule page', function (Fluent $input) {
     $livewire = livewire(GameScheduleResource\Pages\EditGameSchedule::class, [
         'record' => $gameSchedule->getRouteKey(),
     ])
-    ->fillForm([
-        'name' => 'Example Edit',
-        'federation_id' => $federation->id,
-        'league_id' => $gameSchedule->league->id,
-        'started_at' => $input->started_at,
-        'ended_at' => $input->ended_at,
-    ])
-    ->call('save');
+        ->fillForm([
+            'name' => 'Example Edit',
+            'federation_id' => $federation->id,
+            'league_id' => $gameSchedule->league->id,
+            'started_at' => $input->started_at,
+            'ended_at' => $input->ended_at,
+        ])
+        ->call('save');
 
     if ($input->actionErrors) {
         $livewire->assertHasFormErrors($input->actionErrors);

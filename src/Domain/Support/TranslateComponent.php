@@ -8,7 +8,7 @@ class TranslateComponent
     {
         $translationKey = "{$translateablePackageKey}translations.forms.components.buttons.labels.{$translationKey}";
 
-        return  __($translationKey);
+        return __($translationKey);
     }
 
     public static function placeholder(string $translateablePackageKey, string $translationKey): string
@@ -24,6 +24,6 @@ class TranslateComponent
     {
         $translationKey = "{$translateablePackageKey}translations.forms.components.tabs.{$translationKey}";
 
-        return  __($translationKey);
+        return __($translationKey);
     }
 }

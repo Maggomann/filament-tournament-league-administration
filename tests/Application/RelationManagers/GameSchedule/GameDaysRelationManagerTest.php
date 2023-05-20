@@ -33,17 +33,17 @@ it('can show a game day', function () {
     livewire(GameScheduleResource\RelationManagers\GameDaysRelationManager::class, [
         'ownerRecord' => $gameSchedule,
     ])
-    ->callTableAction(
-        ViewAction::class,
-        $gameDay,
-        data: [
-            'game_schedule_id' => $gameSchedule->id,
-            'day' => $gameDay->day,
-            'started_at' => $gameDay->started_at->toDateTimeString(),
-            'ended_at' => $gameDay->ended_at->toDateTimeString(),
-        ],
-    )
-    ->assertHasNoTableActionErrors();
+        ->callTableAction(
+            ViewAction::class,
+            $gameDay,
+            data: [
+                'game_schedule_id' => $gameSchedule->id,
+                'day' => $gameDay->day,
+                'started_at' => $gameDay->started_at->toDateTimeString(),
+                'ended_at' => $gameDay->ended_at->toDateTimeString(),
+            ],
+        )
+        ->assertHasNoTableActionErrors();
 });
 
 it('can create a game day', function () {
@@ -62,16 +62,16 @@ it('can create a game day', function () {
     livewire(GameScheduleResource\RelationManagers\GameDaysRelationManager::class, [
         'ownerRecord' => $gameSchedule,
     ])
-    ->callTableAction(
-        CreateAction::class,
-        null,
-        data: [
-            'game_schedule_id' => $gameSchedule->id,
-            'day' => 1,
-            'started_at' => $startedAt,
-            'ended_at' => $endedAt,
-        ],
-    )->assertHasNoTableActionErrors();
+        ->callTableAction(
+            CreateAction::class,
+            null,
+            data: [
+                'game_schedule_id' => $gameSchedule->id,
+                'day' => 1,
+                'started_at' => $startedAt,
+                'ended_at' => $endedAt,
+            ],
+        )->assertHasNoTableActionErrors();
 
     tap(
         $gameSchedule->days()->first(),
@@ -115,16 +115,16 @@ it('can edit a game day', function () {
     livewire(GameScheduleResource\RelationManagers\GameDaysRelationManager::class, [
         'ownerRecord' => $gameSchedule,
     ])
-    ->callTableAction(
-        EditAction::class,
-        $gameDay,
-        data: [
-            'game_schedule_id' => $gameSchedule->id,
-            'day' => 2,
-            'started_at' => $startedAt,
-            'ended_at' => $endedAt,
-        ],
-    )->assertHasNoTableActionErrors();
+        ->callTableAction(
+            EditAction::class,
+            $gameDay,
+            data: [
+                'game_schedule_id' => $gameSchedule->id,
+                'day' => 2,
+                'started_at' => $startedAt,
+                'ended_at' => $endedAt,
+            ],
+        )->assertHasNoTableActionErrors();
 
     tap(
         $gameDay->refresh(),
@@ -298,16 +298,16 @@ it('can valiadate input for game day page', function (Fluent $input) {
     $livewire = livewire(GameScheduleResource\RelationManagers\GameDaysRelationManager::class, [
         'ownerRecord' => $gameSchedule,
     ])
-    ->callTableAction(
-        EditAction::class,
-        $gameDay,
-        data: [
-            'game_schedule_id' => $gameSchedule->id,
-            'day' => $input->day,
-            'started_at' => $input->started_at,
-            'ended_at' => $input->ended_at,
-        ],
-    );
+        ->callTableAction(
+            EditAction::class,
+            $gameDay,
+            data: [
+                'game_schedule_id' => $gameSchedule->id,
+                'day' => $input->day,
+                'started_at' => $input->started_at,
+                'ended_at' => $input->ended_at,
+            ],
+        );
 
     if ($input->actionErrors) {
         $livewire->assertHasTableActionErrors($input->actionErrors);

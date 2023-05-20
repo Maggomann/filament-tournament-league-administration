@@ -14,9 +14,9 @@ class FirstOrCreateTotalTeamPointAction
     {
         try {
             return TotalTeamPoint::query()
-                        ->where('game_schedule_id', $gameSchedule->id)
-                        ->where('team_id', $team->id)
-                        ->firstOrFail();
+                ->where('game_schedule_id', $gameSchedule->id)
+                ->where('team_id', $team->id)
+                ->firstOrFail();
         } catch (ModelNotFoundException) {
             return DB::transaction(function () use ($team, $gameSchedule) {
                 $totalTeamPoint = new TotalTeamPoint();
