@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a1ec127dc3d3b9b4e70f4c85c5d5e00",
+    "content-hash": "b6737bf6d28bdf0c319dd89ac9dc0864",
     "packages": [
         {
             "name": "brick/math",
@@ -1912,16 +1912,16 @@
         },
         {
             "name": "maggomann/filament-model-translator",
-            "version": "v0.1.0",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maggomann/filament-model-translator.git",
-                "reference": "c533059f2ff69912680cdb0decfe2d54bc94ac30"
+                "reference": "86ad14cef4364073e24938c6cb6cb6b2d5a23ed9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maggomann/filament-model-translator/zipball/c533059f2ff69912680cdb0decfe2d54bc94ac30",
-                "reference": "c533059f2ff69912680cdb0decfe2d54bc94ac30",
+                "url": "https://api.github.com/repos/Maggomann/filament-model-translator/zipball/86ad14cef4364073e24938c6cb6cb6b2d5a23ed9",
+                "reference": "86ad14cef4364073e24938c6cb6cb6b2d5a23ed9",
                 "shasum": ""
             },
             "require": {
@@ -1981,22 +1981,22 @@
             ],
             "support": {
                 "issues": "https://github.com/Maggomann/filament-model-translator/issues",
-                "source": "https://github.com/Maggomann/filament-model-translator/tree/v0.1.0"
+                "source": "https://github.com/Maggomann/filament-model-translator/tree/v0.2.1"
             },
-            "time": "2023-01-11T17:42:11+00:00"
+            "time": "2023-05-20T05:24:56+00:00"
         },
         {
             "name": "maggomann/filament-only-icon-display",
-            "version": "v0.1.0",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maggomann/filament-only-icon-display.git",
-                "reference": "81628437c09a1fa993b46553dab7633a114a18a2"
+                "reference": "d12222bc37f935dea035f47c306046a859eba6cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maggomann/filament-only-icon-display/zipball/81628437c09a1fa993b46553dab7633a114a18a2",
-                "reference": "81628437c09a1fa993b46553dab7633a114a18a2",
+                "url": "https://api.github.com/repos/Maggomann/filament-only-icon-display/zipball/d12222bc37f935dea035f47c306046a859eba6cb",
+                "reference": "d12222bc37f935dea035f47c306046a859eba6cb",
                 "shasum": ""
             },
             "require": {
@@ -2054,9 +2054,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Maggomann/filament-only-icon-display/issues",
-                "source": "https://github.com/Maggomann/filament-only-icon-display/tree/v0.1.0"
+                "source": "https://github.com/Maggomann/filament-only-icon-display/tree/v0.2.0"
             },
-            "time": "2023-01-18T20:42:43+00:00"
+            "time": "2023-05-20T07:52:01+00:00"
         },
         {
             "name": "monolog/monolog",
