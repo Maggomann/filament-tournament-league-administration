@@ -1,4 +1,6 @@
 site_name: filament-tournament-league-administration
+docs_dir: mkdocs
+site_dir: docs
 theme:
     font: false
     name: material
