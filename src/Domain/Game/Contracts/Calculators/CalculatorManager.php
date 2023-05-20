@@ -19,7 +19,7 @@ final class CalculatorManager extends Manager
     {
         $totalTeamPoint->load('gameSchedule.federation.calculationType');
 
-        $instance = new static();
+        $instance = new self();
         $instance->totalTeamPoint = $totalTeamPoint;
 
         return $instance->driver(

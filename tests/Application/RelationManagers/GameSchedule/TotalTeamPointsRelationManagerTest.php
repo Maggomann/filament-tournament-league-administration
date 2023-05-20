@@ -75,8 +75,8 @@ it('can show total team points ', function (Fluent $fluent) {
     livewire(GameScheduleResource\RelationManagers\TotalTeamPointsRelationManager::class, [
         'ownerRecord' => $gameSchedule,
     ])
-    ->assertHasNoTableActionErrors()
-    ->assertSuccessful()
-    ->callTableAction('recalculateGamePoints')
-    ->assertSee($fluent->assertSee);
+        ->assertHasNoTableActionErrors()
+        ->assertSuccessful()
+        ->callTableAction('recalculateGamePoints')
+        ->assertSee($fluent->assertSee);
 })->with('inputTotalTeamPointsRelationManagerPage');

@@ -22,6 +22,8 @@ dataset('entriesUpdateTotalTeamPointsAction', function () {
                 'home_points_games' => 50,
                 'guest_points_games' => 25,
                 'has_an_overtime' => false,
+                'started_at' => now()->subHours(36),
+                'ended_at' => now()->subHours(34),
             ],
             'back_game' => [
                 'home_points_legs' => 50,
@@ -29,6 +31,8 @@ dataset('entriesUpdateTotalTeamPointsAction', function () {
                 'home_points_games' => 50,
                 'guest_points_games' => 25,
                 'has_an_overtime' => false,
+                'started_at' => now()->subHours(30),
+                'ended_at' => now()->subHours(28),
             ],
             'home_assert_database_has' => [
                 'total_points' => 2,
@@ -47,6 +51,8 @@ dataset('entriesUpdateTotalTeamPointsAction', function () {
                 'home_points_games' => 50,
                 'guest_points_games' => 25,
                 'has_an_overtime' => false,
+                'started_at' => now()->subHours(36),
+                'ended_at' => now()->subHours(34),
             ],
             'back_game' => [
                 'home_points_legs' => 25,
@@ -54,6 +60,9 @@ dataset('entriesUpdateTotalTeamPointsAction', function () {
                 'home_points_games' => 25,
                 'guest_points_games' => 50,
                 'has_an_overtime' => false,
+                'started_at' => now()->subHours(30),
+                'ended_at' => now()->subHours(28),
+
             ],
             'home_assert_database_has' => [
                 'total_points' => 4,
@@ -72,6 +81,8 @@ dataset('entriesUpdateTotalTeamPointsAction', function () {
                 'home_points_games' => 25,
                 'guest_points_games' => 50,
                 'has_an_overtime' => false,
+                'started_at' => now()->subHours(36),
+                'ended_at' => now()->subHours(34),
             ],
             'back_game' => [
                 'home_points_legs' => 50,
@@ -79,6 +90,8 @@ dataset('entriesUpdateTotalTeamPointsAction', function () {
                 'home_points_games' => 50,
                 'guest_points_games' => 25,
                 'has_an_overtime' => false,
+                'started_at' => now()->subHours(30),
+                'ended_at' => now()->subHours(28),
             ],
             'home_assert_database_has' => [
                 'total_points' => 0,
@@ -97,6 +110,8 @@ dataset('entriesUpdateTotalTeamPointsAction', function () {
                 'home_points_games' => 50,
                 'guest_points_games' => 25,
                 'has_an_overtime' => false,
+                'started_at' => now()->subHours(36),
+                'ended_at' => now()->subHours(34),
             ],
             'back_game' => [
                 'home_points_legs' => 50,
@@ -104,6 +119,8 @@ dataset('entriesUpdateTotalTeamPointsAction', function () {
                 'home_points_games' => 50,
                 'guest_points_games' => 25,
                 'has_an_overtime' => false,
+                'started_at' => now()->subHours(30),
+                'ended_at' => now()->subHours(28),
             ],
             'home_assert_database_has' => [
                 'total_points' => 3,
@@ -122,6 +139,8 @@ dataset('entriesUpdateTotalTeamPointsAction', function () {
                 'home_points_games' => 50,
                 'guest_points_games' => 25,
                 'has_an_overtime' => false,
+                'started_at' => now()->subHours(36),
+                'ended_at' => now()->subHours(34),
             ],
             'back_game' => [
                 'home_points_legs' => 25,
@@ -129,6 +148,8 @@ dataset('entriesUpdateTotalTeamPointsAction', function () {
                 'home_points_games' => 25,
                 'guest_points_games' => 50,
                 'has_an_overtime' => false,
+                'started_at' => now()->subHours(30),
+                'ended_at' => now()->subHours(28),
             ],
             'home_assert_database_has' => [
                 'total_points' => 6,
@@ -139,6 +160,35 @@ dataset('entriesUpdateTotalTeamPointsAction', function () {
         ]),
     ];
     yield 'guest win by calculation_type_id two' => [
+        'fluent' => fn () => new Fluent([
+            'calculation_type_id' => 2,
+            'outward_game' => [
+                'home_points_legs' => 25,
+                'guest_points_legs' => 50,
+                'home_points_games' => 25,
+                'guest_points_games' => 50,
+                'has_an_overtime' => false,
+                'started_at' => now()->subHours(36),
+                'ended_at' => now()->subHours(34),
+            ],
+            'back_game' => [
+                'home_points_legs' => 50,
+                'guest_points_legs' => 25,
+                'home_points_games' => 50,
+                'guest_points_games' => 25,
+                'has_an_overtime' => false,
+                'started_at' => now()->subHours(30),
+                'ended_at' => now()->subHours(28),
+            ],
+            'home_assert_database_has' => [
+                'total_points' => 0,
+            ],
+            'guest_assert_database_has' => [
+                'total_points' => 6,
+            ],
+        ]),
+    ];
+    yield 'no calculation for future games' => [
         'fluent' => fn () => new Fluent([
             'calculation_type_id' => 2,
             'outward_game' => [
@@ -159,7 +209,7 @@ dataset('entriesUpdateTotalTeamPointsAction', function () {
                 'total_points' => 0,
             ],
             'guest_assert_database_has' => [
-                'total_points' => 6,
+                'total_points' => 0,
             ],
         ]),
     ];
@@ -174,7 +224,12 @@ it('updates the total points', function (Fluent $fluent) {
 
     GameDayFactory::new()
         ->for($gameSchedule)
-        ->create();
+        ->create(
+            [
+                'started_at' => now()->subDays(2),
+                'ended_at' => now()->subDays(1),
+            ]
+        );
 
     $homeTeam = TeamFactory::new()->create();
     $homeTeam->gameSchedules()->save($gameSchedule);
@@ -183,14 +238,24 @@ it('updates the total points', function (Fluent $fluent) {
 
     GameFactory::new()
         ->for($gameSchedule)
-        ->for(GameDayFactory::new()->for($gameSchedule))
+        ->for(GameDayFactory::new(
+            [
+                'started_at' => now()->subDays(2),
+                'ended_at' => now()->subDays(1),
+            ]
+        )->for($gameSchedule))
         ->for($homeTeam, 'homeTeam')
         ->for($guestTeam, 'guestTeam')
         ->create($fluent->outward_game);
 
     GameFactory::new()
         ->for($gameSchedule)
-        ->for(GameDayFactory::new()->for($gameSchedule))
+        ->for(GameDayFactory::new(
+            [
+                'started_at' => now()->subDays(2),
+                'ended_at' => now()->subDays(1),
+            ]
+        )->for($gameSchedule))
         ->for($guestTeam, 'homeTeam')
         ->for($homeTeam, 'guestTeam')
         ->create($fluent->back_game);

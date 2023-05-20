@@ -217,20 +217,20 @@ it('can valiadate input for free tournament', function (Fluent $input) {
     $livewire = livewire(FreeTournamentResource\Pages\EditFreeTournament::class, [
         'record' => $freeTournament->getRouteKey(),
     ])
-    ->fillForm([
-        'name' => 'Edit Example',
-        'slug' => 'edit-example',
-        'description' => 'Edit Description',
-        'mode_id' => $fluent->mode_id,
-        'dart_type_id' => $fluent->dart_type_id,
-        'qualification_level_id' => $fluent->qualification_level_id,
-        'maximum_number_of_participants' => $fluent->maximum_number_of_participants,
-        'coin_money' => $fluent->coin_money,
-        'prize_money_depending_on_placement' => $fluent->prize_money_depending_on_placement,
-        'started_at' => $input->started_at,
-        'ended_at' => $input->ended_at,
-    ])
-    ->call('save');
+        ->fillForm([
+            'name' => 'Edit Example',
+            'slug' => 'edit-example',
+            'description' => 'Edit Description',
+            'mode_id' => $fluent->mode_id,
+            'dart_type_id' => $fluent->dart_type_id,
+            'qualification_level_id' => $fluent->qualification_level_id,
+            'maximum_number_of_participants' => $fluent->maximum_number_of_participants,
+            'coin_money' => $fluent->coin_money,
+            'prize_money_depending_on_placement' => $fluent->prize_money_depending_on_placement,
+            'started_at' => $input->started_at,
+            'ended_at' => $input->ended_at,
+        ])
+        ->call('save');
 
     if ($input->actionErrors) {
         $livewire->assertHasFormErrors($input->actionErrors);

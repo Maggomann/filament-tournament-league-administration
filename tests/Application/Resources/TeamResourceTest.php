@@ -114,14 +114,14 @@ it('can save a team', function () {
     livewire(TeamResource\Pages\EditTeam::class, [
         'record' => $team->getRouteKey(),
     ])
-    ->fillForm([
-        'federation_id' => $federation->id,
-        'league_id' => $league->id,
-        'name' => 'Example Edit',
-        'slug' => 'example-edit',
-    ])
-    ->call('save')
-    ->assertHasNoFormErrors();
+        ->fillForm([
+            'federation_id' => $federation->id,
+            'league_id' => $league->id,
+            'name' => 'Example Edit',
+            'slug' => 'example-edit',
+        ])
+        ->call('save')
+        ->assertHasNoFormErrors();
 
     expect($team->refresh())
         ->name->toBe('Example Edit')

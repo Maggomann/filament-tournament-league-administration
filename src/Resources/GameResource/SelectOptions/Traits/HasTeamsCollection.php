@@ -14,9 +14,9 @@ trait HasTeamsCollection
         }
 
         $teamCollection = $gameSchedule
-                ?->teams
-                ?->whereNotIn('id', $otherTeamId)
-                ?->pluck('name', 'id');
+            ?->teams
+            ?->whereNotIn('id', $otherTeamId)
+            ?->pluck('name', 'id');
 
         return ($teamCollection instanceof Collection) ? $teamCollection : collect([]);
     }
