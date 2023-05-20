@@ -2,6 +2,14 @@
 
 All notable changes to `filament-tournament-league-administration` will be documented in this file.
 
+## v0.3.1 - 2023-05-20
+
+### What's Changed
+
+- Fix recalculatePoints method, lint issues, and Composer update by @Maggomann in https://github.com/Maggomann/filament-tournament-league-administration/pull/6
+
+**Full Changelog**: https://github.com/Maggomann/filament-tournament-league-administration/compare/v0.3.0...v0.3.1
+
 ## v0.3.0 - 2023-05-20
 
 ### What's Changed
