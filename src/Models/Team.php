@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Korridor\LaravelHasManyMerged\HasManyMerged;
 use Korridor\LaravelHasManyMerged\HasManyMergedRelation;
+use Maggomann\Addressable\Traits\Addressable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
@@ -37,6 +38,7 @@ use Spatie\Sluggable\SlugOptions;
  */
 class Team extends TranslateableModel implements HasMedia
 {
+    use Addressable;
     use HasFactory;
     use HasManyMergedRelation;
     use HasSlug;
