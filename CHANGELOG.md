@@ -2,6 +2,15 @@
 
 All notable changes to `filament-tournament-league-administration` will be documented in this file.
 
+## v0.4.0 - 2023-05-21
+
+### What's Changed
+
+- fix: logic extension for the scopeRecalculatePoints method within the Teams class by @Maggomann in https://github.com/Maggomann/filament-tournament-league-administration/pull/7
+- Make player's email field nullable in forms and update tests by @Maggomann in https://github.com/Maggomann/filament-tournament-league-administration/pull/8
+
+**Full Changelog**: https://github.com/Maggomann/filament-tournament-league-administration/compare/v0.3.1...v0.4.0
+
 ## v0.3.1 - 2023-05-20
 
 ### What's Changed
