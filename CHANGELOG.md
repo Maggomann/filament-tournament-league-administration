@@ -2,6 +2,14 @@
 
 All notable changes to `filament-tournament-league-administration` will be documented in this file.
 
+## v0.5.0 - 2023-05-21
+
+### What's Changed
+
+- feat: Expand player forms for optional selection of player role by @Maggomann in https://github.com/Maggomann/filament-tournament-league-administration/pull/9
+
+**Full Changelog**: https://github.com/Maggomann/filament-tournament-league-administration/compare/v0.4.0...v0.5.0
+
 ## v0.4.0 - 2023-05-21
 
 ### What's Changed
