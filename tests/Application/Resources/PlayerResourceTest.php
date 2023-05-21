@@ -8,6 +8,7 @@ use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\Actions\UpdateOrCreatePlayerAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Player\DTO\PlayerData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\PlayerRole;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\RelationManagers\AddressesRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\RelationManagers\TeamRelationManager;
@@ -51,12 +52,14 @@ it('can create a player', function () {
     $federation = FederationFactory::new()->create();
     $league = LeagueFactory::new()->for($federation)->create();
     $team = TeamFactory::new()->for($league)->create();
+    $randomPlayerRole = PlayerRole::inRandomOrder()->first();
 
     livewire(PlayerResource\Pages\CreatePlayer::class)
         ->fillForm([
             'federation_id' => $federation->id,
             'league_id' => $league->id,
             'team_id' => $team->id,
+            'player_role_id' => $randomPlayerRole->id,
             'name' => 'Example',
             'slug' => 'example',
             'email' => 'example@example.com',
@@ -66,6 +69,7 @@ it('can create a player', function () {
 
     $this->assertDatabaseHas(Player::class, [
         'team_id' => $team->id,
+        'player_role_id' => $randomPlayerRole->id,
         'name' => 'Example',
         'slug' => 'example',
         'email' => 'example@example.com',
@@ -78,6 +82,7 @@ it('can validate input for player page', function () {
             'federation_id' => null,
             'league_id' => null,
             'team_id' => null,
+            'player_role_id' => null,
             'name' => null,
             'slug' => 'example',
             'email' => null,
@@ -95,6 +100,7 @@ it('player create page should receive execute from UpdateOrCreatePlayerAction', 
     $federation = FederationFactory::new()->create();
     $league = LeagueFactory::new()->for($federation)->create();
     $team = TeamFactory::new()->for($league)->create();
+    $randomPlayerRole = PlayerRole::inRandomOrder()->first();
 
     $mock = $this->mock(UpdateOrCreatePlayerAction::class);
     $mock->shouldReceive('execute')
@@ -107,6 +113,7 @@ it('player create page should receive execute from UpdateOrCreatePlayerAction', 
         'federation_id' => $federation->id,
         'league_id' => $league->id,
         'team_id' => $team->id,
+        'player_role_id' => $randomPlayerRole->id,
         'name' => 'Example',
         'slug' => 'example',
         'email' => 'example@example.com',
@@ -118,6 +125,7 @@ it('can save a player', function () {
     $federation = FederationFactory::new()->create();
     $league = LeagueFactory::new()->for($federation)->create();
     $team = TeamFactory::new()->for($league)->create();
+    $randomPlayerRole = PlayerRole::inRandomOrder()->first();
 
     $player = PlayerFactory::new()
         ->withPlausibleBelongsToRelations()
@@ -130,6 +138,7 @@ it('can save a player', function () {
             'federation_id' => $federation->id,
             'league_id' => $league->id,
             'team_id' => $team->id,
+            'player_role_id' => $randomPlayerRole->id,
             'name' => 'Example Edit',
             'slug' => 'example-edit',
             'email' => 'example-edit@example.com',
@@ -145,6 +154,7 @@ it('can save a player', function () {
     $this->assertDatabaseHas(Player::class, [
         'id' => $player->id,
         'team_id' => $team->id,
+        'player_role_id' => $randomPlayerRole->id,
         'name' => 'Example Edit',
         'slug' => 'example-edit',
         'email' => 'example-edit@example.com',
@@ -155,6 +165,7 @@ it('player edit page should receive execute from UpdateOrCreateTeamAction', func
     $federation = FederationFactory::new()->create();
     $league = LeagueFactory::new()->for($federation)->create();
     $team = TeamFactory::new()->for($league)->create();
+    $randomPlayerRole = PlayerRole::inRandomOrder()->first();
 
     $player = PlayerFactory::new()
         ->withPlausibleBelongsToRelations()
@@ -172,6 +183,7 @@ it('player edit page should receive execute from UpdateOrCreateTeamAction', func
         'federation_id' => $federation->id,
         'league_id' => $league->id,
         'team_id' => $team->id,
+        'player_role_id' => $randomPlayerRole->id,
         'name' => 'Example',
         'slug' => 'example',
         'email' => 'example@example.com',

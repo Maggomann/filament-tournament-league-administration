@@ -63,6 +63,7 @@ return [
             'nickname' => 'Spitzname',
             'id_number' => 'Ausweisnummer',
             'team_id' => 'Team',
+            'player_role_id' => 'Rolle',
             'created_at' => 'Erstellt am',
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',

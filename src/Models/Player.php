@@ -92,6 +92,11 @@ class Player extends TranslateableModel implements HasMedia
         );
     }
 
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(PlayerRole::class, 'player_role_id', 'id');
+    }
+
     public function gameSchedules(): BelongsToMany
     {
         return $this->belongsToMany(GameSchedule::class);
