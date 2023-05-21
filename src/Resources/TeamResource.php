@@ -27,6 +27,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\CalculationType;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Federation;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\League;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\RelationManagers\AddressesRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardUploadAndTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\RelationManagers\PlayersRelationManager;
@@ -171,6 +172,7 @@ class TeamResource extends TranslateableResource
     {
         return [
             PlayersRelationManager::class,
+            AddressesRelationManager::class,
         ];
     }
 
@@ -185,7 +187,7 @@ class TeamResource extends TranslateableResource
 
     protected static function getGlobalSearchEloquentQuery(): Builder
     {
-        return parent::getGlobalSearchEloquentQuery()->with(['league.federation', 'players']);
+        return parent::getGlobalSearchEloquentQuery()->with(['league.federation', 'addresses', 'players']);
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array

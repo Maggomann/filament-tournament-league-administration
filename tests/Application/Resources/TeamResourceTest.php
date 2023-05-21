@@ -8,6 +8,7 @@ use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\DeleteAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Team\Actions\UpdateOrCreateTeamAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Team\DTO\TeamData;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\AddressesResource\RelationManagers\AddressesRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TeamResource\RelationManagers\PlayersRelationManager;
 use function Pest\Livewire\livewire;
@@ -39,6 +40,12 @@ it('can render all player relation managers', function () {
         'ownerRecord' => $team,
     ])
         ->assertSuccessful();
+
+    livewire(AddressesRelationManager::class, [
+        'ownerRecord' => $team,
+    ])
+        ->assertSuccessful()
+        ->assertCanNotSeeTableRecords($team->addresses);
 });
 
 it('can create a team', function () {
