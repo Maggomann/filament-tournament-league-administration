@@ -15,6 +15,7 @@ use Spatie\Sluggable\SlugOptions;
 
 /**
  * @property int|null $team_id
+ * @property int|null $player_role_id
  * @property string $name
  * @property string $email
  * @property string|null $slug
