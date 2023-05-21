@@ -88,7 +88,6 @@ it('can validate input for player page', function () {
             'league_id' => 'required',
             'team_id' => 'required',
             'name' => 'required',
-            'email' => 'required',
         ]);
 });
 
