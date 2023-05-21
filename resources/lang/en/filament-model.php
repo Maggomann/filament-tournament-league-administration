@@ -63,6 +63,7 @@ return [
             'nickname' => 'Nickname',
             'id_number' => 'Badge number',
             'team_id' => 'Team',
+            'player_role_id' => 'Role',
             'created_at' => 'Created at',
             'updated_at' => 'Updated at',
             'deleted_at' => 'Deleted at',

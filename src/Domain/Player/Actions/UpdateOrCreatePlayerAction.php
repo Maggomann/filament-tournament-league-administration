@@ -17,6 +17,7 @@ class UpdateOrCreatePlayerAction
 
             $player->fill($playerData->toArray());
             $player->team_id = $playerData->team_id;
+            $player->player_role_id = $playerData->player_role_id;
 
             $player->save();
 

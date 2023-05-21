@@ -7,6 +7,7 @@ beforeEach(function () {
     $this->validParams = [
         'id' => 1,
         'team_id' => 1,
+        'player_role_id' => 1,
         'name' => 'valid string',
         'slug' => 'valid string',
         'email' => 'valid string',
@@ -36,6 +37,7 @@ test('PlayerData throws an error when invalid data is submitted', function ($key
 })->with([
     ['id', []],
     ['team_id', null],
+    ['player_role_id', 'invalid string'],
     ['name', null],
     ['slug', null],
     ['email', []],

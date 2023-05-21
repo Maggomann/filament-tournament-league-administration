@@ -27,6 +27,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\Pages;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\RelationManagers\TeamRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\SelectOptions\LeagueSelect;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\SelectOptions\PlayerRoleSelect;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\PlayerResource\SelectOptions\TeamSelect;
 
 class PlayerResource extends TranslateableResource
@@ -94,11 +95,23 @@ class PlayerResource extends TranslateableResource
                             ->required()
                             ->reactive()
                             ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::of($state)->slug())),
+
                         TextInput::make('slug')
                             ->label(Player::transAttribute('slug'))
                             ->disabled()
                             ->required()
                             ->unique(Player::class, 'slug', fn ($record) => $record),
+
+                        Select::make('player_role_id')
+                            ->label(Player::transAttribute('player_role_id'))
+                            ->validationAttribute(Player::transAttribute('player_role_id'))
+                            ->options(fn () => PlayerRoleSelect::options())
+                            ->placeholder(
+                                TranslateComponent::placeholder(static::$translateablePackageKey, 'player_role_id')
+                            )
+                            ->preload()
+                            ->nullable()
+                            ->searchable(),
 
                         TextInput::make('email')
                             ->label(Player::transAttribute('email'))
@@ -142,7 +155,12 @@ class PlayerResource extends TranslateableResource
                     ->label(Player::transAttribute('email'))
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('Team.name')
+                TextColumn::make('role.id')
+                    ->label(Player::transAttribute('player_role_id'))
+                    ->getStateUsing(fn (Player $record): string => (string) PlayerRoleSelect::translatedById($record->role?->id))
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('team.name')
                     ->label(Player::transAttribute('team_id'))
                     ->searchable()
                     ->sortable(),
@@ -178,7 +196,7 @@ class PlayerResource extends TranslateableResource
 
     protected static function getGlobalSearchEloquentQuery(): Builder
     {
-        return parent::getGlobalSearchEloquentQuery()->with(['team', 'league.federation.leagues', 'addresses']);
+        return parent::getGlobalSearchEloquentQuery()->with(['team', 'league.federation.leagues', 'addresses', 'role']);
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array
