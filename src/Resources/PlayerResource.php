@@ -103,7 +103,7 @@ class PlayerResource extends TranslateableResource
                         TextInput::make('email')
                             ->label(Player::transAttribute('email'))
                             ->validationAttribute(Player::transAttribute('email'))
-                            ->required()
+                            ->nullable()
                             ->email()
                             ->unique(ignoreRecord: true),
 
