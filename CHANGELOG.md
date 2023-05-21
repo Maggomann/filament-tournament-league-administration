@@ -2,6 +2,14 @@
 
 All notable changes to `filament-tournament-league-administration` will be documented in this file.
 
+## v0.6.0 - 2023-05-21
+
+### What's Changed
+
+- feat: Expand team forms for optional address management by @Maggomann in https://github.com/Maggomann/filament-tournament-league-administration/pull/10
+
+**Full Changelog**: https://github.com/Maggomann/filament-tournament-league-administration/compare/v0.5.0...v0.6.0
+
 ## v0.5.0 - 2023-05-21
 
 ### What's Changed
