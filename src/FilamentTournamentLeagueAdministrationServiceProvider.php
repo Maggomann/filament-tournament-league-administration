@@ -54,6 +54,10 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServic
                 'create_tournament_league_players_table',
                 'create_tournament_league_teams_table',
                 'create_tournament_league_total_team_points_table',
+                'create_game_player_table.',
+                'create_tournament_league_game_encounter_type_table',
+                'create_tournament_league_game_encounters_table',
+                'create_tournament_league_game_encounter_total_table',
             ])
             ->hasCommands([
                 FilamentTournamenPublishMediaPluginAndMigrateCommand::class,

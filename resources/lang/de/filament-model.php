@@ -111,6 +111,15 @@ return [
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',
         ],
+        'tournament_league_game_encounter_type' => [
+            'title' => [
+                'one_versus_one' => '1 vs 1',
+                'two_versus_two' => '2 vs 2',
+            ],
+            'created_at' => 'Created at',
+            'updated_at' => 'Updated at',
+            'deleted_at' => 'Deleted at',
+        ],
         'tournament_league_player_roles' => [
             'title' => [
                 'captain' => 'Kapitän',
