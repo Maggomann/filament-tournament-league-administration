@@ -8,9 +8,9 @@ return new class extends Migration
 {
     public function up(): void
     {
-        if (! Schema::hasTable('game_player')) {
-            Schema::create('game_player', function (Blueprint $table) {
-                $table->unsignedBigInteger('game_id')->nullable()->index();
+        if (! Schema::hasTable('tournament_league_game_encounter_home_player')) {
+            Schema::create('tournament_league_game_encounter_home_player', function (Blueprint $table) {
+                $table->unsignedBigInteger('game_encounter_id')->nullable()->index();
                 $table->unsignedBigInteger('player_id')->nullable()->index();
             });
         }
@@ -22,6 +22,6 @@ return new class extends Migration
             return;
         }
 
-        Schema::dropIfExists('game_player');
+        Schema::dropIfExists('tournament_league_game_encounter_home_player');
     }
 };

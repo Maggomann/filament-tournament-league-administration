@@ -14,10 +14,6 @@ return new class extends Migration
                 $table->unsignedBigInteger('game_id')->index();
                 $table->unsignedBigInteger('player_encounter_type_id')->index();
                 $table->unsignedBigInteger('order')->default(0)->index();
-                $table->unsignedBigInteger('home_player_1_id')->nullable()->index();
-                $table->unsignedBigInteger('home_player_2_id')->nullable()->index();
-                $table->unsignedBigInteger('guest_player_1_id')->nullable()->index();
-                $table->unsignedBigInteger('guest_player_2_id')->nullable()->index();
                 $table->integer('home_team_win')->default(0);
                 $table->integer('home_team_defeat')->default(0);
                 $table->integer('guest_team_win')->default(0);
