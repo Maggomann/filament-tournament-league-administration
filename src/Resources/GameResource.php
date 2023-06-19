@@ -24,6 +24,8 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\Pages;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\RelationManagers\GuestPlayersRelationManager;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\RelationManagers\HomePlayersRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\SelectOptions\GameDaySelect;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\SelectOptions\GuestTeamSelect;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\SelectOptions\HomeTeamSelect;
@@ -244,6 +246,8 @@ class GameResource extends TranslateableResource
     public static function getRelations(): array
     {
         return [
+            GuestPlayersRelationManager::class,
+            HomePlayersRelationManager::class,
         ];
     }
 
@@ -263,6 +267,7 @@ class GameResource extends TranslateableResource
             'gameDay',
             'homeTeam',
             'guestTeam',
+            'homePlayers',
         ]);
     }
 

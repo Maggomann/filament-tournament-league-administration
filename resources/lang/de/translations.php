@@ -12,7 +12,9 @@ return [
         'components' => [
             'buttons' => [
                 'labels' => [
-                    'link_all_players_from_the_linked_teams' => 'Alle Spieler aus den verknüpfen Teams verknüpfen',
+                    'link_all_guest_players_from_the_linked_guest_team' => 'Alle Gast-Spieler aus dem verknüpften Gast-Team verknüpfen',
+                    'link_all_home_players_from_the_linked_home_team' => 'Alle Home-Spieler aus dem verknüpften Home-Team verknüpfen',
+                    'link_all_players_from_the_linked_teams' => 'Alle Spieler aus den verknüpften Teams verknüpfen',
                     'link_all_teams_in_the_league' => 'Alle Teams aus der Liga verknüpfen',
                     'recalculation_of_the_game_plan_points' => 'Neuberechnung der Spielplanpunkte',
                 ],
@@ -40,6 +42,8 @@ return [
             ],
             'tabs' => [
                 'game_schedule' => 'Spielplan',
+                'guest_players' => 'Gast-Spieler',
+                'home_players' => 'Home-Spieler',
                 'teams' => 'Mannschaften',
                 'points' => 'Punkte',
                 'points_after_overtime' => 'Punkte nach Verlängerung',

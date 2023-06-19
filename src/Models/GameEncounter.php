@@ -48,11 +48,15 @@ class GameEncounter extends TranslateableModel
 
     public function homePlayers(): BelongsToMany
     {
-        return $this->belongsToMany(Player::class, 'game_home_players');
+        return $this->belongsToMany(Player::class, 'game_player')
+            ->wherePivot('is_home', true)
+            ->withPivot('is_home');
     }
 
     public function guestPlayers(): BelongsToMany
     {
-        return $this->belongsToMany(Player::class, 'game_guest_players');
+        return $this->belongsToMany(Player::class, 'game_player')
+            ->wherePivot('is_guest', true)
+            ->withPivot('is_guest');
     }
 }

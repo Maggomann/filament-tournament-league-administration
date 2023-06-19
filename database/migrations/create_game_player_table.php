@@ -8,10 +8,12 @@ return new class extends Migration
 {
     public function up(): void
     {
-        if (! Schema::hasTable('game_guest_player')) {
-            Schema::create('game_guest_player', function (Blueprint $table) {
+        if (! Schema::hasTable('game_player')) {
+            Schema::create('game_player', function (Blueprint $table) {
                 $table->unsignedBigInteger('game_id')->nullable()->index();
                 $table->unsignedBigInteger('player_id')->nullable()->index();
+                $table->boolean('is_home')->default(false)->index();
+                $table->boolean('is_guest')->default(false)->index();
             });
         }
     }
@@ -22,6 +24,6 @@ return new class extends Migration
             return;
         }
 
-        Schema::dropIfExists('game_guest_player');
+        Schema::dropIfExists('game_player');
     }
 };
