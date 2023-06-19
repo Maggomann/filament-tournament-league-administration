@@ -18,12 +18,12 @@ return new class extends Migration
                 $table->integer('guest_team_defeat_total')->default(0);
                 $table->integer('home_team_points_leg_total')->default(0);
                 $table->integer('guest_team_points_leg_total')->default(0);
-                $table->unsignedBigInteger('high_score_home_player_id')->nullable()->index();
-                $table->unsignedBigInteger('high_score_guest_player_id')->nullable()->index();
-                $table->unsignedBigInteger('high_finish_home_player_id')->nullable()->index();
-                $table->unsignedBigInteger('high_finish_guest_player_id')->nullable()->index();
-                $table->unsignedBigInteger('short_game_home_player_id')->nullable()->index();
-                $table->unsignedBigInteger('short_game_guest_player_id')->nullable()->index();
+                $table->unsignedBigInteger('high_score_home_player_id')->nullable()->index('tlget_high_score_home_player_id_index');
+                $table->unsignedBigInteger('high_score_guest_player_id')->nullable()->index('tlget_high_score_guest_player_id_index');
+                $table->unsignedBigInteger('high_finish_home_player_id')->nullable()->index('tlget_high_finish_home_player_id_index');
+                $table->unsignedBigInteger('high_finish_guest_player_id')->nullable()->index('tlget_high_finish_guest_player_id_index');
+                $table->unsignedBigInteger('short_game_home_player_id')->nullable()->index('tlget_short_game_home_player_id_index');
+                $table->unsignedBigInteger('short_game_guest_player_id')->nullable()->index('tlget_short_game_guest_player_id_index');
                 $table->timestamps();
                 $table->softDeletes();
             });

@@ -22,7 +22,7 @@ class FilamentTournamentProductionTableSeeder extends Seeder
             QualificationLevelsTableSeeder::class,
             EventLocationTableSeeder::class,
             PlayerRolesTableSeeder::class,
-            // GameEncounterTypesTableSeeder::class,
+            GameEncounterTypesTableSeeder::class,
         ]);
     }
 }
