@@ -13,6 +13,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\SyncAll
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\AttachEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\AttachEntrySucceededNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Team;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;

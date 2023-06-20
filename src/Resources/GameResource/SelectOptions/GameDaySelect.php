@@ -44,6 +44,7 @@ class GameDaySelect
                 ?->days;
         }
 
+        /** @var \Illuminate\Support\Collection<GameDay> $collection */
         if ($collection) {
             return $collection->mapWithKeys(fn (GameDay $gameDay) => [
                 $gameDay->id => "{$gameDay->day}  - ({$gameDay->started_at} - {$gameDay->ended_at})",

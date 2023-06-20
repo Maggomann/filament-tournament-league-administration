@@ -43,7 +43,7 @@ return [
             'tabs' => [
                 'game_schedule' => 'Spielplan',
                 'guest_players' => 'Gast-Spieler',
-                'home_players' => 'Home-Spieler',
+                'home_players' => 'Heim-Spieler',
                 'teams' => 'Mannschaften',
                 'points' => 'Punkte',
                 'points_after_overtime' => 'Punkte nach Verlängerung',
