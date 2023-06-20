@@ -24,6 +24,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\TotalTeamPoint;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\Forms\Components\CardTimestamps;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\Pages;
+use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\RelationManagers\GameEncountersRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\RelationManagers\GuestPlayersRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\RelationManagers\HomePlayersRelationManager;
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\SelectOptions\GameDaySelect;
@@ -248,6 +249,7 @@ class GameResource extends TranslateableResource
         return [
             GuestPlayersRelationManager::class,
             HomePlayersRelationManager::class,
+            GameEncountersRelationManager::class,
         ];
     }
 

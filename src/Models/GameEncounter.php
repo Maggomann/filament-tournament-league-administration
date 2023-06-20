@@ -3,6 +3,7 @@
 namespace Maggomann\FilamentTournamentLeagueAdministration\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -48,15 +49,20 @@ class GameEncounter extends TranslateableModel
 
     public function homePlayers(): BelongsToMany
     {
-        return $this->belongsToMany(Player::class, 'game_player')
+        return $this->belongsToMany(Player::class, 'game_encounter_player')
             ->wherePivot('is_home', true)
             ->withPivot('is_home');
     }
 
     public function guestPlayers(): BelongsToMany
     {
-        return $this->belongsToMany(Player::class, 'game_player')
+        return $this->belongsToMany(Player::class, 'game_encounter_player')
             ->wherePivot('is_guest', true)
             ->withPivot('is_guest');
+    }
+
+    public function game(): BelongsTo
+    {
+        return $this->belongsTo(Game::class);
     }
 }

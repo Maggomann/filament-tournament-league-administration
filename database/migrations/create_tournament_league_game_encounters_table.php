@@ -12,7 +12,7 @@ return new class extends Migration
             Schema::create('tournament_league_game_encounters', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedBigInteger('game_id')->index('tlge_game_id_index');
-                $table->unsignedBigInteger('player_encounter_type_id')->index('tlge_player_encounter_type_id_index');
+                $table->unsignedBigInteger('game_encounter_type_id')->index('tlge_game_encounter_type_id_index');
                 $table->unsignedBigInteger('order')->default(0)->index('tlge_order_index');
                 $table->integer('home_team_win')->default(0);
                 $table->integer('home_team_defeat')->default(0);

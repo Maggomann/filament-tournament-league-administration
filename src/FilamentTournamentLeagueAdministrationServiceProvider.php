@@ -40,6 +40,7 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServic
             ->hasTranslations()
             ->hasMigrations([
                 'create_filament_select_option_types_tables',
+                'create_game_encounter_player_table',
                 'create_game_schedule_player_table',
                 'create_game_player_table',
                 'create_game_schedule_team_table',
@@ -48,8 +49,6 @@ class FilamentTournamentLeagueAdministrationServiceProvider extends PluginServic
                 'create_tournament_league_federations_table',
                 'create_tournament_league_free_tournaments_table',
                 'create_tournament_league_game_days_table',
-                'create_tournament_league_game_encounter_guest_player_table',
-                'create_tournament_league_game_encounter_home_player_table',
                 'create_tournament_league_game_encounters_table',
                 'create_tournament_league_game_encounter_type_table',
                 'create_tournament_league_game_encounter_total_table',

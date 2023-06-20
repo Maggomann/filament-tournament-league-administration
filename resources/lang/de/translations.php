@@ -31,6 +31,7 @@ return [
                     'player_id' => 'Bitte wählen Sie einen Spieler aus.',
                     'team_id' => 'Bitte wählen Sie ein Team aus.',
                     'game_schedule_id' => 'Bitte wählen Sie einen Spielplan aus.',
+                    'game_encounter_type_id' => 'Bitte wählen Sie einen Spielbegegnungstyp aus.',
                     'game_day_id' => 'Bitte wählen Sie ein Spieltag aus.',
                     'home_team_id' => 'Bitte wählen Sie ein Team (Home) aus.',
                     'guest_team_id' => 'Bitte wählen Sie ein Team (Gast) aus.',
