@@ -18,7 +18,7 @@ use Maggomann\Addressable\Models\AddressGender;
 use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\CreateAction;
 use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\EditAction;
 use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\ViewAction;
-use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DeleteEntryFailedNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\EditEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
@@ -152,7 +152,7 @@ class AddressesRelationManager extends TranslateableRelationManager
                                 AddressData::from($data)
                             );
                         } catch (Throwable) {
-                            DeleteEntryFailedNotification::make()->send();
+                            CreatedEntryFailedNotification::make()->send();
                         }
                     }),
             ])

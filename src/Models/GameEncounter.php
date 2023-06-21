@@ -42,6 +42,13 @@ class GameEncounter extends TranslateableModel
      * @var array<int, string>
      */
     protected $fillable = [
+        'order',
+        'home_team_win',
+        'home_team_defeat',
+        'guest_team_win',
+        'guest_team_defeat',
+        'home_team_points_leg',
+        'guest_team_points_leg',
         'created_at',
         'updated_at',
         'deleted_at',
