@@ -72,4 +72,24 @@ class GameEncounter extends TranslateableModel
     {
         return $this->belongsTo(Game::class);
     }
+
+    public function scopeFirstHomePlayer(): ?Player
+    {
+        return $this->homePlayers()->first();
+    }
+
+    public function scopeSecondHomePlayer(): Player
+    {
+        return $this->homePlayers()->skip(1)->first();
+    }
+
+    public function scopeFirstGuestPlayer(): Player
+    {
+        return $this->guestPlayers()->first();
+    }
+
+    public function scopeSecondGuestPlayer(): Player
+    {
+        return $this->guestPlayers()->skip(1)->first();
+    }
 }

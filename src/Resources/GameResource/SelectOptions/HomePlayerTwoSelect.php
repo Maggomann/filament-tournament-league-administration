@@ -13,6 +13,14 @@ class HomePlayerTwoSelect
     {
         $gameId = $get('game_id');
 
+        if ($record) {
+            $playerId = $record->secondHomePlayer()?->id;
+
+            if ($playerId) {
+                $set('home_player_id_2', $playerId);
+            }
+        }
+
         return Game::with('homePlayers')->find($gameId)
             ?->homePlayers
             ?->pluck('name', 'id');

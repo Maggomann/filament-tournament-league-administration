@@ -13,7 +13,7 @@ return new class extends Migration
                 $table->id();
                 $table->unsignedBigInteger('game_id')->index('tlge_game_id_index');
                 $table->unsignedBigInteger('game_encounter_type_id')->index('tlge_game_encounter_type_id_index');
-                $table->unsignedBigInteger('order')->default(0)->index('tlge_order_index');
+                $table->integer('order')->default(0)->index('tlge_order_index');
                 $table->integer('home_team_win')->default(0);
                 $table->integer('home_team_defeat')->default(0);
                 $table->integer('guest_team_win')->default(0);
