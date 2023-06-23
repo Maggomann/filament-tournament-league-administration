@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
+ * @method static \Illuminate\Database\Eloquent\Builder|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player firstHomePlayer()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player secondHomePlayer()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player firstGuestPlayer()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player secondGuestPlayer()
+ *
  * @property int $id
  * @property int|null $game_id
  * @property int|null $player_encounter_type_id
@@ -21,6 +26,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player[] $guestPlayers
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player[] $homePlayers
  */
 class GameEncounter extends TranslateableModel
 {
@@ -78,17 +85,17 @@ class GameEncounter extends TranslateableModel
         return $this->homePlayers()->first();
     }
 
-    public function scopeSecondHomePlayer(): Player
+    public function scopeSecondHomePlayer(): ?Player
     {
         return $this->homePlayers()->skip(1)->first();
     }
 
-    public function scopeFirstGuestPlayer(): Player
+    public function scopeFirstGuestPlayer(): ?Player
     {
         return $this->guestPlayers()->first();
     }
 
-    public function scopeSecondGuestPlayer(): Player
+    public function scopeSecondGuestPlayer(): ?Player
     {
         return $this->guestPlayers()->skip(1)->first();
     }

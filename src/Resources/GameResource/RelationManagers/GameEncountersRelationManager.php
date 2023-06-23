@@ -4,6 +4,8 @@ namespace Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResourc
 
 use Closure;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
@@ -14,6 +16,7 @@ use Filament\Tables\Contracts\HasRelationshipTable;
 use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\DeleteAction;
 use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\EditAction;
 use Maggomann\FilamentOnlyIconDisplay\Domain\Tables\Actions\ViewAction;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\DeleteGameEncounterAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\UpdateOrCreateGameEncounterAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\DTO\GameEncounterData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
@@ -43,116 +46,138 @@ class GameEncountersRelationManager extends TranslateableRelationManager
     {
         return $form
             ->schema([
-                Select::make('game_id')
-                    ->relationship('game', 'id')
-                    ->label(GameEncounter::transAttribute('game_id'))
-                    ->default(fn (GameEncountersRelationManager $livewire) => $livewire->getOwnerRecord()->id)
-                    ->disabled(),
+                Tabs::make('Heading')
+                    ->tabs([
+                        Tab::make(TranslateComponent::tab(static::$translateablePackageKey, 'game'))
+                            ->icon('heroicon-o-clock')
+                            ->schema([
+                                Select::make('game_id')
+                                    ->relationship('game', 'id')
+                                    ->label(GameEncounter::transAttribute('game_id'))
+                                    ->default(fn (GameEncountersRelationManager $livewire) => $livewire->getOwnerRecord()->id)
+                                    ->disabled(),
 
-                TextInput::make('order')
-                    ->label(GameEncounter::transAttribute('order'))
-                    ->required()
-                    ->default(0)
-                    ->numeric(),
+                                TextInput::make('order')
+                                    ->label(GameEncounter::transAttribute('order'))
+                                    ->required()
+                                    ->default(0)
+                                    ->numeric(),
+                            ]),
 
-                Select::make('game_encounter_type_id')
-                    ->label(GameEncounter::transAttribute('game_encounter_type_id'))
-                    ->options(fn () => GameEncounterTypeSelect::options())
-                    ->placeholder(
-                        TranslateComponent::placeholder(static::$translateablePackageKey, 'game_encounter_type_id')
-                    )
-                    ->preload()
-                    ->required()
+                        Tab::make(TranslateComponent::tab(static::$translateablePackageKey, 'players'))
+                            ->icon('heroicon-o-users')
+                            ->schema([
+                                Select::make('game_encounter_type_id')
+                                    ->label(GameEncounter::transAttribute('game_encounter_type_id'))
+                                    ->options(fn () => GameEncounterTypeSelect::options())
+                                    ->placeholder(
+                                        TranslateComponent::placeholder(static::$translateablePackageKey, 'game_encounter_type_id')
+                                    )
+                                    ->preload()
+                                    ->required()
+                                    ->columnSpan(2)
+                                    ->searchable()
+                                    ->reactive(),
+
+                                Select::make('home_player_id_1')
+                                    ->label(GameEncounter::transAttribute('home_player_id_1'))
+                                    ->validationAttribute(GameEncounter::transAttribute('home_player_id_1'))
+                                    ->options(function (Closure $get, Closure $set, ?GameEncounter $record) {
+                                        return HomePlayerOneSelect::options($get, $set, $record);
+                                    })
+                                    ->placeholder(
+                                        TranslateComponent::placeholder(static::$translateablePackageKey, 'home_player_id')
+                                    )
+                                    ->required()
+                                    ->searchable()
+                                    ->reactive(),
+
+                                Select::make('guest_player_id_1')
+                                    ->label(GameEncounter::transAttribute('guest_player_id_1'))
+                                    ->validationAttribute(GameEncounter::transAttribute('guest_player_id_1'))
+                                    ->options(function (Closure $get, Closure $set, ?GameEncounter $record) {
+                                        return GuestPlayerOneSelect::options($get, $set, $record);
+                                    })
+                                    ->placeholder(
+                                        TranslateComponent::placeholder(static::$translateablePackageKey, 'guest_player_id_1')
+                                    )
+                                    ->required()
+                                    ->searchable()
+                                    ->reactive(),
+
+                                Select::make('home_player_id_2')
+                                    ->label(GameEncounter::transAttribute('home_player_id_2'))
+                                    ->validationAttribute(GameEncounter::transAttribute('home_player_id_2'))
+                                    ->options(function (Closure $get, Closure $set, ?GameEncounter $record) {
+                                        return HomePlayerTwoSelect::options($get, $set, $record);
+                                    })
+                                    ->placeholder(
+                                        TranslateComponent::placeholder(static::$translateablePackageKey, 'home_player_id')
+                                    )
+                                    ->searchable()
+                                    ->reactive()
+                                    ->required(fn (Closure $get): bool => $get('game_encounter_type_id') == 2)
+                                    ->visible(fn (Closure $get): bool => $get('game_encounter_type_id') == 2),
+
+                                Select::make('guest_player_id_2')
+                                    ->label(GameEncounter::transAttribute('guest_player_id_2'))
+                                    ->validationAttribute(GameEncounter::transAttribute('guest_player_id_2'))
+                                    ->options(function (Closure $get, Closure $set, ?GameEncounter $record) {
+                                        return GuestPlayerTwoSelect::options($get, $set, $record);
+                                    })
+                                    ->placeholder(
+                                        TranslateComponent::placeholder(static::$translateablePackageKey, 'guest_player_id_2')
+                                    )
+                                    ->searchable()
+                                    ->reactive()
+                                    ->required(fn (Closure $get): bool => $get('game_encounter_type_id') == 2)
+                                    ->visible(fn (Closure $get): bool => $get('game_encounter_type_id') == 2),
+                            ]),
+
+                        Tab::make(TranslateComponent::tab(static::$translateablePackageKey, 'points'))
+                            ->icon('heroicon-o-calculator')
+                            ->schema([
+                                TextInput::make('home_team_win')
+                                    ->label(GameEncounter::transAttribute('home_team_win'))
+                                    ->required()
+                                    ->default(0)
+                                    ->numeric(),
+
+                                TextInput::make('guest_team_win')
+                                    ->label(GameEncounter::transAttribute('guest_team_win'))
+                                    ->required()
+                                    ->default(0)
+                                    ->numeric(),
+
+                                TextInput::make('home_team_defeat')
+                                    ->label(GameEncounter::transAttribute('home_team_defeat'))
+                                    ->required()
+                                    ->default(0)
+                                    ->numeric(),
+
+                                TextInput::make('guest_team_defeat')
+                                    ->label(GameEncounter::transAttribute('guest_team_defeat'))
+                                    ->required()
+                                    ->default(0)
+                                    ->numeric(),
+
+                                TextInput::make('home_team_points_leg')
+                                    ->label(GameEncounter::transAttribute('home_team_points_leg'))
+                                    ->required()
+                                    ->default(0)
+                                    ->numeric(),
+
+                                TextInput::make('guest_team_points_leg')
+                                    ->label(GameEncounter::transAttribute('guest_team_points_leg'))
+                                    ->required()
+                                    ->default(0)
+                                    ->numeric(),
+                            ]),
+                    ])->columns([
+                        'sm' => 2,
+                    ])
                     ->columnSpan(2)
-                    ->searchable(),
-
-                Select::make('home_player_id_1')
-                    ->label(GameEncounter::transAttribute('home_player_id_1'))
-                    ->validationAttribute(GameEncounter::transAttribute('home_player_id_1'))
-                    ->options(function (Closure $get, Closure $set, ?GameEncounter $record) {
-                        return HomePlayerOneSelect::options($get, $set, $record);
-                    })
-                    ->placeholder(
-                        TranslateComponent::placeholder(static::$translateablePackageKey, 'home_player_id')
-                    )
-                    ->required()
-                    ->searchable()
-                    ->reactive(),
-
-                Select::make('guest_player_id_1')
-                    ->label(GameEncounter::transAttribute('guest_player_id_1'))
-                    ->validationAttribute(GameEncounter::transAttribute('guest_player_id_1'))
-                    ->options(function (Closure $get, Closure $set, ?GameEncounter $record) {
-                        return GuestPlayerOneSelect::options($get, $set, $record);
-                    })
-                    ->placeholder(
-                        TranslateComponent::placeholder(static::$translateablePackageKey, 'guest_player_id_1')
-                    )
-                    ->required()
-                    ->searchable()
-                    ->reactive(),
-
-                Select::make('home_player_id_2')
-                    ->label(GameEncounter::transAttribute('home_player_id_2'))
-                    ->validationAttribute(GameEncounter::transAttribute('home_player_id_2'))
-                    ->options(function (Closure $get, Closure $set, ?GameEncounter $record) {
-                        return HomePlayerTwoSelect::options($get, $set, $record);
-                    })
-                    ->placeholder(
-                        TranslateComponent::placeholder(static::$translateablePackageKey, 'home_player_id')
-                    )
-                    ->required()
-                    ->searchable()
-                    ->reactive(),
-
-                Select::make('guest_player_id_2')
-                    ->label(GameEncounter::transAttribute('guest_player_id_2'))
-                    ->validationAttribute(GameEncounter::transAttribute('guest_player_id_2'))
-                    ->options(function (Closure $get, Closure $set, ?GameEncounter $record) {
-                        return GuestPlayerTwoSelect::options($get, $set, $record);
-                    })
-                    ->placeholder(
-                        TranslateComponent::placeholder(static::$translateablePackageKey, 'guest_player_id_2')
-                    )
-                    ->required()
-                    ->searchable()
-                    ->reactive(),
-
-                TextInput::make('home_team_win')
-                    ->label(GameEncounter::transAttribute('home_team_win'))
-                    ->required()
-                    ->default(0)
-                    ->numeric(),
-
-                TextInput::make('guest_team_win')
-                    ->label(GameEncounter::transAttribute('guest_team_win'))
-                    ->required()
-                    ->default(0)
-                    ->numeric(),
-
-                TextInput::make('home_team_defeat')
-                    ->label(GameEncounter::transAttribute('home_team_defeat'))
-                    ->required()
-                    ->default(0)
-                    ->numeric(),
-
-                TextInput::make('guest_team_defeat')
-                    ->label(GameEncounter::transAttribute('guest_team_defeat'))
-                    ->required()
-                    ->default(0)
-                    ->numeric(),
-
-                TextInput::make('home_team_points_leg')
-                    ->label(GameEncounter::transAttribute('home_team_points_leg'))
-                    ->required()
-                    ->default(0)
-                    ->numeric(),
-
-                TextInput::make('guest_team_points_leg')
-                    ->label(GameEncounter::transAttribute('guest_team_points_leg'))
-                    ->required()
-                    ->default(0)
-                    ->numeric(),
+                    ->activeTab(1),
             ]);
     }
 
@@ -160,7 +185,20 @@ class GameEncountersRelationManager extends TranslateableRelationManager
     {
         return $table
             ->columns([
-                TextColumn::make('game_id'),
+                TextColumn::make('game_id')
+                    ->label(GameEncounter::transAttribute('game_id')),
+
+                TextColumn::make('home_team_win')
+                    ->label(GameEncounter::transAttribute('home_team_win')),
+
+                TextColumn::make('guest_team_win')
+                    ->label(GameEncounter::transAttribute('guest_team_win')),
+
+                TextColumn::make('home_team_points_leg')
+                    ->label(GameEncounter::transAttribute('home_team_points_leg')),
+
+                TextColumn::make('guest_team_points_leg')
+                    ->label(GameEncounter::transAttribute('guest_team_points_leg')),
             ])
             ->filters([
                 //
@@ -186,12 +224,36 @@ class GameEncountersRelationManager extends TranslateableRelationManager
                     }),
             ])
             ->actions([
-                EditAction::make()->onlyIconAndTooltip(),
+                EditAction::make()->onlyIconAndTooltip()->using(function (GameEncounter $record, HasRelationshipTable $livewire, array $data) {
+                    try {
+                        /** @var Game $game */
+                        $game = $livewire->getRelationship()->getParent();
+
+                        return app(UpdateOrCreateGameEncounterAction::class)->execute(
+                            $game,
+                            GameEncounterData::from($data),
+                            $record
+                        );
+                    } catch (Throwable) {
+                        CreatedEntryFailedNotification::make()->send();
+                    }
+                }),
                 ViewAction::make()->onlyIconAndTooltip(),
-                DeleteAction::make()->onlyIconAndTooltip(),
+                DeleteAction::make()->onlyIconAndTooltip()->using(function (GameEncounter $record) {
+                    try {
+                        return app(DeleteGameEncounterAction::class)->execute($record);
+                    } catch (Throwable) {
+                        CreatedEntryFailedNotification::make()->send();
+                    }
+                }),
             ])
             ->bulkActions([
                 DeleteBulkAction::make(),
             ]);
+    }
+
+    protected function getDefaultTableSortColumn(): ?string
+    {
+        return 'order';
     }
 }

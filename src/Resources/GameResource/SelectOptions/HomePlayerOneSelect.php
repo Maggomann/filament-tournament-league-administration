@@ -12,16 +12,21 @@ class HomePlayerOneSelect
     public static function options(Closure $get, Closure $set, ?GameEncounter $record): Collection
     {
         $gameId = $get('game_id');
+        $playerTwo = $get('home_player_id_2');
 
-        if ($record) {
-            $playerId = $record->firstHomePlayer()?->id;
+        $game = Game::with([
+            'homePlayers' => fn ($query) => ($playerTwo) ? $query->where('id', '!=', $playerTwo) : $query,
+        ])
+            ->when($record, function ($query) use ($set, $record) {
+                if ($playerId = $record->firstHomePlayer()?->id) {
+                    $set('home_player_id_1', $playerId);
+                }
 
-            if ($playerId) {
-                $set('home_player_id_1', $playerId);
-            }
-        }
+                return $query;
+            })
+            ->find($gameId);
 
-        return Game::with('homePlayers')->find($gameId)
+        return $game
             ?->homePlayers
             ?->pluck('name', 'id');
     }

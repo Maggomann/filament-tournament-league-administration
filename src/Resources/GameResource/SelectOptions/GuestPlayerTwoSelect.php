@@ -12,16 +12,21 @@ class GuestPlayerTwoSelect
     public static function options(Closure $get, Closure $set, ?GameEncounter $record): Collection
     {
         $gameId = $get('game_id');
+        $playerOne = $get('guest_player_id_1');
 
-        if ($record) {
-            $playerId = $record->secondGuestPlayer()?->id;
+        $game = Game::with([
+            'guestPlayers' => fn ($query) => ($playerOne) ? $query->where('id', '!=', $playerOne) : $query,
+        ])
+            ->when($record, function ($query) use ($set, $record) {
+                if ($playerId = $record->secondGuestPlayer()?->id) {
+                    $set('guest_player_id_2', $playerId);
+                }
 
-            if ($playerId) {
-                $set('guest_player_id_2', $playerId);
-            }
-        }
+                return $query;
+            })
+            ->find($gameId);
 
-        return Game::with('guestPlayers')->find($gameId)
+        return $game
             ?->guestPlayers
             ?->pluck('name', 'id');
     }
