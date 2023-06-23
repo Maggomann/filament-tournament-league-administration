@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @method static \Illuminate\Database\Eloquent\Builder|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player firstHomePlayer()
- * @method static \Illuminate\Database\Eloquent\Builder|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player secondHomePlayer()
- * @method static \Illuminate\Database\Eloquent\Builder|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player firstGuestPlayer()
- * @method static \Illuminate\Database\Eloquent\Builder|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player secondGuestPlayer()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player|null firstHomePlayer()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player|null secondHomePlayer()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player|null firstGuestPlayer()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Maggomann\FilamentTournamentLeagueAdministration\Models\Player|null secondGuestPlayer()
  *
  * @property int $id
  * @property int|null $game_id
- * @property int|null $player_encounter_type_id
+ * @property int|null $game_encounter_type_id.
  * @property int $order
  * @property int $home_team_win
  * @property int $home_team_defeat

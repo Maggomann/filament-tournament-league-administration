@@ -20,6 +20,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\DeleteG
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\Actions\UpdateOrCreateGameEncounterAction;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Game\DTO\GameEncounterData;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\CreatedEntryFailedNotification;
+use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\Notifications\DeleteEntryFailedNotification;
 use Maggomann\FilamentTournamentLeagueAdministration\Domain\Support\TranslateComponent;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameEncounter;
@@ -31,6 +32,9 @@ use Maggomann\FilamentTournamentLeagueAdministration\Resources\GameResource\Sele
 use Maggomann\FilamentTournamentLeagueAdministration\Resources\TranslateableRelationManager;
 use Throwable;
 
+/**
+ * @method static Game getOwnerRecord()
+ */
 class GameEncountersRelationManager extends TranslateableRelationManager
 {
     protected static string $relationship = 'gameEncounters';
@@ -241,9 +245,9 @@ class GameEncountersRelationManager extends TranslateableRelationManager
                 ViewAction::make()->onlyIconAndTooltip(),
                 DeleteAction::make()->onlyIconAndTooltip()->using(function (GameEncounter $record) {
                     try {
-                        return app(DeleteGameEncounterAction::class)->execute($record);
+                        app(DeleteGameEncounterAction::class)->execute($record);
                     } catch (Throwable) {
-                        CreatedEntryFailedNotification::make()->send();
+                        DeleteEntryFailedNotification::make()->send();
                     }
                 }),
             ])

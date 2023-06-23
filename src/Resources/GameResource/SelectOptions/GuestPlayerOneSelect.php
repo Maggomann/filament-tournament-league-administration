@@ -6,10 +6,11 @@ use Closure;
 use Illuminate\Support\Collection;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\Game;
 use Maggomann\FilamentTournamentLeagueAdministration\Models\GameEncounter;
+use Maggomann\FilamentTournamentLeagueAdministration\Models\Player;
 
 class GuestPlayerOneSelect
 {
-    public static function options(Closure $get, Closure $set, ?GameEncounter $record): Collection
+    public static function options(Closure $get, Closure $set, ?GameEncounter $record = null): Collection
     {
         $gameId = $get('game_id');
         $playerTwo = $get('guest_player_id_2');
@@ -18,8 +19,15 @@ class GuestPlayerOneSelect
             'guestPlayers' => fn ($query) => ($playerTwo) ? $query->where('id', '!=', $playerTwo) : $query,
         ])
             ->when($record, function ($query) use ($set, $record) {
-                if ($playerId = $record->firstGuestPlayer()?->id) {
-                    $set('guest_player_id_1', $playerId);
+                if (blank($record)) {
+                    return $query;
+                }
+
+                /** @var ?Player $player */
+                $player = $record->firstGuestPlayer();
+
+                if ($player instanceof Player) {
+                    $set('guest_player_id_1', $player->id);
                 }
 
                 return $query;
