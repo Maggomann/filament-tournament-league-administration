@@ -9,7 +9,7 @@ use Maggomann\FilamentTournamentLeagueAdministration\Models\GameEncounter;
 
 class UpdateOrCreateGameEncounterAction
 {
-    public function execute(Game $game, GameEncounterData $gameEncounterData, ?GameEncounter $gameEncounter = null): GameEncounter
+    public function execute(GameEncounterData $gameEncounterData, ?GameEncounter $gameEncounter = null): GameEncounter
     {
         return DB::transaction(function () use ($gameEncounterData, $gameEncounter) {
             if (is_null($gameEncounter)) {

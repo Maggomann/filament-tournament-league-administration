@@ -214,11 +214,7 @@ class GameEncountersRelationManager extends TranslateableRelationManager
                             /** @var GameEncounter $gameEncounter */
                             $gameEncounter = $livewire->getRelationship()->getModel();
 
-                            /** @var Game $game */
-                            $game = $livewire->getRelationship()->getParent();
-
                             return app(UpdateOrCreateGameEncounterAction::class)->execute(
-                                $game,
                                 GameEncounterData::from($data),
                                 $gameEncounter
                             );
@@ -230,11 +226,7 @@ class GameEncountersRelationManager extends TranslateableRelationManager
             ->actions([
                 EditAction::make()->onlyIconAndTooltip()->using(function (GameEncounter $record, HasRelationshipTable $livewire, array $data) {
                     try {
-                        /** @var Game $game */
-                        $game = $livewire->getRelationship()->getParent();
-
                         return app(UpdateOrCreateGameEncounterAction::class)->execute(
-                            $game,
                             GameEncounterData::from($data),
                             $record
                         );
