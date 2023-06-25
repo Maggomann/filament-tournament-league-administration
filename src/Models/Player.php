@@ -102,4 +102,24 @@ class Player extends TranslateableModel implements HasMedia
     {
         return $this->belongsToMany(GameSchedule::class);
     }
+
+    public function games(): BelongsToMany
+    {
+        return $this->belongsToMany(Game::class, 'game_player')
+            ->withPivot('is_home', 'is_guest');
+    }
+
+    public function homeGames(): BelongsToMany
+    {
+        return $this->belongsToMany(Game::class, 'game_player')
+            ->wherePivot('is_home', true)
+            ->withPivot('is_home');
+    }
+
+    public function guestGames(): BelongsToMany
+    {
+        return $this->belongsToMany(Game::class, 'game_player')
+            ->wherePivot('is_guest', true)
+            ->withPivot('is_guest');
+    }
 }

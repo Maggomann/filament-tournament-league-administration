@@ -12,4 +12,4 @@ parameters:
     checkModelProperties: true
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
-
+    reportUnmatchedIgnoredErrors: false

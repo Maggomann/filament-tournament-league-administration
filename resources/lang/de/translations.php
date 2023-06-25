@@ -12,7 +12,9 @@ return [
         'components' => [
             'buttons' => [
                 'labels' => [
-                    'link_all_players_from_the_linked_teams' => 'Alle Spieler aus den verknüpfen Teams verknüpfen',
+                    'link_all_guest_players_from_the_linked_guest_team' => 'Alle Gast-Spieler aus dem verknüpften Gast-Team verknüpfen',
+                    'link_all_home_players_from_the_linked_home_team' => 'Alle Heim-Spieler aus dem verknüpften Heim-Team verknüpfen',
+                    'link_all_players_from_the_linked_teams' => 'Alle Spieler aus den verknüpften Teams verknüpfen',
                     'link_all_teams_in_the_league' => 'Alle Teams aus der Liga verknüpfen',
                     'recalculation_of_the_game_plan_points' => 'Neuberechnung der Spielplanpunkte',
                 ],
@@ -25,10 +27,13 @@ return [
                     'calculation_type_id' => 'Bitte wählen Sie ein Kalkulationstyp aus.',
                     'federation_id' => 'Bitte wählen Sie ein Verband aus.',
                     'game_days' => 'Bitte wählen Sie die Anzahl der Spieltage aus.',
+                    'home_player_id' => 'Bitte wählen Sie einen Spieler (Heim) aus.',
+                    'guest_player_id' => 'Bitte wählen Sie einen Spieler (Gast) aus.',
                     'league_id' => 'Bitte wählen Sie eine Liga aus.',
                     'player_id' => 'Bitte wählen Sie einen Spieler aus.',
                     'team_id' => 'Bitte wählen Sie ein Team aus.',
                     'game_schedule_id' => 'Bitte wählen Sie einen Spielplan aus.',
+                    'game_encounter_type_id' => 'Bitte wählen Sie einen Spielbegegnungstyp aus.',
                     'game_day_id' => 'Bitte wählen Sie ein Spieltag aus.',
                     'home_team_id' => 'Bitte wählen Sie ein Team (Home) aus.',
                     'guest_team_id' => 'Bitte wählen Sie ein Team (Gast) aus.',
@@ -39,7 +44,11 @@ return [
                 ],
             ],
             'tabs' => [
+                'game' => 'Spiel',
                 'game_schedule' => 'Spielplan',
+                'guest_players' => 'Gast-Spieler',
+                'home_players' => 'Heim-Spieler',
+                'players' => 'Spieler',
                 'teams' => 'Mannschaften',
                 'points' => 'Punkte',
                 'points_after_overtime' => 'Punkte nach Verlängerung',

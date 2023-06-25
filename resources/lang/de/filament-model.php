@@ -17,6 +17,7 @@ return [
         'game_schedule' => 'Spielplan|Spielpläne',
         'day' => 'Spieltag|Spieltage',
         'game' => 'Spiel|Spiele',
+        'game_encounter' => 'Begegnung|Begegnungen',
         'total_team_point' => 'Punktetabelle|Punktetabellen',
         'free_tournament' => 'Freies Turnier|Freie Tuniere',
         'event_location' => 'Veranstaltungsort|Veranstaltungsorte',
@@ -102,6 +103,24 @@ return [
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',
         ],
+        'game_encounter' => [
+            'game_id' => 'Spiel',
+            'game_encounter_type_id' => 'Begegnungstyp',
+            'order' => 'Reihenfolge',
+            'home_team_win' => 'Heim Team Sieg',
+            'home_team_defeat' => 'Heim Team Niederlage',
+            'guest_team_win' => 'Gast Team Sieg',
+            'guest_team_defeat' => 'Gast Team Niederlage',
+            'home_team_points_leg' => 'Heim Team Punkte Legs',
+            'guest_team_points_leg' => 'Gast Team Punkte Legs',
+            'home_player_id_1' => 'Heim Spieler 1',
+            'home_player_id_2' => 'Heim Spieler 2',
+            'guest_player_id_1' => 'Gast Spieler 1',
+            'guest_player_id_2' => 'Gast Spieler 2',
+            'created_at' => 'Erstellt am',
+            'updated_at' => 'Aktualisiert am',
+            'deleted_at' => 'Gelöscht am',
+        ],
         'game_day' => [
             'game_schedule_id' => 'Spielplan',
             'day' => 'Spieltag',
@@ -110,6 +129,15 @@ return [
             'created_at' => 'Erstellt am',
             'updated_at' => 'Aktualisiert am',
             'deleted_at' => 'Gelöscht am',
+        ],
+        'tournament_league_game_encounter_type' => [
+            'title' => [
+                'one_versus_one' => '1 vs 1',
+                'two_versus_two' => '2 vs 2',
+            ],
+            'created_at' => 'Created at',
+            'updated_at' => 'Updated at',
+            'deleted_at' => 'Deleted at',
         ],
         'tournament_league_player_roles' => [
             'title' => [

@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -87,6 +89,25 @@ class Game extends TranslateableModel
     public function guestTeam(): BelongsTo
     {
         return $this->belongsTo(Team::class, 'guest_team_id');
+    }
+
+    public function homePlayers(): BelongsToMany
+    {
+        return $this->belongsToMany(Player::class, 'game_player')
+            ->wherePivot('is_home', true)
+            ->withPivot('is_home');
+    }
+
+    public function gameEncounters(): HasMany
+    {
+        return $this->hasMany(GameEncounter::class);
+    }
+
+    public function guestPlayers(): BelongsToMany
+    {
+        return $this->belongsToMany(Player::class, 'game_player')
+            ->wherePivot('is_guest', true)
+            ->withPivot('is_guest');
     }
 
     public function scopeCollection(Builder $query, string $collectionName): Builder
