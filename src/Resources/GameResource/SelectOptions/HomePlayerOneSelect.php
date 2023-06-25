@@ -13,10 +13,10 @@ class HomePlayerOneSelect
     public static function options(Closure $get, Closure $set, ?GameEncounter $record = null): Collection
     {
         $gameId = $get('game_id');
-        $playerTwo = $get('home_player_id_2');
+        $playerIdTwo = $get('home_player_id_2');
 
         $game = Game::with([
-            'homePlayers' => fn ($query) => ($playerTwo) ? $query->where('id', '!=', $playerTwo) : $query,
+            'homePlayers' => fn ($query) => ($playerIdTwo) ? $query->where('id', '!=', $playerIdTwo) : $query,
         ])
             ->when($record, function ($query) use ($set, $record) {
                 if (blank($record)) {
